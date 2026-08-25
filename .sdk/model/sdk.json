@@ -1,15 +1,6 @@
 {
-  "NAME": "INTERCOM",
-  "Name": "Intercom",
   "def": "intercom-contacts-only.json",
   "main": {
-    "api": {
-      "entity": {},
-      "guide": {}
-    },
-    "custom": {
-      "plurals": {}
-    },
     "def": {
       "desc": ""
     },
@@ -1049,8 +1040,5 @@
     }
   },
   "name": "intercom",
-  "name-": "intercom",
-  "name_": "intercom",
-  "name__orig": "intercom",
   "origin": "voxgig-sdk"
 }
