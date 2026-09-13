@@ -11,13 +11,7 @@ export interface ContactLoadMatch {
     id: string;
 }
 export interface ContactListMatch {
-    created_at?: number;
-    email?: string;
-    id?: string;
-    name?: string;
-    phone?: string;
-    role?: string;
-    updated_at?: number;
+    per_page?: number;
 }
 export interface ContactCreateData {
     created_at?: number;

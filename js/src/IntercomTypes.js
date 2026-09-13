@@ -24,13 +24,7 @@
 
 /**
  * @typedef {Object} ContactListMatch
- * @property {number} [created_at]
- * @property {string} [email]
- * @property {string} [id]
- * @property {string} [name]
- * @property {string} [phone]
- * @property {string} [role]
- * @property {number} [updated_at]
+ * @property {number} [per_page]
  */
 
 /**

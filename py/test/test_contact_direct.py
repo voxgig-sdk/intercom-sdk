@@ -107,15 +107,18 @@ def _contact_direct_setup(mockres):
     env = runner.env_override({
         "INTERCOM_TEST_CONTACT_ENTID": {},
         "INTERCOM_TEST_LIVE": "FALSE",
-        "INTERCOM_APIKEY": "NONE",
+        "INTERCOM_APIKEY": "",
     })
 
     live = env.get("INTERCOM_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("INTERCOM_APIKEY"),
-        }
+        })
         client = IntercomSDK(merged_opts)
         return {
             "client": client,

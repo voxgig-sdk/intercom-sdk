@@ -31,13 +31,7 @@ class ContactLoadMatch(TypedDict):
 
 
 class ContactListMatch(TypedDict, total=False):
-    created_at: int
-    email: str
-    id: str
-    name: str
-    phone: str
-    role: str
-    updated_at: int
+    per_page: int
 
 
 class ContactCreateData(TypedDict, total=False):

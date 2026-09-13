@@ -5,7 +5,7 @@ require('dotenv').config({ quiet: true, path: [envlocal] })
 const Path = require('node:path')
 const Fs = require('node:fs')
 
-const { test, describe } = require('node:test')
+const { test, describe, afterEach } = require('node:test')
 const assert = require('node:assert')
 
 
@@ -13,6 +13,8 @@ const { IntercomSDK, BaseFeature, stdutil, config } = require('../../..')
 
 const {
   envOverride,
+  liveClientOptions,
+  liveDelay,
   makeCtrl,
   makeMatch,
   makeReqdata,
@@ -22,6 +24,10 @@ const {
 
 
 describe('ContactEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when INTERCOM_TEST_LIVE=TRUE.
+  afterEach(liveDelay('INTERCOM_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = IntercomSDK.test()
@@ -130,17 +136,24 @@ function basicSetup(extra) {
     'INTERCOM_TEST_CONTACT_ENTID': idmap,
     'INTERCOM_TEST_LIVE': 'FALSE',
     'INTERCOM_TEST_EXPLAIN': 'FALSE',
-    'INTERCOM_APIKEY': 'NONE',
+    'INTERCOM_APIKEY': '',
   })
 
   idmap = env['INTERCOM_TEST_CONTACT_ENTID']
 
   if ('TRUE' === env.INTERCOM_TEST_LIVE) {
     client = new IntercomSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
       {
         apikey: env.INTERCOM_APIKEY,
       },
-      extra
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when
+      // the last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey and
+      // server values above and handed the SDK undefined.
+      extra || {}
     ]))
   }
 

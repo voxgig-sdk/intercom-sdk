@@ -63,6 +63,10 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "contact",
         ["op"] = {
           ["create"] = {
@@ -74,13 +78,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/contacts",
-                ["parts"] = {
-                  "contacts",
+                ["segments"] = {
+                  {
+                    ["lit"] = "contacts",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "contacts",
                 },
               },
             },
@@ -103,8 +112,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/contacts",
-                ["parts"] = {
-                  "contacts",
+                ["segments"] = {
+                  {
+                    ["lit"] = "contacts",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -114,6 +125,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "contacts",
                 },
               },
             },
@@ -137,9 +151,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/contacts/{id}",
-                ["parts"] = {
-                  "contacts",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "contacts",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -149,6 +167,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "contacts",
+                  "{id}",
                 },
               },
             },
@@ -172,9 +194,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/contacts/{id}",
-                ["parts"] = {
-                  "contacts",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "contacts",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -184,6 +210,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "contacts",
+                  "{id}",
                 },
               },
             },
@@ -207,9 +237,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "PUT",
                 ["orig"] = "/contacts/{id}",
-                ["parts"] = {
-                  "contacts",
-                  "{id}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "contacts",
+                  },
+                  {
+                    ["var"] = "id",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -219,6 +253,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "contacts",
+                  "{id}",
                 },
               },
             },

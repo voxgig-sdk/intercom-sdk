@@ -30,13 +30,7 @@ type ContactLoadMatch struct {
 
 // ContactListMatch is the typed request payload for Contact.ListTyped.
 type ContactListMatch struct {
-	CreatedAt *int `json:"created_at,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Role *string `json:"role,omitempty"`
-	UpdatedAt *int `json:"updated_at,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
 }
 
 // ContactCreateData is the typed request payload for Contact.CreateTyped.

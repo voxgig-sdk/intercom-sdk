@@ -171,7 +171,7 @@ def _contact_basic_setup(extra):
         "INTERCOM_TEST_CONTACT_ENTID": idmap,
         "INTERCOM_TEST_LIVE": "FALSE",
         "INTERCOM_TEST_EXPLAIN": "FALSE",
-        "INTERCOM_APIKEY": "NONE",
+        "INTERCOM_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -181,6 +181,10 @@ def _contact_basic_setup(extra):
 
     if env.get("INTERCOM_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("INTERCOM_APIKEY"),
             },

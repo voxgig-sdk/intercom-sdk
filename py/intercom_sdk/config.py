@@ -1,6 +1,14 @@
 # Intercom SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -84,6 +92,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "contact",
         "op": {
           "create": {
@@ -95,14 +107,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/contacts",
-                "parts": [
-                  "contacts",
+                "segments": [
+                  {
+                    "lit": "contacts",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "contacts",
+                ],
               },
             ],
           },
@@ -124,8 +141,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/contacts",
-                "parts": [
-                  "contacts",
+                "segments": [
+                  {
+                    "lit": "contacts",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -136,6 +155,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "contacts",
+                ],
               },
             ],
           },
@@ -158,9 +180,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/contacts/{id}",
-                "parts": [
-                  "contacts",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "contacts",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -171,6 +197,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "contacts",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -193,9 +223,13 @@ def make_config():
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/contacts/{id}",
-                "parts": [
-                  "contacts",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "contacts",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -206,6 +240,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "contacts",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -228,9 +266,13 @@ def make_config():
                 "kind": "http",
                 "method": "PUT",
                 "orig": "/contacts/{id}",
-                "parts": [
-                  "contacts",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "contacts",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -241,6 +283,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "contacts",
+                  "{id}",
+                ],
               },
             ],
           },

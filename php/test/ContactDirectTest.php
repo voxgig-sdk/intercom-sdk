@@ -123,15 +123,17 @@ function contact_direct_setup($mockres)
     $env = Runner::env_override([
         "INTERCOM_TEST_CONTACT_ENTID" => [],
         "INTERCOM_TEST_LIVE" => "FALSE",
-        "INTERCOM_APIKEY" => "NONE",
+        "INTERCOM_APIKEY" => "",
     ]);
 
     $live = $env["INTERCOM_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["INTERCOM_APIKEY"],
-        ];
+        ]);
         $client = new IntercomSDK($merged_opts);
         return [
             "client" => $client,

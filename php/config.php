@@ -89,6 +89,10 @@ class IntercomConfig
               'type' => '`$INTEGER`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'contact',
           'op' => [
             'create' => [
@@ -100,13 +104,18 @@ class IntercomConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/contacts',
-                  'parts' => [
-                    'contacts',
+                  'segments' => [
+                    [
+                      'lit' => 'contacts',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'contacts',
                   ],
                 ],
               ],
@@ -129,8 +138,10 @@ class IntercomConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/contacts',
-                  'parts' => [
-                    'contacts',
+                  'segments' => [
+                    [
+                      'lit' => 'contacts',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -140,6 +151,9 @@ class IntercomConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'contacts',
                   ],
                 ],
               ],
@@ -163,9 +177,13 @@ class IntercomConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/contacts/{id}',
-                  'parts' => [
-                    'contacts',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'contacts',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -175,6 +193,10 @@ class IntercomConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'contacts',
+                    '{id}',
                   ],
                 ],
               ],
@@ -198,9 +220,13 @@ class IntercomConfig
                   'kind' => 'http',
                   'method' => 'DELETE',
                   'orig' => '/contacts/{id}',
-                  'parts' => [
-                    'contacts',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'contacts',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -210,6 +236,10 @@ class IntercomConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'contacts',
+                    '{id}',
                   ],
                 ],
               ],
@@ -233,9 +263,13 @@ class IntercomConfig
                   'kind' => 'http',
                   'method' => 'PUT',
                   'orig' => '/contacts/{id}',
-                  'parts' => [
-                    'contacts',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'contacts',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -245,6 +279,10 @@ class IntercomConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'contacts',
+                    '{id}',
                   ],
                 ],
               ],

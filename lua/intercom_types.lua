@@ -19,13 +19,7 @@
 ---@field id string
 
 ---@class ContactListMatch
----@field created_at? number
----@field email? string
----@field id? string
----@field name? string
----@field phone? string
----@field role? string
----@field updated_at? number
+---@field per_page? number
 
 ---@class ContactCreateData
 ---@field created_at? number

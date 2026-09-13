@@ -33,13 +33,7 @@ class ContactLoadMatch
 /** Request payload for Contact#list. */
 class ContactListMatch
 {
-    public ?int $created_at = null;
-    public ?string $email = null;
-    public ?string $id = null;
-    public ?string $name = null;
-    public ?string $phone = null;
-    public ?string $role = null;
-    public ?int $updated_at = null;
+    public ?int $per_page = null;
 }
 
 /** Request payload for Contact#create. */

@@ -55,8 +55,10 @@ main: kit: entity: contact: {
         {
           method: "POST"
           orig: "/contacts"
-          parts: [
-            "contacts"
+          segments: [
+            {
+              lit: "contacts"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -82,8 +84,10 @@ main: kit: entity: contact: {
           }
           method: "GET"
           orig: "/contacts"
-          parts: [
-            "contacts"
+          segments: [
+            {
+              lit: "contacts"
+            }
           ]
           select: {
             exist: [
@@ -114,9 +118,13 @@ main: kit: entity: contact: {
           }
           method: "GET"
           orig: "/contacts/{id}"
-          parts: [
-            "contacts"
-            "{id}"
+          segments: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -147,9 +155,13 @@ main: kit: entity: contact: {
           }
           method: "DELETE"
           orig: "/contacts/{id}"
-          parts: [
-            "contacts"
-            "{id}"
+          segments: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -180,9 +192,13 @@ main: kit: entity: contact: {
           }
           method: "PUT"
           orig: "/contacts/{id}"
-          parts: [
-            "contacts"
-            "{id}"
+          segments: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
