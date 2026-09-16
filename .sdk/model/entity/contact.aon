@@ -53,6 +53,12 @@ main: kit: entity: contact: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /contacts"
+            json: "{\"operationId\":\"createContact\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"email\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"phone\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"created_at\":{\"type\":\"integer\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"phone\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"updated_at\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"The created contact\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/contacts"
           segments: [
@@ -81,6 +87,12 @@ main: kit: entity: contact: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /contacts"
+            json: "{\"operationId\":\"listContacts\",\"parameters\":[{\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"created_at\":{\"type\":\"integer\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"phone\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"updated_at\":{\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"A page of contacts\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/contacts"
@@ -115,6 +127,12 @@ main: kit: entity: contact: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "GET /contacts/{id}"
+            json: "{\"operationId\":\"getContact\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"created_at\":{\"type\":\"integer\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"phone\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"updated_at\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"The requested contact\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/contacts/{id}"
@@ -153,6 +171,12 @@ main: kit: entity: contact: {
               }
             ]
           }
+          contract: {
+            id: "DELETE /contacts/{id}"
+            json: "{\"operationId\":\"deleteContact\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Deleted\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "DELETE"
           orig: "/contacts/{id}"
           segments: [
@@ -189,6 +213,12 @@ main: kit: entity: contact: {
                 type: "`$STRING`"
               }
             ]
+          }
+          contract: {
+            id: "PUT /contacts/{id}"
+            json: "{\"operationId\":\"updateContact\",\"parameters\":[{\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"email\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"phone\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"created_at\":{\"type\":\"integer\"},\"email\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"phone\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"updated_at\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"The updated contact\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "PUT"
           orig: "/contacts/{id}"
