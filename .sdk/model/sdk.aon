@@ -7,7 +7,7 @@
 # SDK Details.
 name: 'intercom'
 origin: 'voxgig-sdk'
-def: 'intercom-contacts-only.json'
+def: 'intercom-2.16-openapi.yaml'
 
 
 # API Information
