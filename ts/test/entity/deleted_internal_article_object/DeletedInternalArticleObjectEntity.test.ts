@@ -1,0 +1,182 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { IntercomSDK, BaseFeature, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+// AFTER the imports on purpose: TypeScript hoists `import` above any
+// statement in the emitted CommonJS, so a loader placed above them would
+// run only after every imported module had already been evaluated - and
+// anything reading process.env at module scope would miss these values.
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('DeletedInternalArticleObjectEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when INTERCOM_TEST_LIVE=TRUE.
+  afterEach(liveDelay('INTERCOM_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = IntercomSDK.test()
+    const ent = testsdk.DeletedInternalArticleObject()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.INTERCOM_TEST_LIVE
+    for (const op of ['create', 'list', 'remove']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'deleted_internal_article_object.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"ai_chatbot_availability","req":false,"short":"Whether the internal article should be available for AI Chatbot (Fin).","type":"`$BOOLEAN`","index$":0},{"active":true,"name":"ai_copilot_availability","req":false,"short":"Whether the internal article should be available for AI Copilot.","type":"`$BOOLEAN`","index$":1},{"active":true,"name":"ai_sales_agent_availability","req":false,"short":"Whether the internal article should be available for AI Sales Agent.","type":"`$BOOLEAN`","index$":2},{"active":true,"name":"audience_ids","req":false,"short":"The list of audience IDs to target this internal article to for Fin AI Agent.","type":"`$ARRAY`","index$":3},{"active":true,"name":"author_id","op":{"list":{"req":false,"type":"`$INTEGER`"}},"req":true,"short":"The id of the author of the article.","type":"`$INTEGER`","index$":4},{"active":true,"name":"body","req":false,"short":"The content of the article in HTML.","type":"`$STRING`","index$":5},{"active":true,"name":"body_markdown","req":false,"short":"The content of the article in markdown.","type":"`$STRING`","index$":6},{"active":true,"format":"date-time","name":"created_at","req":false,"short":"The time when the article was created.","type":"`$INTEGER`","index$":7},{"active":true,"name":"id","req":false,"short":"The unique identifier for the article which is given by Intercom.","type":"`$STRING`","index$":8},{"active":true,"name":"locale","req":false,"short":"The default locale of the article.","type":"`$STRING`","index$":9},{"active":true,"name":"owner_id","op":{"list":{"req":false,"type":"`$INTEGER`"}},"req":true,"short":"The id of the owner of the article.","type":"`$INTEGER`","index$":10},{"active":true,"name":"title","op":{"list":{"req":false,"type":"`$STRING`"}},"req":true,"short":"The title of the article.","type":"`$STRING`","index$":11},{"active":true,"name":"type","req":false,"short":"The type of object - `internal_article`.","type":"`$STRING`","index$":12},{"active":true,"format":"date-time","name":"updated_at","req":false,"short":"The time when the article was last updated.","type":"`$INTEGER`","index$":13}],"id":{"field":"id","name":"id"},"name":"deleted_internal_article_object","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}]},"contract":{"id":"POST /internal_articles","json":"{\"operationId\":\"createInternalArticle\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"bad_request\":{\"summary\":\"Bad Request\",\"value\":{\"body\":\"Body of the Internal Article\",\"title\":\"Thanks for everything\"}},\"internal_article_created\":{\"summary\":\"internal article created\",\"value\":{\"author_id\":991266252,\"body\":\"Body of the Article\",\"locale\":\"en\",\"owner_id\":991266252,\"title\":\"Thanks for everything\"}}},\"schema\":{\"description\":\"You can create an Internal Article\",\"nullable\":true,\"properties\":{\"ai_chatbot_availability\":{\"default\":false,\"description\":\"Whether the internal article should be available for AI Chatbot (Fin). Defaults to false.\",\"example\":true,\"type\":\"boolean\"},\"ai_copilot_availability\":{\"default\":false,\"description\":\"Whether the internal article should be available for AI Copilot. Defaults to false.\",\"example\":true,\"type\":\"boolean\"},\"ai_sales_agent_availability\":{\"default\":false,\"description\":\"Whether the internal article should be available for AI Sales Agent. Defaults to false.\",\"example\":true,\"type\":\"boolean\"},\"audience_ids\":{\"description\":\"The list of audience IDs to target this internal article to for Fin AI Agent. Pass an empty array or omit the field for no audience targeting. Unknown audience IDs return a `404` error with no partial commit.\",\"example\":[1,2],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"author_id\":{\"description\":\"The id of the author of the article.\",\"example\":1295,\"type\":\"integer\"},\"body\":{\"description\":\"The content of the article in HTML. Mutually exclusive with `body_markdown`.\",\"example\":\"<p>This is the body in html</p>\",\"type\":\"string\"},\"body_markdown\":{\"description\":\"The content of the article in markdown. An alternative to `body` — you can provide content as markdown instead of HTML. Mutually exclusive with `body`.\",\"example\":\"# Internal Guide\\n\\nSome instructions.\\n\",\"type\":\"string\"},\"owner_id\":{\"description\":\"The id of the owner of the article.\",\"example\":1295,\"type\":\"integer\"},\"title\":{\"description\":\"The title of the article.\",\"example\":\"Thanks for everything\",\"type\":\"string\"}},\"required\":[\"title\",\"owner_id\",\"author_id\"],\"title\":\"Create Internal Article Request Payload\",\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"internal article created\":{\"value\":{\"author_id\":991266252,\"body\":\"Body of the Article\",\"id\":\"42\",\"locale\":\"en\",\"owner_id\":991266252,\"title\":\"Thanks for everything\"}}},\"schema\":{\"allOf\":[{\"description\":\"The data returned about your internal articles when you list them.\",\"properties\":{\"ai_chatbot_availability\":{\"description\":\"Whether the internal article is available for AI Chatbot (Fin).\",\"example\":true,\"type\":\"boolean\"},\"ai_copilot_availability\":{\"description\":\"Whether the internal article is available for AI Copilot.\",\"example\":true,\"type\":\"boolean\"},\"ai_sales_agent_availability\":{\"description\":\"Whether the internal article is available for AI Sales Agent.\",\"example\":true,\"type\":\"boolean\"},\"audience_ids\":{\"description\":\"The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set.\",\"example\":[1,2],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"author_id\":{\"description\":\"The id of the author of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"body\":{\"description\":\"The body of the article in HTML.\",\"example\":\"Default language body in html\",\"nullable\":true,\"type\":\"string\"},\"body_markdown\":{\"description\":\"The body of the article in markdown.\",\"example\":\"# Internal Guide\\n\\nBody of the article in markdown\\n\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"The time when the article was created.\",\"example\":1672928359,\"format\":\"date-time\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier for the article which is given by Intercom.\",\"example\":\"6871119\",\"type\":\"string\"},\"locale\":{\"description\":\"The default locale of the article.\",\"type\":\"string\"},\"owner_id\":{\"description\":\"The id of the owner of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"title\":{\"description\":\"The title of the article.\",\"type\":\"string\"},\"type\":{\"default\":\"internal_article\",\"description\":\"The type of object - `internal_article`.\",\"enum\":[\"internal_article\"],\"example\":\"internal_article\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time when the article was last updated.\",\"example\":1672928610,\"format\":\"date-time\",\"type\":\"integer\"}},\"title\":\"Internal Articles\",\"type\":\"object\"}],\"description\":\"The Internal Articles API is a central place to gather all information and take actions on your internal articles.\",\"title\":\"Internal Article\",\"type\":\"object\"}}},\"description\":\"internal article created\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"Bad Request\":{\"value\":{\"errors\":[{\"code\":\"parameter_not_found\",\"message\":\"author_id must be in the main body or default locale translated_content object\"}],\"request_id\":\"e522ca8a-cd15-404e-84b3-7f7536003d4a\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"85e91429-72df-4e69-8a12-b55793dff59f\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/internal_articles","segments":[{"lit":"internal_articles"}],"select":{"exist":["intercom_version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"list":{"input":"data","name":"list","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}]},"contract":{"id":"GET /internal_articles","json":"{\"operationId\":\"listInternalArticles\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"data\":[{\"author_id\":991266252,\"body\":\"Body of the Article\",\"id\":\"39\",\"locale\":\"en\",\"owner_id\":991266252,\"title\":\"Thanks for everything\"}],\"pages\":{\"page\":1,\"per_page\":25,\"total_pages\":1,\"type\":\"pages\"},\"total_count\":1,\"type\":\"list\"}}},\"schema\":{\"description\":\"This will return a list of internal articles for the App.\",\"properties\":{\"data\":{\"description\":\"An array of Internal Article objects\",\"items\":{\"description\":\"The data returned about your internal articles when you list them.\",\"properties\":{\"ai_chatbot_availability\":{\"description\":\"Whether the internal article is available for AI Chatbot (Fin).\",\"example\":true,\"type\":\"boolean\"},\"ai_copilot_availability\":{\"description\":\"Whether the internal article is available for AI Copilot.\",\"example\":true,\"type\":\"boolean\"},\"ai_sales_agent_availability\":{\"description\":\"Whether the internal article is available for AI Sales Agent.\",\"example\":true,\"type\":\"boolean\"},\"audience_ids\":{\"description\":\"The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set.\",\"example\":[1,2],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"author_id\":{\"description\":\"The id of the author of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"body\":{\"description\":\"The body of the article in HTML.\",\"example\":\"Default language body in html\",\"nullable\":true,\"type\":\"string\"},\"body_markdown\":{\"description\":\"The body of the article in markdown.\",\"example\":\"# Internal Guide\\n\\nBody of the article in markdown\\n\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"The time when the article was created.\",\"example\":1672928359,\"format\":\"date-time\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier for the article which is given by Intercom.\",\"example\":\"6871119\",\"type\":\"string\"},\"locale\":{\"description\":\"The default locale of the article.\",\"type\":\"string\"},\"owner_id\":{\"description\":\"The id of the owner of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"title\":{\"description\":\"The title of the article.\",\"type\":\"string\"},\"type\":{\"default\":\"internal_article\",\"description\":\"The type of object - `internal_article`.\",\"enum\":[\"internal_article\"],\"example\":\"internal_article\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time when the article was last updated.\",\"example\":1672928610,\"format\":\"date-time\",\"type\":\"integer\"}},\"title\":\"Internal Articles\",\"type\":\"object\"},\"type\":\"array\"},\"pages\":{\"description\":\"Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.\\nA \\\"cursor\\\" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or \\\"pages\\\" as needed.\\n\",\"nullable\":true,\"properties\":{\"next\":{\"nullable\":true,\"properties\":{\"per_page\":{\"description\":\"The number of results to fetch per page.\",\"example\":2,\"type\":\"integer\"},\"starting_after\":{\"description\":\"The cursor to use in the next request to get the next page of results.\",\"example\":\"your-cursor-from-response\",\"nullable\":true,\"type\":\"string\"}},\"title\":\"Pagination: Starting After\",\"type\":\"object\"},\"page\":{\"description\":\"The current page\",\"example\":1,\"type\":\"integer\"},\"per_page\":{\"description\":\"Number of results per page\",\"example\":2,\"type\":\"integer\"},\"total_pages\":{\"description\":\"Total number of pages\",\"example\":13,\"type\":\"integer\"},\"type\":{\"description\":\"the type of object `pages`.\",\"enum\":[\"pages\"],\"example\":\"pages\",\"type\":\"string\"}},\"title\":\"Cursor based pages\",\"type\":\"object\"},\"total_count\":{\"description\":\"A count of the total number of internal articles.\",\"example\":1,\"type\":\"integer\"},\"type\":{\"description\":\"The type of the object - `list`.\",\"enum\":[\"list\"],\"example\":\"list\",\"type\":\"string\"}},\"title\":\"Internal Articles\",\"type\":\"object\"}}},\"description\":\"successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"2e760b85-9020-471b-89dc-f579ec8a0104\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/internal_articles","segments":[{"lit":"internal_articles"}],"select":{"exist":["intercom_version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"remove":{"input":"data","name":"remove","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"example":123,"kind":"param","name":"internal_article_id","orig":"internal_article_id","reqd":true,"type":"`$INTEGER`","index$":0}]},"contract":{"id":"DELETE /internal_articles/{internal_article_id}","json":"{\"operationId\":\"deleteInternalArticle\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the internal article which is given by Intercom.\",\"example\":123,\"in\":\"path\",\"name\":\"internal_article_id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"deleted\":true,\"id\":\"51\",\"object\":\"internal_article\"}}},\"schema\":{\"description\":\"Response returned when an object is deleted\",\"properties\":{\"deleted\":{\"description\":\"Whether the internal article was deleted successfully or not.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The unique identifier for the internal article which you provided in the URL.\",\"example\":\"6890762\",\"type\":\"string\"},\"object\":{\"description\":\"The type of object which was deleted. - internal_article\",\"enum\":[\"internal_article\"],\"example\":\"internal_article\",\"type\":\"string\"}},\"title\":\"Deleted Internal Article Object\",\"type\":\"object\"}}},\"description\":\"successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"c6e86ce8-9402-4196-89c5-f1b2912b4bac\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Internal article not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Resource Not Found\"}],\"request_id\":\"afe37506-cc48-4727-8068-ae7ff0e7b0e3\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Internal article not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"DELETE","orig":"/internal_articles/{internal_article_id}","segments":[{"lit":"internal_articles"},{"var":"internal_article_id"}],"select":{"exist":["intercom_version","internal_article_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"remove"}},"relations":{"ancestors":[["internal_article"]]},"key$":"deleted_internal_article_object","name__orig":"deleted_internal_article_object","Name":"DeletedInternalArticleObject","name_":"deleted_internal_article_object","name-":"deleted-internal-article-object","NAME":"DELETED_INTERNAL_ARTICLE_OBJECT","index$":48}, {"active":true,"entity":"deleted_internal_article_object","key$":"BasicDeletedInternalArticleObjectFlow","kind":"basic","name":"BasicDeletedInternalArticleObjectFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"deleted_internal_article_object_ref01"},"match":{},"op":"create","spec":[],"valid":[],"index$":0},{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"deleted_internal_article_object_ref01"}}],"index$":1},{"active":true,"data":{},"input":{"ref":"deleted_internal_article_object_ref01","suffix":"_rm0"},"match":{"id":"deleted_internal_article_object01"},"op":"remove","spec":[],"valid":[],"index$":2},{"active":true,"data":{},"input":{"suffix":"_rt0"},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemNotExists","def":{"ref":"deleted_internal_article_object_ref01"}}],"index$":3}]}, 'DeletedInternalArticleObject')
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+
+    // CREATE
+    const deleted_internal_article_object_ref01_ent = client.DeletedInternalArticleObject()
+    let deleted_internal_article_object_ref01_data = setup.data.new.deleted_internal_article_object['deleted_internal_article_object_ref01']
+
+    deleted_internal_article_object_ref01_data = (await deleted_internal_article_object_ref01_ent.create(deleted_internal_article_object_ref01_data)).data()
+    assert(null != deleted_internal_article_object_ref01_data.id)
+
+
+    // LIST
+    const deleted_internal_article_object_ref01_match: any = {}
+
+    const deleted_internal_article_object_ref01_list = (await deleted_internal_article_object_ref01_ent.list(deleted_internal_article_object_ref01_match)).map((e: any) => e.data())
+
+    assert(!isempty(select(deleted_internal_article_object_ref01_list, { id: deleted_internal_article_object_ref01_data.id })))
+
+
+    // REMOVE
+    const deleted_internal_article_object_ref01_match_rm0: any = { id: deleted_internal_article_object_ref01_data.id }
+    await deleted_internal_article_object_ref01_ent.remove(deleted_internal_article_object_ref01_match_rm0)
+  
+
+    // LIST
+    const deleted_internal_article_object_ref01_match_rt0: any = {}
+
+    const deleted_internal_article_object_ref01_list_rt0 = (await deleted_internal_article_object_ref01_ent.list(deleted_internal_article_object_ref01_match_rt0)).map((e: any) => e.data())
+
+    assert(isempty(select(deleted_internal_article_object_ref01_list_rt0, { id: deleted_internal_article_object_ref01_data.id })))
+
+
+  })
+})
+
+
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/deleted_internal_article_object/DeletedInternalArticleObjectTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = IntercomSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['deleted_internal_article_object01','deleted_internal_article_object02','deleted_internal_article_object03','internal_article01','internal_article02','internal_article03'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'INTERCOM_TEST_DELETED_INTERNAL_ARTICLE_OBJECT_ENTID': idmap,
+    'INTERCOM_TEST_LIVE': 'FALSE',
+    'INTERCOM_TEST_EXPLAIN': 'FALSE',
+    'INTERCOM_APIKEY': '',
+  })
+
+  idmap = env['INTERCOM_TEST_DELETED_INTERNAL_ARTICLE_OBJECT_ENTID']
+
+  const live = 'TRUE' === env.INTERCOM_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['INTERCOM_TEST_DELETED_INTERNAL_ARTICLE_OBJECT_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new IntercomSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.INTERCOM_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.INTERCOM_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

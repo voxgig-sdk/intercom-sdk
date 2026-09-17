@@ -1,0 +1,237 @@
+{
+  "existing": {
+    "deleted_company_object": {
+      "DELETED_COMPANY_OBJECT00": {
+        "company_id": "COMPANY01",
+        "id": "DELETED_COMPANY_OBJECT00"
+      },
+      "DELETED_COMPANY_OBJECT01": {
+        "company_id": "COMPANY01",
+        "id": "DELETED_COMPANY_OBJECT01"
+      },
+      "DELETED_COMPANY_OBJECT02": {
+        "company_id": "COMPANY01",
+        "id": "DELETED_COMPANY_OBJECT02"
+      }
+    }
+  },
+  "new": {
+    "deleted_company_object": {
+      "deleted_company_object_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /companies/{company_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteCompany",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier for the company which is given by Intercom",
+            "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+            "in": "path",
+            "name": "company_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful": {
+                    "value": {
+                      "deleted": true,
+                      "id": "6762f0881bb69f9f2193bb09",
+                      "object": "company"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Response returned when an object is deleted",
+                  "properties": {
+                    "deleted": {
+                      "description": "Whether the company was deleted successfully or not.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the company which is given by Intercom.",
+                      "example": "5b7e8b2f-7a1a-4e6c-8e1b-4f9d4f4c4d4f",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The type of object which was deleted. - `company`",
+                      "enum": [
+                        "company"
+                      ],
+                      "example": "company",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Deleted Company Object",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "7b13fd9c-31be-40de-94e1-d71f260a3458",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Company Not Found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "company_not_found",
+                          "message": "Company Not Found"
+                        }
+                      ],
+                      "request_id": "4f41d1d6-7a42-45e3-a24e-544deb62da47",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Company Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

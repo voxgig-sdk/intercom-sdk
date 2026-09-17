@@ -1,0 +1,1753 @@
+{
+  "existing": {
+    "call": {
+      "CALL00": {
+        "admin_id": "ADMIN01",
+        "answered_at": "sbf",
+        "call_type": "sc0",
+        "contact_id": "CONTACT01",
+        "conversation_id": "CONVERSATION01",
+        "created_at": "sc3",
+        "direction": "sc4",
+        "ended_at": "sc5",
+        "ended_reason": "sc6",
+        "fin_recording_url": "sc7",
+        "fin_transcription_url": "sc8",
+        "id": "CALL00",
+        "initiated_at": "sca",
+        "phone": "scb",
+        "recording_url": "scc",
+        "state": "scd",
+        "transcription_url": "sce",
+        "type": "scf",
+        "updated_at": "sd0",
+        "phone_number": "PHONE_NUMBER01"
+      },
+      "CALL01": {
+        "admin_id": "ADMIN01",
+        "answered_at": "s17d",
+        "call_type": "s17e",
+        "contact_id": "CONTACT01",
+        "conversation_id": "CONVERSATION01",
+        "created_at": "s181",
+        "direction": "s182",
+        "ended_at": "s183",
+        "ended_reason": "s184",
+        "fin_recording_url": "s185",
+        "fin_transcription_url": "s186",
+        "id": "CALL01",
+        "initiated_at": "s188",
+        "phone": "s189",
+        "recording_url": "s18a",
+        "state": "s18b",
+        "transcription_url": "s18c",
+        "type": "s18d",
+        "updated_at": "s18e",
+        "phone_number": "PHONE_NUMBER01"
+      },
+      "CALL02": {
+        "admin_id": "ADMIN01",
+        "answered_at": "s23b",
+        "call_type": "s23c",
+        "contact_id": "CONTACT01",
+        "conversation_id": "CONVERSATION01",
+        "created_at": "s23f",
+        "direction": "s240",
+        "ended_at": "s241",
+        "ended_reason": "s242",
+        "fin_recording_url": "s243",
+        "fin_transcription_url": "s244",
+        "id": "CALL02",
+        "initiated_at": "s246",
+        "phone": "s247",
+        "recording_url": "s248",
+        "state": "s249",
+        "transcription_url": "s24a",
+        "type": "s24b",
+        "updated_at": "s24c",
+        "phone_number": "PHONE_NUMBER01"
+      }
+    }
+  },
+  "new": {
+    "call": {
+      "call_ref01": {
+        "admin_id": "ADMIN01",
+        "answered_at": "s2f9",
+        "call_type": "s2fa",
+        "contact_id": "CONTACT01",
+        "conversation_id": "CONVERSATION01",
+        "created_at": "s2fd",
+        "direction": "s2fe",
+        "ended_at": "s2ff",
+        "ended_reason": "s300",
+        "fin_recording_url": "s301",
+        "fin_transcription_url": "s302",
+        "initiated_at": "s304",
+        "phone": "s305",
+        "recording_url": "s306",
+        "state": "s307",
+        "transcription_url": "s308",
+        "type": "s309",
+        "updated_at": "s30a"
+      }
+    }
+  },
+  "requests": {
+    "POST /calls/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listCallsWithTranscripts",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "example": {
+                  "value": {
+                    "conversation_ids": [
+                      "64619700005694",
+                      "64619700005695"
+                    ]
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "conversation_ids": {
+                    "description": "A list of conversation ids to fetch calls for. Maximum 20.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 20,
+                    "minItems": 1,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "conversation_ids"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "data": [
+                        {
+                          "conversation_id": "64619700005694",
+                          "id": "123",
+                          "transcript": [
+                            {}
+                          ],
+                          "transcript_status": "completed",
+                          "type": "call"
+                        }
+                      ],
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "allOf": [
+                          {
+                            "description": "Represents a phone call in Intercom",
+                            "properties": {
+                              "admin_id": {
+                                "description": "The id of the admin associated with the call, if any.",
+                                "example": "789",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "answered_at": {
+                                "oneOf": [
+                                  {
+                                    "description": "A date and time following the ISO8601 notation.",
+                                    "format": "date-time",
+                                    "title": "string",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "description": "A date and time as UNIX timestamp notation.",
+                                    "title": "integer",
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              "call_type": {
+                                "description": "The type of call.",
+                                "example": "phone",
+                                "type": "string"
+                              },
+                              "contact_id": {
+                                "description": "The id of the contact associated with the call, if any.",
+                                "example": "6762f0dd1bb69f9f2193bb83",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "conversation_id": {
+                                "description": "The id of the conversation associated with the call, if any.",
+                                "example": "456",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "oneOf": [
+                                  {
+                                    "description": "A date and time following the ISO8601 notation.",
+                                    "format": "date-time",
+                                    "title": "string",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "description": "A date and time as UNIX timestamp notation.",
+                                    "title": "integer",
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              "direction": {
+                                "description": "The direction of the call.",
+                                "example": "outbound",
+                                "type": "string"
+                              },
+                              "ended_at": {
+                                "oneOf": [
+                                  {
+                                    "description": "A date and time following the ISO8601 notation.",
+                                    "format": "date-time",
+                                    "title": "string",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "description": "A date and time as UNIX timestamp notation.",
+                                    "title": "integer",
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              "ended_reason": {
+                                "description": "The reason for the call end, if applicable.",
+                                "example": "completed",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "fin_recording_url": {
+                                "description": "API URL to the AI Agent (Fin) call recording if available.",
+                                "format": "uri",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "fin_transcription_url": {
+                                "description": "API URL to the AI Agent (Fin) call transcript if available.",
+                                "format": "uri",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "The id of the call.",
+                                "example": "123",
+                                "type": "string"
+                              },
+                              "initiated_at": {
+                                "oneOf": [
+                                  {
+                                    "description": "A date and time following the ISO8601 notation.",
+                                    "format": "date-time",
+                                    "title": "string",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "description": "A date and time as UNIX timestamp notation.",
+                                    "title": "integer",
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              "phone": {
+                                "description": "The phone number involved in the call, in E.164 format.",
+                                "example": "+15551234567",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "recording_url": {
+                                "description": "API URL to download or redirect to the call recording if available.",
+                                "example": "https://api.intercom.io/calls/123/recording",
+                                "format": "uri",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "state": {
+                                "description": "The current state of the call.",
+                                "example": "completed",
+                                "type": "string"
+                              },
+                              "transcription_url": {
+                                "description": "API URL to download or redirect to the call transcript if available.",
+                                "example": "https://api.intercom.io/calls/123/transcript",
+                                "format": "uri",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `call`.",
+                                "example": "call",
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "oneOf": [
+                                  {
+                                    "description": "A date and time following the ISO8601 notation.",
+                                    "format": "date-time",
+                                    "title": "string",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "description": "A date and time as UNIX timestamp notation.",
+                                    "title": "integer",
+                                    "type": "integer"
+                                  }
+                                ]
+                              }
+                            },
+                            "title": "Call",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "transcript": {
+                                "description": "The call transcript if available, otherwise an empty array.",
+                                "items": {
+                                  "additionalProperties": true,
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "transcript_status": {
+                                "description": "The status of the transcript if available.",
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "too_many_ids": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "conversation_id_limit_exceeded",
+                          "message": "A list of up to 20 conversation IDs is required"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /calls": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listCalls",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The page of results to fetch. Defaults to first page",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "How many results to display per page. Defaults to 25. Max 25.",
+            "example": 25,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "data": [],
+                      "pages": {
+                        "page": 1,
+                        "per_page": 25,
+                        "total_pages": 0,
+                        "type": "pages"
+                      },
+                      "total_count": 0,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of calls.",
+                  "properties": {
+                    "data": {
+                      "description": "A list of calls.",
+                      "items": {
+                        "description": "Represents a phone call in Intercom",
+                        "properties": {
+                          "admin_id": {
+                            "description": "The id of the admin associated with the call, if any.",
+                            "example": "789",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "answered_at": {
+                            "oneOf": [
+                              {
+                                "description": "A date and time following the ISO8601 notation.",
+                                "format": "date-time",
+                                "title": "string",
+                                "type": "string"
+                              },
+                              {
+                                "description": "A date and time as UNIX timestamp notation.",
+                                "title": "integer",
+                                "type": "integer"
+                              }
+                            ]
+                          },
+                          "call_type": {
+                            "description": "The type of call.",
+                            "example": "phone",
+                            "type": "string"
+                          },
+                          "contact_id": {
+                            "description": "The id of the contact associated with the call, if any.",
+                            "example": "6762f0dd1bb69f9f2193bb83",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "conversation_id": {
+                            "description": "The id of the conversation associated with the call, if any.",
+                            "example": "456",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "oneOf": [
+                              {
+                                "description": "A date and time following the ISO8601 notation.",
+                                "format": "date-time",
+                                "title": "string",
+                                "type": "string"
+                              },
+                              {
+                                "description": "A date and time as UNIX timestamp notation.",
+                                "title": "integer",
+                                "type": "integer"
+                              }
+                            ]
+                          },
+                          "direction": {
+                            "description": "The direction of the call.",
+                            "example": "outbound",
+                            "type": "string"
+                          },
+                          "ended_at": {
+                            "oneOf": [
+                              {
+                                "description": "A date and time following the ISO8601 notation.",
+                                "format": "date-time",
+                                "title": "string",
+                                "type": "string"
+                              },
+                              {
+                                "description": "A date and time as UNIX timestamp notation.",
+                                "title": "integer",
+                                "type": "integer"
+                              }
+                            ]
+                          },
+                          "ended_reason": {
+                            "description": "The reason for the call end, if applicable.",
+                            "example": "completed",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "fin_recording_url": {
+                            "description": "API URL to the AI Agent (Fin) call recording if available.",
+                            "format": "uri",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "fin_transcription_url": {
+                            "description": "API URL to the AI Agent (Fin) call transcript if available.",
+                            "format": "uri",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The id of the call.",
+                            "example": "123",
+                            "type": "string"
+                          },
+                          "initiated_at": {
+                            "oneOf": [
+                              {
+                                "description": "A date and time following the ISO8601 notation.",
+                                "format": "date-time",
+                                "title": "string",
+                                "type": "string"
+                              },
+                              {
+                                "description": "A date and time as UNIX timestamp notation.",
+                                "title": "integer",
+                                "type": "integer"
+                              }
+                            ]
+                          },
+                          "phone": {
+                            "description": "The phone number involved in the call, in E.164 format.",
+                            "example": "+15551234567",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "recording_url": {
+                            "description": "API URL to download or redirect to the call recording if available.",
+                            "example": "https://api.intercom.io/calls/123/recording",
+                            "format": "uri",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "state": {
+                            "description": "The current state of the call.",
+                            "example": "completed",
+                            "type": "string"
+                          },
+                          "transcription_url": {
+                            "description": "API URL to download or redirect to the call transcript if available.",
+                            "example": "https://api.intercom.io/calls/123/transcript",
+                            "format": "uri",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "String representing the object's type. Always has the value `call`.",
+                            "example": "call",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "oneOf": [
+                              {
+                                "description": "A date and time following the ISO8601 notation.",
+                                "format": "date-time",
+                                "title": "string",
+                                "type": "string"
+                              },
+                              {
+                                "description": "A date and time as UNIX timestamp notation.",
+                                "title": "integer",
+                                "type": "integer"
+                              }
+                            ]
+                          }
+                        },
+                        "title": "Call",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.\nA \"cursor\" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or \"pages\" as needed.\n",
+                      "nullable": true,
+                      "properties": {
+                        "next": {
+                          "nullable": true,
+                          "properties": {
+                            "per_page": {
+                              "description": "The number of results to fetch per page.",
+                              "example": 2,
+                              "type": "integer"
+                            },
+                            "starting_after": {
+                              "description": "The cursor to use in the next request to get the next page of results.",
+                              "example": "your-cursor-from-response",
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "title": "Pagination: Starting After",
+                          "type": "object"
+                        },
+                        "page": {
+                          "description": "The current page",
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "description": "Number of results per page",
+                          "example": 2,
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "description": "Total number of pages",
+                          "example": 13,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "description": "the type of object `pages`.",
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Cursor based pages",
+                      "type": "object"
+                    },
+                    "total_count": {
+                      "description": "Total number of items available.",
+                      "example": 0,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `list`.",
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Calls",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "e097e446-9ae6-44a8-8e13-2bf3008b87ef",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /calls/{call_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "showCall",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of the call to retrieve",
+            "in": "path",
+            "name": "call_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "admin_id": "789",
+                      "answered_at": 1734537440,
+                      "call_type": "phone",
+                      "contact_id": "6762f0dd1bb69f9f2193bb83",
+                      "conversation_id": "456",
+                      "created_at": 1734537437,
+                      "direction": "outbound",
+                      "ended_at": 1734537530,
+                      "ended_reason": "answered",
+                      "fin_recording_url": "https://api.intercom.io/calls/124/recording",
+                      "fin_transcription_url": "https://api.intercom.io/calls/124/transcript",
+                      "id": "123",
+                      "initiated_at": 1734537437,
+                      "phone": "+15551234567",
+                      "recording_url": "https://api.intercom.io/calls/123/recording",
+                      "state": "completed",
+                      "transcription_url": "https://api.intercom.io/calls/123/transcript",
+                      "type": "call",
+                      "updated_at": 1734537531
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Represents a phone call in Intercom",
+                  "properties": {
+                    "admin_id": {
+                      "description": "The id of the admin associated with the call, if any.",
+                      "example": "789",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "answered_at": {
+                      "oneOf": [
+                        {
+                          "description": "A date and time following the ISO8601 notation.",
+                          "format": "date-time",
+                          "title": "string",
+                          "type": "string"
+                        },
+                        {
+                          "description": "A date and time as UNIX timestamp notation.",
+                          "title": "integer",
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "call_type": {
+                      "description": "The type of call.",
+                      "example": "phone",
+                      "type": "string"
+                    },
+                    "contact_id": {
+                      "description": "The id of the contact associated with the call, if any.",
+                      "example": "6762f0dd1bb69f9f2193bb83",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "conversation_id": {
+                      "description": "The id of the conversation associated with the call, if any.",
+                      "example": "456",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "oneOf": [
+                        {
+                          "description": "A date and time following the ISO8601 notation.",
+                          "format": "date-time",
+                          "title": "string",
+                          "type": "string"
+                        },
+                        {
+                          "description": "A date and time as UNIX timestamp notation.",
+                          "title": "integer",
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "direction": {
+                      "description": "The direction of the call.",
+                      "example": "outbound",
+                      "type": "string"
+                    },
+                    "ended_at": {
+                      "oneOf": [
+                        {
+                          "description": "A date and time following the ISO8601 notation.",
+                          "format": "date-time",
+                          "title": "string",
+                          "type": "string"
+                        },
+                        {
+                          "description": "A date and time as UNIX timestamp notation.",
+                          "title": "integer",
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "ended_reason": {
+                      "description": "The reason for the call end, if applicable.",
+                      "example": "completed",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "fin_recording_url": {
+                      "description": "API URL to the AI Agent (Fin) call recording if available.",
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "fin_transcription_url": {
+                      "description": "API URL to the AI Agent (Fin) call transcript if available.",
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The id of the call.",
+                      "example": "123",
+                      "type": "string"
+                    },
+                    "initiated_at": {
+                      "oneOf": [
+                        {
+                          "description": "A date and time following the ISO8601 notation.",
+                          "format": "date-time",
+                          "title": "string",
+                          "type": "string"
+                        },
+                        {
+                          "description": "A date and time as UNIX timestamp notation.",
+                          "title": "integer",
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "phone": {
+                      "description": "The phone number involved in the call, in E.164 format.",
+                      "example": "+15551234567",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "recording_url": {
+                      "description": "API URL to download or redirect to the call recording if available.",
+                      "example": "https://api.intercom.io/calls/123/recording",
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "The current state of the call.",
+                      "example": "completed",
+                      "type": "string"
+                    },
+                    "transcription_url": {
+                      "description": "API URL to download or redirect to the call transcript if available.",
+                      "example": "https://api.intercom.io/calls/123/transcript",
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `call`.",
+                      "example": "call",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "oneOf": [
+                        {
+                          "description": "A date and time following the ISO8601 notation.",
+                          "format": "date-time",
+                          "title": "string",
+                          "type": "string"
+                        },
+                        {
+                          "description": "A date and time as UNIX timestamp notation.",
+                          "title": "integer",
+                          "type": "integer"
+                        }
+                      ]
+                    }
+                  },
+                  "title": "Call",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "e097e446-9ae6-44a8-8e13-2bf3008b87ef",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Not Found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Not Found"
+                        }
+                      ],
+                      "request_id": "9bc4fc62-7cdf-4f72-a56e-02af4836d499",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /calls/{call_id}/recording": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "showCallRecording",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of the call",
+            "in": "path",
+            "name": "call_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "302": {
+            "description": "Redirect to signed recording URL",
+            "headers": {
+              "Location": {
+                "description": "The signed recording URL",
+                "schema": {
+                  "format": "uri",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "e097e446-9ae6-44a8-8e13-2bf3008b87ef",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Not Found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Recording Not Found"
+                        }
+                      ],
+                      "request_id": "9bc4fc62-7cdf-4f72-a56e-02af4836d499",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Recording not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /calls/{call_id}/transcript": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "showCallTranscript",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of the call",
+            "in": "path",
+            "name": "call_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "transcript_txt": {
+                    "value": "[00:00:03] Teammate 1: \"Hello, thanks for calling. How can I help today?\"\n[00:00:09] User: \"I need help recovering access to my account.\"\n[00:00:15] Teammate 1: \"I can help with that. For security, I’ll ask a few generic verification questions.\"\n[00:00:22] User: \"Okay.\"\n[00:00:28] Teammate 1: \"Please confirm general details on the account (no sensitive data over this call).\"\n[00:00:35] User: \"I can provide non-sensitive info.\"\n[00:00:41] Teammate 1: \"Thank you. I’ll initiate a standard account recovery process and send the next steps.\"\n[00:00:48] User: \"Great, thanks.\"\n[00:00:53] Teammate 1: \"You should receive a message shortly with instructions to complete recovery.\""
+                  }
+                },
+                "schema": {
+                  "description": "Transcript text",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "successful",
+            "headers": {
+              "Content-Disposition": {
+                "description": "File attachment directive and suggested filename for the transcript",
+                "schema": {
+                  "example": "attachment; filename=transcription_data-2025-07-17.txt",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Not Found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Not Found"
+                        }
+                      ],
+                      "request_id": "9bc4fc62-7cdf-4f72-a56e-02af4836d499",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /fin_voice/phone_number/{phone_number}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "collectFinVoiceCallByPhoneNumber",
+        "parameters": [
+          {
+            "description": "Phone number in E.164 format",
+            "in": "path",
+            "name": "phone_number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "not found - no call found for phone number or not matched"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

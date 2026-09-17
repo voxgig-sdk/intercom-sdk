@@ -1,0 +1,369 @@
+# Entity: company_attached_contact
+
+main: kit: entity: company_attached_contact: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "android_app_name"
+      req: false
+      short: "The name of the Android app which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "android_app_version"
+      req: false
+      short: "The version of the Android app which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "android_device"
+      req: false
+      short: "The Android device which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "android_last_seen_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact was last seen on an Android device."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "android_os_version"
+      req: false
+      short: "The version of the Android OS which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "android_sdk_version"
+      req: false
+      short: "The version of the Android SDK which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "avatar"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "browser"
+      req: false
+      short: "The name of the browser which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "browser_language"
+      req: false
+      short: "The language set by the browser which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "browser_version"
+      req: false
+      short: "The version of the browser which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "companies"
+      req: false
+      short: "An object with metadata about companies attached to a contact ."
+      type: "`$OBJECT`"
+    }
+    {
+      format: "date-time"
+      name: "created_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact was created."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "custom_attributes"
+      req: false
+      short: "The custom attributes which are set for the contact."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "email"
+      req: false
+      short: "The contact's email."
+      type: "`$STRING`"
+    }
+    {
+      name: "email_domain"
+      req: false
+      short: "The contact's email domain."
+      type: "`$STRING`"
+    }
+    {
+      name: "external_id"
+      req: false
+      short: "The unique identifier for the contact which is provided by the Client."
+      type: "`$STRING`"
+    }
+    {
+      name: "has_hard_bounced"
+      req: false
+      short: "Whether the contact has had an email sent to them hard bounce."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The unique identifier for the contact which is given by Intercom."
+      type: "`$STRING`"
+    }
+    {
+      name: "ios_app_name"
+      req: false
+      short: "The name of the iOS app which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "ios_app_version"
+      req: false
+      short: "The version of the iOS app which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "ios_device"
+      req: false
+      short: "The iOS device which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "ios_last_seen_at"
+      req: false
+      short: "(Unix timestamp in seconds) The last time the contact used the iOS app."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "ios_os_version"
+      req: false
+      short: "The version of iOS which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "ios_sdk_version"
+      req: false
+      short: "The version of the iOS SDK which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "language_override"
+      req: false
+      short: "A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change."
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "last_contacted_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact was last messaged."
+      type: "`$INTEGER`"
+    }
+    {
+      format: "date-time"
+      name: "last_email_clicked_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact last clicked a link in an email."
+      type: "`$INTEGER`"
+    }
+    {
+      format: "date-time"
+      name: "last_email_opened_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact last opened an email."
+      type: "`$INTEGER`"
+    }
+    {
+      format: "date-time"
+      name: "last_replied_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact last messaged in."
+      type: "`$INTEGER`"
+    }
+    {
+      format: "date-time"
+      name: "last_seen_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually)."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "location"
+      req: false
+      short: "An object containing location meta data about a Intercom contact."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "marked_email_as_spam"
+      req: false
+      short: "Whether the contact has marked an email sent to them as spam."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "merge_history"
+      req: false
+      short: "A list of contacts that were merged into this contact."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "The contacts name."
+      type: "`$STRING`"
+    }
+    {
+      name: "notes"
+      req: false
+      short: "An object containing notes meta data about the notes that a contact has."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "os"
+      req: false
+      short: "The operating system which the contact is using."
+      type: "`$STRING`"
+    }
+    {
+      name: "owner_id"
+      req: false
+      short: "The id of an admin that has been assigned account ownership of the contact."
+      type: "`$STRING`"
+    }
+    {
+      name: "phone"
+      req: false
+      short: "The contacts phone."
+      type: "`$STRING`"
+    }
+    {
+      name: "role"
+      req: false
+      short: "The role of the contact."
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "signed_up_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time specified for when a contact signed up."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "social_profiles"
+      req: false
+      short: "An object containing social profiles that a contact has."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "tags"
+      req: false
+      short: "An object containing tags meta data about the tags that a contact has."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "The type of object."
+      type: "`$STRING`"
+    }
+    {
+      name: "unsubscribed_from_emails"
+      req: false
+      short: "Whether the contact is unsubscribed from emails."
+      type: "`$BOOLEAN`"
+    }
+    {
+      format: "date-time"
+      name: "updated_at"
+      req: false
+      short: "(Unix timestamp in seconds) The time when the contact was last updated."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "workspace_id"
+      req: false
+      short: "The id of the workspace which the contact belongs to."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "company_attached_contact"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632"
+                kind: "param"
+                name: "id"
+                orig: "company_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /companies/{company_id}/contacts"
+            json: "{\"operationId\":\"ListAttachedContacts\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the company which is given by Intercom\",\"example\":\"5f4d3c1c-7b1b-4d7d-a97e-6095715c6632\",\"in\":\"path\",\"name\":\"company_id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful\":{\"value\":{\"data\":[],\"pages\":{\"page\":1,\"per_page\":50,\"total_pages\":0,\"type\":\"pages\"},\"total_count\":0,\"type\":\"list\"}}},\"schema\":{\"description\":\"A list of Contact Objects\",\"properties\":{\"data\":{\"description\":\"An array containing Contact Objects\",\"items\":{\"description\":\"Contacts represent your leads and users in Intercom.\",\"properties\":{\"android_app_name\":{\"description\":\"The name of the Android app which the contact is using.\",\"example\":\"Intercom\",\"nullable\":true,\"type\":\"string\"},\"android_app_version\":{\"description\":\"The version of the Android app which the contact is using.\",\"example\":\"5.0.0\",\"nullable\":true,\"type\":\"string\"},\"android_device\":{\"description\":\"The Android device which the contact is using.\",\"example\":\"Pixel 3\",\"nullable\":true,\"type\":\"string\"},\"android_last_seen_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact was last seen on an Android device.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"android_os_version\":{\"description\":\"The version of the Android OS which the contact is using.\",\"example\":\"10\",\"nullable\":true,\"type\":\"string\"},\"android_sdk_version\":{\"description\":\"The version of the Android SDK which the contact is using.\",\"example\":\"28\",\"nullable\":true,\"type\":\"string\"},\"avatar\":{\"nullable\":true,\"properties\":{\"image_url\":{\"description\":\"An image URL containing the avatar of a contact.\",\"example\":\"https://example.org/128Wash.jpg\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type of object\",\"example\":\"avatar\",\"type\":\"string\"}},\"type\":\"object\"},\"browser\":{\"description\":\"The name of the browser which the contact is using.\",\"example\":\"Chrome\",\"nullable\":true,\"type\":\"string\"},\"browser_language\":{\"description\":\"The language set by the browser which the contact is using.\",\"example\":\"en-US\",\"nullable\":true,\"type\":\"string\"},\"browser_version\":{\"description\":\"The version of the browser which the contact is using.\",\"example\":\"80.0.3987.132\",\"nullable\":true,\"type\":\"string\"},\"companies\":{\"description\":\"An object with metadata about companies attached to a contact . Up to 10 will be displayed here. Use the url to get more.\",\"nullable\":false,\"properties\":{\"data\":{\"description\":\"An array of company data objects attached to the contact.\",\"items\":{\"description\":\"An object containing data about the companies that a contact is associated with.\",\"properties\":{\"id\":{\"description\":\"The unique identifier for the company which is given by Intercom.\",\"example\":\"5ba682d23d7cf92bef87bfd4\",\"type\":\"string\"},\"type\":{\"description\":\"The type of the object. Always company.\",\"enum\":[\"company\"],\"example\":\"company\",\"type\":\"string\"},\"url\":{\"description\":\"The relative URL of the company.\",\"example\":\"/companies/5ba682d23d7cf92bef87bfd4\",\"format\":\"uri\",\"type\":\"string\"}},\"title\":\"Company Data\",\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"Whether there's more Addressable Objects to be viewed. If true, use the url to view all\",\"example\":true,\"type\":\"boolean\"},\"total_count\":{\"description\":\"Integer representing the total number of companies attached to this contact\",\"example\":100,\"type\":\"integer\"},\"url\":{\"description\":\"Url to get more company resources for this contact\",\"example\":\"/contacts/5ba682d23d7cf92bef87bfd4/companies\",\"format\":\"uri\",\"type\":\"string\"}},\"title\":\"Contact companies\",\"type\":\"object\"},\"created_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact was created.\",\"example\":1571672154,\"format\":\"date-time\",\"type\":\"integer\"},\"custom_attributes\":{\"description\":\"The custom attributes which are set for the contact.\",\"type\":\"object\"},\"email\":{\"description\":\"The contact's email.\",\"example\":\"joe@example.com\",\"type\":\"string\"},\"email_domain\":{\"description\":\"The contact's email domain.\",\"example\":\"example.com\",\"type\":\"string\"},\"external_id\":{\"description\":\"The unique identifier for the contact which is provided by the Client.\",\"example\":\"f3b87a2e09d514c6c2e79b9a\",\"nullable\":true,\"type\":\"string\"},\"has_hard_bounced\":{\"description\":\"Whether the contact has had an email sent to them hard bounce.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The unique identifier for the contact which is given by Intercom.\",\"example\":\"5ba682d23d7cf92bef87bfd4\",\"type\":\"string\"},\"ios_app_name\":{\"description\":\"The name of the iOS app which the contact is using.\",\"example\":\"Intercom\",\"nullable\":true,\"type\":\"string\"},\"ios_app_version\":{\"description\":\"The version of the iOS app which the contact is using.\",\"example\":\"5.0.0\",\"nullable\":true,\"type\":\"string\"},\"ios_device\":{\"description\":\"The iOS device which the contact is using.\",\"example\":\"iPhone 11\",\"nullable\":true,\"type\":\"string\"},\"ios_last_seen_at\":{\"description\":\"(Unix timestamp in seconds) The last time the contact used the iOS app.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"ios_os_version\":{\"description\":\"The version of iOS which the contact is using.\",\"example\":\"13.3.1\",\"nullable\":true,\"type\":\"string\"},\"ios_sdk_version\":{\"description\":\"The version of the iOS SDK which the contact is using.\",\"example\":\"13.3.1\",\"nullable\":true,\"type\":\"string\"},\"language_override\":{\"description\":\"A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change.\",\"example\":\"en\",\"nullable\":true,\"type\":\"string\"},\"last_contacted_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact was last messaged.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"last_email_clicked_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact last clicked a link in an email.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"last_email_opened_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact last opened an email.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"last_replied_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact last messaged in.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"last_seen_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually).\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"location\":{\"description\":\"An object containing location meta data about a Intercom contact.\",\"nullable\":false,\"properties\":{\"city\":{\"description\":\"The city that the contact is located in\",\"example\":\"Dublin\",\"nullable\":true,\"type\":\"string\"},\"country\":{\"description\":\"The country that the contact is located in\",\"example\":\"Ireland\",\"nullable\":true,\"type\":\"string\"},\"region\":{\"description\":\"The overal region that the contact is located in\",\"example\":\"Dublin\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"Always location\",\"example\":\"location\",\"nullable\":true,\"type\":\"string\"}},\"title\":\"Contact Location\",\"type\":\"object\"},\"marked_email_as_spam\":{\"description\":\"Whether the contact has marked an email sent to them as spam.\",\"example\":true,\"type\":\"boolean\"},\"merge_history\":{\"description\":\"A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role.\",\"items\":{\"description\":\"A record of a contact that was merged into another contact.\",\"properties\":{\"merged_at\":{\"description\":\"(Unix timestamp in seconds) The time when the merge occurred.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"source_contact_id\":{\"description\":\"The Intercom ID of the contact that was merged into this contact.\",\"example\":\"5ba682d23d7cf92bef87bfd3\",\"type\":\"string\"},\"source_contact_role\":{\"description\":\"The role of the contact that was merged in.\",\"enum\":[\"lead\",\"user\"],\"example\":\"lead\",\"type\":\"string\"},\"type\":{\"description\":\"The type of object.\",\"example\":\"merge_history\",\"type\":\"string\"}},\"title\":\"Merge History Item\",\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"name\":{\"description\":\"The contacts name.\",\"example\":\"John Doe\",\"nullable\":true,\"type\":\"string\"},\"notes\":{\"description\":\"An object containing notes meta data about the notes that a contact has. Up to 10 will be displayed here. Use the url to get more.\",\"nullable\":false,\"properties\":{\"data\":{\"description\":\"This object represents the notes attached to a contact.\",\"items\":{\"description\":\"A list used to access other resources from a parent model.\",\"nullable\":false,\"properties\":{\"id\":{\"description\":\"The id of the addressable object\",\"example\":\"123\",\"type\":\"string\"},\"type\":{\"description\":\"The addressable object type\",\"example\":\"note\",\"format\":\"uri\",\"type\":\"string\"},\"url\":{\"description\":\"Url to get more company resources for this contact\",\"example\":\"/contacts/5ba682d23d7cf92bef87bfd4/notes\",\"format\":\"uri\",\"type\":\"string\"}},\"title\":\"Addressable List\",\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"Whether there's more Addressable Objects to be viewed. If true, use the url to view all\",\"example\":true,\"type\":\"boolean\"},\"total_count\":{\"description\":\"Int representing the total number of companyies attached to this contact\",\"example\":100,\"type\":\"integer\"},\"url\":{\"description\":\"Url to get more company resources for this contact\",\"example\":\"/contacts/5ba682d23d7cf92bef87bfd4/notes\",\"format\":\"uri\",\"type\":\"string\"}},\"title\":\"Contact notes\",\"type\":\"object\"},\"os\":{\"description\":\"The operating system which the contact is using.\",\"example\":\"Mac OS X\",\"nullable\":true,\"type\":\"string\"},\"owner_id\":{\"description\":\"The id of an admin that has been assigned account ownership of the contact.\",\"example\":\"321\",\"nullable\":true,\"type\":\"string\"},\"phone\":{\"description\":\"The contacts phone.\",\"example\":\"+1123456789\",\"nullable\":true,\"type\":\"string\"},\"role\":{\"description\":\"The role of the contact.\",\"example\":\"user\",\"type\":\"string\"},\"signed_up_at\":{\"description\":\"(Unix timestamp in seconds) The time specified for when a contact signed up.\",\"example\":1571672154,\"format\":\"date-time\",\"nullable\":true,\"type\":\"integer\"},\"social_profiles\":{\"description\":\"An object containing social profiles that a contact has.\",\"nullable\":false,\"properties\":{\"data\":{\"description\":\"A list of social profiles objects associated with the contact.\",\"items\":{\"description\":\"A Social Profile allows you to label your contacts, companies, and conversations and list them using that Social Profile.\",\"properties\":{\"name\":{\"description\":\"The name of the Social media profile\",\"example\":\"Facebook\",\"type\":\"string\"},\"type\":{\"description\":\"value is \\\"social_profile\\\"\",\"example\":\"social_profile\",\"type\":\"string\"},\"url\":{\"description\":\"The name of the Social media profile\",\"example\":\"http://twitter.com/th1sland\",\"format\":\"uri\",\"type\":\"string\"}},\"title\":\"Social Profile\",\"type\":\"object\"},\"type\":\"array\"}},\"title\":\"Social Profile\",\"type\":\"object\"},\"tags\":{\"description\":\"An object containing tags meta data about the tags that a contact has. Up to 10 will be displayed here. Use the url to get more.\",\"nullable\":true,\"properties\":{\"data\":{\"description\":\"This object represents the tags attached to a contact.\",\"items\":{\"description\":\"A list used to access other resources from a parent model.\",\"nullable\":false,\"properties\":{\"id\":{\"description\":\"The id of the addressable object\",\"example\":\"123\",\"type\":\"string\"},\"type\":{\"description\":\"The addressable object type\",\"example\":\"note\",\"format\":\"uri\",\"type\":\"string\"},\"url\":{\"description\":\"Url to get more company resources for this contact\",\"example\":\"/contacts/5ba682d23d7cf92bef87bfd4/notes\",\"format\":\"uri\",\"type\":\"string\"}},\"title\":\"Addressable List\",\"type\":\"object\"},\"type\":\"array\"},\"has_more\":{\"description\":\"Whether there's more Addressable Objects to be viewed. If true, use the url to view all\",\"example\":true,\"type\":\"boolean\"},\"total_count\":{\"description\":\"Int representing the total number of tags attached to this contact\",\"example\":100,\"type\":\"integer\"},\"url\":{\"description\":\"url to get more tag resources for this contact\",\"example\":\"/contacts/5ba682d23d7cf92bef87bfd4/tags\",\"format\":\"uri\",\"type\":\"string\"}},\"title\":\"Contact Tags\",\"type\":\"object\"},\"type\":{\"description\":\"The type of object.\",\"example\":\"contact\",\"type\":\"string\"},\"unsubscribed_from_emails\":{\"description\":\"Whether the contact is unsubscribed from emails.\",\"example\":true,\"type\":\"boolean\"},\"updated_at\":{\"description\":\"(Unix timestamp in seconds) The time when the contact was last updated.\",\"example\":1571672154,\"format\":\"date-time\",\"type\":\"integer\"},\"workspace_id\":{\"description\":\"The id of the workspace which the contact belongs to.\",\"example\":\"ecahpwf5\",\"type\":\"string\"}},\"title\":\"Contact\",\"type\":\"object\"},\"type\":\"array\"},\"pages\":{\"description\":\"Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.\\nA \\\"cursor\\\" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or \\\"pages\\\" as needed.\\n\",\"nullable\":true,\"properties\":{\"next\":{\"nullable\":true,\"properties\":{\"per_page\":{\"description\":\"The number of results to fetch per page.\",\"example\":2,\"type\":\"integer\"},\"starting_after\":{\"description\":\"The cursor to use in the next request to get the next page of results.\",\"example\":\"your-cursor-from-response\",\"nullable\":true,\"type\":\"string\"}},\"title\":\"Pagination: Starting After\",\"type\":\"object\"},\"page\":{\"description\":\"The current page\",\"example\":1,\"type\":\"integer\"},\"per_page\":{\"description\":\"Number of results per page\",\"example\":2,\"type\":\"integer\"},\"total_pages\":{\"description\":\"Total number of pages\",\"example\":13,\"type\":\"integer\"},\"type\":{\"description\":\"the type of object `pages`.\",\"enum\":[\"pages\"],\"example\":\"pages\",\"type\":\"string\"}},\"title\":\"Cursor based pages\",\"type\":\"object\"},\"total_count\":{\"description\":\"The total number of contacts\",\"example\":100,\"type\":\"integer\"},\"type\":{\"description\":\"The type of object - `list`\",\"enum\":[\"list\"],\"example\":\"list\",\"type\":\"string\"}},\"title\":\"Company Attached Contacts\",\"type\":\"object\"}}},\"description\":\"Successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"f7586690-c217-47db-9042-cb9550b81260\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Company Not Found\":{\"value\":{\"errors\":[{\"code\":\"company_not_found\",\"message\":\"Company Not Found\"}],\"request_id\":\"5dde0b79-8c81-4d9e-a4d4-736a44cf2f00\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Company Not Found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/companies/{company_id}/contacts"
+          rename: {
+            param: {
+              company_id: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "contacts"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

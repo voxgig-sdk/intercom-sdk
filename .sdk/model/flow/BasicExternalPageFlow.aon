@@ -1,0 +1,100 @@
+# BasicExternalPageFlow
+
+main: kit: flow: BasicExternalPageFlow:
+{
+  entity: "external_page",
+  kind: "basic",
+  name: "BasicExternalPageFlow",
+  step: [
+    {
+      input: {
+        ref: "external_page_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "external_page_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "external_page_ref01",
+        srcdatavar: "external_page_ref01_data",
+        suffix: "_up0",
+        textfield: "external_id"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-external_page_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "external_page_ref01",
+        srcdatavar: "external_page_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "external_page01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-external_page_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "external_page_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "external_page01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "external_page_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicExternalPageFlow"
+}

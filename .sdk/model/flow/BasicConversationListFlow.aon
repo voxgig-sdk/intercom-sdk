@@ -1,0 +1,18 @@
+# BasicConversationListFlow
+
+main: kit: flow: BasicConversationListFlow:
+{
+  entity: "conversation_list",
+  kind: "basic",
+  name: "BasicConversationListFlow",
+  step: [
+    {
+      input: {
+        ref: "conversation_list_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicConversationListFlow"
+}

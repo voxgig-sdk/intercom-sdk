@@ -1,0 +1,100 @@
+# BasicAudienceFlow
+
+main: kit: flow: BasicAudienceFlow:
+{
+  entity: "audience",
+  kind: "basic",
+  name: "BasicAudienceFlow",
+  step: [
+    {
+      input: {
+        ref: "audience_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "audience_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "audience_ref01",
+        srcdatavar: "audience_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-audience_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "audience_ref01",
+        srcdatavar: "audience_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "audience01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-audience_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "audience_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "audience01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "audience_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAudienceFlow"
+}

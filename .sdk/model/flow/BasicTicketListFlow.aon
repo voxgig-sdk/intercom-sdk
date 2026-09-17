@@ -1,0 +1,18 @@
+# BasicTicketListFlow
+
+main: kit: flow: BasicTicketListFlow:
+{
+  entity: "ticket_list",
+  kind: "basic",
+  name: "BasicTicketListFlow",
+  step: [
+    {
+      input: {
+        ref: "ticket_list_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicTicketListFlow"
+}

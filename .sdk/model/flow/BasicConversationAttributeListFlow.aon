@@ -1,0 +1,22 @@
+# BasicConversationAttributeListFlow
+
+main: kit: flow: BasicConversationAttributeListFlow:
+{
+  entity: "conversation_attribute_list",
+  kind: "basic",
+  name: "BasicConversationAttributeListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "conversation_attribute_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicConversationAttributeListFlow"
+}

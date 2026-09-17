@@ -1,0 +1,492 @@
+{
+  "existing": {
+    "brand": {
+      "BRAND00": {
+        "created_at": 80,
+        "default_address_settings_id": "DEFAULT_ADDRESS_SETTINGS01",
+        "help_center_id": "HELP_CENTER01",
+        "id": "BRAND00",
+        "is_default": true,
+        "name": "s55",
+        "type": "s56",
+        "updated_at": 87
+      },
+      "BRAND01": {
+        "created_at": 160,
+        "default_address_settings_id": "DEFAULT_ADDRESS_SETTINGS01",
+        "help_center_id": "HELP_CENTER01",
+        "id": "BRAND01",
+        "is_default": true,
+        "name": "sa5",
+        "type": "sa6",
+        "updated_at": 167
+      },
+      "BRAND02": {
+        "created_at": 240,
+        "default_address_settings_id": "DEFAULT_ADDRESS_SETTINGS01",
+        "help_center_id": "HELP_CENTER01",
+        "id": "BRAND02",
+        "is_default": true,
+        "name": "sf5",
+        "type": "sf6",
+        "updated_at": 247
+      }
+    }
+  },
+  "new": {
+    "brand": {
+      "brand_ref01": {
+        "created_at": 320,
+        "default_address_settings_id": "DEFAULT_ADDRESS_SETTINGS01",
+        "help_center_id": "HELP_CENTER01",
+        "is_default": true,
+        "name": "s145",
+        "type": "s146",
+        "updated_at": 327
+      }
+    }
+  },
+  "requests": {
+    "GET /brands": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listBrands",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "data": [
+                        {
+                          "created_at": 1673778600,
+                          "default_address_settings_id": "13",
+                          "help_center_id": "11",
+                          "id": "tlkp1d91",
+                          "is_default": true,
+                          "name": "Default Brand",
+                          "type": "brand",
+                          "updated_at": 1711031100
+                        },
+                        {
+                          "created_at": 1686387300,
+                          "default_address_settings_id": "15",
+                          "help_center_id": "10",
+                          "id": "3",
+                          "is_default": false,
+                          "name": "Premium Brand",
+                          "type": "brand",
+                          "updated_at": 1709229600
+                        }
+                      ],
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A list of brands",
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "description": "Represents a branding configuration for the workspace",
+                        "properties": {
+                          "created_at": {
+                            "description": "Unix timestamp of brand creation",
+                            "example": 1673778600,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "default_address_settings_id": {
+                            "description": "Default email settings ID for this brand",
+                            "example": "15",
+                            "type": "string"
+                          },
+                          "help_center_id": {
+                            "description": "Associated help center identifier",
+                            "example": "10",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique brand identifier. For default brand, matches the workspace ID",
+                            "example": "10",
+                            "type": "string"
+                          },
+                          "is_default": {
+                            "description": "Whether this is the workspace's default brand",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "name": {
+                            "description": "Display name of the brand",
+                            "example": "Default Brand",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type of object",
+                            "example": "brand",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "Unix timestamp of last modification",
+                            "example": 1711031100,
+                            "format": "date-time",
+                            "type": "integer"
+                          }
+                        },
+                        "title": "Brand",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of object",
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Brand List",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /brands/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "retrieveBrand",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the brand",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "created_at": 1686387300,
+                      "default_address_settings_id": "15",
+                      "help_center_id": "20",
+                      "id": "15",
+                      "is_default": false,
+                      "name": "Premium Brand",
+                      "type": "brand",
+                      "updated_at": 1709229600
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Represents a branding configuration for the workspace",
+                  "properties": {
+                    "created_at": {
+                      "description": "Unix timestamp of brand creation",
+                      "example": 1673778600,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "default_address_settings_id": {
+                      "description": "Default email settings ID for this brand",
+                      "example": "15",
+                      "type": "string"
+                    },
+                    "help_center_id": {
+                      "description": "Associated help center identifier",
+                      "example": "10",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique brand identifier. For default brand, matches the workspace ID",
+                      "example": "10",
+                      "type": "string"
+                    },
+                    "is_default": {
+                      "description": "Whether this is the workspace's default brand",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Display name of the brand",
+                      "example": "Default Brand",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of object",
+                      "example": "brand",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "Unix timestamp of last modification",
+                      "example": 1711031100,
+                      "format": "date-time",
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Brand",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Brand not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Brand not found"
+                        }
+                      ],
+                      "request_id": "req_12345",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Brand not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

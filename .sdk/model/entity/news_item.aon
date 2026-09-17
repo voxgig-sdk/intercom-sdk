@@ -1,0 +1,298 @@
+# Entity: news_item
+
+main: kit: entity: news_item: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "body"
+      req: false
+      short: "The news item body, which may contain HTML."
+      type: "`$STRING`"
+    }
+    {
+      format: "uri"
+      name: "cover_image_url"
+      req: false
+      short: "URL of the image used as cover."
+      type: "`$STRING`"
+    }
+    {
+      format: "timestamp"
+      name: "created_at"
+      req: false
+      short: "Timestamp for when the news item was created."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "deliver_silently"
+      req: false
+      short: "When set to true, the news item will appear in the messenger newsfeed without showing a notification badge."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The unique identifier for the news item which is given by Intercom."
+      type: "`$STRING`"
+    }
+    {
+      name: "labels"
+      req: false
+      short: "Label names displayed to users to categorize the news item."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "newsfeed_assignments"
+      req: false
+      short: "A list of newsfeed_assignments to assign to the specified newsfeed."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "reactions"
+      req: false
+      short: "Ordered list of emoji reactions to the news item."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "sender_id"
+      op: {
+        create: {
+          req: true
+          type: "`$INTEGER`"
+        }
+        update: {
+          req: true
+          type: "`$INTEGER`"
+        }
+      }
+      req: false
+      short: "The id of the sender of the news item."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "state"
+      req: false
+      short: "News items will not be visible to your users in the assigned newsfeeds until they are set live."
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+        update: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "The title of the news item."
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "The type of object."
+      type: "`$STRING`"
+    }
+    {
+      format: "timestamp"
+      name: "updated_at"
+      req: false
+      short: "Timestamp for when the news item was last updated."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "workspace_id"
+      req: false
+      short: "The id of the workspace which the news item belongs to."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "news_item"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /news/news_items"
+            json: "{\"operationId\":\"createNewsItem\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"summary\":\"successful\",\"value\":{\"body\":\"<p>New costumes in store for this spooky season</p>\",\"deliver_silently\":true,\"labels\":[\"Product\",\"Update\",\"New\"],\"newsfeed_assignments\":[{\"newsfeed_id\":53,\"published_at\":1664638214}],\"reactions\":[\"😆\",\"😅\"],\"sender_id\":991267834,\"state\":\"live\",\"title\":\"Halloween is here!\"}}},\"schema\":{\"description\":\"A News Item is a content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"properties\":{\"body\":{\"description\":\"The news item body, which may contain HTML.\",\"example\":\"<p>New costumes in store for this spooky season</p>\",\"type\":\"string\"},\"deliver_silently\":{\"description\":\"When set to `true`, the news item will appear in the messenger newsfeed without showing a notification badge.\",\"example\":true,\"type\":\"boolean\"},\"labels\":{\"description\":\"Label names displayed to users to categorize the news item.\",\"example\":[\"Product\",\"Update\",\"New\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"newsfeed_assignments\":{\"description\":\"A list of newsfeed_assignments to assign to the specified newsfeed.\",\"items\":{\"description\":\"Assigns a news item to a newsfeed.\",\"properties\":{\"newsfeed_id\":{\"description\":\"The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).\",\"example\":198313,\"type\":\"integer\"},\"published_at\":{\"description\":\"Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \\\"draft\\\".\",\"example\":1674917488,\"format\":\"timestamp\",\"type\":\"integer\"}},\"title\":\"Newsfeed Assignment\",\"type\":\"object\"},\"type\":\"array\"},\"reactions\":{\"description\":\"Ordered list of emoji reactions to the news item. When empty, reactions are disabled.\",\"example\":[\"😆\",\"😅\"],\"items\":{\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"sender_id\":{\"description\":\"The id of the sender of the news item. Must be a teammate on the workspace.\",\"example\":123,\"type\":\"integer\"},\"state\":{\"description\":\"News items will not be visible to your users in the assigned newsfeeds until they are set live.\",\"enum\":[\"draft\",\"live\"],\"example\":\"live\",\"type\":\"string\"},\"title\":{\"description\":\"The title of the news item.\",\"example\":\"Halloween is here!\",\"type\":\"string\"}},\"required\":[\"title\",\"sender_id\"],\"title\":\"Create News Item Request\",\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"body\":\"<p>New costumes in store for this spooky season</p>\",\"cover_image_url\":null,\"created_at\":1734537797,\"deliver_silently\":true,\"id\":\"33\",\"labels\":[\"New\",\"Product\",\"Update\"],\"newsfeed_assignments\":[{\"newsfeed_id\":53,\"published_at\":1664638214}],\"reactions\":[\"😆\",\"😅\"],\"sender_id\":991267834,\"state\":\"live\",\"title\":\"Halloween is here!\",\"type\":\"news-item\",\"updated_at\":1734537797,\"workspace_id\":\"this_is_an_id534_that_should_be_at_least_\"}}},\"schema\":{\"description\":\"A News Item is a content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"properties\":{\"body\":{\"description\":\"The news item body, which may contain HTML.\",\"example\":\"We are excited to announce the launch of News Items, a new content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"type\":\"string\"},\"cover_image_url\":{\"description\":\"URL of the image used as cover. Must have .jpg or .png extension.\",\"example\":\"https://example.com/cover.jpg\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"Timestamp for when the news item was created.\",\"example\":1610589632,\"format\":\"timestamp\",\"type\":\"integer\"},\"deliver_silently\":{\"description\":\"When set to true, the news item will appear in the messenger newsfeed without showing a notification badge.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The unique identifier for the news item which is given by Intercom.\",\"example\":\"141\",\"type\":\"string\"},\"labels\":{\"description\":\"Label names displayed to users to categorize the news item.\",\"items\":{\"description\":\"The label name.\",\"example\":\"Product Update\",\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"newsfeed_assignments\":{\"description\":\"A list of newsfeed_assignments to assign to the specified newsfeed.\",\"items\":{\"description\":\"Assigns a news item to a newsfeed.\",\"properties\":{\"newsfeed_id\":{\"description\":\"The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).\",\"example\":198313,\"type\":\"integer\"},\"published_at\":{\"description\":\"Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \\\"draft\\\".\",\"example\":1674917488,\"format\":\"timestamp\",\"type\":\"integer\"}},\"title\":\"Newsfeed Assignment\",\"type\":\"object\"},\"type\":\"array\"},\"reactions\":{\"description\":\"Ordered list of emoji reactions to the news item. When empty, reactions are disabled.\",\"items\":{\"description\":\"The emoji reaction to the news item.\",\"example\":\"👍\",\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"sender_id\":{\"description\":\"The id of the sender of the news item. Must be a teammate on the workspace.\",\"example\":123,\"type\":\"integer\"},\"state\":{\"description\":\"News items will not be visible to your users in the assigned newsfeeds until they are set live.\",\"enum\":[\"draft\",\"live\"],\"example\":\"live\",\"type\":\"string\"},\"title\":{\"description\":\"The title of the news item.\",\"example\":\"New feature: News Items\",\"type\":\"string\"},\"type\":{\"description\":\"The type of object.\",\"enum\":[\"news-item\"],\"example\":\"news-item\",\"type\":\"string\"},\"updated_at\":{\"description\":\"Timestamp for when the news item was last updated.\",\"example\":1610589632,\"format\":\"timestamp\",\"type\":\"integer\"},\"workspace_id\":{\"description\":\"The id of the workspace which the news item belongs to.\",\"example\":\"t74hdn32\",\"type\":\"string\"}},\"title\":\"News Item\",\"type\":\"object\"}}},\"description\":\"successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"5142ad8e-883e-4b71-9adb-6494851e9b77\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/news/news_items"
+          segments: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "news_items"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: 123
+                kind: "param"
+                name: "id"
+                orig: "news_item_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /news/news_items/{news_item_id}"
+            json: "{\"operationId\":\"retrieveNewsItem\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the news item which is given by Intercom.\",\"example\":123,\"in\":\"path\",\"name\":\"news_item_id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"body\":\"<p>Hello there,</p>\",\"cover_image_url\":null,\"created_at\":1734537800,\"deliver_silently\":false,\"id\":\"34\",\"labels\":[],\"newsfeed_assignments\":[{\"newsfeed_id\":55,\"published_at\":1734537800}],\"reactions\":[[[[null]]]],\"sender_id\":991267837,\"state\":\"live\",\"title\":\"We have news\",\"type\":\"news-item\",\"updated_at\":1734537800,\"workspace_id\":\"this_is_an_id538_that_should_be_at_least_\"}}},\"schema\":{\"description\":\"A News Item is a content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"properties\":{\"body\":{\"description\":\"The news item body, which may contain HTML.\",\"example\":\"We are excited to announce the launch of News Items, a new content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"type\":\"string\"},\"cover_image_url\":{\"description\":\"URL of the image used as cover. Must have .jpg or .png extension.\",\"example\":\"https://example.com/cover.jpg\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"Timestamp for when the news item was created.\",\"example\":1610589632,\"format\":\"timestamp\",\"type\":\"integer\"},\"deliver_silently\":{\"description\":\"When set to true, the news item will appear in the messenger newsfeed without showing a notification badge.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The unique identifier for the news item which is given by Intercom.\",\"example\":\"141\",\"type\":\"string\"},\"labels\":{\"description\":\"Label names displayed to users to categorize the news item.\",\"items\":{\"description\":\"The label name.\",\"example\":\"Product Update\",\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"newsfeed_assignments\":{\"description\":\"A list of newsfeed_assignments to assign to the specified newsfeed.\",\"items\":{\"description\":\"Assigns a news item to a newsfeed.\",\"properties\":{\"newsfeed_id\":{\"description\":\"The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).\",\"example\":198313,\"type\":\"integer\"},\"published_at\":{\"description\":\"Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \\\"draft\\\".\",\"example\":1674917488,\"format\":\"timestamp\",\"type\":\"integer\"}},\"title\":\"Newsfeed Assignment\",\"type\":\"object\"},\"type\":\"array\"},\"reactions\":{\"description\":\"Ordered list of emoji reactions to the news item. When empty, reactions are disabled.\",\"items\":{\"description\":\"The emoji reaction to the news item.\",\"example\":\"👍\",\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"sender_id\":{\"description\":\"The id of the sender of the news item. Must be a teammate on the workspace.\",\"example\":123,\"type\":\"integer\"},\"state\":{\"description\":\"News items will not be visible to your users in the assigned newsfeeds until they are set live.\",\"enum\":[\"draft\",\"live\"],\"example\":\"live\",\"type\":\"string\"},\"title\":{\"description\":\"The title of the news item.\",\"example\":\"New feature: News Items\",\"type\":\"string\"},\"type\":{\"description\":\"The type of object.\",\"enum\":[\"news-item\"],\"example\":\"news-item\",\"type\":\"string\"},\"updated_at\":{\"description\":\"Timestamp for when the news item was last updated.\",\"example\":1610589632,\"format\":\"timestamp\",\"type\":\"integer\"},\"workspace_id\":{\"description\":\"The id of the workspace which the news item belongs to.\",\"example\":\"t74hdn32\",\"type\":\"string\"}},\"title\":\"News Item\",\"type\":\"object\"}}},\"description\":\"successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"33ff62c6-ceb7-4bde-93d6-301bed6f24b2\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"News Item Not Found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Resource Not Found\"}],\"request_id\":\"da84e250-8626-47e8-815c-62b33f0f2c36\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"News Item Not Found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/news/news_items/{news_item_id}"
+          rename: {
+            param: {
+              news_item_id: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "news_items"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: 123
+                kind: "param"
+                name: "id"
+                orig: "news_item_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /news/news_items/{news_item_id}"
+            json: "{\"operationId\":\"updateNewsItem\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the news item which is given by Intercom.\",\"example\":123,\"in\":\"path\",\"name\":\"news_item_id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"news_item_not_found\":{\"summary\":\"News Item Not Found\",\"value\":{\"body\":\"<p>New gifts in store for the jolly season</p>\",\"reactions\":[\"😝\",\"😂\"],\"sender_id\":991267848,\"title\":\"Christmas is here!\"}},\"successful\":{\"summary\":\"successful\",\"value\":{\"body\":\"<p>New gifts in store for the jolly season</p>\",\"reactions\":[\"😝\",\"😂\"],\"sender_id\":991267845,\"title\":\"Christmas is here!\"}}},\"schema\":{\"description\":\"A News Item is a content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"properties\":{\"body\":{\"description\":\"The news item body, which may contain HTML.\",\"example\":\"<p>New costumes in store for this spooky season</p>\",\"type\":\"string\"},\"deliver_silently\":{\"description\":\"When set to `true`, the news item will appear in the messenger newsfeed without showing a notification badge.\",\"example\":true,\"type\":\"boolean\"},\"labels\":{\"description\":\"Label names displayed to users to categorize the news item.\",\"example\":[\"Product\",\"Update\",\"New\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"newsfeed_assignments\":{\"description\":\"A list of newsfeed_assignments to assign to the specified newsfeed.\",\"items\":{\"description\":\"Assigns a news item to a newsfeed.\",\"properties\":{\"newsfeed_id\":{\"description\":\"The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).\",\"example\":198313,\"type\":\"integer\"},\"published_at\":{\"description\":\"Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \\\"draft\\\".\",\"example\":1674917488,\"format\":\"timestamp\",\"type\":\"integer\"}},\"title\":\"Newsfeed Assignment\",\"type\":\"object\"},\"type\":\"array\"},\"reactions\":{\"description\":\"Ordered list of emoji reactions to the news item. When empty, reactions are disabled.\",\"example\":[\"😆\",\"😅\"],\"items\":{\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"sender_id\":{\"description\":\"The id of the sender of the news item. Must be a teammate on the workspace.\",\"example\":123,\"type\":\"integer\"},\"state\":{\"description\":\"News items will not be visible to your users in the assigned newsfeeds until they are set live.\",\"enum\":[\"draft\",\"live\"],\"example\":\"live\",\"type\":\"string\"},\"title\":{\"description\":\"The title of the news item.\",\"example\":\"Halloween is here!\",\"type\":\"string\"}},\"required\":[\"title\",\"sender_id\"],\"title\":\"Create News Item Request\",\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"body\":\"<p>New gifts in store for the jolly season</p>\",\"cover_image_url\":null,\"created_at\":1734537803,\"deliver_silently\":false,\"id\":\"37\",\"labels\":[],\"newsfeed_assignments\":[],\"reactions\":[\"😝\",\"😂\"],\"sender_id\":991267845,\"state\":\"live\",\"title\":\"Christmas is here!\",\"type\":\"news-item\",\"updated_at\":1734537804,\"workspace_id\":\"this_is_an_id544_that_should_be_at_least_\"}}},\"schema\":{\"description\":\"A News Item is a content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"properties\":{\"body\":{\"description\":\"The news item body, which may contain HTML.\",\"example\":\"We are excited to announce the launch of News Items, a new content type in Intercom enabling you to announce product updates, company news, promotions, events and more with your customers.\",\"type\":\"string\"},\"cover_image_url\":{\"description\":\"URL of the image used as cover. Must have .jpg or .png extension.\",\"example\":\"https://example.com/cover.jpg\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"Timestamp for when the news item was created.\",\"example\":1610589632,\"format\":\"timestamp\",\"type\":\"integer\"},\"deliver_silently\":{\"description\":\"When set to true, the news item will appear in the messenger newsfeed without showing a notification badge.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The unique identifier for the news item which is given by Intercom.\",\"example\":\"141\",\"type\":\"string\"},\"labels\":{\"description\":\"Label names displayed to users to categorize the news item.\",\"items\":{\"description\":\"The label name.\",\"example\":\"Product Update\",\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"newsfeed_assignments\":{\"description\":\"A list of newsfeed_assignments to assign to the specified newsfeed.\",\"items\":{\"description\":\"Assigns a news item to a newsfeed.\",\"properties\":{\"newsfeed_id\":{\"description\":\"The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).\",\"example\":198313,\"type\":\"integer\"},\"published_at\":{\"description\":\"Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (e.g. when importing existing news items). On write, this field will be ignored if the news item state is \\\"draft\\\".\",\"example\":1674917488,\"format\":\"timestamp\",\"type\":\"integer\"}},\"title\":\"Newsfeed Assignment\",\"type\":\"object\"},\"type\":\"array\"},\"reactions\":{\"description\":\"Ordered list of emoji reactions to the news item. When empty, reactions are disabled.\",\"items\":{\"description\":\"The emoji reaction to the news item.\",\"example\":\"👍\",\"nullable\":true,\"type\":\"string\"},\"type\":\"array\"},\"sender_id\":{\"description\":\"The id of the sender of the news item. Must be a teammate on the workspace.\",\"example\":123,\"type\":\"integer\"},\"state\":{\"description\":\"News items will not be visible to your users in the assigned newsfeeds until they are set live.\",\"enum\":[\"draft\",\"live\"],\"example\":\"live\",\"type\":\"string\"},\"title\":{\"description\":\"The title of the news item.\",\"example\":\"New feature: News Items\",\"type\":\"string\"},\"type\":{\"description\":\"The type of object.\",\"enum\":[\"news-item\"],\"example\":\"news-item\",\"type\":\"string\"},\"updated_at\":{\"description\":\"Timestamp for when the news item was last updated.\",\"example\":1610589632,\"format\":\"timestamp\",\"type\":\"integer\"},\"workspace_id\":{\"description\":\"The id of the workspace which the news item belongs to.\",\"example\":\"t74hdn32\",\"type\":\"string\"}},\"title\":\"News Item\",\"type\":\"object\"}}},\"description\":\"successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"5838c54e-dd15-460b-82dd-794c4d0e12c5\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"News Item Not Found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Resource Not Found\"}],\"request_id\":\"2014d867-b634-495a-9b4f-ce56c4d657a9\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"News Item Not Found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/news/news_items/{news_item_id}"
+          rename: {
+            param: {
+              news_item_id: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "news_items"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

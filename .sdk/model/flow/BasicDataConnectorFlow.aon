@@ -1,0 +1,71 @@
+# BasicDataConnectorFlow
+
+main: kit: flow: BasicDataConnectorFlow:
+{
+  entity: "data_connector",
+  kind: "basic",
+  name: "BasicDataConnectorFlow",
+  step: [
+    {
+      input: {
+        ref: "data_connector_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "data_connector_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "data_connector_ref01",
+        srcdatavar: "data_connector_ref01_data",
+        suffix: "_up0",
+        textfield: "body"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-data_connector_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "data_connector_ref01",
+        srcdatavar: "data_connector_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "data_connector01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-data_connector_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataConnectorFlow"
+}

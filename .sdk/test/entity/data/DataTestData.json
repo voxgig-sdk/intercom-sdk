@@ -1,0 +1,379 @@
+{
+  "existing": {
+    "data": {
+      "DATA00": {
+        "created_at_after": 70,
+        "created_at_before": 71,
+        "download_expires_at": "s48",
+        "download_url": "s49",
+        "id": "DATA00",
+        "job_identifier": "s4b",
+        "status": "s4c"
+      },
+      "DATA01": {
+        "created_at_after": 140,
+        "created_at_before": 141,
+        "download_expires_at": "s8e",
+        "download_url": "s8f",
+        "id": "DATA01",
+        "job_identifier": "s91",
+        "status": "s92"
+      },
+      "DATA02": {
+        "created_at_after": 210,
+        "created_at_before": 211,
+        "download_expires_at": "sd4",
+        "download_url": "sd5",
+        "id": "DATA02",
+        "job_identifier": "sd7",
+        "status": "sd8"
+      }
+    }
+  },
+  "new": {
+    "data": {
+      "data_ref01": {
+        "created_at_after": 280,
+        "created_at_before": 281,
+        "download_expires_at": "s11a",
+        "download_url": "s11b",
+        "job_identifier": "s11d",
+        "status": "s11e"
+      }
+    }
+  },
+  "requests": {
+    "POST /export/content/data": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createDataExport",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "successful": {
+                  "summary": "successful",
+                  "value": {
+                    "created_at_after": 1734519776,
+                    "created_at_before": 1734537776
+                  }
+                }
+              },
+              "schema": {
+                "description": "Request for creating a data export",
+                "properties": {
+                  "created_at_after": {
+                    "description": "The start date that you request data for. It must be formatted as a unix timestamp.",
+                    "example": 1527811200,
+                    "type": "integer"
+                  },
+                  "created_at_before": {
+                    "description": "The end date that you request data for. It must be formatted as a unix timestamp.",
+                    "example": 1527811200,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "created_at_after",
+                  "created_at_before"
+                ],
+                "title": "Create Data Export Request",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "download_expires_at": "",
+                      "download_url": "",
+                      "job_identifier": "al9w983lwu88w1fd",
+                      "status": "pending"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The data export API is used to export message delivery and engagement statistics for outbound content (Emails, Posts, Custom Bots, Surveys, Tours, Series, and more) sent in a given timeframe. The exported data includes who received each message, when they received it, and how they engaged with it (opens, clicks, replies, completions, dismissals, unsubscribes, and bounces).",
+                  "properties": {
+                    "download_expires_at": {
+                      "description": "The time after which you will not be able to access the data.",
+                      "example": "1674917488",
+                      "type": "string"
+                    },
+                    "download_url": {
+                      "description": "The location where you can download your data.",
+                      "example": "https://api.intercom.test/download/messages/data/example",
+                      "type": "string"
+                    },
+                    "job_identifier": {
+                      "description": "The identifier for your job.",
+                      "example": "orzzsbd7hk67xyu",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The current state of your job.",
+                      "enum": [
+                        "pending",
+                        "in_progress",
+                        "failed",
+                        "completed",
+                        "no_data",
+                        "canceled"
+                      ],
+                      "example": "pending",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Data Export",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /download/content/data/{job_identifier}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "downloadDataExport",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "job_identifier",
+            "in": "path",
+            "name": "job_identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /export/content/data/{job_identifier}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getDataExport",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "job_identifier",
+            "in": "path",
+            "name": "job_identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "download_expires_at": "",
+                      "download_url": "",
+                      "job_identifier": "braxwk3j039t6txy",
+                      "status": "pending"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The data export API is used to export message delivery and engagement statistics for outbound content (Emails, Posts, Custom Bots, Surveys, Tours, Series, and more) sent in a given timeframe. The exported data includes who received each message, when they received it, and how they engaged with it (opens, clicks, replies, completions, dismissals, unsubscribes, and bounces).",
+                  "properties": {
+                    "download_expires_at": {
+                      "description": "The time after which you will not be able to access the data.",
+                      "example": "1674917488",
+                      "type": "string"
+                    },
+                    "download_url": {
+                      "description": "The location where you can download your data.",
+                      "example": "https://api.intercom.test/download/messages/data/example",
+                      "type": "string"
+                    },
+                    "job_identifier": {
+                      "description": "The identifier for your job.",
+                      "example": "orzzsbd7hk67xyu",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The current state of your job.",
+                      "enum": [
+                        "pending",
+                        "in_progress",
+                        "failed",
+                        "completed",
+                        "no_data",
+                        "canceled"
+                      ],
+                      "example": "pending",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Data Export",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

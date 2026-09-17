@@ -6,40 +6,2954 @@
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
 
----@class Contact
+---@class ActivityLog
+---@field activity_description? string
+---@field activity_type? string
 ---@field created_at? number
+---@field id? string
+---@field metadata? table
+---@field performed_by? table
+
+---@class ActivityLogListMatch
+---@field created_at_after string
+---@field created_at_before? string
+
+---@class ActivityLogEventType
+---@field event_types? table
+---@field type? string
+
+---@class ActivityLogEventTypeListMatch
+---@field event_types? table
+---@field type? string
+
+---@class ActivityLogList
+---@field activity_logs? table
+---@field created_at_after number
+---@field created_at_before? number
+---@field event_types? table
+---@field page? number
+---@field pages? table
+---@field per_page? number
+---@field type? string
+
+---@class ActivityLogListCreateData
+---@field activity_logs? table
+---@field created_at_after number
+---@field created_at_before? number
+---@field event_types? table
+---@field page? number
+---@field pages? table
+---@field per_page? number
+---@field type? string
+
+---@class Admin
+---@field avatar? string
+---@field away_mode_enabled? boolean
+---@field away_mode_reassign? boolean
+---@field away_status_reason_id? number
 ---@field email? string
+---@field has_inbox_seat? boolean
+---@field id? string
+---@field job_title? string
+---@field name? string
+---@field role? table
+---@field team_ids? table
+---@field team_priority_level? table
+---@field type? string
+
+---@class AdminLoadMatch
+---@field id number
+
+---@class AdminListMatch
+---@field display_avatar? boolean
+
+---@class AdminUpdateData
+---@field id number
+---@field avatar? string
+---@field away_mode_enabled? boolean
+---@field away_mode_reassign? boolean
+---@field away_status_reason_id? number
+---@field email? string
+---@field has_inbox_seat? boolean
+---@field job_title? string
+---@field name? string
+---@field role? table
+---@field team_ids? table
+---@field team_priority_level? table
+---@field type? string
+
+---@class AdminWithApp
+---@field app? table
+---@field avatar? table
+---@field away_mode_enabled? boolean
+---@field away_mode_reassign? boolean
+---@field email? string
+---@field email_verified? boolean
+---@field has_inbox_seat? boolean
+---@field id? string
+---@field job_title? string
+---@field name? string
+---@field team_ids? table
+---@field type? string
+
+---@class AdminWithAppListMatch
+---@field app? table
+---@field avatar? table
+---@field away_mode_enabled? boolean
+---@field away_mode_reassign? boolean
+---@field email? string
+---@field email_verified? boolean
+---@field has_inbox_seat? boolean
+---@field id? string
+---@field job_title? string
+---@field name? string
+---@field team_ids? table
+---@field type? string
+
+---@class AiCall
+---@field app_id? number
+---@field call_id string
+---@field call_summary? string
+---@field call_transcript? table
+---@field data? table
+---@field external_call_id? string
+---@field id? number
+---@field intent? table
+---@field intercom_call_id? string
+---@field intercom_conversation_id? string
+---@field phone_number string
+---@field source? string
+---@field status? string
+---@field user_phone_number? string
+
+---@class AiCallLoadMatch
+---@field conversation_id string
+
+---@class AiCallCreateData
+---@field app_id? number
+---@field call_id string
+---@field call_summary? string
+---@field call_transcript? table
+---@field data? table
+---@field external_call_id? string
+---@field id? number
+---@field intent? table
+---@field intercom_call_id? string
+---@field intercom_conversation_id? string
+---@field phone_number string
+---@field source? string
+---@field status? string
+---@field user_phone_number? string
+
+---@class AiContent
+
+---@class AiContentRemoveMatch
+---@field source_id string
+
+---@class Article
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id number
+---@field body? string
+---@field body_markdown? string
+---@field conversions? number
+---@field created_at? number
+---@field created_by_id? number
+---@field default_locale? string
+---@field description? string
+---@field draft_updated_at? number
+---@field exclude_from_article_suggestions? boolean
+---@field fin_involvements? number
+---@field fin_resolution_rate? number
+---@field fin_resolutions? number
+---@field happy_reaction_percentage? number
+---@field has_unpublished_changes? boolean
+---@field help_center_audience? string
+---@field id? string
+---@field neutral_reaction_percentage? number
+---@field parent_id? number
+---@field parent_ids? table
+---@field parent_type? string
+---@field reactions? number
+---@field sad_reaction_percentage? number
+---@field scheduled_publish_at? string
+---@field scheduled_unpublish_at? string
+---@field state? string
+---@field tags? table
+---@field title string
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field updated_by_id? number
+---@field url? string
+---@field views? number
+---@field workspace_id? string
+
+---@class ArticleLoadMatch
+---@field id number
+
+---@class ArticleListMatch
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id? number
+---@field body? string
+---@field body_markdown? string
+---@field conversions? number
+---@field created_at? number
+---@field created_by_id? number
+---@field default_locale? string
+---@field description? string
+---@field draft_updated_at? number
+---@field exclude_from_article_suggestions? boolean
+---@field fin_involvements? number
+---@field fin_resolution_rate? number
+---@field fin_resolutions? number
+---@field happy_reaction_percentage? number
+---@field has_unpublished_changes? boolean
+---@field help_center_audience? string
+---@field id? string
+---@field neutral_reaction_percentage? number
+---@field parent_id? number
+---@field parent_ids? table
+---@field parent_type? string
+---@field reactions? number
+---@field sad_reaction_percentage? number
+---@field scheduled_publish_at? string
+---@field scheduled_unpublish_at? string
+---@field state? string
+---@field tags? table
+---@field title? string
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field updated_by_id? number
+---@field url? string
+---@field views? number
+---@field workspace_id? string
+
+---@class ArticleCreateData
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id number
+---@field body? string
+---@field body_markdown? string
+---@field conversions? number
+---@field created_at? number
+---@field created_by_id? number
+---@field default_locale? string
+---@field description? string
+---@field draft_updated_at? number
+---@field exclude_from_article_suggestions? boolean
+---@field fin_involvements? number
+---@field fin_resolution_rate? number
+---@field fin_resolutions? number
+---@field happy_reaction_percentage? number
+---@field has_unpublished_changes? boolean
+---@field help_center_audience? string
+---@field id? string
+---@field neutral_reaction_percentage? number
+---@field parent_id? number
+---@field parent_ids? table
+---@field parent_type? string
+---@field reactions? number
+---@field sad_reaction_percentage? number
+---@field scheduled_publish_at? string
+---@field scheduled_unpublish_at? string
+---@field state? string
+---@field tags? table
+---@field title string
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field updated_by_id? number
+---@field url? string
+---@field views? number
+---@field workspace_id? string
+
+---@class ArticleUpdateData
+---@field id number
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id? number
+---@field body? string
+---@field body_markdown? string
+---@field conversions? number
+---@field created_at? number
+---@field created_by_id? number
+---@field default_locale? string
+---@field description? string
+---@field draft_updated_at? number
+---@field exclude_from_article_suggestions? boolean
+---@field fin_involvements? number
+---@field fin_resolution_rate? number
+---@field fin_resolutions? number
+---@field happy_reaction_percentage? number
+---@field has_unpublished_changes? boolean
+---@field help_center_audience? string
+---@field neutral_reaction_percentage? number
+---@field parent_id? number
+---@field parent_ids? table
+---@field parent_type? string
+---@field reactions? number
+---@field sad_reaction_percentage? number
+---@field scheduled_publish_at? string
+---@field scheduled_unpublish_at? string
+---@field state? string
+---@field tags? table
+---@field title? string
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field updated_by_id? number
+---@field url? string
+---@field views? number
+---@field workspace_id? string
+
+---@class ArticleSearch
+---@field data? table
+---@field pages? table
+---@field total_count? number
+---@field type? string
+
+---@class ArticleSearchLoadMatch
+---@field help_center_id? number
+---@field highlight? boolean
+---@field phrase? string
+---@field state? string
+
+---@class ArticleVersion
+---@field article_id? string
+---@field author_id? string
+---@field body? string
+---@field body_markdown? string
+---@field created_at? number
+---@field created_by_id? string
+---@field created_via? string
+---@field description? string
+---@field from_version_id? string
+---@field id? string
+---@field state? string
+---@field title? string
+---@field type? string
+---@field updated_at? number
+
+---@class ArticleVersionLoadMatch
+---@field article_id number
+---@field id string
+---@field locale? string
+
+---@class ArticleVersionList
+---@field id? string
+
+---@class ArticleVersionListListMatch
+---@field id number
+---@field locale? string
+---@field page? number
+---@field per_page? number
+
+---@class Audience
+---@field created_at? number
 ---@field id? string
 ---@field name? string
+---@field predicates? table
+---@field role_predicates? table
+---@field type? string
+---@field updated_at? number
+
+---@class AudienceLoadMatch
+---@field id string
+
+---@class AudienceListMatch
+---@field page? number
+---@field per_page? number
+
+---@class AudienceCreateData
+---@field created_at? number
+---@field id? string
+---@field name? string
+---@field predicates? table
+---@field role_predicates? table
+---@field type? string
+---@field updated_at? number
+
+---@class AudienceUpdateData
+---@field id string
+---@field created_at? number
+---@field name? string
+---@field predicates? table
+---@field role_predicates? table
+---@field type? string
+---@field updated_at? number
+
+---@class AudienceRemoveMatch
+---@field id string
+
+---@class AwayStatusReason
+---@field created_at? number
+---@field deleted? boolean
+---@field emoji? string
+---@field id? string
+---@field label? string
+---@field order? number
+---@field type? string
+---@field updated_at? number
+
+---@class AwayStatusReasonListMatch
+---@field created_at? number
+---@field deleted? boolean
+---@field emoji? string
+---@field id? string
+---@field label? string
+---@field order? number
+---@field type? string
+---@field updated_at? number
+
+---@class Banner
+---@field action? table
+---@field body? string
+---@field client_targeting? table
+---@field created_at? number
+---@field id? string
+---@field position? string
+---@field show_dismiss_button? boolean
+---@field style? string
+---@field title? string
+---@field type? string
+---@field view_id? string
+
+---@class BannerListMatch
+---@field contact_id string
+
+---@class BannerDismiss
+---@field dismissed? boolean
+---@field id? string
+---@field type? string
+---@field view_id? string
+
+---@class BannerDismissCreateData
+---@field contact_id string
+---@field id string
+---@field dismissed? boolean
+---@field type? string
+---@field view_id? string
+
+---@class Brand
+---@field created_at? number
+---@field default_address_settings_id? string
+---@field help_center_id? string
+---@field id? string
+---@field is_default? boolean
+---@field name? string
+---@field type? string
+---@field updated_at? number
+
+---@class BrandLoadMatch
+---@field id string
+
+---@class BrandListMatch
+---@field created_at? number
+---@field default_address_settings_id? string
+---@field help_center_id? string
+---@field id? string
+---@field is_default? boolean
+---@field name? string
+---@field type? string
+---@field updated_at? number
+
+---@class Call
+---@field admin_id? string
+---@field answered_at? any
+---@field call_type? string
+---@field contact_id? string
+---@field conversation_id? string
+---@field created_at? any
+---@field direction? string
+---@field ended_at? any
+---@field ended_reason? string
+---@field fin_recording_url? string
+---@field fin_transcription_url? string
+---@field id? string
+---@field initiated_at? any
+---@field phone? string
+---@field recording_url? string
+---@field state? string
+---@field transcription_url? string
+---@field type? string
+---@field updated_at? any
+
+---@class CallLoadMatch
+---@field id string
+
+---@class CallListMatch
+---@field page? number
+---@field per_page? number
+
+---@class CallCreateData
+---@field admin_id? string
+---@field answered_at? any
+---@field call_type? string
+---@field contact_id? string
+---@field conversation_id? string
+---@field created_at? any
+---@field direction? string
+---@field ended_at? any
+---@field ended_reason? string
+---@field fin_recording_url? string
+---@field fin_transcription_url? string
+---@field id? string
+---@field initiated_at? any
+---@field phone? string
+---@field recording_url? string
+---@field state? string
+---@field transcription_url? string
+---@field type? string
+---@field updated_at? any
+
+---@class Company
+---@field app_id? string
+---@field company_id? string
+---@field created_at? number
+---@field custom_attributes? table
+---@field id? string
+---@field industry? string
+---@field last_request_at? number
+---@field monthly_spend? number
+---@field name? string
+---@field notes? table
+---@field plan? table
+---@field remote_created_at? number
+---@field segments? table
+---@field session_count? number
+---@field size? number
+---@field tags? table
+---@field type? string
+---@field update_last_request_at? boolean
+---@field updated_at? number
+---@field user_count? number
+---@field website? string
+
+---@class CompanyLoadMatch
+---@field id string
+
+---@class CompanyListMatch
+---@field company_id? string
+---@field name? string
+---@field page? number
+---@field per_page? number
+---@field segment_id? string
+---@field tag_id? string
+
+---@class CompanyCreateData
+---@field app_id? string
+---@field company_id? string
+---@field created_at? number
+---@field custom_attributes? table
+---@field id? string
+---@field industry? string
+---@field last_request_at? number
+---@field monthly_spend? number
+---@field name? string
+---@field notes? table
+---@field plan? table
+---@field remote_created_at? number
+---@field segments? table
+---@field session_count? number
+---@field size? number
+---@field tags? table
+---@field type? string
+---@field update_last_request_at? boolean
+---@field updated_at? number
+---@field user_count? number
+---@field website? string
+
+---@class CompanyUpdateData
+---@field id string
+---@field app_id? string
+---@field company_id? string
+---@field created_at? number
+---@field custom_attributes? table
+---@field industry? string
+---@field last_request_at? number
+---@field monthly_spend? number
+---@field name? string
+---@field notes? table
+---@field plan? table
+---@field remote_created_at? number
+---@field segments? table
+---@field session_count? number
+---@field size? number
+---@field tags? table
+---@field type? string
+---@field update_last_request_at? boolean
+---@field updated_at? number
+---@field user_count? number
+---@field website? string
+
+---@class CompanyRemoveMatch
+---@field contact_id string
+---@field id string
+
+---@class CompanyAttachedContact
+---@field android_app_name? string
+---@field android_app_version? string
+---@field android_device? string
+---@field android_last_seen_at? number
+---@field android_os_version? string
+---@field android_sdk_version? string
+---@field avatar? table
+---@field browser? string
+---@field browser_language? string
+---@field browser_version? string
+---@field companies? table
+---@field created_at? number
+---@field custom_attributes? table
+---@field email? string
+---@field email_domain? string
+---@field external_id? string
+---@field has_hard_bounced? boolean
+---@field id? string
+---@field ios_app_name? string
+---@field ios_app_version? string
+---@field ios_device? string
+---@field ios_last_seen_at? number
+---@field ios_os_version? string
+---@field ios_sdk_version? string
+---@field language_override? string
+---@field last_contacted_at? number
+---@field last_email_clicked_at? number
+---@field last_email_opened_at? number
+---@field last_replied_at? number
+---@field last_seen_at? number
+---@field location? table
+---@field marked_email_as_spam? boolean
+---@field merge_history? table
+---@field name? string
+---@field notes? table
+---@field os? string
+---@field owner_id? string
 ---@field phone? string
 ---@field role? string
+---@field signed_up_at? number
+---@field social_profiles? table
+---@field tags? table
+---@field type? string
+---@field unsubscribed_from_emails? boolean
 ---@field updated_at? number
+---@field workspace_id? string
+
+---@class CompanyAttachedContactListMatch
+---@field id string
+
+---@class CompanyAttachedSegment
+---@field count? number
+---@field created_at? number
+---@field id? string
+---@field name? string
+---@field person_type? string
+---@field type? string
+---@field updated_at? number
+
+---@class CompanyAttachedSegmentListMatch
+---@field id string
+
+---@class CompanyList
+---@field data? table
+---@field pages? table
+---@field total_count? number
+---@field type? string
+
+---@class CompanyListCreateData
+---@field order? string
+---@field page? number
+---@field per_page? number
+---@field data? table
+---@field pages? table
+---@field total_count? number
+---@field type? string
+
+---@class CompanyScroll
+---@field app_id? string
+---@field company_id? string
+---@field created_at? number
+---@field custom_attributes? table
+---@field id? string
+---@field industry? string
+---@field last_request_at? number
+---@field monthly_spend? number
+---@field name? string
+---@field notes? table
+---@field plan? table
+---@field remote_created_at? number
+---@field segments? table
+---@field session_count? number
+---@field size? number
+---@field tags? table
+---@field type? string
+---@field updated_at? number
+---@field user_count? number
+---@field website? string
+
+---@class CompanyScrollListMatch
+---@field scroll_param? string
+
+---@class Contact
+---@field android_app_name? string
+---@field android_app_version? string
+---@field android_device? string
+---@field android_last_seen_at? number
+---@field android_os_version? string
+---@field android_sdk_version? string
+---@field avatar? table
+---@field browser? string
+---@field browser_language? string
+---@field browser_version? string
+---@field companies? table
+---@field created_at? number
+---@field custom_attributes? table
+---@field email? string
+---@field email_domain? string
+---@field enabled_push_messaging? boolean
+---@field external_id? string
+---@field has_hard_bounced? boolean
+---@field id? string
+---@field ios_app_name? string
+---@field ios_app_version? string
+---@field ios_device? string
+---@field ios_last_seen_at? number
+---@field ios_os_version? string
+---@field ios_sdk_version? string
+---@field language_override? string
+---@field last_contacted_at? number
+---@field last_email_clicked_at? number
+---@field last_email_opened_at? number
+---@field last_replied_at? number
+---@field last_seen_at? number
+---@field location? table
+---@field marked_email_as_spam? boolean
+---@field merge_history? table
+---@field name? string
+---@field notes? table
+---@field os? string
+---@field owner_id? string
+---@field phone? string
+---@field role? string
+---@field signed_up_at? number
+---@field social_profiles? table
+---@field tags? table
+---@field type? string
+---@field unsubscribed_from_emails? boolean
+---@field updated_at? number
+---@field user table
+---@field visitor table
+---@field workspace_id? string
 
 ---@class ContactLoadMatch
 ---@field id string
+---@field include_merge_history? boolean
 
 ---@class ContactListMatch
----@field per_page? number
+---@field include_merge_history? boolean
 
 ---@class ContactCreateData
+---@field android_app_name? string
+---@field android_app_version? string
+---@field android_device? string
+---@field android_last_seen_at? number
+---@field android_os_version? string
+---@field android_sdk_version? string
+---@field avatar? table
+---@field browser? string
+---@field browser_language? string
+---@field browser_version? string
+---@field companies? table
 ---@field created_at? number
+---@field custom_attributes? table
 ---@field email? string
+---@field email_domain? string
+---@field enabled_push_messaging? boolean
+---@field external_id? string
+---@field has_hard_bounced? boolean
 ---@field id? string
+---@field ios_app_name? string
+---@field ios_app_version? string
+---@field ios_device? string
+---@field ios_last_seen_at? number
+---@field ios_os_version? string
+---@field ios_sdk_version? string
+---@field language_override? string
+---@field last_contacted_at? number
+---@field last_email_clicked_at? number
+---@field last_email_opened_at? number
+---@field last_replied_at? number
+---@field last_seen_at? number
+---@field location? table
+---@field marked_email_as_spam? boolean
+---@field merge_history? table
 ---@field name? string
+---@field notes? table
+---@field os? string
+---@field owner_id? string
 ---@field phone? string
 ---@field role? string
+---@field signed_up_at? number
+---@field social_profiles? table
+---@field tags? table
+---@field type? string
+---@field unsubscribed_from_emails? boolean
 ---@field updated_at? number
+---@field user table
+---@field visitor table
+---@field workspace_id? string
 
 ---@class ContactUpdateData
 ---@field id string
+---@field include_merge_history? boolean
+---@field android_app_name? string
+---@field android_app_version? string
+---@field android_device? string
+---@field android_last_seen_at? number
+---@field android_os_version? string
+---@field android_sdk_version? string
+---@field avatar? table
+---@field browser? string
+---@field browser_language? string
+---@field browser_version? string
+---@field companies? table
 ---@field created_at? number
+---@field custom_attributes? table
 ---@field email? string
+---@field email_domain? string
+---@field enabled_push_messaging? boolean
+---@field external_id? string
+---@field has_hard_bounced? boolean
+---@field ios_app_name? string
+---@field ios_app_version? string
+---@field ios_device? string
+---@field ios_last_seen_at? number
+---@field ios_os_version? string
+---@field ios_sdk_version? string
+---@field language_override? string
+---@field last_contacted_at? number
+---@field last_email_clicked_at? number
+---@field last_email_opened_at? number
+---@field last_replied_at? number
+---@field last_seen_at? number
+---@field location? table
+---@field marked_email_as_spam? boolean
+---@field merge_history? table
 ---@field name? string
+---@field notes? table
+---@field os? string
+---@field owner_id? string
 ---@field phone? string
 ---@field role? string
+---@field signed_up_at? number
+---@field social_profiles? table
+---@field tags? table
+---@field type? string
+---@field unsubscribed_from_emails? boolean
 ---@field updated_at? number
+---@field user? table
+---@field visitor? table
+---@field workspace_id? string
 
 ---@class ContactRemoveMatch
+---@field id string
+
+---@class ContactAttachedCompany
+---@field app_id? string
+---@field company_id? string
+---@field created_at? number
+---@field custom_attributes? table
+---@field id? string
+---@field industry? string
+---@field last_request_at? number
+---@field monthly_spend? number
+---@field name? string
+---@field notes? table
+---@field plan? table
+---@field remote_created_at? number
+---@field segments? table
+---@field session_count? number
+---@field size? number
+---@field tags? table
+---@field type? string
+---@field updated_at? number
+---@field user_count? number
+---@field website? string
+
+---@class ContactAttachedCompanyListMatch
+---@field id string
+
+---@class ContactList
+---@field data? table
+---@field pages? table
+---@field pagination? table
+---@field query any
+---@field sort? table
+---@field total_count? number
+---@field type? string
+
+---@class ContactListCreateData
+---@field include_merge_history? boolean
+---@field data? table
+---@field pages? table
+---@field pagination? table
+---@field query any
+---@field sort? table
+---@field total_count? number
+---@field type? string
+
+---@class ContactSegment
+---@field count? number
+---@field created_at? number
+---@field id? string
+---@field name? string
+---@field person_type? string
+---@field type? string
+---@field updated_at? number
+
+---@class ContactSegmentListMatch
+---@field id string
+
+---@class Content
+
+---@class ContentCreateData
+
+---@class ContentImportSource
+---@field apply_audience_to_existing_content? boolean
+---@field audience_ids? table
+---@field created_at number
+---@field id number
+---@field last_synced_at number
+---@field status string
+---@field sync_behavior string
+---@field type string
+---@field updated_at number
+---@field url string
+
+---@class ContentImportSourceLoadMatch
+---@field id string
+
+---@class ContentImportSourceListMatch
+---@field apply_audience_to_existing_content? boolean
+---@field audience_ids? table
+---@field created_at? number
+---@field id? number
+---@field last_synced_at? number
+---@field status? string
+---@field sync_behavior? string
+---@field type? string
+---@field updated_at? number
+---@field url? string
+
+---@class ContentImportSourceCreateData
+---@field apply_audience_to_existing_content? boolean
+---@field audience_ids? table
+---@field created_at number
+---@field id number
+---@field last_synced_at number
+---@field status string
+---@field sync_behavior string
+---@field type string
+---@field updated_at number
+---@field url string
+
+---@class ContentImportSourceUpdateData
+---@field id string
+---@field apply_audience_to_existing_content? boolean
+---@field audience_ids? table
+---@field created_at? number
+---@field last_synced_at? number
+---@field status? string
+---@field sync_behavior? string
+---@field type? string
+---@field updated_at? number
+---@field url? string
+
+---@class ContentSearch
+---@field data? table
+---@field pages? table
+---@field total_count? number
+---@field type? string
+
+---@class ContentSearchListMatch
+---@field any_tag_id? table
+---@field content_type? table
+---@field copilot_state? string
+---@field created_at_after? number
+---@field created_at_before? number
+---@field created_by_id? table
+---@field fin_sales_state? string
+---@field fin_service_state? string
+---@field folder_entity_type? string
+---@field folder_id? table
+---@field last_updated_by_id? table
+---@field locale? table
+---@field page? number
+---@field per_page? number
+---@field query? string
+---@field state? table
+---@field tag_id? table
+---@field tag_operator? string
+---@field updated_at_after? number
+---@field updated_at_before? number
+
+---@class ContentSnippet
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field body_markdown? string
+---@field chatbot_availability? number
+---@field copilot_availability? number
+---@field created_at? number
+---@field id? string
+---@field json_blocks? table
+---@field locale? string
+---@field title? string
+---@field type? string
+---@field updated_at? number
+
+---@class ContentSnippetLoadMatch
+---@field id string
+
+---@class ContentSnippetListMatch
+---@field page? number
+---@field per_page? number
+
+---@class ContentSnippetCreateData
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field body_markdown? string
+---@field chatbot_availability? number
+---@field copilot_availability? number
+---@field created_at? number
+---@field id? string
+---@field json_blocks? table
+---@field locale? string
+---@field title? string
+---@field type? string
+---@field updated_at? number
+
+---@class ContentSnippetUpdateData
+---@field id string
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field body_markdown? string
+---@field chatbot_availability? number
+---@field copilot_availability? number
+---@field created_at? number
+---@field json_blocks? table
+---@field locale? string
+---@field title? string
+---@field type? string
+---@field updated_at? number
+
+---@class ContentSnippetRemoveMatch
+---@field id string
+
+---@class Conversation
+---@field admin_assignee_id? number
+---@field ai_agent? table
+---@field ai_agent_participated? boolean
+---@field attachment_urls? table
+---@field body string
+---@field brand_id? string
+---@field channel? table
+---@field company? table
+---@field company_id? string
+---@field contacts? table
+---@field conversation_id string
+---@field conversation_parts? table
+---@field conversation_rating? table
+---@field created_at? number
+---@field custom_attributes? table
+---@field external_references? table
+---@field first_contact_reply? table
+---@field from table
+---@field id? string
+---@field linked_objects? table
+---@field monitor_evaluations? table
+---@field open? boolean
+---@field priority? string
+---@field read? boolean
+---@field sales_agent? table
+---@field sales_agent_participated? boolean
+---@field scorecards? table
+---@field sla_applied? table
+---@field snoozed_until? number
+---@field source? table
+---@field state? string
+---@field statistics? table
+---@field subject? string
+---@field tags? table
+---@field team_assignee_id? number
+---@field teammates? table
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field waiting_since? number
+
+---@class ConversationLoadMatch
+---@field id number
+---@field display_a? string
+---@field include_translation? boolean
+
+---@class ConversationListMatch
+---@field per_page? number
+---@field starting_after? string
+
+---@class ConversationCreateData
+---@field admin_assignee_id? number
+---@field ai_agent? table
+---@field ai_agent_participated? boolean
+---@field attachment_urls? table
+---@field body string
+---@field brand_id? string
+---@field channel? table
+---@field company? table
+---@field company_id? string
+---@field contacts? table
+---@field conversation_id string
+---@field conversation_parts? table
+---@field conversation_rating? table
+---@field created_at? number
+---@field custom_attributes? table
+---@field external_references? table
+---@field first_contact_reply? table
+---@field from table
+---@field id? string
+---@field linked_objects? table
+---@field monitor_evaluations? table
+---@field open? boolean
+---@field priority? string
+---@field read? boolean
+---@field sales_agent? table
+---@field sales_agent_participated? boolean
+---@field scorecards? table
+---@field sla_applied? table
+---@field snoozed_until? number
+---@field source? table
+---@field state? string
+---@field statistics? table
+---@field subject? string
+---@field tags? table
+---@field team_assignee_id? number
+---@field teammates? table
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field waiting_since? number
+
+---@class ConversationUpdateData
+---@field id number
+---@field display_a? string
+---@field admin_assignee_id? number
+---@field ai_agent? table
+---@field ai_agent_participated? boolean
+---@field attachment_urls? table
+---@field body? string
+---@field brand_id? string
+---@field channel? table
+---@field company? table
+---@field company_id? string
+---@field contacts? table
+---@field conversation_id? string
+---@field conversation_parts? table
+---@field conversation_rating? table
+---@field created_at? number
+---@field custom_attributes? table
+---@field external_references? table
+---@field first_contact_reply? table
+---@field from? table
+---@field linked_objects? table
+---@field monitor_evaluations? table
+---@field open? boolean
+---@field priority? string
+---@field read? boolean
+---@field sales_agent? table
+---@field sales_agent_participated? boolean
+---@field scorecards? table
+---@field sla_applied? table
+---@field snoozed_until? number
+---@field source? table
+---@field state? string
+---@field statistics? table
+---@field subject? string
+---@field tags? table
+---@field team_assignee_id? number
+---@field teammates? table
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field waiting_since? number
+
+---@class ConversationRemoveMatch
+---@field id number
+---@field retain_metric? boolean
+---@field ticket_id? string
+
+---@class ConversationAttribute
+---@field admin_id? string
+---@field archived? boolean
+---@field created_at? number
+---@field data_type? string
+---@field description? string
+---@field id? number
+---@field label string
+---@field multiline? boolean
+---@field name? string
+---@field reference table
+---@field required? boolean
+---@field type? string
+---@field updated_at? number
+---@field visible_to_team_ids? table
+
+---@class ConversationAttributeLoadMatch
+---@field id number
+
+---@class ConversationAttributeCreateData
+---@field admin_id? string
+---@field archived? boolean
+---@field created_at? number
+---@field data_type? string
+---@field description? string
+---@field id? number
+---@field label string
+---@field multiline? boolean
+---@field name? string
+---@field reference table
+---@field required? boolean
+---@field type? string
+---@field updated_at? number
+---@field visible_to_team_ids? table
+
+---@class ConversationAttributeUpdateData
+---@field id number
+---@field admin_id? string
+---@field archived? boolean
+---@field created_at? number
+---@field data_type? string
+---@field description? string
+---@field label? string
+---@field multiline? boolean
+---@field name? string
+---@field reference? table
+---@field required? boolean
+---@field type? string
+---@field updated_at? number
+---@field visible_to_team_ids? table
+
+---@class ConversationAttributeRemoveMatch
+---@field id number
+
+---@class ConversationAttributeList
+---@field data? table
+---@field type? string
+
+---@class ConversationAttributeListListMatch
+---@field include_archived? boolean
+
+---@class ConversationList
+---@field conversations? table
+---@field pages? table
+---@field pagination? table
+---@field query any
+---@field total_count? number
+---@field type? string
+
+---@class ConversationListCreateData
+---@field include_monitor? boolean
+---@field include_scorecard? boolean
+---@field conversations? table
+---@field pages? table
+---@field pagination? table
+---@field query any
+---@field total_count? number
+---@field type? string
+
+---@class ConversationParticipant
+---@field id? string
+
+---@class ConversationParticipantCreateData
+---@field id string
+
+---@class ConversationParticipantRemoveMatch
+---@field contact_id string
+---@field conversation_id string
+
+---@class CustomObjectInstance
+---@field created_at? number
+---@field custom_attributes? table
+---@field data? table
+---@field external_created_at? string
+---@field external_id? string
+---@field external_updated_at? string
+---@field id? string
+---@field pages? table
+---@field total_count? number
+---@field type? string
+---@field updated_at? number
+
+---@class CustomObjectInstanceLoadMatch
+---@field id string
+---@field external_id? string
+---@field page? number
+---@field per_page? number
+---@field references_contact_id? string
+---@field references_conversation_id? string
+
+---@class CustomObjectInstanceCreateData
+---@field id string
+---@field created_at? number
+---@field custom_attributes? table
+---@field data? table
+---@field external_created_at? string
+---@field external_id? string
+---@field external_updated_at? string
+---@field pages? table
+---@field total_count? number
+---@field type? string
+---@field updated_at? number
+
+---@class CustomObjectInstanceRemoveMatch
+---@field id string
+---@field external_id string
+
+---@class Data
+---@field created_at_after number
+---@field created_at_before number
+---@field download_expires_at? string
+---@field download_url? string
+---@field id? string
+---@field job_identifier? string
+---@field status? string
+
+---@class DataLoadMatch
+---@field id string
+
+---@class DataCreateData
+---@field created_at_after number
+---@field created_at_before number
+---@field download_expires_at? string
+---@field download_url? string
+---@field id? string
+---@field job_identifier? string
+---@field status? string
+
+---@class DataAttribute
+---@field admin_id? string
+---@field api_writable? boolean
+---@field archived? boolean
+---@field created_at? number
+---@field custom? boolean
+---@field data_type? string
+---@field description? string
+---@field full_name? string
+---@field id? number
+---@field label? string
+---@field messenger_writable? boolean
+---@field model? string
+---@field name? string
+---@field options? table
+---@field type? string
+---@field ui_writable? boolean
+---@field updated_at? number
+
+---@class DataAttributeListMatch
+---@field include_archived? boolean
+---@field model? string
+
+---@class DataAttributeCreateData
+---@field admin_id? string
+---@field api_writable? boolean
+---@field archived? boolean
+---@field created_at? number
+---@field custom? boolean
+---@field data_type? string
+---@field description? string
+---@field full_name? string
+---@field id? number
+---@field label? string
+---@field messenger_writable? boolean
+---@field model? string
+---@field name? string
+---@field options? table
+---@field type? string
+---@field ui_writable? boolean
+---@field updated_at? number
+
+---@class DataAttributeUpdateData
+---@field id number
+---@field admin_id? string
+---@field api_writable? boolean
+---@field archived? boolean
+---@field created_at? number
+---@field custom? boolean
+---@field data_type? string
+---@field description? string
+---@field full_name? string
+---@field label? string
+---@field messenger_writable? boolean
+---@field model? string
+---@field name? string
+---@field options? table
+---@field type? string
+---@field ui_writable? boolean
+---@field updated_at? number
+
+---@class DataConnector
+---@field audiences? table
+---@field body? string
+---@field bypass_authentication? boolean
+---@field client_function_name? string
+---@field client_function_timeout_ms? number
+---@field configuration_response_type? string
+---@field created_at? string
+---@field created_by_admin_id? string
+---@field customer_authentication? boolean
+---@field data_inputs? table
+---@field data_transformation_type? string
+---@field description? string
+---@field direct_fin_usage? boolean
+---@field execution_results_url? string
+---@field execution_type? string
+---@field headers? table
+---@field http_method? string
+---@field id? string
+---@field mock_response? table
+---@field name? string
+---@field object_mappings? table
+---@field response_fields? table
+---@field state? string
+---@field token_ids? table
+---@field type? string
+---@field updated_at? string
+---@field updated_by_admin_id? string
+---@field url? string
+---@field validate_missing_attributes? boolean
+
+---@class DataConnectorLoadMatch
+---@field id string
+---@field state_version? string
+
+---@class DataConnectorListMatch
+---@field per_page? number
+---@field starting_after? string
+
+---@class DataConnectorCreateData
+---@field audiences? table
+---@field body? string
+---@field bypass_authentication? boolean
+---@field client_function_name? string
+---@field client_function_timeout_ms? number
+---@field configuration_response_type? string
+---@field created_at? string
+---@field created_by_admin_id? string
+---@field customer_authentication? boolean
+---@field data_inputs? table
+---@field data_transformation_type? string
+---@field description? string
+---@field direct_fin_usage? boolean
+---@field execution_results_url? string
+---@field execution_type? string
+---@field headers? table
+---@field http_method? string
+---@field id? string
+---@field mock_response? table
+---@field name? string
+---@field object_mappings? table
+---@field response_fields? table
+---@field state? string
+---@field token_ids? table
+---@field type? string
+---@field updated_at? string
+---@field updated_by_admin_id? string
+---@field url? string
+---@field validate_missing_attributes? boolean
+
+---@class DataConnectorUpdateData
+---@field id string
+---@field audiences? table
+---@field body? string
+---@field bypass_authentication? boolean
+---@field client_function_name? string
+---@field client_function_timeout_ms? number
+---@field configuration_response_type? string
+---@field created_at? string
+---@field created_by_admin_id? string
+---@field customer_authentication? boolean
+---@field data_inputs? table
+---@field data_transformation_type? string
+---@field description? string
+---@field direct_fin_usage? boolean
+---@field execution_results_url? string
+---@field execution_type? string
+---@field headers? table
+---@field http_method? string
+---@field mock_response? table
+---@field name? string
+---@field object_mappings? table
+---@field response_fields? table
+---@field state? string
+---@field token_ids? table
+---@field type? string
+---@field updated_at? string
+---@field updated_by_admin_id? string
+---@field url? string
+---@field validate_missing_attributes? boolean
+
+---@class DataConnectorExecutionResult
+---@field conversation_id? string
+---@field created_at? string
+---@field data_connector_id? string
+---@field error_message? string
+---@field error_type? string
+---@field execution_time_ms? number
+---@field http_method? string
+---@field http_status? number
+---@field id? string
+---@field raw_response_body? string
+---@field request_body? string
+---@field request_url? string
+---@field response_body? string
+---@field source_id? string
+---@field source_type? string
+---@field success? boolean
+---@field type? string
+
+---@class DataConnectorExecutionResultLoadMatch
+---@field data_connector_id string
+---@field id string
+
+---@class DataConnectorExecutionResultList
+---@field id? string
+
+---@class DataConnectorExecutionResultListListMatch
+---@field id string
+---@field end_t? number
+---@field error_type? string
+---@field include_body? string
+---@field per_page? number
+---@field start_t? number
+---@field starting_after? string
+---@field success? string
+
+---@class DataEvent
+---@field created_at? number
+---@field email? string
+---@field event_name? string
+---@field event_summaries? table
+---@field id? string
+---@field metadata? table
+---@field user_id? string
+
+---@class DataEventCreateData
+---@field created_at? number
+---@field email? string
+---@field event_name? string
+---@field event_summaries? table
+---@field id? string
+---@field metadata? table
+---@field user_id? string
+
+---@class DataEventSummary
+---@field count? number
+---@field description? string
+---@field first? string
+---@field last? string
+---@field name? string
+
+---@class DataEventSummaryListMatch
+---@field filter table
+---@field summary? boolean
+---@field type string
+
+---@class DataExport
+---@field download_expires_at? string
+---@field download_url? string
+---@field job_identifier? string
+---@field status? string
+
+---@class DataExportCreateData
+---@field job_identifier string
+---@field download_expires_at? string
+---@field download_url? string
+---@field status? string
+
+---@class Deleted
+---@field deleted_at? number
+---@field id? string
+---@field metrics_retained? boolean
+---@field type? string
+
+---@class DeletedListMatch
+---@field order? string
+---@field page? number
+---@field per_page? number
+
+---@class DeletedArticleObject
+
+---@class DeletedArticleObjectRemoveMatch
+---@field article_id number
+
+---@class DeletedCompanyObject
+
+---@class DeletedCompanyObjectRemoveMatch
+---@field company_id string
+
+---@class DeletedDataConnectorObject
+---@field id? string
+
+---@class DeletedDataConnectorObjectRemoveMatch
+---@field id string
+
+---@class DeletedInternalArticleObject
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id number
+---@field body? string
+---@field body_markdown? string
+---@field created_at? number
+---@field id? string
+---@field locale? string
+---@field owner_id number
+---@field title string
+---@field type? string
+---@field updated_at? number
+
+---@class DeletedInternalArticleObjectListMatch
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id? number
+---@field body? string
+---@field body_markdown? string
+---@field created_at? number
+---@field id? string
+---@field locale? string
+---@field owner_id? number
+---@field title? string
+---@field type? string
+---@field updated_at? number
+
+---@class DeletedInternalArticleObjectCreateData
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id number
+---@field body? string
+---@field body_markdown? string
+---@field created_at? number
+---@field id? string
+---@field locale? string
+---@field owner_id number
+---@field title string
+---@field type? string
+---@field updated_at? number
+
+---@class DeletedInternalArticleObjectRemoveMatch
+---@field internal_article_id number
+
+---@class DeletedObject
+
+---@class DeletedObjectRemoveMatch
+---@field news_item_id number
+
+---@class Email
+---@field brand_id? string
+---@field created_at? number
+---@field domain? string
+---@field email? string
+---@field forwarded_email_last_received_at? number
+---@field forwarding_enabled? boolean
+---@field id? string
+---@field type? string
+---@field updated_at? number
+---@field verified? boolean
+
+---@class EmailLoadMatch
+---@field id string
+
+---@class EmailListMatch
+---@field brand_id? string
+---@field created_at? number
+---@field domain? string
+---@field email? string
+---@field forwarded_email_last_received_at? number
+---@field forwarding_enabled? boolean
+---@field id? string
+---@field type? string
+---@field updated_at? number
+---@field verified? boolean
+
+---@class ExternalPage
+---@field ai_agent_availability boolean
+---@field ai_copilot_availability boolean
+---@field ai_sales_agent_availability? boolean
+---@field created_at number
+---@field external_id string
+---@field fin_availability? boolean
+---@field html string
+---@field id string
+---@field last_ingested_at number
+---@field locale string
+---@field source_id number
+---@field title string
+---@field type string
+---@field updated_at number
+---@field url? string
+
+---@class ExternalPageLoadMatch
+---@field id string
+
+---@class ExternalPageListMatch
+---@field ai_agent_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field created_at? number
+---@field external_id? string
+---@field fin_availability? boolean
+---@field html? string
+---@field id? string
+---@field last_ingested_at? number
+---@field locale? string
+---@field source_id? number
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field url? string
+
+---@class ExternalPageCreateData
+---@field ai_agent_availability boolean
+---@field ai_copilot_availability boolean
+---@field ai_sales_agent_availability? boolean
+---@field created_at number
+---@field external_id string
+---@field fin_availability? boolean
+---@field html string
+---@field id string
+---@field last_ingested_at number
+---@field locale string
+---@field source_id number
+---@field title string
+---@field type string
+---@field updated_at number
+---@field url? string
+
+---@class ExternalPageUpdateData
+---@field id string
+---@field ai_agent_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field created_at? number
+---@field external_id? string
+---@field fin_availability? boolean
+---@field html? string
+---@field last_ingested_at? number
+---@field locale? string
+---@field source_id? number
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field url? string
+
+---@class ExternalPageRemoveMatch
+---@field id string
+
+---@class FinAgent
+---@field attachments? table
+---@field conversation? table
+---@field conversation_id? string
+---@field conversation_metadata? table
+---@field message table
+---@field rating? string
+---@field remark? string
+---@field status? string
+---@field user? table
+
+---@class FinAgentCreateData
+---@field attachments? table
+---@field conversation? table
+---@field conversation_id? string
+---@field conversation_metadata? table
+---@field message table
+---@field rating? string
+---@field remark? string
+---@field status? string
+---@field user? table
+
+---@class HandlingEvent
+---@field reason? string
+---@field teammate table
+---@field timestamp string
+---@field type string
+
+---@class HandlingEventListMatch
+---@field conversation_id string
+
+---@class HelpCenter
+---@field ar? table
+---@field bg? table
+---@field bs? table
+---@field ca? table
+---@field created_at? number
+---@field cs? table
+---@field custom_domain? string
+---@field da? table
+---@field de? table
+---@field default? boolean
+---@field description? string
+---@field display_name? string
+---@field el? table
+---@field en? table
+---@field es? table
+---@field et? table
+---@field fi? table
+---@field fr? table
+---@field from_url? string
+---@field he? table
+---@field help_center_id? string
+---@field hr? table
+---@field hu? table
+---@field id? table
+---@field identifier? string
+---@field it? table
+---@field ja? table
+---@field ko? table
+---@field locale? string
+---@field locales? table
+---@field lt? table
+---@field lv? table
+---@field mn? table
+---@field name? string
+---@field nb? table
+---@field nl? table
+---@field parent_id? string
+---@field pl? table
+---@field pt? table
+---@field ptBR? table
+---@field ro? table
+---@field ru? table
+---@field sl? table
+---@field sr? table
+---@field sv? table
+---@field target_id? string
+---@field target_type? string
+---@field tr? table
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field url? string
+---@field vi? table
+---@field website_turned_on? boolean
+---@field workspace_id? string
+---@field zhCN? table
+---@field zhTW? table
+
+---@class HelpCenterLoadMatch
+---@field collection_id number
+
+---@class HelpCenterListMatch
+---@field ar? table
+---@field bg? table
+---@field bs? table
+---@field ca? table
+---@field created_at? number
+---@field cs? table
+---@field custom_domain? string
+---@field da? table
+---@field de? table
+---@field default? boolean
+---@field description? string
+---@field display_name? string
+---@field el? table
+---@field en? table
+---@field es? table
+---@field et? table
+---@field fi? table
+---@field fr? table
+---@field from_url? string
+---@field he? table
+---@field help_center_id? string
+---@field hr? table
+---@field hu? table
+---@field id? table
+---@field identifier? string
+---@field it? table
+---@field ja? table
+---@field ko? table
+---@field locale? string
+---@field locales? table
+---@field lt? table
+---@field lv? table
+---@field mn? table
+---@field name? string
+---@field nb? table
+---@field nl? table
+---@field parent_id? string
+---@field pl? table
+---@field pt? table
+---@field ptBR? table
+---@field ro? table
+---@field ru? table
+---@field sl? table
+---@field sr? table
+---@field sv? table
+---@field target_id? string
+---@field target_type? string
+---@field tr? table
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field url? string
+---@field vi? table
+---@field website_turned_on? boolean
+---@field workspace_id? string
+---@field zhCN? table
+---@field zhTW? table
+
+---@class HelpCenterCreateData
+---@field ar? table
+---@field bg? table
+---@field bs? table
+---@field ca? table
+---@field created_at? number
+---@field cs? table
+---@field custom_domain? string
+---@field da? table
+---@field de? table
+---@field default? boolean
+---@field description? string
+---@field display_name? string
+---@field el? table
+---@field en? table
+---@field es? table
+---@field et? table
+---@field fi? table
+---@field fr? table
+---@field from_url? string
+---@field he? table
+---@field help_center_id? string
+---@field hr? table
+---@field hu? table
+---@field id? table
+---@field identifier? string
+---@field it? table
+---@field ja? table
+---@field ko? table
+---@field locale? string
+---@field locales? table
+---@field lt? table
+---@field lv? table
+---@field mn? table
+---@field name? string
+---@field nb? table
+---@field nl? table
+---@field parent_id? string
+---@field pl? table
+---@field pt? table
+---@field ptBR? table
+---@field ro? table
+---@field ru? table
+---@field sl? table
+---@field sr? table
+---@field sv? table
+---@field target_id? string
+---@field target_type? string
+---@field tr? table
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field url? string
+---@field vi? table
+---@field website_turned_on? boolean
+---@field workspace_id? string
+---@field zhCN? table
+---@field zhTW? table
+
+---@class HelpCenterUpdateData
+---@field collection_id number
+---@field ar? table
+---@field bg? table
+---@field bs? table
+---@field ca? table
+---@field created_at? number
+---@field cs? table
+---@field custom_domain? string
+---@field da? table
+---@field de? table
+---@field default? boolean
+---@field description? string
+---@field display_name? string
+---@field el? table
+---@field en? table
+---@field es? table
+---@field et? table
+---@field fi? table
+---@field fr? table
+---@field from_url? string
+---@field he? table
+---@field help_center_id? string
+---@field hr? table
+---@field hu? table
+---@field id? table
+---@field identifier? string
+---@field it? table
+---@field ja? table
+---@field ko? table
+---@field locale? string
+---@field locales? table
+---@field lt? table
+---@field lv? table
+---@field mn? table
+---@field name? string
+---@field nb? table
+---@field nl? table
+---@field parent_id? string
+---@field pl? table
+---@field pt? table
+---@field ptBR? table
+---@field ro? table
+---@field ru? table
+---@field sl? table
+---@field sr? table
+---@field sv? table
+---@field target_id? string
+---@field target_type? string
+---@field tr? table
+---@field translated_content? table
+---@field type? string
+---@field updated_at? number
+---@field url? string
+---@field vi? table
+---@field website_turned_on? boolean
+---@field workspace_id? string
+---@field zhCN? table
+---@field zhTW? table
+
+---@class HelpCenterRemoveMatch
+---@field collection_id number
+
+---@class InternalArticle
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id? number
+---@field body? string
+---@field body_markdown? string
+---@field created_at? number
+---@field id? string
+---@field locale? string
+---@field owner_id? number
+---@field title? string
+---@field type? string
+---@field updated_at? number
+
+---@class InternalArticleLoadMatch
+---@field id number
+
+---@class InternalArticleUpdateData
+---@field id number
+---@field ai_chatbot_availability? boolean
+---@field ai_copilot_availability? boolean
+---@field ai_sales_agent_availability? boolean
+---@field audience_ids? table
+---@field author_id? number
+---@field body? string
+---@field body_markdown? string
+---@field created_at? number
+---@field locale? string
+---@field owner_id? number
+---@field title? string
+---@field type? string
+---@field updated_at? number
+
+---@class InternalArticleSearch
+---@field data? table
+---@field pages? table
+---@field total_count? number
+---@field type? string
+
+---@class InternalArticleSearchLoadMatch
+---@field folder_id? string
+
+---@class IpAllowlist
+---@field enabled? boolean
+---@field ip_allowlist? table
+---@field type? string
+
+---@class IpAllowlistListMatch
+---@field enabled? boolean
+---@field ip_allowlist? table
+---@field type? string
+
+---@class IpAllowlistUpdateData
+---@field enabled? boolean
+---@field ip_allowlist? table
+---@field type? string
+
+---@class Job
+---@field id string
+---@field resource_id? string
+---@field resource_type? string
+---@field resource_url? string
+---@field skip_notifications? boolean
+---@field status? string
+---@field type? string
+---@field url? string
+
+---@class JobLoadMatch
+---@field job_id string
+
+---@class JobCreateData
+---@field id string
+---@field resource_id? string
+---@field resource_type? string
+---@field resource_url? string
+---@field skip_notifications? boolean
+---@field status? string
+---@field type? string
+---@field url? string
+
+---@class Macro
+---@field available_on? table
+---@field body? string
+---@field body_text? string
+---@field created_at? string
+---@field id? string
+---@field name? string
+---@field type? string
+---@field updated_at? string
+---@field visible_to? string
+---@field visible_to_team_ids? table
+
+---@class MacroLoadMatch
+---@field id string
+
+---@class MacroListMatch
+---@field per_page? number
+---@field starting_after? string
+---@field updated_since? number
+
+---@class MergeHistory
+---@field merged_at? number
+---@field source_contact_id? string
+---@field source_contact_role? string
+---@field type? string
+
+---@class MergeHistoryListMatch
+---@field contact_id string
+---@field cursor? string
+---@field order? string
+---@field per_page? number
+
+---@class Message
+---@field bcc? any
+---@field body string
+---@field cc? any
+---@field conversation_id? string
+---@field create_conversation_without_contact_reply? boolean
+---@field created_at number
+---@field from table
+---@field id string
+---@field message_type string
+---@field subject? string
+---@field template? string
+---@field to? any
+---@field type string
+
+---@class MessageCreateData
+---@field bcc? any
+---@field body string
+---@field cc? any
+---@field conversation_id? string
+---@field create_conversation_without_contact_reply? boolean
+---@field created_at number
+---@field from table
+---@field id string
+---@field message_type string
+---@field subject? string
+---@field template? string
+---@field to? any
+---@field type string
+
+---@class NewsItem
+---@field body? string
+---@field cover_image_url? string
+---@field created_at? number
+---@field deliver_silently? boolean
+---@field id? string
+---@field labels? table
+---@field newsfeed_assignments? table
+---@field reactions? table
+---@field sender_id? number
+---@field state? string
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class NewsItemLoadMatch
+---@field id number
+
+---@class NewsItemCreateData
+---@field body? string
+---@field cover_image_url? string
+---@field created_at? number
+---@field deliver_silently? boolean
+---@field id? string
+---@field labels? table
+---@field newsfeed_assignments? table
+---@field reactions? table
+---@field sender_id? number
+---@field state? string
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class NewsItemUpdateData
+---@field id number
+---@field body? string
+---@field cover_image_url? string
+---@field created_at? number
+---@field deliver_silently? boolean
+---@field labels? table
+---@field newsfeed_assignments? table
+---@field reactions? table
+---@field sender_id? number
+---@field state? string
+---@field title? string
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class Newsfeed
+---@field created_at? number
+---@field id? string
+---@field name? string
+---@field type? string
+---@field updated_at? number
+
+---@class NewsfeedLoadMatch
+---@field id string
+
+---@class Note
+---@field admin_id? string
+---@field author? table
+---@field body? string
+---@field company? table
+---@field contact? table
+---@field created_at? number
+---@field id? string
+---@field type? string
+
+---@class NoteLoadMatch
+---@field id number
+
+---@class NoteListMatch
+---@field company_id string
+
+---@class NoteCreateData
+---@field company_id string
+---@field admin_id? string
+---@field author? table
+---@field body? string
+---@field company? table
+---@field contact? table
+---@field created_at? number
+---@field id? string
+---@field type? string
+
+---@class OfficeHour
+---@field created_at? number
+---@field id? string
+---@field name string
+---@field time_intervals table
+---@field time_zone_name string
+---@field twenty_four_seven? boolean
+---@field type? string
+---@field updated_at? number
+
+---@class OfficeHourListMatch
+---@field created_at? number
+---@field id? string
+---@field name? string
+---@field time_intervals? table
+---@field time_zone_name? string
+---@field twenty_four_seven? boolean
+---@field type? string
+---@field updated_at? number
+
+---@class OfficeHourCreateData
+---@field created_at? number
+---@field id? string
+---@field name string
+---@field time_intervals table
+---@field time_zone_name string
+---@field twenty_four_seven? boolean
+---@field type? string
+---@field updated_at? number
+
+---@class OfficeHourRemoveMatch
+---@field id string
+---@field office_hours_schedule_id? string
+
+---@class OfficeHoursException
+---@field created_at? number
+---@field exception_date? string
+---@field exception_type? string
+---@field id? string
+---@field name? string
+---@field office_hours_schedule_id? string
+---@field recurring_annually? boolean
+---@field time_intervals? table
+---@field type? string
+---@field updated_at? number
+
+---@class OfficeHoursExceptionLoadMatch
+---@field id string
+---@field office_hours_schedule_id string
+
+---@class OfficeHoursExceptionListMatch
+---@field office_hours_schedule_id string
+
+---@class OfficeHoursExceptionCreateData
+---@field office_hours_schedule_id string
+---@field created_at? number
+---@field exception_date? string
+---@field exception_type? string
+---@field id? string
+---@field name? string
+---@field recurring_annually? boolean
+---@field time_intervals? table
+---@field type? string
+---@field updated_at? number
+
+---@class OfficeHoursExceptionUpdateData
+---@field id string
+---@field office_hours_schedule_id string
+---@field created_at? number
+---@field exception_date? string
+---@field exception_type? string
+---@field name? string
+---@field recurring_annually? boolean
+---@field time_intervals? table
+---@field type? string
+---@field updated_at? number
+
+---@class OfficeHoursSchedule
+---@field created_at? number
+---@field id? string
+---@field name? string
+---@field time_intervals? table
+---@field time_zone_name? string
+---@field twenty_four_seven? boolean
+---@field type? string
+---@field updated_at? number
+
+---@class OfficeHoursScheduleLoadMatch
+---@field id string
+
+---@class OfficeHoursScheduleUpdateData
+---@field id string
+---@field created_at? number
+---@field name? string
+---@field time_intervals? table
+---@field time_zone_name? string
+---@field twenty_four_seven? boolean
+---@field type? string
+---@field updated_at? number
+
+---@class Paginated
+---@field data? table
+---@field pages? table
+---@field total_count? number
+---@field type? string
+
+---@class PaginatedListMatch
+---@field data? table
+---@field pages? table
+---@field total_count? number
+---@field type? string
+
+---@class PhoneSwitch
+---@field custom_attributes? table
+---@field phone? string
+---@field type? string
+
+---@class PhoneSwitchCreateData
+---@field custom_attributes? table
+---@field phone? string
+---@field type? string
+
+---@class ReportingData
+---@field download_expires_at? string
+---@field download_url? string
+---@field job_identifier? string
+---@field status? string
+
+---@class ReportingDataLoadMatch
+---@field app_id string
+---@field job_identifier string
+---@field client_id? string
+
+---@class ReportingDataExport
+---@field attribute_ids table
+---@field attributes? table
+---@field dataset_id string
+---@field default_time_attribute_id? string
+---@field description? string
+---@field download_expires_at? string
+---@field download_url? string
+---@field end_time number
+---@field id? string
+---@field job_identifier? string
+---@field name? string
+---@field start_time number
+---@field status? string
+
+---@class ReportingDataExportListMatch
+---@field attribute_ids? table
+---@field attributes? table
+---@field dataset_id? string
+---@field default_time_attribute_id? string
+---@field description? string
+---@field download_expires_at? string
+---@field download_url? string
+---@field end_time? number
+---@field id? string
+---@field job_identifier? string
+---@field name? string
+---@field start_time? number
+---@field status? string
+
+---@class ReportingDataExportCreateData
+---@field attribute_ids table
+---@field attributes? table
+---@field dataset_id string
+---@field default_time_attribute_id? string
+---@field description? string
+---@field download_expires_at? string
+---@field download_url? string
+---@field end_time number
+---@field id? string
+---@field job_identifier? string
+---@field name? string
+---@field start_time number
+---@field status? string
+
+---@class Segment
+---@field count? number
+---@field created_at? number
+---@field id? string
+---@field name? string
+---@field person_type? string
+---@field type? string
+---@field updated_at? number
+
+---@class SegmentLoadMatch
+---@field id string
+
+---@class SegmentListMatch
+---@field include_count? boolean
+
+---@class SideConversation
+---@field conversation_parts? table
+---@field side_conversation_id? string
+---@field total_count? number
+
+---@class SideConversationListMatch
+---@field conversation_id string
+---@field page? number
+---@field per_page? number
+
+---@class Subscription
+---@field consent_type? string
+---@field content_types? table
+---@field default_translation? table
+---@field id? string
+---@field state? string
+---@field translations? table
+---@field type? string
+
+---@class SubscriptionListMatch
+---@field contact_id string
+
+---@class SubscriptionCreateData
+---@field contact_id string
+---@field consent_type? string
+---@field content_types? table
+---@field default_translation? table
+---@field id? string
+---@field state? string
+---@field translations? table
+---@field type? string
+
+---@class SubscriptionRemoveMatch
+---@field contact_id string
+---@field id string
+
+---@class SubscriptionType
+---@field consent_type? string
+---@field content_types? table
+---@field default_translation? table
+---@field id? string
+---@field state? string
+---@field translations? table
+---@field type? string
+
+---@class SubscriptionTypeListMatch
+---@field consent_type? string
+---@field content_types? table
+---@field default_translation? table
+---@field id? string
+---@field state? string
+---@field translations? table
+---@field type? string
+
+---@class Tag
+---@field admin_id? string
+---@field applied_at? number
+---@field applied_by? table
+---@field companies? table
+---@field id? string
+---@field name? string
+---@field type? string
+---@field users? table
+
+---@class TagLoadMatch
+---@field id string
+
+---@class TagListMatch
+---@field admin_id? string
+---@field applied_at? number
+---@field applied_by? table
+---@field companies? table
+---@field id? string
+---@field name? string
+---@field type? string
+---@field users? table
+
+---@class TagCreateData
+---@field admin_id? string
+---@field applied_at? number
+---@field applied_by? table
+---@field companies? table
+---@field id? string
+---@field name? string
+---@field type? string
+---@field users? table
+
+---@class TagRemoveMatch
+---@field article_id? number
+---@field id string
+---@field contact_id? string
+---@field content_snippet_id? string
+---@field conversation_id? string
+---@field internal_article_id? number
+---@field ticket_id? string
+
+---@class Team
+---@field admin_ids? table
+---@field admin_priority_level? table
+---@field assignment_limit? number
+---@field distribution_method? string
+---@field id? string
+---@field name? string
+---@field type? string
+
+---@class TeamLoadMatch
+---@field id string
+
+---@class TeamListMatch
+---@field admin_ids? table
+---@field admin_priority_level? table
+---@field assignment_limit? number
+---@field distribution_method? string
+---@field id? string
+---@field name? string
+---@field type? string
+
+---@class TeamMetricList
+---@field id? string
+
+---@class TeamMetricListListMatch
+---@field id string
+---@field idle_threshold? number
+
+---@class Ticket
+---@field admin_assignee_id? number
+---@field attributes? table
+---@field category? string
+---@field contacts? table
+---@field created_at? number
+---@field id? string
+---@field is_shared? boolean
+---@field linked_objects? table
+---@field open? boolean
+---@field previous_ticket_state_id? string
+---@field skip_notifications? boolean
+---@field snoozed_until? number
+---@field team_assignee_id? number
+---@field ticket_attributes? table
+---@field ticket_id? string
+---@field ticket_parts? table
+---@field ticket_state? table
+---@field ticket_state_id? string
+---@field ticket_type? table
+---@field ticket_type_id string
+---@field type? string
+---@field updated_at? number
+
+---@class TicketLoadMatch
+---@field id string
+
+---@class TicketCreateData
+---@field admin_assignee_id? number
+---@field attributes? table
+---@field category? string
+---@field contacts? table
+---@field created_at? number
+---@field id? string
+---@field is_shared? boolean
+---@field linked_objects? table
+---@field open? boolean
+---@field previous_ticket_state_id? string
+---@field skip_notifications? boolean
+---@field snoozed_until? number
+---@field team_assignee_id? number
+---@field ticket_attributes? table
+---@field ticket_id? string
+---@field ticket_parts? table
+---@field ticket_state? table
+---@field ticket_state_id? string
+---@field ticket_type? table
+---@field ticket_type_id string
+---@field type? string
+---@field updated_at? number
+
+---@class TicketUpdateData
+---@field id string
+---@field admin_assignee_id? number
+---@field attributes? table
+---@field category? string
+---@field contacts? table
+---@field created_at? number
+---@field is_shared? boolean
+---@field linked_objects? table
+---@field open? boolean
+---@field previous_ticket_state_id? string
+---@field skip_notifications? boolean
+---@field snoozed_until? number
+---@field team_assignee_id? number
+---@field ticket_attributes? table
+---@field ticket_id? string
+---@field ticket_parts? table
+---@field ticket_state? table
+---@field ticket_state_id? string
+---@field ticket_type? table
+---@field ticket_type_id? string
+---@field type? string
+---@field updated_at? number
+
+---@class TicketRemoveMatch
+---@field id string
+
+---@class TicketList
+---@field pages? table
+---@field pagination? table
+---@field query any
+---@field tickets? table
+---@field total_count? number
+---@field type? string
+
+---@class TicketListCreateData
+---@field pages? table
+---@field pagination? table
+---@field query any
+---@field tickets? table
+---@field total_count? number
+---@field type? string
+
+---@class TicketReply
+---@field attachments? table
+---@field author? table
+---@field body? string
+---@field created_at? number
+---@field id? string
+---@field part_type? string
+---@field redacted? boolean
+---@field skip_notifications? boolean
+---@field type? string
+---@field updated_at? number
+
+---@class TicketReplyCreateData
+---@field id string
+---@field attachments? table
+---@field author? table
+---@field body? string
+---@field created_at? number
+---@field part_type? string
+---@field redacted? boolean
+---@field skip_notifications? boolean
+---@field type? string
+---@field updated_at? number
+
+---@class TicketState
+---@field archived? boolean
+---@field category? string
+---@field external_label? string
+---@field id? string
+---@field internal_label? string
+---@field ticket_types? table
+---@field type? string
+
+---@class TicketStateListMatch
+---@field archived? boolean
+---@field category? string
+---@field external_label? string
+---@field id? string
+---@field internal_label? string
+---@field ticket_types? table
+---@field type? string
+
+---@class TicketType
+---@field archived? boolean
+---@field category? string
+---@field created_at? number
+---@field description? string
+---@field icon? string
+---@field id? string
+---@field is_internal? boolean
+---@field name? string
+---@field ticket_states? table
+---@field ticket_type_attributes? table
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class TicketTypeLoadMatch
+---@field id string
+
+---@class TicketTypeListMatch
+---@field archived? boolean
+---@field category? string
+---@field created_at? number
+---@field description? string
+---@field icon? string
+---@field id? string
+---@field is_internal? boolean
+---@field name? string
+---@field ticket_states? table
+---@field ticket_type_attributes? table
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class TicketTypeCreateData
+---@field archived? boolean
+---@field category? string
+---@field created_at? number
+---@field description? string
+---@field icon? string
+---@field id? string
+---@field is_internal? boolean
+---@field name? string
+---@field ticket_states? table
+---@field ticket_type_attributes? table
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class TicketTypeUpdateData
+---@field id string
+---@field archived? boolean
+---@field category? string
+---@field created_at? number
+---@field description? string
+---@field icon? string
+---@field is_internal? boolean
+---@field name? string
+---@field ticket_states? table
+---@field ticket_type_attributes? table
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class TicketTypeAttribute
+---@field allow_multiple_values? boolean
+---@field archived? boolean
+---@field data_type string
+---@field description string
+---@field id? string
+---@field list_items? string
+---@field multiline? boolean
+---@field name string
+---@field required_to_create? boolean
+---@field required_to_create_for_contacts? boolean
+---@field visible_on_create? boolean
+---@field visible_to_contacts? boolean
+
+---@class TicketTypeAttributeCreateData
+---@field id string
+---@field allow_multiple_values? boolean
+---@field archived? boolean
+---@field data_type string
+---@field description string
+---@field list_items? string
+---@field multiline? boolean
+---@field name string
+---@field required_to_create? boolean
+---@field required_to_create_for_contacts? boolean
+---@field visible_on_create? boolean
+---@field visible_to_contacts? boolean
+
+---@class TicketTypeAttributeUpdateData
+---@field id string
+---@field ticket_type_id string
+---@field allow_multiple_values? boolean
+---@field archived? boolean
+---@field data_type? string
+---@field description? string
+---@field list_items? string
+---@field multiline? boolean
+---@field name? string
+---@field required_to_create? boolean
+---@field required_to_create_for_contacts? boolean
+---@field visible_on_create? boolean
+---@field visible_to_contacts? boolean
+
+---@class Visitor
+---@field anonymous? boolean
+---@field app_id? string
+---@field avatar? table
+---@field companies? table
+---@field created_at? number
+---@field custom_attributes? table
+---@field do_not_track? boolean
+---@field email? string
+---@field has_hard_bounced? boolean
+---@field id? string
+---@field las_request_at? number
+---@field location_data? table
+---@field marked_email_as_spam? boolean
+---@field name? string
+---@field owner_id? string
+---@field phone? string
+---@field pseudonym? string
+---@field referrer? string
+---@field remote_created_at? number
+---@field segments? table
+---@field session_count? number
+---@field signed_up_at? number
+---@field social_profiles? table
+---@field tags? table
+---@field type? string
+---@field unsubscribed_from_emails? boolean
+---@field updated_at? number
+---@field user_id? string
+---@field utm_campaign? string
+---@field utm_content? string
+---@field utm_medium? string
+---@field utm_source? string
+---@field utm_term? string
+
+---@class VisitorLoadMatch
+---@field user_id string
+
+---@class VisitorUpdateData
+---@field anonymous? boolean
+---@field app_id? string
+---@field avatar? table
+---@field companies? table
+---@field created_at? number
+---@field custom_attributes? table
+---@field do_not_track? boolean
+---@field email? string
+---@field has_hard_bounced? boolean
+---@field id? string
+---@field las_request_at? number
+---@field location_data? table
+---@field marked_email_as_spam? boolean
+---@field name? string
+---@field owner_id? string
+---@field phone? string
+---@field pseudonym? string
+---@field referrer? string
+---@field remote_created_at? number
+---@field segments? table
+---@field session_count? number
+---@field signed_up_at? number
+---@field social_profiles? table
+---@field tags? table
+---@field type? string
+---@field unsubscribed_from_emails? boolean
+---@field updated_at? number
+---@field user_id? string
+---@field utm_campaign? string
+---@field utm_content? string
+---@field utm_medium? string
+---@field utm_source? string
+---@field utm_term? string
+
+---@class WhatsappMessageStatus
+---@field details? string
+---@field message? string
+
+---@class WhatsappMessageStatusLoadMatch
+---@field message_id string
+
+---@class WhatsappMessageStatusList
+---@field conversation_id string
+---@field created_at number
+---@field id string
+---@field status string
+---@field template_name? string
+---@field type string
+---@field updated_at number
+---@field whatsapp_message_id string
+
+---@class WhatsappMessageStatusListListMatch
+---@field per_page? number
+---@field ruleset_id string
+---@field starting_after? string
+
+---@class Workflow
+---@field attributes? table
+---@field created_at? string
+---@field description? string
+---@field embedded_rules? table
+---@field id? string
+---@field preferred_devices? table
+---@field snapshot? table
+---@field state? string
+---@field target_channels? table
+---@field targeting? table
+---@field title? string
+---@field trigger_type? string
+---@field updated_at? string
+
+---@class WorkflowLoadMatch
 ---@field id string
 
 local M = {}

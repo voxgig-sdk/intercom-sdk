@@ -1,0 +1,1561 @@
+{
+  "existing": {
+    "content_snippet": {
+      "CONTENT_SNIPPET00": {
+        "ai_chatbot_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "audience_ids": [],
+        "body_markdown": "s90",
+        "chatbot_availability": 145,
+        "copilot_availability": 146,
+        "created_at": 147,
+        "id": "CONTENT_SNIPPET00",
+        "json_blocks": [],
+        "locale": "s96",
+        "title": "s97",
+        "type": "s98",
+        "updated_at": 153
+      },
+      "CONTENT_SNIPPET01": {
+        "ai_chatbot_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "audience_ids": [],
+        "body_markdown": "s11c",
+        "chatbot_availability": 285,
+        "copilot_availability": 286,
+        "created_at": 287,
+        "id": "CONTENT_SNIPPET01",
+        "json_blocks": [],
+        "locale": "s122",
+        "title": "s123",
+        "type": "s124",
+        "updated_at": 293
+      },
+      "CONTENT_SNIPPET02": {
+        "ai_chatbot_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "audience_ids": [],
+        "body_markdown": "s1a8",
+        "chatbot_availability": 425,
+        "copilot_availability": 426,
+        "created_at": 427,
+        "id": "CONTENT_SNIPPET02",
+        "json_blocks": [],
+        "locale": "s1ae",
+        "title": "s1af",
+        "type": "s1b0",
+        "updated_at": 433
+      }
+    }
+  },
+  "new": {
+    "content_snippet": {
+      "content_snippet_ref01": {
+        "ai_chatbot_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "audience_ids": [],
+        "body_markdown": "s234",
+        "chatbot_availability": 565,
+        "copilot_availability": 566,
+        "created_at": 567,
+        "json_blocks": [],
+        "locale": "s23a",
+        "title": "s23b",
+        "type": "s23c",
+        "updated_at": 573
+      }
+    }
+  },
+  "requests": {
+    "POST /content_snippets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createContentSnippet",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "Create a content snippet": {
+                  "value": {
+                    "audience_ids": [
+                      1,
+                      2
+                    ],
+                    "json_blocks": [
+                      {
+                        "text": "Navigate to Settings > Security > Reset password.",
+                        "type": "paragraph"
+                      }
+                    ],
+                    "locale": "en",
+                    "title": "How to reset your password"
+                  }
+                }
+              },
+              "schema": {
+                "description": "The request payload for creating a content snippet. You must provide either `json_blocks` or `body_markdown` for the snippet content — they are mutually exclusive.",
+                "nullable": false,
+                "properties": {
+                  "ai_chatbot_availability": {
+                    "default": false,
+                    "description": "Whether the content snippet should be available for AI Chatbot (Fin). Defaults to false.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "ai_copilot_availability": {
+                    "default": false,
+                    "description": "Whether the content snippet should be available for AI Copilot. Defaults to false.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "ai_sales_agent_availability": {
+                    "default": false,
+                    "description": "Whether the content snippet should be available for AI Sales Agent. Defaults to false.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "audience_ids": {
+                    "description": "The list of audience IDs to target this content snippet to for Fin AI Agent. Pass an empty array or omit the field for no audience targeting. Unknown audience IDs return a `404` error with no partial commit.",
+                    "example": [
+                      1,
+                      2
+                    ],
+                    "items": {
+                      "type": "integer"
+                    },
+                    "nullable": true,
+                    "type": "array"
+                  },
+                  "body_markdown": {
+                    "description": "The content of the snippet in markdown. An alternative to `json_blocks` — you can provide content as markdown instead of structured blocks. Mutually exclusive with `json_blocks`.",
+                    "example": "# Hello\n\nSome content.\n",
+                    "type": "string"
+                  },
+                  "json_blocks": {
+                    "description": "The content blocks that make up the body of the snippet. Mutually exclusive with `body_markdown`.",
+                    "example": [
+                      {
+                        "text": "Navigate to Settings > Security > Reset password.",
+                        "type": "paragraph"
+                      }
+                    ],
+                    "items": {
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "locale": {
+                    "default": "en",
+                    "description": "The locale of the content snippet. Defaults to `en`.",
+                    "example": "en",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "The title of the content snippet.",
+                    "example": "How to reset your password",
+                    "maxLength": 255,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title"
+                ],
+                "title": "Create Content Snippet Request",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Content snippet created": {
+                    "value": {
+                      "ai_chatbot_availability": true,
+                      "ai_copilot_availability": true,
+                      "ai_sales_agent_availability": true,
+                      "audience_ids": [
+                        1,
+                        2
+                      ],
+                      "body_markdown": "# How to reset your password\n\nNavigate to Settings > Security > Reset password.\n",
+                      "chatbot_availability": 1,
+                      "copilot_availability": 1,
+                      "created_at": 1663597223,
+                      "id": "456",
+                      "json_blocks": [
+                        {
+                          "text": "Navigate to Settings > Security > Reset password.",
+                          "type": "paragraph"
+                        }
+                      ],
+                      "locale": "en",
+                      "title": "How to reset your password",
+                      "type": "content_snippet",
+                      "updated_at": 1663597223
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A content snippet is a reusable piece of content for your AI agent and Copilot.",
+                  "nullable": false,
+                  "properties": {
+                    "ai_chatbot_availability": {
+                      "description": "Whether the content snippet is available for AI Chatbot (Fin).",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_copilot_availability": {
+                      "description": "Whether the content snippet is available for AI Copilot.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_sales_agent_availability": {
+                      "description": "Whether the content snippet is available for AI Sales Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "audience_ids": {
+                      "description": "The list of audience IDs this content snippet is targeted to for Fin AI Agent. Empty array means no audience targeting is set.",
+                      "example": [
+                        1,
+                        2
+                      ],
+                      "items": {
+                        "type": "integer"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "body_markdown": {
+                      "description": "The body of the content snippet in markdown.",
+                      "example": "# How to reset your password\n\nNavigate to Settings > Security > Reset password.\n",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "chatbot_availability": {
+                      "deprecated": true,
+                      "description": "Deprecated. Use ai_chatbot_availability instead. Whether this snippet is available for Fin (1 = on, 0 = off).",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "copilot_availability": {
+                      "deprecated": true,
+                      "description": "Deprecated. Use ai_copilot_availability instead. Whether this snippet is available for Copilot (1 = on, 0 = off).",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "description": "The time the snippet was created as a UNIX timestamp.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the content snippet.",
+                      "example": "123",
+                      "type": "string"
+                    },
+                    "json_blocks": {
+                      "description": "The content blocks that make up the body of the snippet.",
+                      "example": [
+                        {
+                          "text": "Navigate to Settings > Security > Reset password.",
+                          "type": "paragraph"
+                        }
+                      ],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "locale": {
+                      "description": "The locale of the content snippet.",
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "The title of the content snippet.",
+                      "example": "How to reset your password",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `content_snippet`.",
+                      "example": "content_snippet",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the snippet was last updated as a UNIX timestamp.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Content Snippet",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Content snippet created"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unknown audience IDs": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "audience_ids contains unknown audience IDs: 999"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unknown audience IDs"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Validation error": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "validation_error",
+                          "message": "The language is not currently supported for Fin"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/404/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/404/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /content_snippets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listContentSnippets",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The page of results to fetch.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "example": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The number of results to return per page. Max value of 50.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "example": 20,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "data": [
+                        {
+                          "ai_chatbot_availability": true,
+                          "ai_copilot_availability": true,
+                          "ai_sales_agent_availability": true,
+                          "audience_ids": [
+                            1,
+                            2
+                          ],
+                          "body_markdown": "# How to reset your password\n\nNavigate to Settings > Security > Reset password.\n",
+                          "chatbot_availability": 1,
+                          "copilot_availability": 1,
+                          "created_at": 1663597223,
+                          "id": "123",
+                          "json_blocks": [
+                            {
+                              "text": "Navigate to Settings > Security > Reset password.",
+                              "type": "paragraph"
+                            }
+                          ],
+                          "locale": "en",
+                          "title": "How to reset your password",
+                          "type": "content_snippet",
+                          "updated_at": 1663597223
+                        }
+                      ],
+                      "page": 1,
+                      "per_page": 50,
+                      "total_count": 1,
+                      "total_pages": 1,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of content snippets.",
+                  "nullable": false,
+                  "properties": {
+                    "data": {
+                      "description": "An array of content snippet objects.",
+                      "items": {
+                        "description": "A content snippet is a reusable piece of content for your AI agent and Copilot.",
+                        "nullable": false,
+                        "properties": {
+                          "ai_chatbot_availability": {
+                            "description": "Whether the content snippet is available for AI Chatbot (Fin).",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "ai_copilot_availability": {
+                            "description": "Whether the content snippet is available for AI Copilot.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "ai_sales_agent_availability": {
+                            "description": "Whether the content snippet is available for AI Sales Agent.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "audience_ids": {
+                            "description": "The list of audience IDs this content snippet is targeted to for Fin AI Agent. Empty array means no audience targeting is set.",
+                            "example": [
+                              1,
+                              2
+                            ],
+                            "items": {
+                              "type": "integer"
+                            },
+                            "nullable": true,
+                            "type": "array"
+                          },
+                          "body_markdown": {
+                            "description": "The body of the content snippet in markdown.",
+                            "example": "# How to reset your password\n\nNavigate to Settings > Security > Reset password.\n",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "chatbot_availability": {
+                            "deprecated": true,
+                            "description": "Deprecated. Use ai_chatbot_availability instead. Whether this snippet is available for Fin (1 = on, 0 = off).",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "copilot_availability": {
+                            "deprecated": true,
+                            "description": "Deprecated. Use ai_copilot_availability instead. Whether this snippet is available for Copilot (1 = on, 0 = off).",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "description": "The time the snippet was created as a UNIX timestamp.",
+                            "example": 1663597223,
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "The unique identifier for the content snippet.",
+                            "example": "123",
+                            "type": "string"
+                          },
+                          "json_blocks": {
+                            "description": "The content blocks that make up the body of the snippet.",
+                            "example": [
+                              {
+                                "text": "Navigate to Settings > Security > Reset password.",
+                                "type": "paragraph"
+                              }
+                            ],
+                            "items": {
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "locale": {
+                            "description": "The locale of the content snippet.",
+                            "example": "en",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "The title of the content snippet.",
+                            "example": "How to reset your password",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "String representing the object's type. Always has the value `content_snippet`.",
+                            "example": "content_snippet",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "The time the snippet was last updated as a UNIX timestamp.",
+                            "example": 1663597223,
+                            "type": "integer"
+                          }
+                        },
+                        "title": "Content Snippet",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "page": {
+                      "description": "The current page number.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "per_page": {
+                      "description": "The number of results per page.",
+                      "example": 50,
+                      "type": "integer"
+                    },
+                    "total_count": {
+                      "description": "The total number of content snippets.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "total_pages": {
+                      "description": "The total number of pages.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Content Snippet List",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /content_snippets/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getContentSnippet",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier for the content snippet.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "123",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "ai_chatbot_availability": true,
+                      "ai_copilot_availability": true,
+                      "ai_sales_agent_availability": true,
+                      "audience_ids": [
+                        1,
+                        2
+                      ],
+                      "body_markdown": "# How to reset your password\n\nNavigate to Settings > Security > Reset password.\n",
+                      "chatbot_availability": 1,
+                      "copilot_availability": 1,
+                      "created_at": 1663597223,
+                      "id": "123",
+                      "json_blocks": [
+                        {
+                          "text": "Navigate to Settings > Security > Reset password.",
+                          "type": "paragraph"
+                        }
+                      ],
+                      "locale": "en",
+                      "title": "How to reset your password",
+                      "type": "content_snippet",
+                      "updated_at": 1663597223
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A content snippet is a reusable piece of content for your AI agent and Copilot.",
+                  "nullable": false,
+                  "properties": {
+                    "ai_chatbot_availability": {
+                      "description": "Whether the content snippet is available for AI Chatbot (Fin).",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_copilot_availability": {
+                      "description": "Whether the content snippet is available for AI Copilot.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_sales_agent_availability": {
+                      "description": "Whether the content snippet is available for AI Sales Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "audience_ids": {
+                      "description": "The list of audience IDs this content snippet is targeted to for Fin AI Agent. Empty array means no audience targeting is set.",
+                      "example": [
+                        1,
+                        2
+                      ],
+                      "items": {
+                        "type": "integer"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "body_markdown": {
+                      "description": "The body of the content snippet in markdown.",
+                      "example": "# How to reset your password\n\nNavigate to Settings > Security > Reset password.\n",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "chatbot_availability": {
+                      "deprecated": true,
+                      "description": "Deprecated. Use ai_chatbot_availability instead. Whether this snippet is available for Fin (1 = on, 0 = off).",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "copilot_availability": {
+                      "deprecated": true,
+                      "description": "Deprecated. Use ai_copilot_availability instead. Whether this snippet is available for Copilot (1 = on, 0 = off).",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "description": "The time the snippet was created as a UNIX timestamp.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the content snippet.",
+                      "example": "123",
+                      "type": "string"
+                    },
+                    "json_blocks": {
+                      "description": "The content blocks that make up the body of the snippet.",
+                      "example": [
+                        {
+                          "text": "Navigate to Settings > Security > Reset password.",
+                          "type": "paragraph"
+                        }
+                      ],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "locale": {
+                      "description": "The locale of the content snippet.",
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "The title of the content snippet.",
+                      "example": "How to reset your password",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `content_snippet`.",
+                      "example": "content_snippet",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the snippet was last updated as a UNIX timestamp.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Content Snippet",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Content snippet not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Content snippet not found"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Content snippet not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /content_snippets/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteContentSnippet",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier for the content snippet.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "123",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "204": {
+            "description": "Content snippet deleted"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Content snippet not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Content snippet not found"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Content snippet not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Content snippet has procedure dependencies": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "content_has_procedure_dependencies",
+                          "message": "Content snippet has dependent procedures and cannot be deleted"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/404/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/404/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Content snippet has procedure dependencies"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /content_snippets/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateContentSnippet",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier for the content snippet.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "example": "123",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "Update a content snippet": {
+                  "value": {
+                    "audience_ids": [
+                      1,
+                      2
+                    ],
+                    "json_blocks": [
+                      {
+                        "text": "Go to Settings > Security > Reset password and follow the steps.",
+                        "type": "paragraph"
+                      }
+                    ],
+                    "title": "How to reset your password (updated)"
+                  }
+                }
+              },
+              "schema": {
+                "description": "The request payload for updating a content snippet. All fields are optional — only provided fields will be updated. `json_blocks` and `body_markdown` are mutually exclusive.",
+                "nullable": false,
+                "properties": {
+                  "ai_chatbot_availability": {
+                    "description": "Whether the content snippet should be available for AI Chatbot (Fin).",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "ai_copilot_availability": {
+                    "description": "Whether the content snippet should be available for AI Copilot.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "ai_sales_agent_availability": {
+                    "description": "Whether the content snippet should be available for AI Sales Agent.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "audience_ids": {
+                    "description": "The list of audience IDs to target this content snippet to for Fin AI Agent. Omitting the field leaves existing audience memberships unchanged (PATCH semantics). Pass `[]` to clear all audience memberships. Unknown audience IDs return a `404` error with no partial commit.",
+                    "example": [
+                      1,
+                      2
+                    ],
+                    "items": {
+                      "type": "integer"
+                    },
+                    "nullable": true,
+                    "type": "array"
+                  },
+                  "body_markdown": {
+                    "description": "The content of the snippet in markdown. An alternative to `json_blocks` — you can provide content as markdown instead of structured blocks. Mutually exclusive with `json_blocks`.",
+                    "example": "## Updated heading\n\nNew content.\n",
+                    "type": "string"
+                  },
+                  "json_blocks": {
+                    "description": "The content blocks that make up the body of the snippet. Mutually exclusive with `body_markdown`.",
+                    "example": [
+                      {
+                        "text": "Navigate to Settings > Security > Reset password.",
+                        "type": "paragraph"
+                      }
+                    ],
+                    "items": {
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "locale": {
+                    "description": "The locale of the content snippet.",
+                    "example": "en",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "The title of the content snippet.",
+                    "example": "How to reset your password",
+                    "maxLength": 255,
+                    "type": "string"
+                  }
+                },
+                "title": "Update Content Snippet Request",
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Content snippet updated": {
+                    "value": {
+                      "ai_chatbot_availability": true,
+                      "ai_copilot_availability": true,
+                      "ai_sales_agent_availability": true,
+                      "audience_ids": [
+                        1,
+                        2
+                      ],
+                      "body_markdown": "# How to reset your password (updated)\n\nGo to Settings > Security > Reset password and follow the steps.\n",
+                      "chatbot_availability": 1,
+                      "copilot_availability": 1,
+                      "created_at": 1663597223,
+                      "id": "123",
+                      "json_blocks": [
+                        {
+                          "text": "Go to Settings > Security > Reset password and follow the steps.",
+                          "type": "paragraph"
+                        }
+                      ],
+                      "locale": "en",
+                      "title": "How to reset your password (updated)",
+                      "type": "content_snippet",
+                      "updated_at": 1663597300
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A content snippet is a reusable piece of content for your AI agent and Copilot.",
+                  "nullable": false,
+                  "properties": {
+                    "ai_chatbot_availability": {
+                      "description": "Whether the content snippet is available for AI Chatbot (Fin).",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_copilot_availability": {
+                      "description": "Whether the content snippet is available for AI Copilot.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_sales_agent_availability": {
+                      "description": "Whether the content snippet is available for AI Sales Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "audience_ids": {
+                      "description": "The list of audience IDs this content snippet is targeted to for Fin AI Agent. Empty array means no audience targeting is set.",
+                      "example": [
+                        1,
+                        2
+                      ],
+                      "items": {
+                        "type": "integer"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "body_markdown": {
+                      "description": "The body of the content snippet in markdown.",
+                      "example": "# How to reset your password\n\nNavigate to Settings > Security > Reset password.\n",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "chatbot_availability": {
+                      "deprecated": true,
+                      "description": "Deprecated. Use ai_chatbot_availability instead. Whether this snippet is available for Fin (1 = on, 0 = off).",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "copilot_availability": {
+                      "deprecated": true,
+                      "description": "Deprecated. Use ai_copilot_availability instead. Whether this snippet is available for Copilot (1 = on, 0 = off).",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "description": "The time the snippet was created as a UNIX timestamp.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the content snippet.",
+                      "example": "123",
+                      "type": "string"
+                    },
+                    "json_blocks": {
+                      "description": "The content blocks that make up the body of the snippet.",
+                      "example": [
+                        {
+                          "text": "Navigate to Settings > Security > Reset password.",
+                          "type": "paragraph"
+                        }
+                      ],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "locale": {
+                      "description": "The locale of the content snippet.",
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "The title of the content snippet.",
+                      "example": "How to reset your password",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `content_snippet`.",
+                      "example": "content_snippet",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the snippet was last updated as a UNIX timestamp.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Content Snippet",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Content snippet updated"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Content snippet not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Content snippet not found"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  },
+                  "Unknown audience IDs": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "audience_ids contains unknown audience IDs: 999"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Content snippet or audience ID not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Validation error": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "validation_error",
+                          "message": "The language is not currently supported for Fin"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/404/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/404/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

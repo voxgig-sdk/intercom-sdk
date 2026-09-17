@@ -1,0 +1,2187 @@
+{
+  "existing": {
+    "note": {
+      "NOTE00": {
+        "admin_id": "ADMIN01",
+        "author": {},
+        "body": "s52",
+        "company": {},
+        "contact": {},
+        "created_at": 85,
+        "id": "NOTE00",
+        "type": "s57",
+        "company_id": "COMPANY01",
+        "contact_id": "CONTACT01"
+      },
+      "NOTE01": {
+        "admin_id": "ADMIN01",
+        "author": {},
+        "body": "sa2",
+        "company": {},
+        "contact": {},
+        "created_at": 165,
+        "id": "NOTE01",
+        "type": "sa7",
+        "company_id": "COMPANY01",
+        "contact_id": "CONTACT01"
+      },
+      "NOTE02": {
+        "admin_id": "ADMIN01",
+        "author": {},
+        "body": "sf2",
+        "company": {},
+        "contact": {},
+        "created_at": 245,
+        "id": "NOTE02",
+        "type": "sf7",
+        "company_id": "COMPANY01",
+        "contact_id": "CONTACT01"
+      }
+    }
+  },
+  "new": {
+    "note": {
+      "note_ref01": {
+        "admin_id": "ADMIN01",
+        "author": {},
+        "body": "s142",
+        "company": {},
+        "contact": {},
+        "created_at": 325,
+        "type": "s147"
+      }
+    }
+  },
+  "requests": {
+    "POST /companies/{company_id}/notes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createCompanyNote",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier for the company which is given by Intercom",
+            "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+            "in": "path",
+            "name": "company_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "admin_not_found": {
+                  "summary": "Admin not found",
+                  "value": {
+                    "admin_id": "123",
+                    "body": "Hello"
+                  }
+                },
+                "company_not_found": {
+                  "summary": "Company not found",
+                  "value": {
+                    "body": "Hello"
+                  }
+                },
+                "successful_response": {
+                  "summary": "Successful response",
+                  "value": {
+                    "admin_id": "991267583",
+                    "body": "Hello"
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "admin_id": {
+                    "description": "The unique identifier of the admin creating the note. If not provided, defaults to the admin associated with the access token.",
+                    "example": "991267583",
+                    "type": "string"
+                  },
+                  "body": {
+                    "description": "The text of the note.",
+                    "example": "New note",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "body"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "author": {
+                        "away_mode_enabled": false,
+                        "away_mode_reassign": false,
+                        "email": "admin124@email.com",
+                        "id": "991267583",
+                        "name": "Ciaran124 Lee",
+                        "type": "admin"
+                      },
+                      "body": "<p>Hello</p>",
+                      "company": {
+                        "id": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+                        "type": "company"
+                      },
+                      "created_at": 1734537390,
+                      "id": "31",
+                      "type": "note"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Notes allow you to annotate and comment on your contacts and companies. A note is attached to either a contact or a company, never both.",
+                  "properties": {
+                    "author": {
+                      "description": "Optional. Represents the Admin that created the note.",
+                      "nullable": true,
+                      "properties": {
+                        "avatar": {
+                          "description": "Image for the associated team or teammate",
+                          "example": "https://picsum.photos/200/300",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "away_mode_enabled": {
+                          "description": "Identifies if this admin is currently set in away mode.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "away_mode_reassign": {
+                          "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "away_status_reason_id": {
+                          "description": "The unique identifier of the away status reason",
+                          "example": 12345,
+                          "nullable": true,
+                          "type": "integer"
+                        },
+                        "email": {
+                          "description": "The email of the admin.",
+                          "example": "jdoe@example.com",
+                          "type": "string"
+                        },
+                        "has_inbox_seat": {
+                          "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "description": "The id representing the admin.",
+                          "example": "1295",
+                          "type": "string"
+                        },
+                        "job_title": {
+                          "description": "The job title of the admin.",
+                          "example": "Associate",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the admin.",
+                          "example": "Joe Example",
+                          "type": "string"
+                        },
+                        "role": {
+                          "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                          "nullable": true,
+                          "properties": {
+                            "id": {
+                              "description": "The id of the role.",
+                              "example": "1",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the role.",
+                              "example": "Support Agent",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "String representing the object's type. Always has the value `role`.",
+                              "example": "role",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "team_ids": {
+                          "description": "This object represents the avatar associated with the admin.",
+                          "example": [
+                            814865
+                          ],
+                          "items": {
+                            "type": "integer"
+                          },
+                          "type": "array"
+                        },
+                        "team_priority_level": {
+                          "description": "Admin priority levels for teams",
+                          "nullable": true,
+                          "properties": {
+                            "primary_team_ids": {
+                              "description": "The primary team ids for the team",
+                              "example": [
+                                814865
+                              ],
+                              "items": {
+                                "type": "integer"
+                              },
+                              "nullable": true,
+                              "type": "array"
+                            },
+                            "secondary_team_ids": {
+                              "description": "The secondary team ids for the team",
+                              "example": [
+                                493881
+                              ],
+                              "items": {
+                                "type": "integer"
+                              },
+                              "nullable": true,
+                              "type": "array"
+                            }
+                          },
+                          "title": "Team Priority Level",
+                          "type": "object"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `admin`.",
+                          "example": "admin",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Admin",
+                      "type": "object"
+                    },
+                    "body": {
+                      "description": "The body text of the note.",
+                      "example": "<p>Text for the note.</p>",
+                      "type": "string"
+                    },
+                    "company": {
+                      "description": "Represents the company that the note was created about.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the company.",
+                          "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `company`.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "contact": {
+                      "description": "Represents the contact that the note was created about.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the contact.",
+                          "example": "214656d0c743eafcfde7f248",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `contact`.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "created_at": {
+                      "description": "The time the note was created.",
+                      "example": 1674589321,
+                      "format": "timestamp",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The id of the note.",
+                      "example": "17495962",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `note`.",
+                      "example": "note",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Note",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Admin not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Resource Not Found"
+                        }
+                      ],
+                      "request_id": "168f1bc3-d198-4797-8422-9f93fe8af5ad",
+                      "type": "error.list"
+                    }
+                  },
+                  "Company not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "company_not_found",
+                          "message": "Company Not Found"
+                        }
+                      ],
+                      "request_id": "6f372239-0259-428f-9943-91b8f7a92162",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Company or admin not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /contacts/{contact_id}/notes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createNote",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of a given contact.",
+            "example": "123",
+            "in": "path",
+            "name": "contact_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "admin_not_found": {
+                  "summary": "Admin not found",
+                  "value": {
+                    "admin_id": 123,
+                    "body": "Hello",
+                    "contact_id": "6762f0af1bb69f9f2193bb63"
+                  }
+                },
+                "contact_not_found": {
+                  "summary": "Contact not found",
+                  "value": {
+                    "admin_id": 991267585,
+                    "body": "Hello",
+                    "contact_id": 123
+                  }
+                },
+                "successful_response": {
+                  "summary": "Successful response",
+                  "value": {
+                    "admin_id": 991267583,
+                    "body": "Hello",
+                    "contact_id": "6762f0ad1bb69f9f2193bb62"
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "admin_id": {
+                    "description": "The unique identifier of a given admin.",
+                    "example": "123",
+                    "type": "string"
+                  },
+                  "body": {
+                    "description": "The text of the note.",
+                    "example": "New note",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "body"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "author": {
+                        "away_mode_enabled": false,
+                        "away_mode_reassign": false,
+                        "email": "admin124@email.com",
+                        "id": "991267583",
+                        "name": "Ciaran124 Lee",
+                        "type": "admin"
+                      },
+                      "body": "<p>Hello</p>",
+                      "contact": {
+                        "id": "6762f0ad1bb69f9f2193bb62",
+                        "type": "contact"
+                      },
+                      "created_at": 1734537390,
+                      "id": "31",
+                      "type": "note"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Notes allow you to annotate and comment on your contacts and companies. A note is attached to either a contact or a company, never both.",
+                  "properties": {
+                    "author": {
+                      "description": "Optional. Represents the Admin that created the note.",
+                      "nullable": true,
+                      "properties": {
+                        "avatar": {
+                          "description": "Image for the associated team or teammate",
+                          "example": "https://picsum.photos/200/300",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "away_mode_enabled": {
+                          "description": "Identifies if this admin is currently set in away mode.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "away_mode_reassign": {
+                          "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "away_status_reason_id": {
+                          "description": "The unique identifier of the away status reason",
+                          "example": 12345,
+                          "nullable": true,
+                          "type": "integer"
+                        },
+                        "email": {
+                          "description": "The email of the admin.",
+                          "example": "jdoe@example.com",
+                          "type": "string"
+                        },
+                        "has_inbox_seat": {
+                          "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "description": "The id representing the admin.",
+                          "example": "1295",
+                          "type": "string"
+                        },
+                        "job_title": {
+                          "description": "The job title of the admin.",
+                          "example": "Associate",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the admin.",
+                          "example": "Joe Example",
+                          "type": "string"
+                        },
+                        "role": {
+                          "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                          "nullable": true,
+                          "properties": {
+                            "id": {
+                              "description": "The id of the role.",
+                              "example": "1",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the role.",
+                              "example": "Support Agent",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "String representing the object's type. Always has the value `role`.",
+                              "example": "role",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "team_ids": {
+                          "description": "This object represents the avatar associated with the admin.",
+                          "example": [
+                            814865
+                          ],
+                          "items": {
+                            "type": "integer"
+                          },
+                          "type": "array"
+                        },
+                        "team_priority_level": {
+                          "description": "Admin priority levels for teams",
+                          "nullable": true,
+                          "properties": {
+                            "primary_team_ids": {
+                              "description": "The primary team ids for the team",
+                              "example": [
+                                814865
+                              ],
+                              "items": {
+                                "type": "integer"
+                              },
+                              "nullable": true,
+                              "type": "array"
+                            },
+                            "secondary_team_ids": {
+                              "description": "The secondary team ids for the team",
+                              "example": [
+                                493881
+                              ],
+                              "items": {
+                                "type": "integer"
+                              },
+                              "nullable": true,
+                              "type": "array"
+                            }
+                          },
+                          "title": "Team Priority Level",
+                          "type": "object"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `admin`.",
+                          "example": "admin",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Admin",
+                      "type": "object"
+                    },
+                    "body": {
+                      "description": "The body text of the note.",
+                      "example": "<p>Text for the note.</p>",
+                      "type": "string"
+                    },
+                    "company": {
+                      "description": "Represents the company that the note was created about.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the company.",
+                          "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `company`.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "contact": {
+                      "description": "Represents the contact that the note was created about.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the contact.",
+                          "example": "214656d0c743eafcfde7f248",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `contact`.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "created_at": {
+                      "description": "The time the note was created.",
+                      "example": 1674589321,
+                      "format": "timestamp",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The id of the note.",
+                      "example": "17495962",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `note`.",
+                      "example": "note",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Note",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Admin not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Resource Not Found"
+                        }
+                      ],
+                      "request_id": "168f1bc3-d198-4797-8422-9f93fe8af5ad",
+                      "type": "error.list"
+                    }
+                  },
+                  "Contact not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "User Not Found"
+                        }
+                      ],
+                      "request_id": "6f372239-0259-428f-9943-91b8f7a92162",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Contact not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /companies/{company_id}/notes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listCompanyNotes",
+        "parameters": [
+          {
+            "description": "The unique identifier for the company which is given by Intercom",
+            "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+            "in": "path",
+            "name": "company_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "data": [
+                        {
+                          "author": {
+                            "away_mode_enabled": false,
+                            "away_mode_reassign": false,
+                            "away_status_reason_id": null,
+                            "email": "admin122@email.com",
+                            "has_inbox_seat": true,
+                            "id": "991267581",
+                            "name": "Ciaran122 Lee",
+                            "team_ids": [],
+                            "team_priority_level": {},
+                            "type": "admin"
+                          },
+                          "body": "<p>This is a note.</p>",
+                          "company": {
+                            "id": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+                            "type": "company"
+                          },
+                          "created_at": 1733932587,
+                          "id": "26",
+                          "type": "note"
+                        }
+                      ],
+                      "pages": {
+                        "next": null,
+                        "page": 1,
+                        "per_page": 50,
+                        "total_pages": 1,
+                        "type": "pages"
+                      },
+                      "total_count": 1,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of notes associated with a contact or a company.",
+                  "properties": {
+                    "data": {
+                      "description": "An array of notes.",
+                      "items": {
+                        "description": "Notes allow you to annotate and comment on your contacts and companies. A note is attached to either a contact or a company, never both.",
+                        "properties": {
+                          "author": {
+                            "description": "Optional. Represents the Admin that created the note.",
+                            "nullable": true,
+                            "properties": {
+                              "avatar": {
+                                "description": "Image for the associated team or teammate",
+                                "example": "https://picsum.photos/200/300",
+                                "format": "uri",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "away_mode_enabled": {
+                                "description": "Identifies if this admin is currently set in away mode.",
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "away_mode_reassign": {
+                                "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "away_status_reason_id": {
+                                "description": "The unique identifier of the away status reason",
+                                "example": 12345,
+                                "nullable": true,
+                                "type": "integer"
+                              },
+                              "email": {
+                                "description": "The email of the admin.",
+                                "example": "jdoe@example.com",
+                                "type": "string"
+                              },
+                              "has_inbox_seat": {
+                                "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "id": {
+                                "description": "The id representing the admin.",
+                                "example": "1295",
+                                "type": "string"
+                              },
+                              "job_title": {
+                                "description": "The job title of the admin.",
+                                "example": "Associate",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "The name of the admin.",
+                                "example": "Joe Example",
+                                "type": "string"
+                              },
+                              "role": {
+                                "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                                "nullable": true,
+                                "properties": {
+                                  "id": {
+                                    "description": "The id of the role.",
+                                    "example": "1",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "The name of the role.",
+                                    "example": "Support Agent",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "String representing the object's type. Always has the value `role`.",
+                                    "example": "role",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "team_ids": {
+                                "description": "This object represents the avatar associated with the admin.",
+                                "example": [
+                                  814865
+                                ],
+                                "items": {
+                                  "type": "integer"
+                                },
+                                "type": "array"
+                              },
+                              "team_priority_level": {
+                                "description": "Admin priority levels for teams",
+                                "nullable": true,
+                                "properties": {
+                                  "primary_team_ids": {
+                                    "description": "The primary team ids for the team",
+                                    "example": [
+                                      814865
+                                    ],
+                                    "items": {
+                                      "type": "integer"
+                                    },
+                                    "nullable": true,
+                                    "type": "array"
+                                  },
+                                  "secondary_team_ids": {
+                                    "description": "The secondary team ids for the team",
+                                    "example": [
+                                      493881
+                                    ],
+                                    "items": {
+                                      "type": "integer"
+                                    },
+                                    "nullable": true,
+                                    "type": "array"
+                                  }
+                                },
+                                "title": "Team Priority Level",
+                                "type": "object"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `admin`.",
+                                "example": "admin",
+                                "type": "string"
+                              }
+                            },
+                            "title": "Admin",
+                            "type": "object"
+                          },
+                          "body": {
+                            "description": "The body text of the note.",
+                            "example": "<p>Text for the note.</p>",
+                            "type": "string"
+                          },
+                          "company": {
+                            "description": "Represents the company that the note was created about.",
+                            "nullable": true,
+                            "properties": {
+                              "id": {
+                                "description": "The id of the company.",
+                                "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `company`.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "contact": {
+                            "description": "Represents the contact that the note was created about.",
+                            "nullable": true,
+                            "properties": {
+                              "id": {
+                                "description": "The id of the contact.",
+                                "example": "214656d0c743eafcfde7f248",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `contact`.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "created_at": {
+                            "description": "The time the note was created.",
+                            "example": 1674589321,
+                            "format": "timestamp",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "The id of the note.",
+                            "example": "17495962",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "String representing the object's type. Always has the value `note`.",
+                            "example": "note",
+                            "type": "string"
+                          }
+                        },
+                        "title": "Note",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.\nA \"cursor\" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or \"pages\" as needed.\n",
+                      "nullable": true,
+                      "properties": {
+                        "next": {
+                          "nullable": true,
+                          "properties": {
+                            "per_page": {
+                              "description": "The number of results to fetch per page.",
+                              "example": 2,
+                              "type": "integer"
+                            },
+                            "starting_after": {
+                              "description": "The cursor to use in the next request to get the next page of results.",
+                              "example": "your-cursor-from-response",
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "title": "Pagination: Starting After",
+                          "type": "object"
+                        },
+                        "page": {
+                          "description": "The current page",
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "description": "Number of results per page",
+                          "example": 2,
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "description": "Total number of pages",
+                          "example": 13,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "description": "the type of object `pages`.",
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Cursor based pages",
+                      "type": "object"
+                    },
+                    "total_count": {
+                      "description": "A count of the total number of notes.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `list`.",
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Paginated Response",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Company not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "company_not_found",
+                          "message": "Company Not Found"
+                        }
+                      ],
+                      "request_id": "57055cde-3d0d-4c67-b5c9-b20b80340bf0",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Company not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /contacts/{contact_id}/notes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listNotes",
+        "parameters": [
+          {
+            "description": "The unique identifier of a contact.",
+            "in": "path",
+            "name": "contact_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "data": [
+                        {
+                          "author": {
+                            "away_mode_enabled": false,
+                            "away_mode_reassign": false,
+                            "email": "admin122@email.com",
+                            "id": "991267581",
+                            "name": "Ciaran122 Lee",
+                            "type": "admin"
+                          },
+                          "body": "<p>This is a note.</p>",
+                          "contact": {
+                            "id": "6762f0ab1bb69f9f2193bb60",
+                            "type": "contact"
+                          },
+                          "created_at": 1733932587,
+                          "id": "26",
+                          "type": "note"
+                        },
+                        {
+                          "author": {
+                            "away_mode_enabled": false,
+                            "away_mode_reassign": false,
+                            "email": "admin122@email.com",
+                            "id": "991267581",
+                            "name": "Ciaran122 Lee",
+                            "type": "admin"
+                          },
+                          "body": "<p>This is a note.</p>",
+                          "contact": {
+                            "id": "6762f0ab1bb69f9f2193bb60",
+                            "type": "contact"
+                          },
+                          "created_at": 1733846187,
+                          "id": "25",
+                          "type": "note"
+                        },
+                        {
+                          "author": {
+                            "away_mode_enabled": false,
+                            "away_mode_reassign": false,
+                            "email": "admin122@email.com",
+                            "id": "991267581",
+                            "name": "Ciaran122 Lee",
+                            "type": "admin"
+                          },
+                          "body": "<p>This is a note.</p>",
+                          "contact": {
+                            "id": "6762f0ab1bb69f9f2193bb60",
+                            "type": "contact"
+                          },
+                          "created_at": 1733846187,
+                          "id": "24",
+                          "type": "note"
+                        }
+                      ],
+                      "pages": {
+                        "next": null,
+                        "page": 1,
+                        "per_page": 50,
+                        "total_pages": 1,
+                        "type": "pages"
+                      },
+                      "total_count": 3,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of notes associated with a contact or a company.",
+                  "properties": {
+                    "data": {
+                      "description": "An array of notes.",
+                      "items": {
+                        "description": "Notes allow you to annotate and comment on your contacts and companies. A note is attached to either a contact or a company, never both.",
+                        "properties": {
+                          "author": {
+                            "description": "Optional. Represents the Admin that created the note.",
+                            "nullable": true,
+                            "properties": {
+                              "avatar": {
+                                "description": "Image for the associated team or teammate",
+                                "example": "https://picsum.photos/200/300",
+                                "format": "uri",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "away_mode_enabled": {
+                                "description": "Identifies if this admin is currently set in away mode.",
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "away_mode_reassign": {
+                                "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "away_status_reason_id": {
+                                "description": "The unique identifier of the away status reason",
+                                "example": 12345,
+                                "nullable": true,
+                                "type": "integer"
+                              },
+                              "email": {
+                                "description": "The email of the admin.",
+                                "example": "jdoe@example.com",
+                                "type": "string"
+                              },
+                              "has_inbox_seat": {
+                                "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "id": {
+                                "description": "The id representing the admin.",
+                                "example": "1295",
+                                "type": "string"
+                              },
+                              "job_title": {
+                                "description": "The job title of the admin.",
+                                "example": "Associate",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "The name of the admin.",
+                                "example": "Joe Example",
+                                "type": "string"
+                              },
+                              "role": {
+                                "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                                "nullable": true,
+                                "properties": {
+                                  "id": {
+                                    "description": "The id of the role.",
+                                    "example": "1",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "The name of the role.",
+                                    "example": "Support Agent",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "String representing the object's type. Always has the value `role`.",
+                                    "example": "role",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "team_ids": {
+                                "description": "This object represents the avatar associated with the admin.",
+                                "example": [
+                                  814865
+                                ],
+                                "items": {
+                                  "type": "integer"
+                                },
+                                "type": "array"
+                              },
+                              "team_priority_level": {
+                                "description": "Admin priority levels for teams",
+                                "nullable": true,
+                                "properties": {
+                                  "primary_team_ids": {
+                                    "description": "The primary team ids for the team",
+                                    "example": [
+                                      814865
+                                    ],
+                                    "items": {
+                                      "type": "integer"
+                                    },
+                                    "nullable": true,
+                                    "type": "array"
+                                  },
+                                  "secondary_team_ids": {
+                                    "description": "The secondary team ids for the team",
+                                    "example": [
+                                      493881
+                                    ],
+                                    "items": {
+                                      "type": "integer"
+                                    },
+                                    "nullable": true,
+                                    "type": "array"
+                                  }
+                                },
+                                "title": "Team Priority Level",
+                                "type": "object"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `admin`.",
+                                "example": "admin",
+                                "type": "string"
+                              }
+                            },
+                            "title": "Admin",
+                            "type": "object"
+                          },
+                          "body": {
+                            "description": "The body text of the note.",
+                            "example": "<p>Text for the note.</p>",
+                            "type": "string"
+                          },
+                          "company": {
+                            "description": "Represents the company that the note was created about.",
+                            "nullable": true,
+                            "properties": {
+                              "id": {
+                                "description": "The id of the company.",
+                                "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `company`.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "contact": {
+                            "description": "Represents the contact that the note was created about.",
+                            "nullable": true,
+                            "properties": {
+                              "id": {
+                                "description": "The id of the contact.",
+                                "example": "214656d0c743eafcfde7f248",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `contact`.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "created_at": {
+                            "description": "The time the note was created.",
+                            "example": 1674589321,
+                            "format": "timestamp",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "The id of the note.",
+                            "example": "17495962",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "String representing the object's type. Always has the value `note`.",
+                            "example": "note",
+                            "type": "string"
+                          }
+                        },
+                        "title": "Note",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.\nA \"cursor\" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or \"pages\" as needed.\n",
+                      "nullable": true,
+                      "properties": {
+                        "next": {
+                          "nullable": true,
+                          "properties": {
+                            "per_page": {
+                              "description": "The number of results to fetch per page.",
+                              "example": 2,
+                              "type": "integer"
+                            },
+                            "starting_after": {
+                              "description": "The cursor to use in the next request to get the next page of results.",
+                              "example": "your-cursor-from-response",
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "title": "Pagination: Starting After",
+                          "type": "object"
+                        },
+                        "page": {
+                          "description": "The current page",
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "description": "Number of results per page",
+                          "example": 2,
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "description": "Total number of pages",
+                          "example": 13,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "description": "the type of object `pages`.",
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Cursor based pages",
+                      "type": "object"
+                    },
+                    "total_count": {
+                      "description": "A count of the total number of notes.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `list`.",
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Paginated Response",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Contact not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "User Not Found"
+                        }
+                      ],
+                      "request_id": "57055cde-3d0d-4c67-b5c9-b20b80340bf0",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Contact not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /notes/{note_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "retrieveNote",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of a given note",
+            "example": 1,
+            "in": "path",
+            "name": "note_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Note found": {
+                    "value": {
+                      "author": {
+                        "away_mode_enabled": false,
+                        "away_mode_reassign": false,
+                        "email": "admin346@email.com",
+                        "id": "991267864",
+                        "name": "Ciaran346 Lee",
+                        "type": "admin"
+                      },
+                      "body": "<p>This is a note.</p>",
+                      "contact": {
+                        "id": "6762f2591bb69f9f2193bc1f",
+                        "type": "contact"
+                      },
+                      "created_at": 1733846617,
+                      "id": "34",
+                      "type": "note"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Notes allow you to annotate and comment on your contacts and companies. A note is attached to either a contact or a company, never both.",
+                  "properties": {
+                    "author": {
+                      "description": "Optional. Represents the Admin that created the note.",
+                      "nullable": true,
+                      "properties": {
+                        "avatar": {
+                          "description": "Image for the associated team or teammate",
+                          "example": "https://picsum.photos/200/300",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "away_mode_enabled": {
+                          "description": "Identifies if this admin is currently set in away mode.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "away_mode_reassign": {
+                          "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "away_status_reason_id": {
+                          "description": "The unique identifier of the away status reason",
+                          "example": 12345,
+                          "nullable": true,
+                          "type": "integer"
+                        },
+                        "email": {
+                          "description": "The email of the admin.",
+                          "example": "jdoe@example.com",
+                          "type": "string"
+                        },
+                        "has_inbox_seat": {
+                          "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "id": {
+                          "description": "The id representing the admin.",
+                          "example": "1295",
+                          "type": "string"
+                        },
+                        "job_title": {
+                          "description": "The job title of the admin.",
+                          "example": "Associate",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the admin.",
+                          "example": "Joe Example",
+                          "type": "string"
+                        },
+                        "role": {
+                          "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                          "nullable": true,
+                          "properties": {
+                            "id": {
+                              "description": "The id of the role.",
+                              "example": "1",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the role.",
+                              "example": "Support Agent",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "String representing the object's type. Always has the value `role`.",
+                              "example": "role",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "team_ids": {
+                          "description": "This object represents the avatar associated with the admin.",
+                          "example": [
+                            814865
+                          ],
+                          "items": {
+                            "type": "integer"
+                          },
+                          "type": "array"
+                        },
+                        "team_priority_level": {
+                          "description": "Admin priority levels for teams",
+                          "nullable": true,
+                          "properties": {
+                            "primary_team_ids": {
+                              "description": "The primary team ids for the team",
+                              "example": [
+                                814865
+                              ],
+                              "items": {
+                                "type": "integer"
+                              },
+                              "nullable": true,
+                              "type": "array"
+                            },
+                            "secondary_team_ids": {
+                              "description": "The secondary team ids for the team",
+                              "example": [
+                                493881
+                              ],
+                              "items": {
+                                "type": "integer"
+                              },
+                              "nullable": true,
+                              "type": "array"
+                            }
+                          },
+                          "title": "Team Priority Level",
+                          "type": "object"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `admin`.",
+                          "example": "admin",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Admin",
+                      "type": "object"
+                    },
+                    "body": {
+                      "description": "The body text of the note.",
+                      "example": "<p>Text for the note.</p>",
+                      "type": "string"
+                    },
+                    "company": {
+                      "description": "Represents the company that the note was created about.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the company.",
+                          "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `company`.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "contact": {
+                      "description": "Represents the contact that the note was created about.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the contact.",
+                          "example": "214656d0c743eafcfde7f248",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `contact`.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "created_at": {
+                      "description": "The time the note was created.",
+                      "example": 1674589321,
+                      "format": "timestamp",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The id of the note.",
+                      "example": "17495962",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `note`.",
+                      "example": "note",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Note",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Note found"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "81384687-5818-4df9-b421-fba77edd6c17",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Note not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Resource Not Found"
+                        }
+                      ],
+                      "request_id": "bc300b1a-492a-405f-924e-a5881cb72e3a",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Note not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+# Entity: data_export
+
+main: kit: entity: data_export: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "download_expires_at"
+      req: false
+      short: "The time after which you will not be able to access the data."
+      type: "`$STRING`"
+    }
+    {
+      name: "download_url"
+      req: false
+      short: "The location where you can download your data."
+      type: "`$STRING`"
+    }
+    {
+      name: "job_identifier"
+      req: false
+      short: "The identifier for your job."
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      short: "The current state of your job."
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "data_export"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                kind: "param"
+                name: "job_identifier"
+                orig: "job_identifier"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /export/cancel/{job_identifier}"
+            json: "{\"operationId\":\"cancelDataExport\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"job_identifier\",\"in\":\"path\",\"name\":\"job_identifier\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"download_expires_at\":\"\",\"download_url\":\"\",\"job_identifier\":\"v134nyc2bku9hj91\",\"status\":\"canceled\"}}},\"schema\":{\"description\":\"The data export API is used to export message delivery and engagement statistics for outbound content (Emails, Posts, Custom Bots, Surveys, Tours, Series, and more) sent in a given timeframe. The exported data includes who received each message, when they received it, and how they engaged with it (opens, clicks, replies, completions, dismissals, unsubscribes, and bounces).\",\"properties\":{\"download_expires_at\":{\"description\":\"The time after which you will not be able to access the data.\",\"example\":\"1674917488\",\"type\":\"string\"},\"download_url\":{\"description\":\"The location where you can download your data.\",\"example\":\"https://api.intercom.test/download/messages/data/example\",\"type\":\"string\"},\"job_identifier\":{\"description\":\"The identifier for your job.\",\"example\":\"orzzsbd7hk67xyu\",\"type\":\"string\"},\"status\":{\"description\":\"The current state of your job.\",\"enum\":[\"pending\",\"in_progress\",\"failed\",\"completed\",\"no_data\",\"canceled\"],\"example\":\"pending\",\"type\":\"string\"}},\"title\":\"Data Export\",\"type\":\"object\"}}},\"description\":\"successful\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/export/cancel/{job_identifier}"
+          segments: [
+            {
+              lit: "export"
+            }
+            {
+              lit: "cancel"
+            }
+            {
+              var: "job_identifier"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+              "job_identifier"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "cancel"
+      ]
+    ]
+  }
+
+
+
+}

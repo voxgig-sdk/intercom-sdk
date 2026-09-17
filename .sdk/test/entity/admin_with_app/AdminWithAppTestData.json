@@ -1,0 +1,284 @@
+{
+  "existing": {
+    "admin_with_app": {
+      "ADMIN_WITH_APP00": {
+        "app": {},
+        "avatar": {},
+        "away_mode_enabled": true,
+        "away_mode_reassign": false,
+        "email": "s7c",
+        "email_verified": false,
+        "has_inbox_seat": true,
+        "id": "ADMIN_WITH_APP00",
+        "job_title": "s80",
+        "name": "s81",
+        "team_ids": [],
+        "type": "s83"
+      },
+      "ADMIN_WITH_APP01": {
+        "app": {},
+        "avatar": {},
+        "away_mode_enabled": true,
+        "away_mode_reassign": false,
+        "email": "sf4",
+        "email_verified": false,
+        "has_inbox_seat": true,
+        "id": "ADMIN_WITH_APP01",
+        "job_title": "sf8",
+        "name": "sf9",
+        "team_ids": [],
+        "type": "sfb"
+      },
+      "ADMIN_WITH_APP02": {
+        "app": {},
+        "avatar": {},
+        "away_mode_enabled": true,
+        "away_mode_reassign": false,
+        "email": "s16c",
+        "email_verified": false,
+        "has_inbox_seat": true,
+        "id": "ADMIN_WITH_APP02",
+        "job_title": "s170",
+        "name": "s171",
+        "team_ids": [],
+        "type": "s173"
+      }
+    }
+  },
+  "new": {
+    "admin_with_app": {
+      "admin_with_app_ref01": {
+        "app": {},
+        "avatar": {},
+        "away_mode_enabled": true,
+        "away_mode_reassign": false,
+        "email": "s1e4",
+        "email_verified": false,
+        "has_inbox_seat": true,
+        "job_title": "s1e8",
+        "name": "s1e9",
+        "team_ids": [],
+        "type": "s1eb"
+      }
+    }
+  },
+  "requests": {
+    "GET /me": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "identifyAdmin",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "app": {
+                        "created_at": 1734537243,
+                        "id_code": "this_is_an_id1_that_should_be_at_least_40",
+                        "identity_verification": false,
+                        "name": "MyApp 1",
+                        "region": "US",
+                        "secure": false,
+                        "timezone": "America/Los_Angeles",
+                        "type": "app"
+                      },
+                      "avatar": {
+                        "image_url": "https://static.intercomassets.com/assets/default-avatars/admins/128.png",
+                        "type": "avatar"
+                      },
+                      "email": "admin1@email.com",
+                      "email_verified": true,
+                      "has_inbox_seat": true,
+                      "id": "991267459",
+                      "name": "Ciaran1 Lee",
+                      "type": "admin"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Admins are the teammate accounts that have access to a workspace",
+                  "nullable": true,
+                  "properties": {
+                    "app": {
+                      "description": "App that the admin belongs to.",
+                      "nullable": true,
+                      "properties": {
+                        "created_at": {
+                          "description": "When the app was created.",
+                          "example": 1671465577,
+                          "type": "integer"
+                        },
+                        "id_code": {
+                          "description": "The id of the app.",
+                          "example": "xyz789",
+                          "type": "string"
+                        },
+                        "identity_verification": {
+                          "description": "Whether or not the app uses identity verification.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "The name of the app.",
+                          "example": "ACME",
+                          "type": "string"
+                        },
+                        "region": {
+                          "description": "The Intercom region the app is located in.",
+                          "example": "US",
+                          "type": "string"
+                        },
+                        "timezone": {
+                          "description": "The timezone of the region where the app is located.",
+                          "example": "America/Los_Angeles",
+                          "type": "string"
+                        },
+                        "type": {
+                          "default": "app",
+                          "description": "",
+                          "example": "app",
+                          "type": "string"
+                        }
+                      },
+                      "title": "App",
+                      "type": "object"
+                    },
+                    "avatar": {
+                      "description": "This object represents the avatar associated with the admin.",
+                      "properties": {
+                        "image_url": {
+                          "description": "This object represents the avatar associated with the admin.",
+                          "example": "https://example.com/avatar.png",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "type": {
+                          "default": "avatar",
+                          "description": "This is a string that identifies the type of the object. It will always have the value `avatar`.",
+                          "example": "avatar",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "away_mode_enabled": {
+                      "description": "Identifies if this admin is currently set in away mode.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "away_mode_reassign": {
+                      "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "description": "The email of the admin.",
+                      "example": "jdoe@example.com",
+                      "type": "string"
+                    },
+                    "email_verified": {
+                      "description": "Identifies if this admin's email is verified.",
+                      "example": true,
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "has_inbox_seat": {
+                      "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The id representing the admin.",
+                      "example": "1295",
+                      "type": "string"
+                    },
+                    "job_title": {
+                      "description": "The job title of the admin.",
+                      "example": "Associate",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the admin.",
+                      "example": "Joe Example",
+                      "type": "string"
+                    },
+                    "team_ids": {
+                      "description": "This is a list of ids of the teams that this admin is part of.",
+                      "example": [
+                        814865
+                      ],
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `admin`.",
+                      "example": "admin",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Admin",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

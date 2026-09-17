@@ -1,0 +1,22 @@
+# BasicDeletedFlow
+
+main: kit: flow: BasicDeletedFlow:
+{
+  entity: "deleted",
+  kind: "basic",
+  name: "BasicDeletedFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "deleted_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDeletedFlow"
+}

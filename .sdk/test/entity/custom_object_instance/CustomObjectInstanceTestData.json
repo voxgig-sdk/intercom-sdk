@@ -1,0 +1,1531 @@
+{
+  "existing": {
+    "custom_object_instance": {
+      "CUSTOM_OBJECT_INSTANCE00": {
+        "created_at": 110,
+        "custom_attributes": {},
+        "data": [],
+        "external_created_at": "s71",
+        "external_id": "EXTERNAL01",
+        "external_updated_at": "s73",
+        "id": "CUSTOM_OBJECT_INSTANCE00",
+        "pages": {},
+        "total_count": 118,
+        "type": "s77",
+        "updated_at": 120,
+        "custom_object_instance_id": "CUSTOM_OBJECT_INSTANCE01",
+        "custom_object_type_identifier": "CUSTOM_OBJECT_TYPE_IDENTIFIER01"
+      },
+      "CUSTOM_OBJECT_INSTANCE01": {
+        "created_at": 220,
+        "custom_attributes": {},
+        "data": [],
+        "external_created_at": "sdf",
+        "external_id": "EXTERNAL01",
+        "external_updated_at": "se1",
+        "id": "CUSTOM_OBJECT_INSTANCE01",
+        "pages": {},
+        "total_count": 228,
+        "type": "se5",
+        "updated_at": 230,
+        "custom_object_instance_id": "CUSTOM_OBJECT_INSTANCE01",
+        "custom_object_type_identifier": "CUSTOM_OBJECT_TYPE_IDENTIFIER01"
+      },
+      "CUSTOM_OBJECT_INSTANCE02": {
+        "created_at": 330,
+        "custom_attributes": {},
+        "data": [],
+        "external_created_at": "s14d",
+        "external_id": "EXTERNAL01",
+        "external_updated_at": "s14f",
+        "id": "CUSTOM_OBJECT_INSTANCE02",
+        "pages": {},
+        "total_count": 338,
+        "type": "s153",
+        "updated_at": 340,
+        "custom_object_instance_id": "CUSTOM_OBJECT_INSTANCE01",
+        "custom_object_type_identifier": "CUSTOM_OBJECT_TYPE_IDENTIFIER01"
+      }
+    }
+  },
+  "new": {
+    "custom_object_instance": {
+      "custom_object_instance_ref01": {
+        "created_at": 440,
+        "custom_attributes": {},
+        "data": [],
+        "external_created_at": "s1bb",
+        "external_id": "EXTERNAL01",
+        "external_updated_at": "s1bd",
+        "pages": {},
+        "total_count": 448,
+        "type": "s1c1",
+        "updated_at": 450
+      }
+    }
+  },
+  "requests": {
+    "POST /custom_object_instances/{custom_object_type_identifier}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createCustomObjectInstances",
+        "parameters": [
+          {
+            "description": "The unique identifier of the custom object type that defines the structure of the custom object instance.",
+            "example": "Order",
+            "in": "path",
+            "name": "custom_object_type_identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "successful": {
+                  "summary": "successful",
+                  "value": {
+                    "custom_attributes": {
+                      "order_number": "ORDER-12345",
+                      "total_amount": 99.99
+                    },
+                    "external_created_at": 1392036272,
+                    "external_id": "123",
+                    "external_updated_at": 1392036272
+                  }
+                }
+              },
+              "schema": {
+                "description": "Payload to create or update a Custom Object instance",
+                "properties": {
+                  "custom_attributes": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "The custom attributes which are set for the Custom Object instance.",
+                    "nullable": true,
+                    "type": "object"
+                  },
+                  "external_created_at": {
+                    "description": "The time when the Custom Object instance was created in the external system it originated from.",
+                    "example": 1571672154,
+                    "format": "date-time",
+                    "nullable": true,
+                    "type": "integer"
+                  },
+                  "external_id": {
+                    "description": "A unique identifier for the Custom Object instance in the external system it originated from.",
+                    "type": "string"
+                  },
+                  "external_updated_at": {
+                    "description": "The time when the Custom Object instance was last updated in the external system it originated from.",
+                    "example": 1571672154,
+                    "format": "date-time",
+                    "nullable": true,
+                    "type": "integer"
+                  }
+                },
+                "title": "Create Or Update Custom Object Instance Request Payload",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "created_at": 1734537745,
+                      "custom_attributes": {
+                        "order_number": "ORDER-12345",
+                        "total_amount": 99.99
+                      },
+                      "external_created_at": 1392036272,
+                      "external_id": "123",
+                      "external_updated_at": 1392036272,
+                      "id": "22",
+                      "type": "Order",
+                      "updated_at": 1734537745
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A Custom Object Instance represents an instance of a custom object type. This allows you to create and set custom attributes to store data about your customers that is not already captured by Intercom. The parent object includes recommended default attributes and you can add your own custom attributes.",
+                  "nullable": true,
+                  "properties": {
+                    "created_at": {
+                      "description": "The time the attribute was created as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "custom_attributes": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "The custom attributes you have set on the custom object instance.",
+                      "type": "object"
+                    },
+                    "external_created_at": {
+                      "description": "The time when the Custom Object instance was created in the external system it originated from.",
+                      "example": 1571672154,
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "external_id": {
+                      "description": "The id you have defined for the custom object instance.",
+                      "example": "0001d1c1e65a7a19e9f59ae2",
+                      "type": "string"
+                    },
+                    "external_updated_at": {
+                      "description": "The time when the Custom Object instance was last updated in the external system it originated from.",
+                      "example": 1571672154,
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The Intercom defined id representing the custom object instance.",
+                      "example": 16032025,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The identifier of the custom object type that defines the structure of the custom object instance.",
+                      "example": "Order",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the attribute was last updated as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Custom Object Instance",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "TypeNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Custom object type `undefined` not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /custom_object_instances/{custom_object_type_identifier}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listCustomObjectInstances",
+        "parameters": [
+          {
+            "description": "The unique identifier of the custom object type that defines the structure of the custom object instance.",
+            "example": "Order",
+            "in": "path",
+            "name": "custom_object_type_identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return instances associated with the given contact ID.",
+            "in": "query",
+            "name": "references_contact_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return instances associated with the given conversation ID.",
+            "in": "query",
+            "name": "references_conversation_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return the single instance with this external ID. When provided, the response is a single object rather than a list.",
+            "in": "query",
+            "name": "external_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number of results to fetch.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of results per page. Maximum 150.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "maximum": 150,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "data": [
+                        {
+                          "custom_attributes": {
+                            "order_number": "ORDER-98765",
+                            "total_amount": 149.99
+                          },
+                          "external_created_at": {
+                            "created_at": 1734537800,
+                            "external_updated_at": null,
+                            "updated_at": 1734537800
+                          },
+                          "external_id": "order_002",
+                          "id": "2",
+                          "type": "Order"
+                        },
+                        {
+                          "created_at": 1734537100,
+                          "custom_attributes": {
+                            "order_number": "ORDER-12345",
+                            "total_amount": 99.99
+                          },
+                          "external_created_at": 1734537100,
+                          "external_id": "order_001",
+                          "external_updated_at": 1734537100,
+                          "id": "1",
+                          "type": "Order",
+                          "updated_at": 1734537100
+                        }
+                      ],
+                      "pages": {
+                        "page": 1,
+                        "per_page": 20,
+                        "total_pages": 1,
+                        "type": "pages"
+                      },
+                      "total_count": 2,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of custom object instances.",
+                  "nullable": false,
+                  "properties": {
+                    "data": {
+                      "description": "An array of Custom Object Instance objects.",
+                      "items": {
+                        "description": "A Custom Object Instance represents an instance of a custom object type. This allows you to create and set custom attributes to store data about your customers that is not already captured by Intercom. The parent object includes recommended default attributes and you can add your own custom attributes.",
+                        "nullable": true,
+                        "properties": {
+                          "created_at": {
+                            "description": "The time the attribute was created as a UTC Unix timestamp",
+                            "example": 1671028894,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "custom_attributes": {
+                            "additionalProperties": {
+                              "type": "string"
+                            },
+                            "description": "The custom attributes you have set on the custom object instance.",
+                            "type": "object"
+                          },
+                          "external_created_at": {
+                            "description": "The time when the Custom Object instance was created in the external system it originated from.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "external_id": {
+                            "description": "The id you have defined for the custom object instance.",
+                            "example": "0001d1c1e65a7a19e9f59ae2",
+                            "type": "string"
+                          },
+                          "external_updated_at": {
+                            "description": "The time when the Custom Object instance was last updated in the external system it originated from.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "The Intercom defined id representing the custom object instance.",
+                            "example": 16032025,
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The identifier of the custom object type that defines the structure of the custom object instance.",
+                            "example": "Order",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "The time the attribute was last updated as a UTC Unix timestamp",
+                            "example": 1671028894,
+                            "format": "date-time",
+                            "type": "integer"
+                          }
+                        },
+                        "title": "Custom Object Instance",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "The majority of list resources in the API are paginated to allow clients to traverse data over multiple requests.\n\nTheir responses are likely to contain a pages object that hosts pagination links which a client can use to paginate through the data without having to construct a query. The link relations for the pages field are as follows.\n",
+                      "properties": {
+                        "next": {
+                          "description": "A link to the next page of results. A response that does not contain a next link does not have further data to fetch.",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "page": {
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "example": 50,
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Pagination Object",
+                      "type": "object"
+                    },
+                    "total_count": {
+                      "description": "A count of the total number of custom object instances.",
+                      "example": 2,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "The type of the object - `list`.",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Custom Object Instances",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "TypeNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Custom object type `undefined` not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /custom_object_instances/{custom_object_type_identifier}/{custom_object_instance_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCustomObjectInstancesById",
+        "parameters": [
+          {
+            "description": "The unique identifier of the custom object type that defines the structure of the custom object instance.",
+            "example": "Order",
+            "in": "path",
+            "name": "custom_object_type_identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id or external_id of the custom object instance",
+            "in": "path",
+            "name": "custom_object_instance_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "created_at": 1734537750,
+                      "custom_attributes": {
+                        "order_number": "ORDER-12345",
+                        "total_amount": 99.99
+                      },
+                      "external_created_at": null,
+                      "external_id": "123",
+                      "external_updated_at": null,
+                      "id": "25",
+                      "type": "Order",
+                      "updated_at": 1734537750
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A Custom Object Instance represents an instance of a custom object type. This allows you to create and set custom attributes to store data about your customers that is not already captured by Intercom. The parent object includes recommended default attributes and you can add your own custom attributes.",
+                  "nullable": true,
+                  "properties": {
+                    "created_at": {
+                      "description": "The time the attribute was created as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "custom_attributes": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "The custom attributes you have set on the custom object instance.",
+                      "type": "object"
+                    },
+                    "external_created_at": {
+                      "description": "The time when the Custom Object instance was created in the external system it originated from.",
+                      "example": 1571672154,
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "external_id": {
+                      "description": "The id you have defined for the custom object instance.",
+                      "example": "0001d1c1e65a7a19e9f59ae2",
+                      "type": "string"
+                    },
+                    "external_updated_at": {
+                      "description": "The time when the Custom Object instance was last updated in the external system it originated from.",
+                      "example": 1571672154,
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "The Intercom defined id representing the custom object instance.",
+                      "example": 16032025,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The identifier of the custom object type that defines the structure of the custom object instance.",
+                      "example": "Order",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the attribute was last updated as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Custom Object Instance",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "CustomObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Custom object instance not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "IntegrationNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_invalid",
+                          "message": "Integration not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "ObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Object not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /custom_object_instances/{custom_object_type_identifier}/{custom_object_instance_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteCustomObjectInstancesByExternalId",
+        "parameters": [
+          {
+            "description": "The unique identifier of the custom object type that defines the structure of the custom object instance.",
+            "example": "Order",
+            "in": "path",
+            "name": "custom_object_type_identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The Intercom defined id of the custom object instance",
+            "in": "path",
+            "name": "custom_object_instance_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "deleted": true,
+                      "id": "26",
+                      "object": "Order"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "deleted custom object instance object",
+                  "properties": {
+                    "deleted": {
+                      "description": "Whether the Custom Object instance is deleted or not.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The Intercom defined id representing the Custom Object instance.",
+                      "example": "123",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The unique identifier of the Custom Object type that defines the structure of the Custom Object instance.",
+                      "example": "Order",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Custom Object Instance Deleted",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "CustomObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Custom object instance not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "IntegrationNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_invalid",
+                          "message": "Integration not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "ObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Object not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /custom_object_instances/{custom_object_type_identifier}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteCustomObjectInstancesById",
+        "parameters": [
+          {
+            "description": "The unique identifier of the custom object type that defines the structure of the custom object instance.",
+            "example": "Order",
+            "in": "path",
+            "name": "custom_object_type_identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "external_id",
+            "required": true,
+            "schema": {
+              "description": "The unique identifier for the instance in the external system it originated from.",
+              "properties": {
+                "external_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "external_id"
+              ],
+              "title": "Find by external_id",
+              "type": "string"
+            },
+            "style": "form"
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "deleted": true,
+                      "id": "26",
+                      "object": "Order"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "deleted custom object instance object",
+                  "properties": {
+                    "deleted": {
+                      "description": "Whether the Custom Object instance is deleted or not.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The Intercom defined id representing the Custom Object instance.",
+                      "example": "123",
+                      "type": "string"
+                    },
+                    "object": {
+                      "description": "The unique identifier of the Custom Object type that defines the structure of the Custom Object instance.",
+                      "example": "Order",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Custom Object Instance Deleted",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "CustomObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Custom object instance not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "IntegrationNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_invalid",
+                          "message": "Integration not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "ObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Object not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

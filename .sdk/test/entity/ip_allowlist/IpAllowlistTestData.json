@@ -1,0 +1,465 @@
+{
+  "existing": {
+    "ip_allowlist": {
+      "IP_ALLOWLIST00": {
+        "enabled": true,
+        "ip_allowlist": [],
+        "type": "s20",
+        "id": "IP_ALLOWLIST00"
+      },
+      "IP_ALLOWLIST01": {
+        "enabled": true,
+        "ip_allowlist": [],
+        "type": "s3e",
+        "id": "IP_ALLOWLIST01"
+      },
+      "IP_ALLOWLIST02": {
+        "enabled": true,
+        "ip_allowlist": [],
+        "type": "s5c",
+        "id": "IP_ALLOWLIST02"
+      }
+    }
+  },
+  "new": {
+    "ip_allowlist": {
+      "ip_allowlist_ref01": {
+        "enabled": true,
+        "ip_allowlist": [],
+        "type": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "GET /ip_allowlist": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getIpAllowlist",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful": {
+                    "value": {
+                      "enabled": true,
+                      "ip_allowlist": [
+                        "192.168.1.0/24",
+                        "10.0.0.1"
+                      ],
+                      "type": "ip_allowlist"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "IP allowlist settings for the workspace.",
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether the IP allowlist is enabled for the workspace.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ip_allowlist": {
+                      "description": "List of allowed IP addresses and/or IP ranges in CIDR notation.\nExamples:\n- Single IP: `192.168.0.1`\n- IP range: `192.168.0.1/24` (allows 192.168.0.0 - 192.168.0.255)\n",
+                      "example": [
+                        "192.168.1.0/24",
+                        "10.0.0.1"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `ip_allowlist`.",
+                      "example": "ip_allowlist",
+                      "type": "string"
+                    }
+                  },
+                  "title": "IP Allowlist",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /ip_allowlist": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateIpAllowlist",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "successful": {
+                  "summary": "Enable IP allowlist",
+                  "value": {
+                    "enabled": true,
+                    "ip_allowlist": [
+                      "192.168.1.0/24",
+                      "10.0.0.1"
+                    ]
+                  }
+                }
+              },
+              "schema": {
+                "description": "IP allowlist settings for the workspace.",
+                "properties": {
+                  "enabled": {
+                    "description": "Whether the IP allowlist is enabled for the workspace.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "ip_allowlist": {
+                    "description": "List of allowed IP addresses and/or IP ranges in CIDR notation.\nExamples:\n- Single IP: `192.168.0.1`\n- IP range: `192.168.0.1/24` (allows 192.168.0.0 - 192.168.0.255)\n",
+                    "example": [
+                      "192.168.1.0/24",
+                      "10.0.0.1"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "type": {
+                    "description": "String representing the object's type. Always has the value `ip_allowlist`.",
+                    "example": "ip_allowlist",
+                    "type": "string"
+                  }
+                },
+                "title": "IP Allowlist",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful": {
+                    "value": {
+                      "enabled": true,
+                      "ip_allowlist": [
+                        "192.168.1.0/24",
+                        "10.0.0.1"
+                      ],
+                      "type": "ip_allowlist"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "IP allowlist settings for the workspace.",
+                  "properties": {
+                    "enabled": {
+                      "description": "Whether the IP allowlist is enabled for the workspace.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ip_allowlist": {
+                      "description": "List of allowed IP addresses and/or IP ranges in CIDR notation.\nExamples:\n- Single IP: `192.168.0.1`\n- IP range: `192.168.0.1/24` (allows 192.168.0.0 - 192.168.0.255)\n",
+                      "example": [
+                        "192.168.1.0/24",
+                        "10.0.0.1"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `ip_allowlist`.",
+                      "example": "ip_allowlist",
+                      "type": "string"
+                    }
+                  },
+                  "title": "IP Allowlist",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Lockout Protection": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Your IP (1.2.3.4) is not on the allowlist. Saving would lock you out of this workspace."
+                        }
+                      ],
+                      "request_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

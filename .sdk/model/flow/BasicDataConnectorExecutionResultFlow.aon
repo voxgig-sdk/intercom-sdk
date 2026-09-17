@@ -1,0 +1,33 @@
+# BasicDataConnectorExecutionResultFlow
+
+main: kit: flow: BasicDataConnectorExecutionResultFlow:
+{
+  entity: "data_connector_execution_result",
+  kind: "basic",
+  name: "BasicDataConnectorExecutionResultFlow",
+  step: [
+    {
+      input: {
+        ref: "data_connector_execution_result_ref01",
+        srcdatavar: "data_connector_execution_result_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        data_connector_id: "data_connector01",
+        id: "data_connector_execution_result01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-data_connector_execution_result_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataConnectorExecutionResultFlow"
+}

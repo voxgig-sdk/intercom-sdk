@@ -1,0 +1,100 @@
+# BasicHelpCenterFlow
+
+main: kit: flow: BasicHelpCenterFlow:
+{
+  entity: "help_center",
+  kind: "basic",
+  name: "BasicHelpCenterFlow",
+  step: [
+    {
+      input: {
+        ref: "help_center_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "help_center_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "help_center_ref01",
+        srcdatavar: "help_center_ref01_data",
+        suffix: "_up0",
+        textfield: "custom_domain"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-help_center_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "help_center_ref01",
+        srcdatavar: "help_center_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "help_center01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-help_center_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "help_center_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "help_center01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "help_center_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicHelpCenterFlow"
+}

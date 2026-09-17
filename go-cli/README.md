@@ -19,17 +19,15 @@ make build
 export INTERCOM_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
-./intercom-cli list contact
-./intercom-cli load 1 contact            # {id:1} shorthand
-./intercom-cli load '{id:1}' contact       # explicit match map
-./intercom-cli update '{name:"x"}' contact
+./intercom-cli list activity_log
+./intercom-cli list activity_log_event_type
 
 # 5. Override the API base URL for a single call
-INTERCOM_BASE=https://api.example.com ./intercom-cli list contact
+INTERCOM_BASE=https://api.example.com ./intercom-cli list activity_log
 
 # 6. No arguments -> interactive REPL
 ./intercom-cli
-intercom> list contact
+intercom> list activity_log
 intercom> /quit
 ```
 
@@ -55,7 +53,7 @@ intercom> /quit
    arguments to open the REPL):
 
    ```sh
-   ./dist/*/intercom-cli list contact
+   ./dist/*/intercom-cli list activity_log
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
@@ -68,30 +66,11 @@ That is the whole loop: *build → set key → evaluate boru expressions*.
 ### List the records of an entity
 
 ```sh
-./intercom-cli list contact
+./intercom-cli list activity_log
 ```
 
 `list <entity>` returns the first page of records. `<entity>` is a bareword —
 it is auto-quoted as an boru atom, so no quotes are needed.
-
-### Load a single record
-
-```sh
-./intercom-cli load 1 contact          # scalar shorthand for {id:1}
-./intercom-cli load '{id:1}' contact     # explicit match map
-```
-
-The query is either a **scalar** (`1`, treated as `{id:1}`) or a **match map**
-(`{id:1}`, `{slug:"acme"}`). Quote the map so your shell passes it through intact.
-
-### Update a record
-
-```sh
-./intercom-cli update '{id:1,name:"new"}' contact
-```
-
-The match map carries both the selector and the new field values; the updated
-record is printed back.
 
 ### Authenticate and choose an environment
 
@@ -100,7 +79,7 @@ Configuration is read from the environment — nothing is written to disk:
 ```sh
 export INTERCOM_APIKEY=sk_live_xxx            # API key
 export INTERCOM_BASE=https://api.example.com  # optional: override the API base URL
-./intercom-cli list contact
+./intercom-cli list activity_log
 ```
 
 Both are injectable by a secrets vault, so the key never has to be typed inline.
@@ -112,7 +91,7 @@ evaluated as its own boru expression:
 
 ```text
 $ ./intercom-cli
-intercom> list contact
+intercom> list activity_log
 intercom> /help
 intercom> /quit
 ```
@@ -127,7 +106,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 1 entity.
+below — this SDK exposes 89 entities.
 
 ## Reference
 
@@ -141,7 +120,7 @@ The CLI registers these boru words, each bound to the SDK:
 | `load`   | `load <entity>` · `load <query> <entity>`     | A single record                |
 | `update` | `update <query> <entity>`                     | Update a record, return it     |
 
-- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `contact`).
+- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `activity_log`).
 - `<query>` is either a **Map** (`{id:1}`) or a **Scalar** (`1`, treated as
   `{id:1}`). A scalar is always wrapped as `{id:<value>}`.
 
@@ -182,9 +161,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 1 entity this SDK exposes (any is valid as `<entity>`):
+The 89 entities this SDK exposes (any is valid as `<entity>`):
 
-contact
+activity_log activity_log_event_type activity_log_list admin admin_with_app ai_call ai_content article article_search article_version article_version_list audience away_status_reason banner banner_dismiss brand call company company_attached_contact company_attached_segment company_list company_scroll contact contact_attached_company contact_list contact_segment content content_import_source content_search content_snippet conversation conversation_attribute conversation_attribute_list conversation_list conversation_participant custom_object_instance data data_attribute data_connector data_connector_execution_result data_connector_execution_result_list data_event data_event_summary data_export deleted deleted_article_object deleted_company_object deleted_data_connector_object deleted_internal_article_object deleted_object email external_page fin_agent handling_event help_center internal_article internal_article_search ip_allowlist job macro merge_history message news_item newsfeed note office_hour office_hours_exception office_hours_schedule paginated phone_switch reporting_data reporting_data_export segment side_conversation subscription subscription_type tag team team_metric_list ticket ticket_list ticket_reply ticket_state ticket_type ticket_type_attribute visitor whatsapp_message_status whatsapp_message_status_list workflow
 
 ## Explanation
 

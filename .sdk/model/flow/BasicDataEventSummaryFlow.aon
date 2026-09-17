@@ -1,0 +1,22 @@
+# BasicDataEventSummaryFlow
+
+main: kit: flow: BasicDataEventSummaryFlow:
+{
+  entity: "data_event_summary",
+  kind: "basic",
+  name: "BasicDataEventSummaryFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "data_event_summary_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataEventSummaryFlow"
+}

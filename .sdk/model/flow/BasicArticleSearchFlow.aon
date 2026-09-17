@@ -1,0 +1,28 @@
+# BasicArticleSearchFlow
+
+main: kit: flow: BasicArticleSearchFlow:
+{
+  entity: "article_search",
+  kind: "basic",
+  name: "BasicArticleSearchFlow",
+  step: [
+    {
+      input: {
+        ref: "article_search_ref01",
+        srcdatavar: "article_search_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-article_search_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArticleSearchFlow"
+}

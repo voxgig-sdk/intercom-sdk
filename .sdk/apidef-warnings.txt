@@ -1,0 +1,77 @@
+{
+  point: "warning"
+  err: {
+    status: "failure"
+    code: "unexpected"
+    message: "unexpected character(s): ,"
+    hint: `The character(s) , were not expected at this point as they do not
+match the expected syntax, even under the relaxed jsonic rules. If it
+is not obviously wrong, the actual syntax error may be elsewhere. Try
+commenting out larger areas around this point until you get no errors,
+then remove the comments in small sections until you find the
+offending syntax. NOTE: Also check if any plugins you are using
+expect different syntax in this case.`
+    row: 9750
+    col: 20
+    pos: 360306
+    len: 1
+    rule: "yamlBlockElem"
+    ruleStack: [
+      "stream"
+      "val"
+      "map"
+      "pair"
+      "val"
+      "indent"
+      "map"
+      "pair"
+      "val"
+      "indent"
+      "map"
+      "pair"
+      "val"
+      "indent"
+      "map"
+      "pair"
+      "val"
+      "yamlBlockElem"
+    ]
+    token: {
+      name: "#CA"
+      src: ","
+    }
+    expected: [
+      "#DE"
+      "#DR"
+      "#DS"
+      "#EL"
+      "#IN"
+      "#ZZ"
+    ]
+    src: "            - draft"
+    plugins: [
+      "Yaml"
+    ]
+    version: "0.9.7"
+  }
+
+  note: `!! BUILD FAILED !! @voxgig/apidef: parse: internal: \u001b[91m[jsonic/unexpected]:\u001b[0m unexpected character(s): ,
+  \u001b[34m-->\u001b[0m <no-file>:9750:20
+\u001b[34m  9748 | \u001b[0m        description: Filter by tag IDs. Pairs with \`tag_operator\` to control match
+\u001b[34m  9749 | \u001b[0m          semantics. Accepts a comma-separated list or repeated params.
+\u001b[34m  9750 | \u001b[0m        example: 1,2,3
+                            \u001b[34m^ unexpected character(s): ,\u001b[0m
+\u001b[34m  9751 | \u001b[0m        schema:
+\u001b[34m  9752 | \u001b[0m          type: array
+
+  The character(s) , were not expected at this point as they do not
+  match the expected syntax, even under the relaxed jsonic rules. If it
+  is not obviously wrong, the actual syntax error may be elsewhere. Try
+  commenting out larger areas around this point until you get no errors,
+  then remove the comments in small sections until you find the
+  offending syntax. NOTE: Also check if any plugins you are using
+  expect different syntax in this case.
+
+  \u001b[2mhttps://github.com/tabnas/jsonic\u001b[0m
+  \u001b[2m--internal: tag=-; rule=yamlBlockElem~c; token=#CA; plugins=Yaml--\u001b[0m (./def/intercom-2.16-openapi.yaml)`
+}

@@ -1,0 +1,18 @@
+# BasicActivityLogListFlow
+
+main: kit: flow: BasicActivityLogListFlow:
+{
+  entity: "activity_log_list",
+  kind: "basic",
+  name: "BasicActivityLogListFlow",
+  step: [
+    {
+      input: {
+        ref: "activity_log_list_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicActivityLogListFlow"
+}

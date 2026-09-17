@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ActivityLogList | Intercom API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Intercom API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/intercom-sdk">voxgig-sdk/intercom-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Intercom API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/activity_log.html">ActivityLog</a>
+<a href="../api/activity_log_event_type.html">ActivityLogEventType</a>
+<a aria-current="page" href="../api/activity_log_list.html">ActivityLogList</a><div class="nav-sections"><a class="nav-section" href="#post-adminsactivity_logssearch">POST /admins/activity_logs/search</a></div>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/admin_with_app.html">AdminWithApp</a>
+<a href="../api/ai_call.html">AiCall</a>
+<a href="../api/ai_content.html">AiContent</a>
+<a href="../api/article.html">Article</a>
+<a href="../api/article_search.html">ArticleSearch</a>
+<a href="../api/article_version.html">ArticleVersion</a>
+<a href="../api/article_version_list.html">ArticleVersionList</a>
+<a href="../api/audience.html">Audience</a>
+<a href="../api/away_status_reason.html">AwayStatusReason</a>
+<a href="../api/banner.html">Banner</a>
+<a href="../api/banner_dismiss.html">BannerDismiss</a>
+<a href="../api/brand.html">Brand</a>
+<a href="../api/call.html">Call</a>
+<a href="../api/company.html">Company</a>
+<a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
+<a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
+<a href="../api/company_list.html">CompanyList</a>
+<a href="../api/company_scroll.html">CompanyScroll</a>
+<a href="../api/contact.html">Contact</a>
+<a href="../api/contact_attached_company.html">ContactAttachedCompany</a>
+<a href="../api/contact_list.html">ContactList</a>
+<a href="../api/contact_segment.html">ContactSegment</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/content_import_source.html">ContentImportSource</a>
+<a href="../api/content_search.html">ContentSearch</a>
+<a href="../api/content_snippet.html">ContentSnippet</a>
+<a href="../api/conversation.html">Conversation</a>
+<a href="../api/conversation_attribute.html">ConversationAttribute</a>
+<a href="../api/conversation_attribute_list.html">ConversationAttributeList</a>
+<a href="../api/conversation_list.html">ConversationList</a>
+<a href="../api/conversation_participant.html">ConversationParticipant</a>
+<a href="../api/custom_object_instance.html">CustomObjectInstance</a>
+<a href="../api/data.html">Data</a>
+<a href="../api/data_attribute.html">DataAttribute</a>
+<a href="../api/data_connector.html">DataConnector</a>
+<a href="../api/data_connector_execution_result.html">DataConnectorExecutionResult</a>
+<a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
+<a href="../api/data_event.html">DataEvent</a>
+<a href="../api/data_event_summary.html">DataEventSummary</a>
+<a href="../api/data_export.html">DataExport</a>
+<a href="../api/deleted.html">Deleted</a>
+<a href="../api/deleted_article_object.html">DeletedArticleObject</a>
+<a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
+<a href="../api/deleted_data_connector_object.html">DeletedDataConnectorObject</a>
+<a href="../api/deleted_internal_article_object.html">DeletedInternalArticleObject</a>
+<a href="../api/deleted_object.html">DeletedObject</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/external_page.html">ExternalPage</a>
+<a href="../api/fin_agent.html">FinAgent</a>
+<a href="../api/handling_event.html">HandlingEvent</a>
+<a href="../api/help_center.html">HelpCenter</a>
+<a href="../api/internal_article.html">InternalArticle</a>
+<a href="../api/internal_article_search.html">InternalArticleSearch</a>
+<a href="../api/ip_allowlist.html">IpAllowlist</a>
+<a href="../api/job.html">Job</a>
+<a href="../api/macro.html">Macro</a>
+<a href="../api/merge_history.html">MergeHistory</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/news_item.html">NewsItem</a>
+<a href="../api/newsfeed.html">Newsfeed</a>
+<a href="../api/note.html">Note</a>
+<a href="../api/office_hour.html">OfficeHour</a>
+<a href="../api/office_hours_exception.html">OfficeHoursException</a>
+<a href="../api/office_hours_schedule.html">OfficeHoursSchedule</a>
+<a href="../api/paginated.html">Paginated</a>
+<a href="../api/phone_switch.html">PhoneSwitch</a>
+<a href="../api/reporting_data.html">ReportingData</a>
+<a href="../api/reporting_data_export.html">ReportingDataExport</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/side_conversation.html">SideConversation</a>
+<a href="../api/subscription.html">Subscription</a>
+<a href="../api/subscription_type.html">SubscriptionType</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/team_metric_list.html">TeamMetricList</a>
+<a href="../api/ticket.html">Ticket</a>
+<a href="../api/ticket_list.html">TicketList</a>
+<a href="../api/ticket_reply.html">TicketReply</a>
+<a href="../api/ticket_state.html">TicketState</a>
+<a href="../api/ticket_type.html">TicketType</a>
+<a href="../api/ticket_type_attribute.html">TicketTypeAttribute</a>
+<a href="../api/visitor.html">Visitor</a>
+<a href="../api/whatsapp_message_status.html">WhatsappMessageStatus</a>
+<a href="../api/whatsapp_message_status_list.html">WhatsappMessageStatusList</a>
+<a href="../api/workflow.html">Workflow</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="activityloglist">ActivityLogList</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-adminsactivity_logssearch"><code>/admins/activity_logs/search</code></a></td>
+<td><code>create</code></td>
+<td>Successful response</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activity_logs</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An array of activity logs</td>
+</tr>
+<tr>
+<td><code>created_at_after</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td>The start date that you request data for.</td>
+</tr>
+<tr>
+<td><code>created_at_before</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The end date that you request data for.</td>
+</tr>
+<tr>
+<td><code>event_types</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An optional list of event types to filter activity logs by.</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The page number of results to return.</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.</td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results per page.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-adminsactivity_logssearch" class="operation" data-method="post"><code>POST</code> /admins/activity_logs/search</h3>
+<p>Operation ID: <code>searchActivityLogs</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created_at_after</code></td>
+<td><code>integer (date-time)</code></td>
+<td>Yes</td>
+<td>The start date that you request data for. It must be formatted as a UNIX timestamp.</td>
+</tr>
+<tr>
+<td><code>created_at_before</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The end date that you request data for. It must be formatted as a UNIX timestamp.</td>
+</tr>
+<tr>
+<td><code>event_types</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>An optional list of event types to filter activity logs by. Use the list all activity log event types endpoint to retrieve available values.</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The page number of results to return.</td>
+</tr>
+<tr>
+<td><code>per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results per page. Must be between 1 and 250.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-successful-response" class="status" data-status="2xx">200: Successful response</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>activity_logs</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of activity logs</td>
+</tr>
+<tr>
+<td><code>activity_logs[].activity_description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A sentence or two describing the activity.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].activity_type</code></td>
+<td><code>enum: admin_conversation_assignment_limit_change, admin_ticket_assignment_limit_change, admin_avatar_change, admin_away_mode_change, admin_deletion, admin_deprovisioned, ...</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>activity_logs[].created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the activity was created.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id representing the activity.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Additional data provided about Admin activity.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.after</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The state of settings or values after the change. Structure varies by activity type.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.auto</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates the state was derived automatically rather than set by an Admin.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.auto_changed</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Indicates if the status was changed automatically or manually.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.away_mode</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>The away mode status which is set to true when away and false when returned.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.away_status_reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason the Admin is away.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.before</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The state of settings or values before the change. Structure varies by activity type.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.changes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The settings altered by the change, keyed by setting name. Only settings whose value actually moved are included, so an unchanged setting is absent rather than present with equal values.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.consent_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ID of the impersonation consent.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.conversation_assignment_limit</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The conversation assignment limit value for an admin.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates if the setting is enabled or disabled.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.expired_at</code></td>
+<td><code>string (date-time)</code></td>
+<td>No</td>
+<td>The timestamp when the impersonation consent expires.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is provided by the Client.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.last_activity_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time of the Admin's last recorded activity.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.mode</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The mode of the setting (for example, when_away_only, when_away_and_reassign).</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.new_state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state after the change. <code>idle</code> or <code>occupied</code>.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.previous_state</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state before the change. <code>idle</code> or <code>occupied</code>, and null when the Admin had not been classified yet.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.reassign_conversations</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates if conversations should be reassigned while an Admin is away.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.setting_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The group of workspace settings the change belongs to, for example <code>teammate_occupancy</code> or <code>automatic_away_mode</code>.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.sign_in_method</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The way the admin signed in.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.source</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The action that initiated the status change.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.team</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Details about the team whose assignment limit was changed.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.team.id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ID of the team.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.team.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the team.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.team_assignment_limit</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The team assignment limit value (null if limit was removed).</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.threshold_minutes</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The inactivity window, in minutes, used to classify the Admin.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.ticket_assignment_limit</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ticket assignment limit value for an admin.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.update_by</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The ID of the Admin who initiated the activity.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].metadata.update_by_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the Admin who initiated the activity.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].performed_by</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Details about the Admin involved in the activity.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].performed_by.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The email of the admin.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].performed_by.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id representing the admin.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].performed_by.ip</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The IP address of the admin.</td>
+</tr>
+<tr>
+<td><code>activity_logs[].performed_by.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>admin</code>.</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A &quot;cursor&quot; or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or &quot;pages&quot; as needed.</td>
+</tr>
+<tr>
+<td><code>pages.next</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Pagination: Starting After</td>
+</tr>
+<tr>
+<td><code>pages.next.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results to fetch per page.</td>
+</tr>
+<tr>
+<td><code>pages.next.starting_after</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>pages.page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The current page</td>
+</tr>
+<tr>
+<td><code>pages.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of results per page</td>
+</tr>
+<tr>
+<td><code>pages.total_pages</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Total number of pages</td>
+</tr>
+<tr>
+<td><code>pages.type</code></td>
+<td><code>enum: pages</code></td>
+<td>No</td>
+<td>the type of object <code>pages</code>.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>activity_log.list</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

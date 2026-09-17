@@ -1,0 +1,22 @@
+# BasicAwayStatusReasonFlow
+
+main: kit: flow: BasicAwayStatusReasonFlow:
+{
+  entity: "away_status_reason",
+  kind: "basic",
+  name: "BasicAwayStatusReasonFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "away_status_reason_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAwayStatusReasonFlow"
+}

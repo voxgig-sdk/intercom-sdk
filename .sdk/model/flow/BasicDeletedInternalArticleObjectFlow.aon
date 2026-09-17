@@ -1,0 +1,59 @@
+# BasicDeletedInternalArticleObjectFlow
+
+main: kit: flow: BasicDeletedInternalArticleObjectFlow:
+{
+  entity: "deleted_internal_article_object",
+  kind: "basic",
+  name: "BasicDeletedInternalArticleObjectFlow",
+  step: [
+    {
+      input: {
+        ref: "deleted_internal_article_object_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "deleted_internal_article_object_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "deleted_internal_article_object_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "deleted_internal_article_object01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "deleted_internal_article_object_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDeletedInternalArticleObjectFlow"
+}

@@ -1,0 +1,28 @@
+# BasicInternalArticleSearchFlow
+
+main: kit: flow: BasicInternalArticleSearchFlow:
+{
+  entity: "internal_article_search",
+  kind: "basic",
+  name: "BasicInternalArticleSearchFlow",
+  step: [
+    {
+      input: {
+        ref: "internal_article_search_ref01",
+        srcdatavar: "internal_article_search_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-internal_article_search_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicInternalArticleSearchFlow"
+}

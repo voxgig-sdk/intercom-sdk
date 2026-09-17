@@ -1,16 +1,110 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Contact | Intercom Contacts API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Contact | Intercom API</title><link rel="stylesheet" href="../assets/style.css"></head>
 <body><a class="skip" href="#content">Skip to content</a>
-<header class="site-header"><a class="site-title" href="../index.html">Intercom Contacts API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/intercom-sdk">voxgig-sdk/intercom-sdk</a></div></header>
+<header class="site-header"><a class="site-title" href="../index.html">Intercom API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/intercom-sdk">voxgig-sdk/intercom-sdk</a></div></header>
 <div class="site-notice" role="note"></div>
-<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Intercom Contacts API</a></details>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Intercom API</a></details>
 <details open><summary>API</summary><a href="../api/index.html">API overview</a>
-<a aria-current="page" href="../api/contact.html">Contact</a><div class="nav-sections"><a class="nav-section" href="#post-contacts">POST /contacts</a>
+<a href="../api/activity_log.html">ActivityLog</a>
+<a href="../api/activity_log_event_type.html">ActivityLogEventType</a>
+<a href="../api/activity_log_list.html">ActivityLogList</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/admin_with_app.html">AdminWithApp</a>
+<a href="../api/ai_call.html">AiCall</a>
+<a href="../api/ai_content.html">AiContent</a>
+<a href="../api/article.html">Article</a>
+<a href="../api/article_search.html">ArticleSearch</a>
+<a href="../api/article_version.html">ArticleVersion</a>
+<a href="../api/article_version_list.html">ArticleVersionList</a>
+<a href="../api/audience.html">Audience</a>
+<a href="../api/away_status_reason.html">AwayStatusReason</a>
+<a href="../api/banner.html">Banner</a>
+<a href="../api/banner_dismiss.html">BannerDismiss</a>
+<a href="../api/brand.html">Brand</a>
+<a href="../api/call.html">Call</a>
+<a href="../api/company.html">Company</a>
+<a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
+<a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
+<a href="../api/company_list.html">CompanyList</a>
+<a href="../api/company_scroll.html">CompanyScroll</a>
+<a aria-current="page" href="../api/contact.html">Contact</a><div class="nav-sections"><a class="nav-section" href="#post-contactscontact_idarchive">POST /contacts/{contact_id}/archive</a>
+<a class="nav-section" href="#post-contactscontact_idblock">POST /contacts/{contact_id}/block</a>
+<a class="nav-section" href="#post-contactsmerge">POST /contacts/merge</a>
+<a class="nav-section" href="#post-contactscontact_idunarchive">POST /contacts/{contact_id}/unarchive</a>
+<a class="nav-section" href="#post-contacts">POST /contacts</a>
+<a class="nav-section" href="#post-visitorsconvert">POST /visitors/convert</a>
 <a class="nav-section" href="#get-contacts">GET /contacts</a>
-<a class="nav-section" href="#get-contactsid">GET /contacts/{id}</a>
-<a class="nav-section" href="#delete-contactsid">DELETE /contacts/{id}</a>
-<a class="nav-section" href="#put-contactsid">PUT /contacts/{id}</a></div></details>
+<a class="nav-section" href="#get-contactsfind_by_external_idexternal_id">GET /contacts/find_by_external_id/{external_id}</a>
+<a class="nav-section" href="#get-contactscontact_id">GET /contacts/{contact_id}</a>
+<a class="nav-section" href="#delete-contactscontact_id">DELETE /contacts/{contact_id}</a>
+<a class="nav-section" href="#put-contactscontact_id">PUT /contacts/{contact_id}</a></div>
+<a href="../api/contact_attached_company.html">ContactAttachedCompany</a>
+<a href="../api/contact_list.html">ContactList</a>
+<a href="../api/contact_segment.html">ContactSegment</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/content_import_source.html">ContentImportSource</a>
+<a href="../api/content_search.html">ContentSearch</a>
+<a href="../api/content_snippet.html">ContentSnippet</a>
+<a href="../api/conversation.html">Conversation</a>
+<a href="../api/conversation_attribute.html">ConversationAttribute</a>
+<a href="../api/conversation_attribute_list.html">ConversationAttributeList</a>
+<a href="../api/conversation_list.html">ConversationList</a>
+<a href="../api/conversation_participant.html">ConversationParticipant</a>
+<a href="../api/custom_object_instance.html">CustomObjectInstance</a>
+<a href="../api/data.html">Data</a>
+<a href="../api/data_attribute.html">DataAttribute</a>
+<a href="../api/data_connector.html">DataConnector</a>
+<a href="../api/data_connector_execution_result.html">DataConnectorExecutionResult</a>
+<a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
+<a href="../api/data_event.html">DataEvent</a>
+<a href="../api/data_event_summary.html">DataEventSummary</a>
+<a href="../api/data_export.html">DataExport</a>
+<a href="../api/deleted.html">Deleted</a>
+<a href="../api/deleted_article_object.html">DeletedArticleObject</a>
+<a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
+<a href="../api/deleted_data_connector_object.html">DeletedDataConnectorObject</a>
+<a href="../api/deleted_internal_article_object.html">DeletedInternalArticleObject</a>
+<a href="../api/deleted_object.html">DeletedObject</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/external_page.html">ExternalPage</a>
+<a href="../api/fin_agent.html">FinAgent</a>
+<a href="../api/handling_event.html">HandlingEvent</a>
+<a href="../api/help_center.html">HelpCenter</a>
+<a href="../api/internal_article.html">InternalArticle</a>
+<a href="../api/internal_article_search.html">InternalArticleSearch</a>
+<a href="../api/ip_allowlist.html">IpAllowlist</a>
+<a href="../api/job.html">Job</a>
+<a href="../api/macro.html">Macro</a>
+<a href="../api/merge_history.html">MergeHistory</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/news_item.html">NewsItem</a>
+<a href="../api/newsfeed.html">Newsfeed</a>
+<a href="../api/note.html">Note</a>
+<a href="../api/office_hour.html">OfficeHour</a>
+<a href="../api/office_hours_exception.html">OfficeHoursException</a>
+<a href="../api/office_hours_schedule.html">OfficeHoursSchedule</a>
+<a href="../api/paginated.html">Paginated</a>
+<a href="../api/phone_switch.html">PhoneSwitch</a>
+<a href="../api/reporting_data.html">ReportingData</a>
+<a href="../api/reporting_data_export.html">ReportingDataExport</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/side_conversation.html">SideConversation</a>
+<a href="../api/subscription.html">Subscription</a>
+<a href="../api/subscription_type.html">SubscriptionType</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/team_metric_list.html">TeamMetricList</a>
+<a href="../api/ticket.html">Ticket</a>
+<a href="../api/ticket_list.html">TicketList</a>
+<a href="../api/ticket_reply.html">TicketReply</a>
+<a href="../api/ticket_state.html">TicketState</a>
+<a href="../api/ticket_type.html">TicketType</a>
+<a href="../api/ticket_type_attribute.html">TicketTypeAttribute</a>
+<a href="../api/visitor.html">Visitor</a>
+<a href="../api/whatsapp_message_status.html">WhatsappMessageStatus</a>
+<a href="../api/whatsapp_message_status_list.html">WhatsappMessageStatusList</a>
+<a href="../api/workflow.html">Workflow</a></details>
 <details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
 <a href="../guides/first-call.html">Make your first API call</a>
 <a href="../guides/errors.html">Handle errors</a>
@@ -45,33 +139,69 @@
 <tbody>
 <tr>
 <td><code>POST</code></td>
+<td><a href="#post-contactscontact_idarchive"><code>/contacts/{contact_id}/archive</code></a></td>
+<td><code>create</code></td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-contactscontact_idblock"><code>/contacts/{contact_id}/block</code></a></td>
+<td><code>create</code></td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-contactsmerge"><code>/contacts/merge</code></a></td>
+<td><code>create</code></td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-contactscontact_idunarchive"><code>/contacts/{contact_id}/unarchive</code></a></td>
+<td><code>create</code></td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
 <td><a href="#post-contacts"><code>/contacts</code></a></td>
 <td><code>create</code></td>
-<td>The created contact</td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-visitorsconvert"><code>/visitors/convert</code></a></td>
+<td><code>create</code></td>
+<td>successful</td>
 </tr>
 <tr>
 <td><code>GET</code></td>
 <td><a href="#get-contacts"><code>/contacts</code></a></td>
 <td><code>list</code></td>
-<td>A page of contacts</td>
+<td>successful</td>
 </tr>
 <tr>
 <td><code>GET</code></td>
-<td><a href="#get-contactsid"><code>/contacts/{id}</code></a></td>
+<td><a href="#get-contactsfind_by_external_idexternal_id"><code>/contacts/find_by_external_id/{external_id}</code></a></td>
 <td><code>load</code></td>
-<td>The requested contact</td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-contactscontact_id"><code>/contacts/{contact_id}</code></a></td>
+<td><code>load</code></td>
+<td>successful</td>
 </tr>
 <tr>
 <td><code>DELETE</code></td>
-<td><a href="#delete-contactsid"><code>/contacts/{id}</code></a></td>
+<td><a href="#delete-contactscontact_id"><code>/contacts/{contact_id}</code></a></td>
 <td><code>remove</code></td>
-<td>Deleted</td>
+<td>successful</td>
 </tr>
 <tr>
 <td><code>PUT</code></td>
-<td><a href="#put-contactsid"><code>/contacts/{id}</code></a></td>
+<td><a href="#put-contactscontact_id"><code>/contacts/{contact_id}</code></a></td>
 <td><code>update</code></td>
-<td>The updated contact</td>
+<td>successful</td>
 </tr>
 </tbody>
 </table>
@@ -87,53 +217,368 @@
 </thead>
 <tbody>
 <tr>
+<td><code>android_app_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the Android app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_device</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Android device which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_last_seen_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last seen on an Android device.</td>
+</tr>
+<tr>
+<td><code>android_os_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android OS which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android SDK which the contact is using.</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>browser</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>browser_language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language set by the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>browser_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>companies</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object with metadata about companies attached to a contact .</td>
+</tr>
+<tr>
 <td><code>created_at</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td></td>
+<td>(Unix timestamp in seconds) The time when the contact was created.</td>
+</tr>
+<tr>
+<td><code>custom_attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The custom attributes which are set for the contact.</td>
 </tr>
 <tr>
 <td><code>email</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The contact's email.</td>
+</tr>
+<tr>
+<td><code>email_domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The contact's email domain.</td>
+</tr>
+<tr>
+<td><code>enabled_push_messaging</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If the user has enabled push messaging.</td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is provided by the Client.</td>
+</tr>
+<tr>
+<td><code>has_hard_bounced</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact has had an email sent to them hard bounce.</td>
 </tr>
 <tr>
 <td><code>id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>ios_app_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the iOS app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the iOS app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_device</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The iOS device which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_last_seen_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The last time the contact used the iOS app.</td>
+</tr>
+<tr>
+<td><code>ios_os_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of iOS which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the iOS SDK which the contact is using.</td>
+</tr>
+<tr>
+<td><code>language_override</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change.</td>
+</tr>
+<tr>
+<td><code>last_contacted_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last messaged.</td>
+</tr>
+<tr>
+<td><code>last_email_clicked_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last clicked a link in an email.</td>
+</tr>
+<tr>
+<td><code>last_email_opened_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last opened an email.</td>
+</tr>
+<tr>
+<td><code>last_replied_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last messaged in.</td>
+</tr>
+<tr>
+<td><code>last_seen_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually).</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing location meta data about a Intercom contact.</td>
+</tr>
+<tr>
+<td><code>marked_email_as_spam</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact has marked an email sent to them as spam.</td>
+</tr>
+<tr>
+<td><code>merge_history</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>A list of contacts that were merged into this contact.</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The contacts name.</td>
+</tr>
+<tr>
+<td><code>notes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing notes meta data about the notes that a contact has.</td>
+</tr>
+<tr>
+<td><code>os</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The operating system which the contact is using.</td>
+</tr>
+<tr>
+<td><code>owner_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of an admin that has been assigned account ownership of the contact.</td>
 </tr>
 <tr>
 <td><code>phone</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The contacts phone.</td>
 </tr>
 <tr>
 <td><code>role</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The role of the contact.</td>
+</tr>
+<tr>
+<td><code>signed_up_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time specified for when a contact signed up.</td>
+</tr>
+<tr>
+<td><code>social_profiles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing social profiles that a contact has.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing tags meta data about the tags that a contact has.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of object.</td>
+</tr>
+<tr>
+<td><code>unsubscribed_from_emails</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact is unsubscribed from emails.</td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td></td>
+<td>(Unix timestamp in seconds) The time when the contact was last updated.</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The unique identifiers retained after converting or merging.</td>
+</tr>
+<tr>
+<td><code>visitor</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The unique identifiers to convert a single Visitor.</td>
+</tr>
+<tr>
+<td><code>workspace_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the workspace which the contact belongs to.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="create">create</h2>
-<h3 id="post-contacts" class="operation" data-method="post"><code>POST</code> /contacts</h3>
-<p>Operation ID: <code>createContact</code>.</p>
+<h3 id="post-contactscontact_idarchive" class="operation" data-method="post"><code>POST</code> /contacts/{contact_id}/archive</h3>
+<p>Operation ID: <code>ArchiveContact</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-successful" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>archived</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact is archived or not.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-contactscontact_idblock" class="operation" data-method="post"><code>POST</code> /contacts/{contact_id}/block</h3>
+<p>Operation ID: <code>BlockContact</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-successful-1" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>blocked</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Always true.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-contactsmerge" class="operation" data-method="post"><code>POST</code> /contacts/merge</h3>
+<p>Operation ID: <code>MergeContact</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>include_merge_history</code> | <code>query</code> | <code>boolean</code> | No | Pass <code>true</code> to include the merge history of the resulting contact in the response. Only returned for contacts with a <code>user</code> role. |</p>
 <h4 id="request-body">Request body</h4>
 <p><code>application/json</code></p>
 <table>
@@ -147,33 +592,27 @@
 </thead>
 <tbody>
 <tr>
-<td><code>email</code></td>
+<td><code>from</code></td>
 <td><code>string</code></td>
-<td>No</td>
-<td></td>
+<td>Yes</td>
+<td>The unique identifier for the contact to merge away from. Must be a lead.</td>
 </tr>
 <tr>
-<td><code>name</code></td>
+<td><code>into</code></td>
 <td><code>string</code></td>
-<td>No</td>
-<td></td>
+<td>Yes</td>
+<td>The unique identifier for the contact to merge into. Must be a user.</td>
 </tr>
 <tr>
-<td><code>phone</code></td>
-<td><code>string</code></td>
+<td><code>skip_duplicate_validation</code></td>
+<td><code>boolean</code></td>
 <td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>role</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td></td>
+<td>Set to <code>true</code> to merge two contacts that are not duplicates (they share no matching email or phone).</td>
 </tr>
 </tbody>
 </table>
-<h4 id="responses">Responses</h4>
-<h5 id="200-the-created-contact" class="status" data-status="2xx">200: The created contact</h5>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-successful-2" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -186,59 +625,830 @@
 </thead>
 <tbody>
 <tr>
-<td><code>created_at</code></td>
-<td><code>integer</code></td>
+<td><code>enabled_push_messaging</code></td>
+<td><code>boolean</code></td>
 <td>No</td>
-<td></td>
+<td>If the user has enabled push messaging.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="400-bad-request" class="status" data-status="4xx">400: Bad Request</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
 </tr>
 <tr>
-<td><code>email</code></td>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
 </tr>
 <tr>
-<td><code>id</code></td>
+<td><code>errors[].message</code></td>
 <td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
 </tr>
 <tr>
-<td><code>name</code></td>
+<td><code>type</code></td>
 <td><code>string</code></td>
-<td>No</td>
-<td></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
 <tr>
-<td><code>phone</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td></td>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td><code>role</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>updated_at</code></td>
-<td><code>integer</code></td>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
 <td>No</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="list">list</h2>
-<h3 id="get-contacts" class="operation" data-method="get"><code>GET</code> /contacts</h3>
-<p>Operation ID: <code>listContacts</code>.</p>
+<h3 id="post-contactscontact_idunarchive" class="operation" data-method="post"><code>POST</code> /contacts/{contact_id}/unarchive</h3>
+<p>Operation ID: <code>UnarchiveContact</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters">Parameters</h4>
+<h4 id="parameters-3">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
-| <code>per_page</code> | <code>query</code> | <code>integer</code> | No |  |</p>
-<h4 id="responses-1">Responses</h4>
-<h5 id="200-a-page-of-contacts" class="status" data-status="2xx">200: A page of contacts</h5>
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-successful-3" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>archived</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact is archived or not.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-contacts" class="operation" data-method="post"><code>POST</code> /contacts</h3>
+<p>Operation ID: <code>CreateContact</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>any or any or any</code>.</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-successful-4" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled_push_messaging</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If the user has enabled push messaging.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-1" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-visitorsconvert" class="operation" data-method="post"><code>POST</code> /visitors/convert</h3>
+<p>Operation ID: <code>convertVisitor</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Represents the role of the Contact model. Accepts <code>lead</code> or <code>user</code>.</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td><code>any or any</code></td>
+<td>Yes</td>
+<td>The unique identifiers retained after converting or merging.</td>
+</tr>
+<tr>
+<td><code>user.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The contact's email, retained by default if one is present.</td>
+</tr>
+<tr>
+<td><code>user.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>user.user_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the contact which is given to Intercom, which will be represented as external_id.</td>
+</tr>
+<tr>
+<td><code>visitor</code></td>
+<td><code>any or any or any</code></td>
+<td>Yes</td>
+<td>The unique identifiers to convert a single Visitor.</td>
+</tr>
+<tr>
+<td><code>visitor.email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The visitor's email.</td>
+</tr>
+<tr>
+<td><code>visitor.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>visitor.user_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A unique identifier for the contact which is given to Intercom.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-successful-5" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>android_app_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the Android app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_device</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Android device which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_last_seen_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last seen on an Android device.</td>
+</tr>
+<tr>
+<td><code>android_os_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android OS which the contact is using.</td>
+</tr>
+<tr>
+<td><code>android_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android SDK which the contact is using.</td>
+</tr>
+<tr>
+<td><code>avatar</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>avatar.image_url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>An image URL containing the avatar of a contact.</td>
+</tr>
+<tr>
+<td><code>avatar.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of object</td>
+</tr>
+<tr>
+<td><code>browser</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>browser_language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language set by the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>browser_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>companies</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object with metadata about companies attached to a contact . Up to 10 will be displayed here. Use the url to get more.</td>
+</tr>
+<tr>
+<td><code>companies.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of company data objects attached to the contact.</td>
+</tr>
+<tr>
+<td><code>companies.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the company which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>companies.data[].type</code></td>
+<td><code>enum: company</code></td>
+<td>No</td>
+<td>The type of the object. Always company.</td>
+</tr>
+<tr>
+<td><code>companies.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The relative URL of the company.</td>
+</tr>
+<tr>
+<td><code>companies.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether there's more Addressable Objects to be viewed. If true, use the url to view all</td>
+</tr>
+<tr>
+<td><code>companies.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Integer representing the total number of companies attached to this contact</td>
+</tr>
+<tr>
+<td><code>companies.url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was created.</td>
+</tr>
+<tr>
+<td><code>custom_attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The custom attributes which are set for the contact.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The contact's email.</td>
+</tr>
+<tr>
+<td><code>email_domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The contact's email domain.</td>
+</tr>
+<tr>
+<td><code>external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is provided by the Client.</td>
+</tr>
+<tr>
+<td><code>has_hard_bounced</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact has had an email sent to them hard bounce.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>ios_app_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the iOS app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the iOS app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_device</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The iOS device which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_last_seen_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The last time the contact used the iOS app.</td>
+</tr>
+<tr>
+<td><code>ios_os_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of iOS which the contact is using.</td>
+</tr>
+<tr>
+<td><code>ios_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the iOS SDK which the contact is using.</td>
+</tr>
+<tr>
+<td><code>language_override</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change.</td>
+</tr>
+<tr>
+<td><code>last_contacted_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last messaged.</td>
+</tr>
+<tr>
+<td><code>last_email_clicked_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last clicked a link in an email.</td>
+</tr>
+<tr>
+<td><code>last_email_opened_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last opened an email.</td>
+</tr>
+<tr>
+<td><code>last_replied_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last messaged in.</td>
+</tr>
+<tr>
+<td><code>last_seen_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually).</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing location meta data about a Intercom contact.</td>
+</tr>
+<tr>
+<td><code>location.city</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The city that the contact is located in</td>
+</tr>
+<tr>
+<td><code>location.country</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The country that the contact is located in</td>
+</tr>
+<tr>
+<td><code>location.region</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The overal region that the contact is located in</td>
+</tr>
+<tr>
+<td><code>location.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Always location</td>
+</tr>
+<tr>
+<td><code>marked_email_as_spam</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact has marked an email sent to them as spam.</td>
+</tr>
+<tr>
+<td><code>merge_history</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of contacts that were merged into this contact. Only included in the response when <code>include_merge_history=true</code> is passed as a query parameter. Only available for contacts with a <code>user</code> role.</td>
+</tr>
+<tr>
+<td><code>merge_history[].merged_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the merge occurred.</td>
+</tr>
+<tr>
+<td><code>merge_history[].source_contact_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Intercom ID of the contact that was merged into this contact.</td>
+</tr>
+<tr>
+<td><code>merge_history[].source_contact_role</code></td>
+<td><code>enum: lead, user</code></td>
+<td>No</td>
+<td>The role of the contact that was merged in.</td>
+</tr>
+<tr>
+<td><code>merge_history[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of object.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The contacts name.</td>
+</tr>
+<tr>
+<td><code>notes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing notes meta data about the notes that a contact has. Up to 10 will be displayed here. Use the url to get more.</td>
+</tr>
+<tr>
+<td><code>notes.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>This object represents the notes attached to a contact.</td>
+</tr>
+<tr>
+<td><code>notes.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the addressable object</td>
+</tr>
+<tr>
+<td><code>notes.data[].type</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The addressable object type</td>
+</tr>
+<tr>
+<td><code>notes.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>notes.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether there's more Addressable Objects to be viewed. If true, use the url to view all</td>
+</tr>
+<tr>
+<td><code>notes.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Int representing the total number of companyies attached to this contact</td>
+</tr>
+<tr>
+<td><code>notes.url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>os</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The operating system which the contact is using.</td>
+</tr>
+<tr>
+<td><code>owner_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of an admin that has been assigned account ownership of the contact.</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The contacts phone.</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The role of the contact.</td>
+</tr>
+<tr>
+<td><code>signed_up_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time specified for when a contact signed up.</td>
+</tr>
+<tr>
+<td><code>social_profiles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing social profiles that a contact has.</td>
+</tr>
+<tr>
+<td><code>social_profiles.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of social profiles objects associated with the contact.</td>
+</tr>
+<tr>
+<td><code>social_profiles.data[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the Social media profile</td>
+</tr>
+<tr>
+<td><code>social_profiles.data[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>value is &quot;social_profile&quot;</td>
+</tr>
+<tr>
+<td><code>social_profiles.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The name of the Social media profile</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing tags meta data about the tags that a contact has. Up to 10 will be displayed here. Use the url to get more.</td>
+</tr>
+<tr>
+<td><code>tags.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>This object represents the tags attached to a contact.</td>
+</tr>
+<tr>
+<td><code>tags.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the addressable object</td>
+</tr>
+<tr>
+<td><code>tags.data[].type</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The addressable object type</td>
+</tr>
+<tr>
+<td><code>tags.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>tags.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether there's more Addressable Objects to be viewed. If true, use the url to view all</td>
+</tr>
+<tr>
+<td><code>tags.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Int representing the total number of tags attached to this contact</td>
+</tr>
+<tr>
+<td><code>tags.url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>url to get more tag resources for this contact</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of object.</td>
+</tr>
+<tr>
+<td><code>unsubscribed_from_emails</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact is unsubscribed from emails.</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last updated.</td>
+</tr>
+<tr>
+<td><code>workspace_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the workspace which the contact belongs to.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-2" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-contacts" class="operation" data-method="get"><code>GET</code> /contacts</h3>
+<p>Operation ID: <code>ListContacts</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>include_merge_history</code> | <code>query</code> | <code>boolean</code> | No | Pass <code>true</code> to include a <code>merge_history</code> array on each contact in the response. Only returned for contacts with a <code>user</code> role. |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-successful-6" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -254,62 +1464,557 @@
 <td><code>data</code></td>
 <td><code>array of object</code></td>
 <td>No</td>
+<td>The list of contact objects</td>
+</tr>
+<tr>
+<td><code>data[].android_app_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the Android app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].android_app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].android_device</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Android device which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].android_last_seen_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last seen on an Android device.</td>
+</tr>
+<tr>
+<td><code>data[].android_os_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android OS which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].android_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the Android SDK which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].avatar</code></td>
+<td><code>object</code></td>
+<td>No</td>
 <td></td>
 </tr>
 <tr>
-<td><code>data[].created_at</code></td>
+<td><code>data[].avatar.image_url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>An image URL containing the avatar of a contact.</td>
+</tr>
+<tr>
+<td><code>data[].avatar.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of object</td>
+</tr>
+<tr>
+<td><code>data[].browser</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].browser_language</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The language set by the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].browser_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the browser which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].companies</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object with metadata about companies attached to a contact . Up to 10 will be displayed here. Use the url to get more.</td>
+</tr>
+<tr>
+<td><code>data[].companies.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of company data objects attached to the contact.</td>
+</tr>
+<tr>
+<td><code>data[].companies.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the company which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>data[].companies.data[].type</code></td>
+<td><code>enum: company</code></td>
+<td>No</td>
+<td>The type of the object. Always company.</td>
+</tr>
+<tr>
+<td><code>data[].companies.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The relative URL of the company.</td>
+</tr>
+<tr>
+<td><code>data[].companies.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether there's more Addressable Objects to be viewed. If true, use the url to view all</td>
+</tr>
+<tr>
+<td><code>data[].companies.total_count</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td></td>
+<td>Integer representing the total number of companies attached to this contact</td>
+</tr>
+<tr>
+<td><code>data[].companies.url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>data[].created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was created.</td>
+</tr>
+<tr>
+<td><code>data[].custom_attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The custom attributes which are set for the contact.</td>
 </tr>
 <tr>
 <td><code>data[].email</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The contact's email.</td>
+</tr>
+<tr>
+<td><code>data[].email_domain</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The contact's email domain.</td>
+</tr>
+<tr>
+<td><code>data[].external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is provided by the Client.</td>
+</tr>
+<tr>
+<td><code>data[].has_hard_bounced</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact has had an email sent to them hard bounce.</td>
 </tr>
 <tr>
 <td><code>data[].id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>data[].ios_app_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the iOS app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].ios_app_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the iOS app which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].ios_device</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The iOS device which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].ios_last_seen_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The last time the contact used the iOS app.</td>
+</tr>
+<tr>
+<td><code>data[].ios_os_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of iOS which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].ios_sdk_version</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The version of the iOS SDK which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].language_override</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change.</td>
+</tr>
+<tr>
+<td><code>data[].last_contacted_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last messaged.</td>
+</tr>
+<tr>
+<td><code>data[].last_email_clicked_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last clicked a link in an email.</td>
+</tr>
+<tr>
+<td><code>data[].last_email_opened_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last opened an email.</td>
+</tr>
+<tr>
+<td><code>data[].last_replied_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact last messaged in.</td>
+</tr>
+<tr>
+<td><code>data[].last_seen_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually).</td>
+</tr>
+<tr>
+<td><code>data[].location</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing location meta data about a Intercom contact.</td>
+</tr>
+<tr>
+<td><code>data[].location.city</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The city that the contact is located in</td>
+</tr>
+<tr>
+<td><code>data[].location.country</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The country that the contact is located in</td>
+</tr>
+<tr>
+<td><code>data[].location.region</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The overal region that the contact is located in</td>
+</tr>
+<tr>
+<td><code>data[].location.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Always location</td>
+</tr>
+<tr>
+<td><code>data[].marked_email_as_spam</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact has marked an email sent to them as spam.</td>
+</tr>
+<tr>
+<td><code>data[].merge_history</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of contacts that were merged into this contact. Only included in the response when <code>include_merge_history=true</code> is passed as a query parameter. Only available for contacts with a <code>user</code> role.</td>
+</tr>
+<tr>
+<td><code>data[].merge_history[].merged_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the merge occurred.</td>
+</tr>
+<tr>
+<td><code>data[].merge_history[].source_contact_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Intercom ID of the contact that was merged into this contact.</td>
+</tr>
+<tr>
+<td><code>data[].merge_history[].source_contact_role</code></td>
+<td><code>enum: lead, user</code></td>
+<td>No</td>
+<td>The role of the contact that was merged in.</td>
+</tr>
+<tr>
+<td><code>data[].merge_history[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of object.</td>
 </tr>
 <tr>
 <td><code>data[].name</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The contacts name.</td>
+</tr>
+<tr>
+<td><code>data[].notes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing notes meta data about the notes that a contact has. Up to 10 will be displayed here. Use the url to get more.</td>
+</tr>
+<tr>
+<td><code>data[].notes.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>This object represents the notes attached to a contact.</td>
+</tr>
+<tr>
+<td><code>data[].notes.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the addressable object</td>
+</tr>
+<tr>
+<td><code>data[].notes.data[].type</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The addressable object type</td>
+</tr>
+<tr>
+<td><code>data[].notes.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>data[].notes.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether there's more Addressable Objects to be viewed. If true, use the url to view all</td>
+</tr>
+<tr>
+<td><code>data[].notes.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Int representing the total number of companyies attached to this contact</td>
+</tr>
+<tr>
+<td><code>data[].notes.url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>data[].os</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The operating system which the contact is using.</td>
+</tr>
+<tr>
+<td><code>data[].owner_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of an admin that has been assigned account ownership of the contact.</td>
 </tr>
 <tr>
 <td><code>data[].phone</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The contacts phone.</td>
 </tr>
 <tr>
 <td><code>data[].role</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>The role of the contact.</td>
+</tr>
+<tr>
+<td><code>data[].signed_up_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time specified for when a contact signed up.</td>
+</tr>
+<tr>
+<td><code>data[].social_profiles</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing social profiles that a contact has.</td>
+</tr>
+<tr>
+<td><code>data[].social_profiles.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of social profiles objects associated with the contact.</td>
+</tr>
+<tr>
+<td><code>data[].social_profiles.data[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the Social media profile</td>
+</tr>
+<tr>
+<td><code>data[].social_profiles.data[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>value is &quot;social_profile&quot;</td>
+</tr>
+<tr>
+<td><code>data[].social_profiles.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The name of the Social media profile</td>
+</tr>
+<tr>
+<td><code>data[].tags</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing tags meta data about the tags that a contact has. Up to 10 will be displayed here. Use the url to get more.</td>
+</tr>
+<tr>
+<td><code>data[].tags.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>This object represents the tags attached to a contact.</td>
+</tr>
+<tr>
+<td><code>data[].tags.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the addressable object</td>
+</tr>
+<tr>
+<td><code>data[].tags.data[].type</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>The addressable object type</td>
+</tr>
+<tr>
+<td><code>data[].tags.data[].url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>Url to get more company resources for this contact</td>
+</tr>
+<tr>
+<td><code>data[].tags.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether there's more Addressable Objects to be viewed. If true, use the url to view all</td>
+</tr>
+<tr>
+<td><code>data[].tags.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Int representing the total number of tags attached to this contact</td>
+</tr>
+<tr>
+<td><code>data[].tags.url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>url to get more tag resources for this contact</td>
+</tr>
+<tr>
+<td><code>data[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of object.</td>
+</tr>
+<tr>
+<td><code>data[].unsubscribed_from_emails</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the contact is unsubscribed from emails.</td>
 </tr>
 <tr>
 <td><code>data[].updated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>(Unix timestamp in seconds) The time when the contact was last updated.</td>
+</tr>
+<tr>
+<td><code>data[].workspace_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the workspace which the contact belongs to.</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A &quot;cursor&quot; or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or &quot;pages&quot; as needed.</td>
+</tr>
+<tr>
+<td><code>pages.next</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Pagination: Starting After</td>
+</tr>
+<tr>
+<td><code>pages.next.per_page</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td></td>
+<td>The number of results to fetch per page.</td>
+</tr>
+<tr>
+<td><code>pages.next.starting_after</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>pages.page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The current page</td>
+</tr>
+<tr>
+<td><code>pages.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of results per page</td>
+</tr>
+<tr>
+<td><code>pages.total_pages</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Total number of pages</td>
+</tr>
+<tr>
+<td><code>pages.type</code></td>
+<td><code>enum: pages</code></td>
+<td>No</td>
+<td>the type of object <code>pages</code>.</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: list</code></td>
+<td>No</td>
+<td>Always list</td>
 </tr>
 </tbody>
 </table>
-<h2 id="load">load</h2>
-<h3 id="get-contactsid" class="operation" data-method="get"><code>GET</code> /contacts/{id}</h3>
-<p>Operation ID: <code>getContact</code>.</p>
-<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-1">Parameters</h4>
-<p>| Parameter | In | Type | Required | Description |
-| --- | --- | --- | --- |
-| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
-<h4 id="responses-2">Responses</h4>
-<h5 id="200-the-requested-contact" class="status" data-status="2xx">200: The requested contact</h5>
+<h5 id="401-unauthorized-3" class="status" data-status="4xx">401: Unauthorized</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -322,68 +2027,255 @@
 </thead>
 <tbody>
 <tr>
-<td><code>created_at</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
 </tr>
 <tr>
-<td><code>email</code></td>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
 </tr>
 <tr>
-<td><code>id</code></td>
+<td><code>errors[].message</code></td>
 <td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
 </tr>
 <tr>
-<td><code>name</code></td>
+<td><code>type</code></td>
 <td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-contactsfind_by_external_idexternal_id" class="operation" data-method="get"><code>GET</code> /contacts/find_by_external_id/{external_id}</h3>
+<p>Operation ID: <code>ShowContactByExternalId</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>external_id</code> | <code>path</code> | <code>string</code> | Yes | The external ID of the user that you want to retrieve |
+| <code>include_merge_history</code> | <code>query</code> | <code>boolean</code> | No | Pass <code>true</code> to include the contact's merge history in the response. Only returned for contacts with a <code>user</code> role. |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-successful-7" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled_push_messaging</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If the user has enabled push messaging.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-4" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
 </tr>
 <tr>
-<td><code>phone</code></td>
+<td><code>type</code></td>
 <td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h5 id="410-contact-merged" class="status" data-status="4xx">410: Contact Merged</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
+<td>No</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-contactscontact_id" class="operation" data-method="get"><code>GET</code> /contacts/{contact_id}</h3>
+<p>Operation ID: <code>ShowContact</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |
+| <code>include_merge_history</code> | <code>query</code> | <code>boolean</code> | No | Pass <code>true</code> to include the contact's merge history in the response. Only returned for contacts with a <code>user</code> role. |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-successful-8" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled_push_messaging</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If the user has enabled push messaging.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-5" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
 </tr>
 <tr>
-<td><code>role</code></td>
+<td><code>type</code></td>
 <td><code>string</code></td>
-<td>No</td>
-<td></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
+</tbody>
+</table>
+<h5 id="410-contact-merged-1" class="status" data-status="4xx">410: Contact Merged</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
 <tr>
-<td><code>updated_at</code></td>
-<td><code>integer</code></td>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ref</code></td>
+<td><code>any</code></td>
 <td>No</td>
 <td></td>
 </tr>
 </tbody>
 </table>
 <h2 id="remove">remove</h2>
-<h3 id="delete-contactsid" class="operation" data-method="delete"><code>DELETE</code> /contacts/{id}</h3>
-<p>Operation ID: <code>deleteContact</code>.</p>
+<h3 id="delete-contactscontact_id" class="operation" data-method="delete"><code>DELETE</code> /contacts/{contact_id}</h3>
+<p>Operation ID: <code>DeleteContact</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-2">Parameters</h4>
+<h4 id="parameters-9">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
-| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
-<h4 id="responses-3">Responses</h4>
-<h5 id="200-deleted" class="status" data-status="2xx">200: Deleted</h5>
-<h2 id="update">update</h2>
-<h3 id="put-contactsid" class="operation" data-method="put"><code>PUT</code> /contacts/{id}</h3>
-<p>Operation ID: <code>updateContact</code>.</p>
-<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-3">Parameters</h4>
-<p>| Parameter | In | Type | Required | Description |
-| --- | --- | --- | --- |
-| <code>id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
-<h4 id="request-body-1">Request body</h4>
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-successful-9" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -396,33 +2288,14 @@
 </thead>
 <tbody>
 <tr>
-<td><code>email</code></td>
-<td><code>string</code></td>
+<td><code>deleted</code></td>
+<td><code>boolean</code></td>
 <td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>phone</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>role</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td></td>
+<td>Whether the contact is deleted or not.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="responses-4">Responses</h4>
-<h5 id="200-the-updated-contact" class="status" data-status="2xx">200: The updated contact</h5>
+<h5 id="401-unauthorized-6" class="status" data-status="4xx">401: Unauthorized</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -435,46 +2308,124 @@
 </thead>
 <tbody>
 <tr>
-<td><code>created_at</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
 </tr>
 <tr>
-<td><code>email</code></td>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
 </tr>
 <tr>
-<td><code>id</code></td>
+<td><code>errors[].message</code></td>
 <td><code>string</code></td>
 <td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
 <td></td>
 </tr>
 <tr>
-<td><code>name</code></td>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="update">update</h2>
+<h3 id="put-contactscontact_id" class="operation" data-method="put"><code>PUT</code> /contacts/{contact_id}</h3>
+<p>Operation ID: <code>UpdateContact</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-10">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | id |
+| <code>include_merge_history</code> | <code>query</code> | <code>boolean</code> | No | Pass <code>true</code> to include the contact's merge history in the response. Only returned for contacts with a <code>user</code> role. |</p>
+<h4 id="request-body-3">Request body</h4>
+<p><code>application/json</code></p>
+<p>The request body is <code>object</code>.</p>
+<h4 id="responses-10">Responses</h4>
+<h5 id="200-successful-10" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled_push_messaging</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>If the user has enabled push messaging.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-7" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td></td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
 </tr>
 <tr>
-<td><code>phone</code></td>
+<td><code>errors[].message</code></td>
 <td><code>string</code></td>
 <td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
 <td></td>
 </tr>
 <tr>
-<td><code>role</code></td>
+<td><code>type</code></td>
 <td><code>string</code></td>
-<td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>updated_at</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,119 @@
+# Entity: deleted
+
+main: kit: entity: deleted: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      format: "date-time"
+      name: "deleted_at"
+      req: false
+      short: "The time when the conversation was deleted."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The ID of the deleted conversation."
+      type: "`$STRING`"
+    }
+    {
+      name: "metrics_retained"
+      req: false
+      short: "Whether reporting metrics are retained for this conversation ID"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "String representing the object's type."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "deleted"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "desc"
+                kind: "query"
+                name: "order"
+                orig: "order"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "per_page"
+                orig: "per_page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /conversations/deleted"
+            json: "{\"operationId\":\"listDeletedConversationIds\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The page of results to fetch. Defaults to first page\",\"example\":1,\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"How many results per page\",\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"default\":20,\"maximum\":60,\"type\":\"integer\"}},{\"description\":\"`asc` or `desc`. Returns the conversation IDs in ascending or descending order. Defaults to desc\",\"example\":\"desc\",\"in\":\"query\",\"name\":\"order\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"conversations\":[{\"deleted_at\":1734537460,\"id\":\"512\",\"metrics_retained\":false,\"type\":\"conversation\"},{\"deleted_at\":1734537400,\"id\":\"513\",\"metrics_retained\":true,\"type\":\"conversation\"}],\"pages\":{\"next\":\"https://api.intercom.io/conversations/deleted?per_page=2&order=desc&page=2\",\"page\":1,\"per_page\":2,\"total_pages\":2,\"type\":\"pages\"},\"total_count\":4,\"type\":\"conversations.list\"}}},\"schema\":{\"description\":\"A paginated list of deleted conversation IDs.\",\"properties\":{\"conversations\":{\"description\":\"The list of deleted conversation IDs.\",\"items\":{\"description\":\"A deleted conversation record containing its ID, metrics retained status and deletion timestamp.\",\"properties\":{\"deleted_at\":{\"description\":\"The time when the conversation was deleted.\",\"example\":1734537745,\"format\":\"date-time\",\"type\":\"integer\"},\"id\":{\"description\":\"The ID of the deleted conversation.\",\"example\":\"512\",\"type\":\"string\"},\"metrics_retained\":{\"description\":\"Whether reporting metrics are retained for this conversation ID\",\"example\":true,\"type\":\"boolean\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `conversation`.\",\"example\":\"conversation\",\"type\":\"string\"}},\"title\":\"Conversation\",\"type\":\"object\"},\"type\":\"array\"},\"pages\":{\"description\":\"The majority of list resources in the API are paginated to allow clients to traverse data over multiple requests.\\n\\nTheir responses are likely to contain a pages object that hosts pagination links which a client can use to paginate through the data without having to construct a query. The link relations for the pages field are as follows.\\n\",\"properties\":{\"next\":{\"description\":\"A link to the next page of results. A response that does not contain a next link does not have further data to fetch.\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"page\":{\"example\":1,\"type\":\"integer\"},\"per_page\":{\"example\":50,\"type\":\"integer\"},\"total_pages\":{\"example\":1,\"type\":\"integer\"},\"type\":{\"enum\":[\"pages\"],\"example\":\"pages\",\"type\":\"string\"}},\"title\":\"Pagination Object\",\"type\":\"object\"},\"total_count\":{\"description\":\"Total number of items available.\",\"example\":10,\"type\":\"integer\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `conversations.list`.\",\"example\":\"conversations.list\",\"type\":\"string\"}},\"title\":\"Conversations\",\"type\":\"object\"}}},\"description\":\"View all deleted conversation IDs\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"Resource not available\":{\"value\":{\"errors\":[{\"code\":\"intercom_version_invalid\",\"message\":\"Requested resource is not available in current API version.\"}],\"request_id\":\"7a80b950-b392-499f-85db-ea7c6c424d37\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Resource not available\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"310f55b0-2660-43e8-bed4-7e82b2f40920\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/conversations/deleted"
+          segments: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "deleted"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+              "order"
+              "page"
+              "per_page"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

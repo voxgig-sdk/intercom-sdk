@@ -1,0 +1,90 @@
+# BasicTagFlow
+
+main: kit: flow: BasicTagFlow:
+{
+  entity: "tag",
+  kind: "basic",
+  name: "BasicTagFlow",
+  step: [
+    {
+      input: {
+        ref: "tag_ref01"
+      }
+
+      match: {
+        article_id: "article01",
+        contact_id: "contact01",
+        content_snippet_id: "content_snippet01",
+        conversation_id: "conversation01",
+        internal_article_id: "internal_article01",
+        ticket_id: "ticket01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "tag_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "tag_ref01",
+        srcdatavar: "tag_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "tag01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-tag_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "tag_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "tag01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "tag_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTagFlow"
+}

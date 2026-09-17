@@ -1,0 +1,712 @@
+{
+  "existing": {
+    "content_search": {
+      "CONTENT_SEARCH00": {
+        "data": [],
+        "pages": {},
+        "total_count": 42,
+        "type": "s2b"
+      },
+      "CONTENT_SEARCH01": {
+        "data": [],
+        "pages": {},
+        "total_count": 82,
+        "type": "s53"
+      },
+      "CONTENT_SEARCH02": {
+        "data": [],
+        "pages": {},
+        "total_count": 122,
+        "type": "s7b"
+      }
+    }
+  },
+  "new": {
+    "content_search": {
+      "content_search_ref01": {
+        "data": [],
+        "pages": {},
+        "total_count": 162,
+        "type": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /content/search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchContent",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "A free-text search term matched against the title and body of each content item. When omitted, returns the most recent content items.",
+            "example": "billing",
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "schema": {
+              "maxLength": 500,
+              "type": "string"
+            }
+          },
+          {
+            "description": "The page number to fetch. Defaults to 1. Values below 1 are clamped to 1.",
+            "example": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of results per page. Defaults to 10. Maximum 50.",
+            "example": 10,
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter by publication state. Accepts a comma-separated list or repeated params.",
+            "example": "published,draft",
+            "explode": false,
+            "in": "query",
+            "name": "states",
+            "required": false,
+            "schema": {
+              "items": {
+                "enum": [
+                  "published",
+                  "draft"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Filter by locale codes (e.g. `en`, `fr`, `de`). Accepts a comma-separated list or repeated params.",
+            "example": "en,fr",
+            "explode": false,
+            "in": "query",
+            "name": "locales",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Filter by tag IDs. Pairs with `tag_operator` to control match semantics. Accepts a comma-separated list or repeated params.",
+            "example": "1,2,3",
+            "explode": false,
+            "in": "query",
+            "name": "tag_ids",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Match operator paired with `tag_ids`. `IN` returns content matching any of the given tags; `NIN` excludes content matching any of them.",
+            "example": "IN",
+            "in": "query",
+            "name": "tag_operator",
+            "required": false,
+            "schema": {
+              "enum": [
+                "IN",
+                "NIN"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by tag IDs using OR semantics — returns content matching any of the given tags. Alternative to `tag_ids` + `tag_operator`. Accepts a comma-separated list or repeated params.",
+            "example": "1,2,3",
+            "explode": false,
+            "in": "query",
+            "name": "any_tag_ids",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Filter by folder IDs. Must be sent together with `folder_entity_type`. Accepts a comma-separated list or repeated params.",
+            "example": "10,20",
+            "explode": false,
+            "in": "query",
+            "name": "folder_ids",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Required when `folder_ids` is provided. Identifies the entity type the folder IDs refer to.",
+            "example": "folder",
+            "in": "query",
+            "name": "folder_entity_type",
+            "required": false,
+            "schema": {
+              "enum": [
+                "folder"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Restrict the search to specific content types. When provided, this REPLACES the default content type set rather than filtering on top of it. Accepts a comma-separated list or repeated params.",
+            "example": "article,snippet",
+            "explode": false,
+            "in": "query",
+            "name": "content_types",
+            "required": false,
+            "schema": {
+              "items": {
+                "enum": [
+                  "snippet",
+                  "external_content",
+                  "file_source_content",
+                  "internal_article",
+                  "article"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Filter by whether the content is enabled for Copilot.",
+            "example": "on",
+            "in": "query",
+            "name": "copilot_state",
+            "required": false,
+            "schema": {
+              "enum": [
+                "on",
+                "off"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by whether the content is enabled for Fin AI Agent (customer-facing service).",
+            "example": "on",
+            "in": "query",
+            "name": "fin_service_state",
+            "required": false,
+            "schema": {
+              "enum": [
+                "on",
+                "off"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by whether the content is enabled for Fin Sales Agent.",
+            "example": "on",
+            "in": "query",
+            "name": "fin_sales_state",
+            "required": false,
+            "schema": {
+              "enum": [
+                "on",
+                "off"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by the admin IDs that created the content. Accepts a comma-separated list or repeated params.",
+            "example": "991267464,991267465",
+            "explode": false,
+            "in": "query",
+            "name": "created_by_ids",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Filter by the admin IDs that last updated the content. Accepts a comma-separated list or repeated params.",
+            "example": "991267464,991267465",
+            "explode": false,
+            "in": "query",
+            "name": "last_updated_by_ids",
+            "required": false,
+            "schema": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          },
+          {
+            "description": "Return content created at or after this time. Unix epoch seconds.",
+            "example": 1677253093,
+            "in": "query",
+            "name": "created_at_after",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return content created at or before this time. Unix epoch seconds.",
+            "example": 1677861493,
+            "in": "query",
+            "name": "created_at_before",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return content last updated at or after this time. Unix epoch seconds.",
+            "example": 1677253093,
+            "in": "query",
+            "name": "updated_at_after",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Return content last updated at or before this time. Unix epoch seconds.",
+            "example": 1677861493,
+            "in": "query",
+            "name": "updated_at_before",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Search successful": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "123",
+                          "title": "Billing FAQ",
+                          "type": "content_snippet"
+                        },
+                        {
+                          "id": "456",
+                          "title": "How to reset your password",
+                          "type": "external_content"
+                        },
+                        {
+                          "id": "789",
+                          "title": "billing-guide.pdf",
+                          "type": "file_source_content"
+                        },
+                        {
+                          "id": "012",
+                          "title": "Internal SOP: Refunds",
+                          "type": "internal_article"
+                        },
+                        {
+                          "contents": [
+                            {
+                              "id": "678",
+                              "locale": "en",
+                              "title": "Billing FAQ",
+                              "type": "article_content"
+                            },
+                            {
+                              "id": "910",
+                              "locale": "fr",
+                              "title": "Facturation FAQ",
+                              "type": "article_content"
+                            }
+                          ],
+                          "id": "345",
+                          "title": "Billing FAQ",
+                          "type": "article"
+                        }
+                      ],
+                      "pages": {
+                        "next": null,
+                        "page": 1,
+                        "per_page": 10,
+                        "prev": null,
+                        "total_pages": 1,
+                        "type": "pages"
+                      },
+                      "total_count": 5,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of Knowledge Hub content results matching a search query.",
+                  "properties": {
+                    "data": {
+                      "description": "The list of matched content items. Each item's `type` field determines its shape.",
+                      "items": {
+                        "description": "A single search result. The `type` field discriminates between the flat shape used for snippets, external pages, files, and internal articles, and the nested shape used for help center articles.",
+                        "discriminator": {
+                          "mapping": {
+                            "article": "#/components/schemas/content_search_article_item",
+                            "content_snippet": "#/components/schemas/content_search_default_item",
+                            "external_content": "#/components/schemas/content_search_default_item",
+                            "file_source_content": "#/components/schemas/content_search_default_item",
+                            "internal_article": "#/components/schemas/content_search_default_item"
+                          },
+                          "propertyName": "type"
+                        },
+                        "oneOf": [
+                          {
+                            "description": "The flat result shape returned from Knowledge Hub search for content snippets, external pages, uploaded files, and internal articles.",
+                            "properties": {
+                              "id": {
+                                "description": "The unique identifier of the content item.",
+                                "example": "123",
+                                "type": "string"
+                              },
+                              "title": {
+                                "description": "The display title of the content item.",
+                                "example": "Billing FAQ",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "The kind of content item.",
+                                "enum": [
+                                  "content_snippet",
+                                  "external_content",
+                                  "file_source_content",
+                                  "internal_article"
+                                ],
+                                "example": "content_snippet",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "title": "Content Search Default Item",
+                            "type": "object"
+                          },
+                          {
+                            "description": "A help center article result from Knowledge Hub search, with one nested `article_content` entry per locale.",
+                            "properties": {
+                              "contents": {
+                                "description": "One entry per locale of the article.",
+                                "items": {
+                                  "description": "A single locale variant of a help center article returned from Knowledge Hub search.",
+                                  "properties": {
+                                    "id": {
+                                      "description": "The unique identifier of the article content.",
+                                      "example": "678",
+                                      "type": "string"
+                                    },
+                                    "locale": {
+                                      "description": "The locale of this article content.",
+                                      "example": "en",
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "description": "The localized title of the article.",
+                                      "example": "Billing FAQ",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "Always `article_content`.",
+                                      "enum": [
+                                        "article_content"
+                                      ],
+                                      "example": "article_content",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "title": "Content Search Article Content Item",
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "id": {
+                                "description": "The unique identifier of the article.",
+                                "example": "345",
+                                "type": "string"
+                              },
+                              "title": {
+                                "description": "The article's canonical title.",
+                                "example": "Billing FAQ",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Always `article`.",
+                                "enum": [
+                                  "article"
+                                ],
+                                "example": "article",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "title": "Content Search Article Item",
+                            "type": "object"
+                          }
+                        ],
+                        "title": "Content Search Result"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "Pagination metadata, including links to neighbouring pages.",
+                      "properties": {
+                        "next": {
+                          "description": "A link to the next page of results, or null when on the last page.",
+                          "example": "https://api.intercom.io/content/search?query=billing&page=2",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "page": {
+                          "description": "The current page number.",
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "description": "Number of results per page.",
+                          "example": 10,
+                          "type": "integer"
+                        },
+                        "prev": {
+                          "description": "A link to the previous page of results, or null when on the first page.",
+                          "example": null,
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "total_pages": {
+                          "description": "Total number of pages of results.",
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "total_count": {
+                      "description": "Total number of results matching the query.",
+                      "example": 5,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "Always `list`.",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Content Search Response",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Search successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "ValidationError": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_invalid",
+                          "message": "Invalid or duplicated record reference"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

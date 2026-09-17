@@ -1,0 +1,85 @@
+# Entity: whatsapp_message_status
+
+main: kit: entity: whatsapp_message_status: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "details"
+      req: false
+      short: "Detailed error information"
+      type: "`$STRING`"
+    }
+    {
+      name: "message"
+      req: false
+      short: "Error message"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "whatsapp_message_status"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "message_id"
+                orig: "message_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /messages/whatsapp/status"
+            json: "{\"operationId\":\"RetrieveWhatsAppMessageStatus\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The WhatsApp message ID to check status for\",\"in\":\"query\",\"name\":\"message_id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Failed message with error\":{\"value\":{\"conversation_id\":\"123456789\",\"created_at\":1734537980,\"error\":{\"details\":\"Recipient phone number not on WhatsApp\",\"message\":\"Message delivery failed\"},\"message_id\":\"wamid_abc123\",\"status\":\"failed\",\"template_name\":\"appointment_reminder\",\"type\":\"broadcast_outbound\",\"updated_at\":1734538000}},\"Successful response\":{\"value\":{\"conversation_id\":\"123456789\",\"created_at\":1734537980,\"message_id\":\"wamid_abc123\",\"status\":\"delivered\",\"template_name\":\"appointment_reminder\",\"type\":\"broadcast_outbound\",\"updated_at\":1734538000}}},\"schema\":{\"description\":\"The delivery status of a specific WhatsApp message.\",\"properties\":{\"conversation_id\":{\"description\":\"ID of the conversation\",\"example\":\"123456789\",\"type\":\"string\"},\"created_at\":{\"description\":\"Creation timestamp\",\"example\":1734537980,\"type\":\"integer\"},\"error\":{\"description\":\"Error details, present only when status is \\\"failed\\\"\",\"nullable\":true,\"properties\":{\"details\":{\"description\":\"Detailed error information\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"},\"message_id\":{\"description\":\"The WhatsApp message ID\",\"example\":\"wamid_abc123\",\"type\":\"string\"},\"status\":{\"description\":\"Current delivery status of the message\",\"enum\":[\"sent\",\"delivered\",\"read\",\"failed\"],\"example\":\"delivered\",\"type\":\"string\"},\"template_name\":{\"description\":\"Name of the WhatsApp template used\",\"example\":\"appointment_reminder\",\"type\":\"string\"},\"type\":{\"description\":\"Event type\",\"example\":\"broadcast_outbound\",\"type\":\"string\"},\"updated_at\":{\"description\":\"Last update timestamp\",\"example\":1734538000,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"missing message_id\":{\"value\":{\"message\":\"message_id is required\",\"request_id\":\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"type\":\"error\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Bad request - missing required parameters\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"8b2e4c6f-1234-5678-9abc-def012345678\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Message not found\":{\"value\":{\"errors\":[{\"code\":\"whatsapp_message_not_found\",\"message\":\"Whatsapp message not found\"}],\"request_id\":\"c4d5e6f7-8901-2345-6789-abcdef012345\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"WhatsApp message not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/messages/whatsapp/status"
+          segments: [
+            {
+              lit: "messages"
+            }
+            {
+              lit: "whatsapp"
+            }
+            {
+              lit: "status"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+              "message_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.error`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

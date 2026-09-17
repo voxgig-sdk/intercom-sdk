@@ -1,0 +1,9 @@
+# BasicDeletedArticleObjectFlow
+
+main: kit: flow: BasicDeletedArticleObjectFlow:
+{
+  entity: "deleted_article_object",
+  kind: "basic",
+  name: "BasicDeletedArticleObjectFlow",
+  "key$": "BasicDeletedArticleObjectFlow"
+}

@@ -1,0 +1,9 @@
+# BasicDeletedCompanyObjectFlow
+
+main: kit: flow: BasicDeletedCompanyObjectFlow:
+{
+  entity: "deleted_company_object",
+  kind: "basic",
+  name: "BasicDeletedCompanyObjectFlow",
+  "key$": "BasicDeletedCompanyObjectFlow"
+}

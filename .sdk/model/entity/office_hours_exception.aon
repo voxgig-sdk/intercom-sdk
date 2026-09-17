@@ -1,0 +1,358 @@
+# Entity: office_hours_exception
+
+main: kit: entity: office_hours_exception: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "created_at"
+      req: false
+      short: "The time the exception was created as a Unix timestamp."
+      type: "`$INTEGER`"
+    }
+    {
+      format: "date"
+      name: "exception_date"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "The date the exception applies to, in `YYYY-MM-DD` format."
+      type: "`$STRING`"
+    }
+    {
+      name: "exception_type"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "`closed` means the workspace is closed all day; `custom_hours` replaces the regular hours with `time_intervals`."
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The unique identifier for the office hours exception."
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "An optional name for the exception."
+      type: "`$STRING`"
+    }
+    {
+      name: "office_hours_schedule_id"
+      req: false
+      short: "The unique identifier for the schedule this exception belongs to."
+      type: "`$STRING`"
+    }
+    {
+      name: "recurring_annually"
+      req: false
+      short: "Whether the exception repeats every year on the same date."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "time_intervals"
+      req: false
+      short: "The open intervals for the exception date."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "The type of the object - always `office_hours_exception`."
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "The time the exception was last updated as a Unix timestamp."
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "office_hours_exception"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "123"
+                kind: "param"
+                name: "office_hours_schedule_id"
+                orig: "office_hours_schedule_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions"
+            json: "{\"operationId\":\"createOfficeHoursException\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"in\":\"path\",\"name\":\"office_hours_schedule_id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"Create exception\":{\"value\":{\"exception_date\":\"2026-12-25\",\"exception_type\":\"closed\",\"name\":\"Christmas Day\",\"recurring_annually\":true}}},\"schema\":{\"description\":\"The request payload for creating an office hours exception. Omit `time_intervals` when `exception_type` is `closed`.\",\"properties\":{\"exception_date\":{\"description\":\"The date the exception applies to, in `YYYY-MM-DD` format.\",\"example\":\"2026-12-25\",\"format\":\"date\",\"type\":\"string\"},\"exception_type\":{\"description\":\"The type of exception.\",\"enum\":[\"closed\",\"custom_hours\"],\"example\":\"closed\",\"type\":\"string\"},\"name\":{\"description\":\"An optional name for the exception.\",\"example\":\"Christmas Day\",\"type\":\"string\"},\"recurring_annually\":{\"description\":\"Whether the exception repeats every year on the same date.\",\"example\":true,\"type\":\"boolean\"},\"time_intervals\":{\"description\":\"The open intervals for the exception date. Required for `custom_hours`; omit for `closed`.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"}},\"required\":[\"exception_date\",\"exception_type\"],\"title\":\"Create Office Hours Exception Request\",\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"Office hours exception created\":{\"value\":{\"created_at\":1717200000,\"exception_date\":\"2026-12-25\",\"exception_type\":\"closed\",\"id\":\"458\",\"name\":\"Christmas Day\",\"office_hours_schedule_id\":\"123\",\"recurring_annually\":true,\"time_intervals\":null,\"type\":\"office_hours_exception\",\"updated_at\":1717200000}}},\"schema\":{\"description\":\"An exception overrides a schedule's regular hours on a specific date, such as a public holiday.\",\"properties\":{\"created_at\":{\"description\":\"The time the exception was created as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"},\"exception_date\":{\"description\":\"The date the exception applies to, in `YYYY-MM-DD` format.\",\"example\":\"2026-12-25\",\"format\":\"date\",\"type\":\"string\"},\"exception_type\":{\"description\":\"`closed` means the workspace is closed all day; `custom_hours` replaces the regular hours with `time_intervals`.\",\"enum\":[\"closed\",\"custom_hours\"],\"example\":\"closed\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the office hours exception.\",\"example\":\"456\",\"type\":\"string\"},\"name\":{\"description\":\"An optional name for the exception.\",\"example\":\"Christmas Day\",\"nullable\":true,\"type\":\"string\"},\"office_hours_schedule_id\":{\"description\":\"The unique identifier for the schedule this exception belongs to.\",\"example\":\"123\",\"type\":\"string\"},\"recurring_annually\":{\"description\":\"Whether the exception repeats every year on the same date.\",\"example\":true,\"type\":\"boolean\"},\"time_intervals\":{\"description\":\"The open intervals for the exception date. `null` when `exception_type` is `closed`.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - always `office_hours_exception`.\",\"example\":\"office_hours_exception\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the exception was last updated as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"}},\"title\":\"Office Hours Exception\",\"type\":\"object\"}}},\"description\":\"Office hours exception created\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"CustomObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Custom object instance not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"IntegrationNotFound\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Integration not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"ObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Object not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Not Found\"},\"422\":{\"content\":{\"application/json\":{\"examples\":{\"ValidationError\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Invalid or duplicated record reference\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions"
+          segments: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "office_hours_schedule_id"
+            }
+            {
+              lit: "office_hours_exceptions"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+              "office_hours_schedule_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "123"
+                kind: "param"
+                name: "office_hours_schedule_id"
+                orig: "office_hours_schedule_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions"
+            json: "{\"operationId\":\"listOfficeHoursExceptions\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"in\":\"path\",\"name\":\"office_hours_schedule_id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful response\":{\"value\":{\"data\":[{\"exception_date\":\"2026-12-25\",\"exception_type\":\"closed\",\"id\":\"456\",\"name\":\"Christmas Day\",\"office_hours_schedule_id\":\"123\",\"time_intervals\":{\"created_at\":1717200000,\"recurring_annually\":true,\"updated_at\":1717200000},\"type\":\"office_hours_exception\"},{\"created_at\":1717200000,\"exception_date\":\"2026-12-24\",\"exception_type\":\"custom_hours\",\"id\":\"457\",\"name\":\"Christmas Eve\",\"office_hours_schedule_id\":\"123\",\"recurring_annually\":true,\"time_intervals\":[{\"day_of_week\":3,\"end_minute\":780,\"start_minute\":540}],\"type\":\"office_hours_exception\",\"updated_at\":1717200000}],\"type\":\"office_hours_exception.list\"}}},\"schema\":{\"description\":\"A list of office hours exceptions.\",\"properties\":{\"data\":{\"description\":\"An array of office hours exceptions.\",\"items\":{\"description\":\"An exception overrides a schedule's regular hours on a specific date, such as a public holiday.\",\"properties\":{\"created_at\":{\"description\":\"The time the exception was created as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"},\"exception_date\":{\"description\":\"The date the exception applies to, in `YYYY-MM-DD` format.\",\"example\":\"2026-12-25\",\"format\":\"date\",\"type\":\"string\"},\"exception_type\":{\"description\":\"`closed` means the workspace is closed all day; `custom_hours` replaces the regular hours with `time_intervals`.\",\"enum\":[\"closed\",\"custom_hours\"],\"example\":\"closed\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the office hours exception.\",\"example\":\"456\",\"type\":\"string\"},\"name\":{\"description\":\"An optional name for the exception.\",\"example\":\"Christmas Day\",\"nullable\":true,\"type\":\"string\"},\"office_hours_schedule_id\":{\"description\":\"The unique identifier for the schedule this exception belongs to.\",\"example\":\"123\",\"type\":\"string\"},\"recurring_annually\":{\"description\":\"Whether the exception repeats every year on the same date.\",\"example\":true,\"type\":\"boolean\"},\"time_intervals\":{\"description\":\"The open intervals for the exception date. `null` when `exception_type` is `closed`.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - always `office_hours_exception`.\",\"example\":\"office_hours_exception\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the exception was last updated as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"}},\"title\":\"Office Hours Exception\",\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - always `office_hours_exception.list`.\",\"example\":\"office_hours_exception.list\",\"type\":\"string\"}},\"title\":\"Office Hours Exception List\",\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"CustomObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Custom object instance not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"IntegrationNotFound\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Integration not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"ObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Object not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions"
+          segments: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "office_hours_schedule_id"
+            }
+            {
+              lit: "office_hours_exceptions"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+              "office_hours_schedule_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "456"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "123"
+                kind: "param"
+                name: "office_hours_schedule_id"
+                orig: "office_hours_schedule_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}"
+            json: "{\"operationId\":\"getOfficeHoursException\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"in\":\"path\",\"name\":\"office_hours_schedule_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours exception.\",\"example\":\"456\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Office hours exception found\":{\"value\":{\"created_at\":1717200000,\"exception_date\":\"2026-12-25\",\"exception_type\":\"closed\",\"id\":\"456\",\"name\":\"Christmas Day\",\"office_hours_schedule_id\":\"123\",\"recurring_annually\":true,\"time_intervals\":null,\"type\":\"office_hours_exception\",\"updated_at\":1717200000}}},\"schema\":{\"description\":\"An exception overrides a schedule's regular hours on a specific date, such as a public holiday.\",\"properties\":{\"created_at\":{\"description\":\"The time the exception was created as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"},\"exception_date\":{\"description\":\"The date the exception applies to, in `YYYY-MM-DD` format.\",\"example\":\"2026-12-25\",\"format\":\"date\",\"type\":\"string\"},\"exception_type\":{\"description\":\"`closed` means the workspace is closed all day; `custom_hours` replaces the regular hours with `time_intervals`.\",\"enum\":[\"closed\",\"custom_hours\"],\"example\":\"closed\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the office hours exception.\",\"example\":\"456\",\"type\":\"string\"},\"name\":{\"description\":\"An optional name for the exception.\",\"example\":\"Christmas Day\",\"nullable\":true,\"type\":\"string\"},\"office_hours_schedule_id\":{\"description\":\"The unique identifier for the schedule this exception belongs to.\",\"example\":\"123\",\"type\":\"string\"},\"recurring_annually\":{\"description\":\"Whether the exception repeats every year on the same date.\",\"example\":true,\"type\":\"boolean\"},\"time_intervals\":{\"description\":\"The open intervals for the exception date. `null` when `exception_type` is `closed`.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - always `office_hours_exception`.\",\"example\":\"office_hours_exception\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the exception was last updated as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"}},\"title\":\"Office Hours Exception\",\"type\":\"object\"}}},\"description\":\"Office hours exception found\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"CustomObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Custom object instance not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"IntegrationNotFound\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Integration not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"ObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Object not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}"
+          segments: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "office_hours_schedule_id"
+            }
+            {
+              lit: "office_hours_exceptions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "intercom_version"
+              "office_hours_schedule_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "456"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "123"
+                kind: "param"
+                name: "office_hours_schedule_id"
+                orig: "office_hours_schedule_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}"
+            json: "{\"operationId\":\"updateOfficeHoursException\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"in\":\"path\",\"name\":\"office_hours_schedule_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours exception.\",\"example\":\"456\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"Update exception\":{\"value\":{\"exception_type\":\"custom_hours\",\"name\":\"Christmas Day (reduced hours)\",\"recurring_annually\":true,\"time_intervals\":[{\"end_minute\":780,\"start_minute\":540}]}}},\"schema\":{\"description\":\"The request payload for updating an office hours exception. Only the provided fields are updated.\",\"properties\":{\"exception_date\":{\"description\":\"The date the exception applies to, in `YYYY-MM-DD` format.\",\"example\":\"2026-12-25\",\"format\":\"date\",\"type\":\"string\"},\"exception_type\":{\"description\":\"The type of exception.\",\"enum\":[\"closed\",\"custom_hours\"],\"example\":\"custom_hours\",\"type\":\"string\"},\"name\":{\"description\":\"An optional name for the exception.\",\"example\":\"Christmas Day (reduced hours)\",\"type\":\"string\"},\"recurring_annually\":{\"description\":\"Whether the exception repeats every year on the same date.\",\"example\":true,\"type\":\"boolean\"},\"time_intervals\":{\"description\":\"The open intervals for the exception date. Required for `custom_hours`; omit for `closed`.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"}},\"title\":\"Update Office Hours Exception Request\",\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Office hours exception updated\":{\"value\":{\"created_at\":1717200000,\"exception_date\":\"2026-12-25\",\"exception_type\":\"custom_hours\",\"id\":\"456\",\"name\":\"Christmas Day (reduced hours)\",\"office_hours_schedule_id\":\"123\",\"recurring_annually\":true,\"time_intervals\":[{\"day_of_week\":4,\"end_minute\":780,\"start_minute\":540}],\"type\":\"office_hours_exception\",\"updated_at\":1717203600}}},\"schema\":{\"description\":\"An exception overrides a schedule's regular hours on a specific date, such as a public holiday.\",\"properties\":{\"created_at\":{\"description\":\"The time the exception was created as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"},\"exception_date\":{\"description\":\"The date the exception applies to, in `YYYY-MM-DD` format.\",\"example\":\"2026-12-25\",\"format\":\"date\",\"type\":\"string\"},\"exception_type\":{\"description\":\"`closed` means the workspace is closed all day; `custom_hours` replaces the regular hours with `time_intervals`.\",\"enum\":[\"closed\",\"custom_hours\"],\"example\":\"closed\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the office hours exception.\",\"example\":\"456\",\"type\":\"string\"},\"name\":{\"description\":\"An optional name for the exception.\",\"example\":\"Christmas Day\",\"nullable\":true,\"type\":\"string\"},\"office_hours_schedule_id\":{\"description\":\"The unique identifier for the schedule this exception belongs to.\",\"example\":\"123\",\"type\":\"string\"},\"recurring_annually\":{\"description\":\"Whether the exception repeats every year on the same date.\",\"example\":true,\"type\":\"boolean\"},\"time_intervals\":{\"description\":\"The open intervals for the exception date. `null` when `exception_type` is `closed`.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"nullable\":true,\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - always `office_hours_exception`.\",\"example\":\"office_hours_exception\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the exception was last updated as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"}},\"title\":\"Office Hours Exception\",\"type\":\"object\"}}},\"description\":\"Office hours exception updated\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"CustomObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Custom object instance not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"IntegrationNotFound\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Integration not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"ObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Object not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Not Found\"},\"422\":{\"content\":{\"application/json\":{\"examples\":{\"ValidationError\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Invalid or duplicated record reference\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}"
+          segments: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "office_hours_schedule_id"
+            }
+            {
+              lit: "office_hours_exceptions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "intercom_version"
+              "office_hours_schedule_id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "office_hours_schedule"
+      ]
+    ]
+  }
+
+
+
+}

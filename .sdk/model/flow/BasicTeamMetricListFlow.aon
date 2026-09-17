@@ -1,0 +1,26 @@
+# BasicTeamMetricListFlow
+
+main: kit: flow: BasicTeamMetricListFlow:
+{
+  entity: "team_metric_list",
+  kind: "basic",
+  name: "BasicTeamMetricListFlow",
+  step: [
+    {
+      match: {
+        team_id: "team01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "team_metric_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTeamMetricListFlow"
+}

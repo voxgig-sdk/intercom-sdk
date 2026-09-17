@@ -59,20 +59,18 @@ describe("ContactDirect", function()
       pending(_reason or "skipped via sdk-test-control.json")
       return
     end
-    if setup.live then
-      pending("live direct-load needs real ID — set *_ENTID env var with real IDs to run")
-      return
-    end
     local client = setup.client
 
     local params = {}
     local query = {}
-    if not setup.live then
-      params["id"] = "direct01"
+    if setup.live then
+      params["external_id"] = "cdd29344-5e0c-4ef0-ac56-f9ba2979bc27"
+    else
+      params["external_id"] = "direct01"
     end
 
     local result, err = client:direct({
-      path = "contacts/{id}",
+      path = "contacts/find_by_external_id/{external_id}",
       method = "GET",
       params = params,
       query = query,

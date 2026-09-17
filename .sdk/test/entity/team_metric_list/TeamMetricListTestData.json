@@ -1,0 +1,309 @@
+{
+  "existing": {
+    "team_metric_list": {
+      "TEAM_METRIC_LIST00": {
+        "id": "TEAM_METRIC_LIST00"
+      },
+      "TEAM_METRIC_LIST01": {
+        "id": "TEAM_METRIC_LIST01"
+      },
+      "TEAM_METRIC_LIST02": {
+        "id": "TEAM_METRIC_LIST02"
+      }
+    }
+  },
+  "new": {
+    "team_metric_list": {
+      "team_metric_list_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /teams/{team_id}/metrics": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTeamMetrics",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the team to retrieve metrics for. Use `GET /teams` to list available team IDs.",
+            "example": "42",
+            "in": "path",
+            "name": "team_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The number of seconds after which an open conversation is considered idle. Clamped to the range 1–86400. Defaults to 1800 (30 minutes).",
+            "in": "query",
+            "name": "idle_threshold",
+            "required": false,
+            "schema": {
+              "default": 1800,
+              "example": 1800,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful_response": {
+                    "value": {
+                      "data": [
+                        {
+                          "admin_id": "123",
+                          "idle": 2,
+                          "open": 5,
+                          "snoozed": 1,
+                          "type": "team_metric"
+                        },
+                        {
+                          "admin_id": "456",
+                          "idle": 0,
+                          "open": 3,
+                          "snoozed": 2,
+                          "type": "team_metric"
+                        }
+                      ],
+                      "type": "team_metric.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A list of team metrics.",
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "description": "Per-admin activity metrics within a team.",
+                        "properties": {
+                          "admin_id": {
+                            "description": "The unique identifier for the admin.",
+                            "example": "123",
+                            "type": "string"
+                          },
+                          "idle": {
+                            "description": "The number of idle conversations assigned to the admin. A conversation is idle when it has been open and waiting for an admin reply longer than the idle_threshold.",
+                            "example": 2,
+                            "type": "integer"
+                          },
+                          "open": {
+                            "description": "The number of open conversations assigned to the admin.",
+                            "example": 5,
+                            "type": "integer"
+                          },
+                          "snoozed": {
+                            "description": "The number of snoozed conversations assigned to the admin.",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "type": {
+                            "example": "team_metric",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "example": "team_metric.list",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "feature_disabled": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "api_plan_restricted",
+                          "message": "Real-time monitoring is not enabled for your workspace."
+                        }
+                      ],
+                      "request_id": "req-456",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Feature not enabled"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "team_not_found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "team_not_found",
+                          "message": "Team not found"
+                        }
+                      ],
+                      "request_id": "req-789",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Team not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

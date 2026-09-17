@@ -1,0 +1,40 @@
+# BasicAiCallFlow
+
+main: kit: flow: BasicAiCallFlow:
+{
+  entity: "ai_call",
+  kind: "basic",
+  name: "BasicAiCallFlow",
+  step: [
+    {
+      input: {
+        ref: "ai_call_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "ai_call_ref01",
+        srcdatavar: "ai_call_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "ai_call01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ai_call_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAiCallFlow"
+}

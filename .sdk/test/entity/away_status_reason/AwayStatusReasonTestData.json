@@ -1,0 +1,249 @@
+{
+  "existing": {
+    "away_status_reason": {
+      "AWAY_STATUS_REASON00": {
+        "created_at": 80,
+        "deleted": false,
+        "emoji": "s52",
+        "id": "AWAY_STATUS_REASON00",
+        "label": "s54",
+        "order": 85,
+        "type": "s56",
+        "updated_at": 87
+      },
+      "AWAY_STATUS_REASON01": {
+        "created_at": 160,
+        "deleted": false,
+        "emoji": "sa2",
+        "id": "AWAY_STATUS_REASON01",
+        "label": "sa4",
+        "order": 165,
+        "type": "sa6",
+        "updated_at": 167
+      },
+      "AWAY_STATUS_REASON02": {
+        "created_at": 240,
+        "deleted": false,
+        "emoji": "sf2",
+        "id": "AWAY_STATUS_REASON02",
+        "label": "sf4",
+        "order": 245,
+        "type": "sf6",
+        "updated_at": 247
+      }
+    }
+  },
+  "new": {
+    "away_status_reason": {
+      "away_status_reason_ref01": {
+        "created_at": 320,
+        "deleted": false,
+        "emoji": "s142",
+        "label": "s144",
+        "order": 325,
+        "type": "s146",
+        "updated_at": 327
+      }
+    }
+  },
+  "requests": {
+    "GET /away_status_reasons": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listAwayStatusReasons",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "A list of away status reasons.",
+                  "properties": {
+                    "data": {
+                      "description": "A list of away status reason objects.",
+                      "items": {
+                        "properties": {
+                          "created_at": {
+                            "description": "The Unix timestamp when the status reason was created",
+                            "example": 1734537243,
+                            "type": "integer"
+                          },
+                          "deleted": {
+                            "description": "Whether the status reason has been soft deleted",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "emoji": {
+                            "description": "The emoji associated with the status reason",
+                            "example": "☕",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier for the away status reason",
+                            "type": "string"
+                          },
+                          "label": {
+                            "description": "The display text for the away status reason",
+                            "example": "On a break",
+                            "type": "string"
+                          },
+                          "order": {
+                            "description": "The display order of the status reason",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "type": {
+                            "example": "away_status_reason",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "The Unix timestamp when the status reason was last updated",
+                            "example": 1734537243,
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of the object",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Away Status Reasons",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

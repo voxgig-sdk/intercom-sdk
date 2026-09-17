@@ -1,0 +1,59 @@
+# BasicNewsItemFlow
+
+main: kit: flow: BasicNewsItemFlow:
+{
+  entity: "news_item",
+  kind: "basic",
+  name: "BasicNewsItemFlow",
+  step: [
+    {
+      input: {
+        ref: "news_item_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "news_item_ref01",
+        srcdatavar: "news_item_ref01_data",
+        suffix: "_up0",
+        textfield: "body"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-news_item_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "news_item_ref01",
+        srcdatavar: "news_item_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "news_item01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-news_item_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNewsItemFlow"
+}

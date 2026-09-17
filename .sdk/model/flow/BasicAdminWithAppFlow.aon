@@ -1,0 +1,22 @@
+# BasicAdminWithAppFlow
+
+main: kit: flow: BasicAdminWithAppFlow:
+{
+  entity: "admin_with_app",
+  kind: "basic",
+  name: "BasicAdminWithAppFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "admin_with_app_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAdminWithAppFlow"
+}

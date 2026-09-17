@@ -1,0 +1,990 @@
+{
+  "existing": {
+    "company_attached_contact": {
+      "COMPANY_ATTACHED_CONTACT00": {
+        "android_app_name": "s1cc",
+        "android_app_version": "s1cd",
+        "android_device": "s1ce",
+        "android_last_seen_at": 463,
+        "android_os_version": "s1d0",
+        "android_sdk_version": "s1d1",
+        "avatar": {},
+        "browser": "s1d3",
+        "browser_language": "s1d4",
+        "browser_version": "s1d5",
+        "companies": {},
+        "created_at": 471,
+        "custom_attributes": {},
+        "email": "s1d9",
+        "email_domain": "s1da",
+        "external_id": "EXTERNAL01",
+        "has_hard_bounced": true,
+        "id": "COMPANY_ATTACHED_CONTACT00",
+        "ios_app_name": "s1de",
+        "ios_app_version": "s1df",
+        "ios_device": "s1e0",
+        "ios_last_seen_at": 481,
+        "ios_os_version": "s1e2",
+        "ios_sdk_version": "s1e3",
+        "language_override": "s1e4",
+        "last_contacted_at": 485,
+        "last_email_clicked_at": 486,
+        "last_email_opened_at": 487,
+        "last_replied_at": 488,
+        "last_seen_at": 489,
+        "location": {},
+        "marked_email_as_spam": false,
+        "merge_history": [],
+        "name": "s1ed",
+        "notes": {},
+        "os": "s1ef",
+        "owner_id": "OWNER01",
+        "phone": "s1f1",
+        "role": "s1f2",
+        "signed_up_at": 499,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s1f6",
+        "unsubscribed_from_emails": false,
+        "updated_at": 504,
+        "workspace_id": "WORKSPACE01"
+      },
+      "COMPANY_ATTACHED_CONTACT01": {
+        "android_app_name": "s398",
+        "android_app_version": "s399",
+        "android_device": "s39a",
+        "android_last_seen_at": 923,
+        "android_os_version": "s39c",
+        "android_sdk_version": "s39d",
+        "avatar": {},
+        "browser": "s39f",
+        "browser_language": "s3a0",
+        "browser_version": "s3a1",
+        "companies": {},
+        "created_at": 931,
+        "custom_attributes": {},
+        "email": "s3a5",
+        "email_domain": "s3a6",
+        "external_id": "EXTERNAL01",
+        "has_hard_bounced": true,
+        "id": "COMPANY_ATTACHED_CONTACT01",
+        "ios_app_name": "s3aa",
+        "ios_app_version": "s3ab",
+        "ios_device": "s3ac",
+        "ios_last_seen_at": 941,
+        "ios_os_version": "s3ae",
+        "ios_sdk_version": "s3af",
+        "language_override": "s3b0",
+        "last_contacted_at": 945,
+        "last_email_clicked_at": 946,
+        "last_email_opened_at": 947,
+        "last_replied_at": 948,
+        "last_seen_at": 949,
+        "location": {},
+        "marked_email_as_spam": false,
+        "merge_history": [],
+        "name": "s3b9",
+        "notes": {},
+        "os": "s3bb",
+        "owner_id": "OWNER01",
+        "phone": "s3bd",
+        "role": "s3be",
+        "signed_up_at": 959,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s3c2",
+        "unsubscribed_from_emails": false,
+        "updated_at": 964,
+        "workspace_id": "WORKSPACE01"
+      },
+      "COMPANY_ATTACHED_CONTACT02": {
+        "android_app_name": "s564",
+        "android_app_version": "s565",
+        "android_device": "s566",
+        "android_last_seen_at": 1383,
+        "android_os_version": "s568",
+        "android_sdk_version": "s569",
+        "avatar": {},
+        "browser": "s56b",
+        "browser_language": "s56c",
+        "browser_version": "s56d",
+        "companies": {},
+        "created_at": 1391,
+        "custom_attributes": {},
+        "email": "s571",
+        "email_domain": "s572",
+        "external_id": "EXTERNAL01",
+        "has_hard_bounced": true,
+        "id": "COMPANY_ATTACHED_CONTACT02",
+        "ios_app_name": "s576",
+        "ios_app_version": "s577",
+        "ios_device": "s578",
+        "ios_last_seen_at": 1401,
+        "ios_os_version": "s57a",
+        "ios_sdk_version": "s57b",
+        "language_override": "s57c",
+        "last_contacted_at": 1405,
+        "last_email_clicked_at": 1406,
+        "last_email_opened_at": 1407,
+        "last_replied_at": 1408,
+        "last_seen_at": 1409,
+        "location": {},
+        "marked_email_as_spam": false,
+        "merge_history": [],
+        "name": "s585",
+        "notes": {},
+        "os": "s587",
+        "owner_id": "OWNER01",
+        "phone": "s589",
+        "role": "s58a",
+        "signed_up_at": 1419,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s58e",
+        "unsubscribed_from_emails": false,
+        "updated_at": 1424,
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "new": {
+    "company_attached_contact": {
+      "company_attached_contact_ref01": {
+        "android_app_name": "s730",
+        "android_app_version": "s731",
+        "android_device": "s732",
+        "android_last_seen_at": 1843,
+        "android_os_version": "s734",
+        "android_sdk_version": "s735",
+        "avatar": {},
+        "browser": "s737",
+        "browser_language": "s738",
+        "browser_version": "s739",
+        "companies": {},
+        "created_at": 1851,
+        "custom_attributes": {},
+        "email": "s73d",
+        "email_domain": "s73e",
+        "external_id": "EXTERNAL01",
+        "has_hard_bounced": true,
+        "ios_app_name": "s742",
+        "ios_app_version": "s743",
+        "ios_device": "s744",
+        "ios_last_seen_at": 1861,
+        "ios_os_version": "s746",
+        "ios_sdk_version": "s747",
+        "language_override": "s748",
+        "last_contacted_at": 1865,
+        "last_email_clicked_at": 1866,
+        "last_email_opened_at": 1867,
+        "last_replied_at": 1868,
+        "last_seen_at": 1869,
+        "location": {},
+        "marked_email_as_spam": false,
+        "merge_history": [],
+        "name": "s751",
+        "notes": {},
+        "os": "s753",
+        "owner_id": "OWNER01",
+        "phone": "s755",
+        "role": "s756",
+        "signed_up_at": 1879,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s75a",
+        "unsubscribed_from_emails": false,
+        "updated_at": 1884,
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "requests": {
+    "GET /companies/{company_id}/contacts": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "ListAttachedContacts",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier for the company which is given by Intercom",
+            "example": "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632",
+            "in": "path",
+            "name": "company_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful": {
+                    "value": {
+                      "data": [],
+                      "pages": {
+                        "page": 1,
+                        "per_page": 50,
+                        "total_pages": 0,
+                        "type": "pages"
+                      },
+                      "total_count": 0,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A list of Contact Objects",
+                  "properties": {
+                    "data": {
+                      "description": "An array containing Contact Objects",
+                      "items": {
+                        "description": "Contacts represent your leads and users in Intercom.",
+                        "properties": {
+                          "android_app_name": {
+                            "description": "The name of the Android app which the contact is using.",
+                            "example": "Intercom",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "android_app_version": {
+                            "description": "The version of the Android app which the contact is using.",
+                            "example": "5.0.0",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "android_device": {
+                            "description": "The Android device which the contact is using.",
+                            "example": "Pixel 3",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "android_last_seen_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact was last seen on an Android device.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "android_os_version": {
+                            "description": "The version of the Android OS which the contact is using.",
+                            "example": "10",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "android_sdk_version": {
+                            "description": "The version of the Android SDK which the contact is using.",
+                            "example": "28",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "avatar": {
+                            "nullable": true,
+                            "properties": {
+                              "image_url": {
+                                "description": "An image URL containing the avatar of a contact.",
+                                "example": "https://example.org/128Wash.jpg",
+                                "format": "uri",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "The type of object",
+                                "example": "avatar",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "browser": {
+                            "description": "The name of the browser which the contact is using.",
+                            "example": "Chrome",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "browser_language": {
+                            "description": "The language set by the browser which the contact is using.",
+                            "example": "en-US",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "browser_version": {
+                            "description": "The version of the browser which the contact is using.",
+                            "example": "80.0.3987.132",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "companies": {
+                            "description": "An object with metadata about companies attached to a contact . Up to 10 will be displayed here. Use the url to get more.",
+                            "nullable": false,
+                            "properties": {
+                              "data": {
+                                "description": "An array of company data objects attached to the contact.",
+                                "items": {
+                                  "description": "An object containing data about the companies that a contact is associated with.",
+                                  "properties": {
+                                    "id": {
+                                      "description": "The unique identifier for the company which is given by Intercom.",
+                                      "example": "5ba682d23d7cf92bef87bfd4",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "The type of the object. Always company.",
+                                      "enum": [
+                                        "company"
+                                      ],
+                                      "example": "company",
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "description": "The relative URL of the company.",
+                                      "example": "/companies/5ba682d23d7cf92bef87bfd4",
+                                      "format": "uri",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "title": "Company Data",
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "has_more": {
+                                "description": "Whether there's more Addressable Objects to be viewed. If true, use the url to view all",
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "total_count": {
+                                "description": "Integer representing the total number of companies attached to this contact",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "url": {
+                                "description": "Url to get more company resources for this contact",
+                                "example": "/contacts/5ba682d23d7cf92bef87bfd4/companies",
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "title": "Contact companies",
+                            "type": "object"
+                          },
+                          "created_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact was created.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "custom_attributes": {
+                            "description": "The custom attributes which are set for the contact.",
+                            "type": "object"
+                          },
+                          "email": {
+                            "description": "The contact's email.",
+                            "example": "joe@example.com",
+                            "type": "string"
+                          },
+                          "email_domain": {
+                            "description": "The contact's email domain.",
+                            "example": "example.com",
+                            "type": "string"
+                          },
+                          "external_id": {
+                            "description": "The unique identifier for the contact which is provided by the Client.",
+                            "example": "f3b87a2e09d514c6c2e79b9a",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "has_hard_bounced": {
+                            "description": "Whether the contact has had an email sent to them hard bounce.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "description": "The unique identifier for the contact which is given by Intercom.",
+                            "example": "5ba682d23d7cf92bef87bfd4",
+                            "type": "string"
+                          },
+                          "ios_app_name": {
+                            "description": "The name of the iOS app which the contact is using.",
+                            "example": "Intercom",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "ios_app_version": {
+                            "description": "The version of the iOS app which the contact is using.",
+                            "example": "5.0.0",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "ios_device": {
+                            "description": "The iOS device which the contact is using.",
+                            "example": "iPhone 11",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "ios_last_seen_at": {
+                            "description": "(Unix timestamp in seconds) The last time the contact used the iOS app.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "ios_os_version": {
+                            "description": "The version of iOS which the contact is using.",
+                            "example": "13.3.1",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "ios_sdk_version": {
+                            "description": "The version of the iOS SDK which the contact is using.",
+                            "example": "13.3.1",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "language_override": {
+                            "description": "A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change.",
+                            "example": "en",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "last_contacted_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact was last messaged.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "last_email_clicked_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact last clicked a link in an email.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "last_email_opened_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact last opened an email.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "last_replied_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact last messaged in.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "last_seen_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually).",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "location": {
+                            "description": "An object containing location meta data about a Intercom contact.",
+                            "nullable": false,
+                            "properties": {
+                              "city": {
+                                "description": "The city that the contact is located in",
+                                "example": "Dublin",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "country": {
+                                "description": "The country that the contact is located in",
+                                "example": "Ireland",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "region": {
+                                "description": "The overal region that the contact is located in",
+                                "example": "Dublin",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Always location",
+                                "example": "location",
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "title": "Contact Location",
+                            "type": "object"
+                          },
+                          "marked_email_as_spam": {
+                            "description": "Whether the contact has marked an email sent to them as spam.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "merge_history": {
+                            "description": "A list of contacts that were merged into this contact. Only included in the response when `include_merge_history=true` is passed as a query parameter. Only available for contacts with a `user` role.",
+                            "items": {
+                              "description": "A record of a contact that was merged into another contact.",
+                              "properties": {
+                                "merged_at": {
+                                  "description": "(Unix timestamp in seconds) The time when the merge occurred.",
+                                  "example": 1571672154,
+                                  "format": "date-time",
+                                  "nullable": true,
+                                  "type": "integer"
+                                },
+                                "source_contact_id": {
+                                  "description": "The Intercom ID of the contact that was merged into this contact.",
+                                  "example": "5ba682d23d7cf92bef87bfd3",
+                                  "type": "string"
+                                },
+                                "source_contact_role": {
+                                  "description": "The role of the contact that was merged in.",
+                                  "enum": [
+                                    "lead",
+                                    "user"
+                                  ],
+                                  "example": "lead",
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "description": "The type of object.",
+                                  "example": "merge_history",
+                                  "type": "string"
+                                }
+                              },
+                              "title": "Merge History Item",
+                              "type": "object"
+                            },
+                            "nullable": true,
+                            "type": "array"
+                          },
+                          "name": {
+                            "description": "The contacts name.",
+                            "example": "John Doe",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "notes": {
+                            "description": "An object containing notes meta data about the notes that a contact has. Up to 10 will be displayed here. Use the url to get more.",
+                            "nullable": false,
+                            "properties": {
+                              "data": {
+                                "description": "This object represents the notes attached to a contact.",
+                                "items": {
+                                  "description": "A list used to access other resources from a parent model.",
+                                  "nullable": false,
+                                  "properties": {
+                                    "id": {
+                                      "description": "The id of the addressable object",
+                                      "example": "123",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "The addressable object type",
+                                      "example": "note",
+                                      "format": "uri",
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "description": "Url to get more company resources for this contact",
+                                      "example": "/contacts/5ba682d23d7cf92bef87bfd4/notes",
+                                      "format": "uri",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "title": "Addressable List",
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "has_more": {
+                                "description": "Whether there's more Addressable Objects to be viewed. If true, use the url to view all",
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "total_count": {
+                                "description": "Int representing the total number of companyies attached to this contact",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "url": {
+                                "description": "Url to get more company resources for this contact",
+                                "example": "/contacts/5ba682d23d7cf92bef87bfd4/notes",
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "title": "Contact notes",
+                            "type": "object"
+                          },
+                          "os": {
+                            "description": "The operating system which the contact is using.",
+                            "example": "Mac OS X",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "owner_id": {
+                            "description": "The id of an admin that has been assigned account ownership of the contact.",
+                            "example": "321",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "phone": {
+                            "description": "The contacts phone.",
+                            "example": "+1123456789",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "role": {
+                            "description": "The role of the contact.",
+                            "example": "user",
+                            "type": "string"
+                          },
+                          "signed_up_at": {
+                            "description": "(Unix timestamp in seconds) The time specified for when a contact signed up.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "social_profiles": {
+                            "description": "An object containing social profiles that a contact has.",
+                            "nullable": false,
+                            "properties": {
+                              "data": {
+                                "description": "A list of social profiles objects associated with the contact.",
+                                "items": {
+                                  "description": "A Social Profile allows you to label your contacts, companies, and conversations and list them using that Social Profile.",
+                                  "properties": {
+                                    "name": {
+                                      "description": "The name of the Social media profile",
+                                      "example": "Facebook",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "value is \"social_profile\"",
+                                      "example": "social_profile",
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "description": "The name of the Social media profile",
+                                      "example": "http://twitter.com/th1sland",
+                                      "format": "uri",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "title": "Social Profile",
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "title": "Social Profile",
+                            "type": "object"
+                          },
+                          "tags": {
+                            "description": "An object containing tags meta data about the tags that a contact has. Up to 10 will be displayed here. Use the url to get more.",
+                            "nullable": true,
+                            "properties": {
+                              "data": {
+                                "description": "This object represents the tags attached to a contact.",
+                                "items": {
+                                  "description": "A list used to access other resources from a parent model.",
+                                  "nullable": false,
+                                  "properties": {
+                                    "id": {
+                                      "description": "The id of the addressable object",
+                                      "example": "123",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "description": "The addressable object type",
+                                      "example": "note",
+                                      "format": "uri",
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "description": "Url to get more company resources for this contact",
+                                      "example": "/contacts/5ba682d23d7cf92bef87bfd4/notes",
+                                      "format": "uri",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "title": "Addressable List",
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "has_more": {
+                                "description": "Whether there's more Addressable Objects to be viewed. If true, use the url to view all",
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "total_count": {
+                                "description": "Int representing the total number of tags attached to this contact",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "url": {
+                                "description": "url to get more tag resources for this contact",
+                                "example": "/contacts/5ba682d23d7cf92bef87bfd4/tags",
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "title": "Contact Tags",
+                            "type": "object"
+                          },
+                          "type": {
+                            "description": "The type of object.",
+                            "example": "contact",
+                            "type": "string"
+                          },
+                          "unsubscribed_from_emails": {
+                            "description": "Whether the contact is unsubscribed from emails.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "updated_at": {
+                            "description": "(Unix timestamp in seconds) The time when the contact was last updated.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "workspace_id": {
+                            "description": "The id of the workspace which the contact belongs to.",
+                            "example": "ecahpwf5",
+                            "type": "string"
+                          }
+                        },
+                        "title": "Contact",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.\nA \"cursor\" or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or \"pages\" as needed.\n",
+                      "nullable": true,
+                      "properties": {
+                        "next": {
+                          "nullable": true,
+                          "properties": {
+                            "per_page": {
+                              "description": "The number of results to fetch per page.",
+                              "example": 2,
+                              "type": "integer"
+                            },
+                            "starting_after": {
+                              "description": "The cursor to use in the next request to get the next page of results.",
+                              "example": "your-cursor-from-response",
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "title": "Pagination: Starting After",
+                          "type": "object"
+                        },
+                        "page": {
+                          "description": "The current page",
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "description": "Number of results per page",
+                          "example": 2,
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "description": "Total number of pages",
+                          "example": 13,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "description": "the type of object `pages`.",
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Cursor based pages",
+                      "type": "object"
+                    },
+                    "total_count": {
+                      "description": "The total number of contacts",
+                      "example": 100,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "The type of object - `list`",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Company Attached Contacts",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "f7586690-c217-47db-9042-cb9550b81260",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Company Not Found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "company_not_found",
+                          "message": "Company Not Found"
+                        }
+                      ],
+                      "request_id": "5dde0b79-8c81-4d9e-a4d4-736a44cf2f00",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Company Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

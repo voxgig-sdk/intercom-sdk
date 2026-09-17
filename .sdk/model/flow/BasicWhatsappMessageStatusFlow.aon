@@ -1,0 +1,28 @@
+# BasicWhatsappMessageStatusFlow
+
+main: kit: flow: BasicWhatsappMessageStatusFlow:
+{
+  entity: "whatsapp_message_status",
+  kind: "basic",
+  name: "BasicWhatsappMessageStatusFlow",
+  step: [
+    {
+      input: {
+        ref: "whatsapp_message_status_ref01",
+        srcdatavar: "whatsapp_message_status_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-whatsapp_message_status_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhatsappMessageStatusFlow"
+}

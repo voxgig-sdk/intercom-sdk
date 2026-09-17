@@ -1,0 +1,223 @@
+{
+  "existing": {
+    "banner_dismiss": {
+      "BANNER_DISMISS00": {
+        "dismissed": true,
+        "id": "BANNER_DISMISS00",
+        "type": "s2a",
+        "view_id": "VIEW01",
+        "contact_id": "CONTACT01"
+      },
+      "BANNER_DISMISS01": {
+        "dismissed": true,
+        "id": "BANNER_DISMISS01",
+        "type": "s52",
+        "view_id": "VIEW01",
+        "contact_id": "CONTACT01"
+      },
+      "BANNER_DISMISS02": {
+        "dismissed": true,
+        "id": "BANNER_DISMISS02",
+        "type": "s7a",
+        "view_id": "VIEW01",
+        "contact_id": "CONTACT01"
+      }
+    }
+  },
+  "new": {
+    "banner_dismiss": {
+      "banner_dismiss_ref01": {
+        "dismissed": true,
+        "type": "sa2",
+        "view_id": "VIEW01"
+      }
+    }
+  },
+  "requests": {
+    "POST /contacts/{id}/banners/{view_id}/dismiss": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "dismissContactBanner",
+        "parameters": [
+          {
+            "description": "The unique identifier of a contact.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The `view_id` of the banner to dismiss, as returned by the list banners endpoint.",
+            "in": "path",
+            "name": "view_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "dismissed": true,
+                      "type": "banner_dismiss",
+                      "view_id": "645719311"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The result of dismissing a banner for a contact.",
+                  "properties": {
+                    "dismissed": {
+                      "description": "Whether the banner view is dismissed.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `banner_dismiss`.",
+                      "example": "banner_dismiss",
+                      "type": "string"
+                    },
+                    "view_id": {
+                      "description": "The id of the dismissed banner view.",
+                      "example": "645719311",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Banner Dismiss",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Banner view not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Resource Not Found"
+                        }
+                      ],
+                      "request_id": "57055cde-3d0d-4c67-b5c9-b20b80340bf0",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Banner view not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

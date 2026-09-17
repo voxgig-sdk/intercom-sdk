@@ -1,0 +1,509 @@
+{
+  "existing": {
+    "reporting_data_export": {
+      "REPORTING_DATA_EXPORT00": {
+        "attribute_ids": [],
+        "attributes": [],
+        "dataset_id": "DATASET01",
+        "default_time_attribute_id": "DEFAULT_TIME_ATTRIBUTE01",
+        "description": "s86",
+        "download_expires_at": "s87",
+        "download_url": "s88",
+        "end_time": 137,
+        "id": "REPORTING_DATA_EXPORT00",
+        "job_identifier": "s8b",
+        "name": "s8c",
+        "start_time": 141,
+        "status": "s8e"
+      },
+      "REPORTING_DATA_EXPORT01": {
+        "attribute_ids": [],
+        "attributes": [],
+        "dataset_id": "DATASET01",
+        "default_time_attribute_id": "DEFAULT_TIME_ATTRIBUTE01",
+        "description": "s108",
+        "download_expires_at": "s109",
+        "download_url": "s10a",
+        "end_time": 267,
+        "id": "REPORTING_DATA_EXPORT01",
+        "job_identifier": "s10d",
+        "name": "s10e",
+        "start_time": 271,
+        "status": "s110"
+      },
+      "REPORTING_DATA_EXPORT02": {
+        "attribute_ids": [],
+        "attributes": [],
+        "dataset_id": "DATASET01",
+        "default_time_attribute_id": "DEFAULT_TIME_ATTRIBUTE01",
+        "description": "s18a",
+        "download_expires_at": "s18b",
+        "download_url": "s18c",
+        "end_time": 397,
+        "id": "REPORTING_DATA_EXPORT02",
+        "job_identifier": "s18f",
+        "name": "s190",
+        "start_time": 401,
+        "status": "s192"
+      }
+    }
+  },
+  "new": {
+    "reporting_data_export": {
+      "reporting_data_export_ref01": {
+        "attribute_ids": [],
+        "attributes": [],
+        "dataset_id": "DATASET01",
+        "default_time_attribute_id": "DEFAULT_TIME_ATTRIBUTE01",
+        "description": "s20c",
+        "download_expires_at": "s20d",
+        "download_url": "s20e",
+        "end_time": 527,
+        "job_identifier": "s211",
+        "name": "s212",
+        "start_time": 531,
+        "status": "s214"
+      }
+    }
+  },
+  "requests": {
+    "POST /export/reporting_data/enqueue": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "attribute_ids": {
+                    "example": [
+                      "conversation_id",
+                      "conversation_started_at"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "dataset_id": {
+                    "example": "conversation",
+                    "type": "string"
+                  },
+                  "end_time": {
+                    "example": 1717510000,
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "start_time": {
+                    "example": 1717490000,
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "dataset_id",
+                  "attribute_ids",
+                  "start_time",
+                  "end_time"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "download_expires_at": {
+                      "type": "string"
+                    },
+                    "download_url": {
+                      "type": "string"
+                    },
+                    "job_identifier": {
+                      "example": "job1",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": "pending",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Job enqueued successfully"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Empty attribute_ids": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "bad_request",
+                          "message": "attribute_ids must contain at least one attribute_id"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  },
+                  "Invalid attribute_ids": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "bad_request",
+                          "message": "attribute_ids invalid for conversation dataset: non_existent"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  },
+                  "Invalid dataset_id": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "bad_request",
+                          "message": "imaginary is not a valid dataset_id"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  },
+                  "No attribute_ids": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "bad_request",
+                          "message": "'attribute_ids' is a required parameter"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  },
+                  "No dataset_id": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "bad_request",
+                          "message": "'dataset_id' is a required parameter"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  },
+                  "Non array attribute_ids": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "bad_request",
+                          "message": "'attribute_ids' not an array must be of type Array"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request (e.g. validation errors)"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "rate_limit_exceeded",
+                          "message": "Exceeded rate limit of 5 pending reporting dataset export jobs"
+                        }
+                      ],
+                      "request_id": "b68959ea-6328-4f70-83cb-e7913dba1542",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too many jobs in progress"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /export/reporting_data/get_datasets": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "attributes": {
+                            "items": {
+                              "properties": {
+                                "id": {
+                                  "description": "The simple attribute identifier. Note that this may be ambiguous if the same name exists across different attribute types. Use qualified_id when calling the enqueue endpoint.",
+                                  "example": "conversation_id",
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "example": "Conversation ID",
+                                  "type": "string"
+                                },
+                                "qualified_id": {
+                                  "description": "A namespaced identifier that uniquely identifies the attribute across all types. Format is \"prefix.name\" (e.g., \"people.Brand\", \"conversation.Brand\"). Required when calling the enqueue endpoint.",
+                                  "example": "conversation.conversation_id",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "default_time_attribute_id": {
+                            "example": "conversation_started_at",
+                            "type": "string"
+                          },
+                          "description": {
+                            "example": "Conversation-level details: status, channel, assignee.",
+                            "type": "string"
+                          },
+                          "id": {
+                            "example": "conversation",
+                            "type": "string"
+                          },
+                          "name": {
+                            "example": "Conversation",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "List of datasets"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

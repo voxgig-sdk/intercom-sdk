@@ -1,0 +1,9 @@
+# BasicAiContentFlow
+
+main: kit: flow: BasicAiContentFlow:
+{
+  entity: "ai_content",
+  kind: "basic",
+  name: "BasicAiContentFlow",
+  "key$": "BasicAiContentFlow"
+}

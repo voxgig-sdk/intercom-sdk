@@ -1,0 +1,1095 @@
+{
+  "existing": {
+    "admin": {
+      "ADMIN00": {
+        "avatar": "s82",
+        "away_mode_enabled": false,
+        "away_mode_reassign": true,
+        "away_status_reason_id": "AWAY_STATUS_REASON01",
+        "email": "s86",
+        "has_inbox_seat": false,
+        "id": "ADMIN00",
+        "job_title": "s89",
+        "name": "s8a",
+        "role": {},
+        "team_ids": [],
+        "team_priority_level": {},
+        "type": "s8e"
+      },
+      "ADMIN01": {
+        "avatar": "s104",
+        "away_mode_enabled": false,
+        "away_mode_reassign": true,
+        "away_status_reason_id": "AWAY_STATUS_REASON01",
+        "email": "s108",
+        "has_inbox_seat": false,
+        "id": "ADMIN01",
+        "job_title": "s10b",
+        "name": "s10c",
+        "role": {},
+        "team_ids": [],
+        "team_priority_level": {},
+        "type": "s110"
+      },
+      "ADMIN02": {
+        "avatar": "s186",
+        "away_mode_enabled": false,
+        "away_mode_reassign": true,
+        "away_status_reason_id": "AWAY_STATUS_REASON01",
+        "email": "s18a",
+        "has_inbox_seat": false,
+        "id": "ADMIN02",
+        "job_title": "s18d",
+        "name": "s18e",
+        "role": {},
+        "team_ids": [],
+        "team_priority_level": {},
+        "type": "s192"
+      }
+    }
+  },
+  "new": {
+    "admin": {
+      "admin_ref01": {
+        "avatar": "s208",
+        "away_mode_enabled": false,
+        "away_mode_reassign": true,
+        "away_status_reason_id": "AWAY_STATUS_REASON01",
+        "email": "s20c",
+        "has_inbox_seat": false,
+        "job_title": "s20f",
+        "name": "s210",
+        "role": {},
+        "team_ids": [],
+        "team_priority_level": {},
+        "type": "s214"
+      }
+    }
+  },
+  "requests": {
+    "GET /admins": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listAdmins",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "If set to true, the response will include the admin's avatar object containing the image URL. Defaults to false.",
+            "example": true,
+            "in": "query",
+            "name": "display_avatar",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "admins": [
+                        {
+                          "away_mode_enabled": false,
+                          "away_mode_reassign": false,
+                          "email": "admin7@email.com",
+                          "has_inbox_seat": true,
+                          "id": "991267466",
+                          "name": "Ciaran7 Lee",
+                          "team_ids": [],
+                          "type": "admin"
+                        }
+                      ],
+                      "type": "admin.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A list of admins associated with a given workspace.",
+                  "properties": {
+                    "admins": {
+                      "description": "A list of admins associated with a given workspace.",
+                      "items": {
+                        "description": "Admins are teammate accounts that have access to a workspace.",
+                        "nullable": true,
+                        "properties": {
+                          "avatar": {
+                            "description": "Image for the associated team or teammate",
+                            "example": "https://picsum.photos/200/300",
+                            "format": "uri",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "away_mode_enabled": {
+                            "description": "Identifies if this admin is currently set in away mode.",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "away_mode_reassign": {
+                            "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "away_status_reason_id": {
+                            "description": "The unique identifier of the away status reason",
+                            "example": 12345,
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "email": {
+                            "description": "The email of the admin.",
+                            "example": "jdoe@example.com",
+                            "type": "string"
+                          },
+                          "has_inbox_seat": {
+                            "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "description": "The id representing the admin.",
+                            "example": "1295",
+                            "type": "string"
+                          },
+                          "job_title": {
+                            "description": "The job title of the admin.",
+                            "example": "Associate",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the admin.",
+                            "example": "Joe Example",
+                            "type": "string"
+                          },
+                          "role": {
+                            "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                            "nullable": true,
+                            "properties": {
+                              "id": {
+                                "description": "The id of the role.",
+                                "example": "1",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "The name of the role.",
+                                "example": "Support Agent",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "String representing the object's type. Always has the value `role`.",
+                                "example": "role",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "team_ids": {
+                            "description": "This object represents the avatar associated with the admin.",
+                            "example": [
+                              814865
+                            ],
+                            "items": {
+                              "type": "integer"
+                            },
+                            "type": "array"
+                          },
+                          "team_priority_level": {
+                            "description": "Admin priority levels for teams",
+                            "nullable": true,
+                            "properties": {
+                              "primary_team_ids": {
+                                "description": "The primary team ids for the team",
+                                "example": [
+                                  814865
+                                ],
+                                "items": {
+                                  "type": "integer"
+                                },
+                                "nullable": true,
+                                "type": "array"
+                              },
+                              "secondary_team_ids": {
+                                "description": "The secondary team ids for the team",
+                                "example": [
+                                  493881
+                                ],
+                                "items": {
+                                  "type": "integer"
+                                },
+                                "nullable": true,
+                                "type": "array"
+                              }
+                            },
+                            "title": "Team Priority Level",
+                            "type": "object"
+                          },
+                          "type": {
+                            "description": "String representing the object's type. Always has the value `admin`.",
+                            "example": "admin",
+                            "type": "string"
+                          }
+                        },
+                        "title": "Admin",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `admin.list`.",
+                      "example": "admin.list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Admins",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "5ef5682e-f66e-40a4-b828-8592175f83b8",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /admins/{admin_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "retrieveAdmin",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of a given admin",
+            "example": 123,
+            "in": "path",
+            "name": "admin_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Admin found": {
+                    "value": {
+                      "away_mode_enabled": false,
+                      "away_mode_reassign": false,
+                      "away_status_reason_id": null,
+                      "email": "admin9@email.com",
+                      "has_inbox_seat": true,
+                      "id": "991267468",
+                      "name": "Ciaran9 Lee",
+                      "team_ids": [],
+                      "type": "admin"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Admins are teammate accounts that have access to a workspace.",
+                  "nullable": true,
+                  "properties": {
+                    "avatar": {
+                      "description": "Image for the associated team or teammate",
+                      "example": "https://picsum.photos/200/300",
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "away_mode_enabled": {
+                      "description": "Identifies if this admin is currently set in away mode.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "away_mode_reassign": {
+                      "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "away_status_reason_id": {
+                      "description": "The unique identifier of the away status reason",
+                      "example": 12345,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "email": {
+                      "description": "The email of the admin.",
+                      "example": "jdoe@example.com",
+                      "type": "string"
+                    },
+                    "has_inbox_seat": {
+                      "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The id representing the admin.",
+                      "example": "1295",
+                      "type": "string"
+                    },
+                    "job_title": {
+                      "description": "The job title of the admin.",
+                      "example": "Associate",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the admin.",
+                      "example": "Joe Example",
+                      "type": "string"
+                    },
+                    "role": {
+                      "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the role.",
+                          "example": "1",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the role.",
+                          "example": "Support Agent",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `role`.",
+                          "example": "role",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "team_ids": {
+                      "description": "This object represents the avatar associated with the admin.",
+                      "example": [
+                        814865
+                      ],
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "team_priority_level": {
+                      "description": "Admin priority levels for teams",
+                      "nullable": true,
+                      "properties": {
+                        "primary_team_ids": {
+                          "description": "The primary team ids for the team",
+                          "example": [
+                            814865
+                          ],
+                          "items": {
+                            "type": "integer"
+                          },
+                          "nullable": true,
+                          "type": "array"
+                        },
+                        "secondary_team_ids": {
+                          "description": "The secondary team ids for the team",
+                          "example": [
+                            493881
+                          ],
+                          "items": {
+                            "type": "integer"
+                          },
+                          "nullable": true,
+                          "type": "array"
+                        }
+                      },
+                      "title": "Team Priority Level",
+                      "type": "object"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `admin`.",
+                      "example": "admin",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Admin",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Admin found"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "ff783bc1-754f-4a9f-887b-22f94fec18f0",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Admin not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "admin_not_found",
+                          "message": "Admin not found"
+                        }
+                      ],
+                      "request_id": "c59f7ca5-1639-4284-a66d-50e34ed98ab3",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Admin not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /admins/{admin_id}/away": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "setAwayAdmin",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of a given admin",
+            "in": "path",
+            "name": "admin_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "admin_not_found": {
+                  "summary": "Admin not found",
+                  "value": {
+                    "away_mode_enabled": true,
+                    "away_mode_reassign": true
+                  }
+                },
+                "successful_response": {
+                  "summary": "Successful response",
+                  "value": {
+                    "away_mode_enabled": true,
+                    "away_mode_reassign": true,
+                    "away_status_reason_id": 12345
+                  }
+                },
+                "unauthorized": {
+                  "summary": "Unauthorized",
+                  "value": {
+                    "away_mode_enabled": true,
+                    "away_mode_reassign": true
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "away_mode_enabled": {
+                    "default": true,
+                    "description": "Set to \"true\" to change the status of the admin to away.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "away_mode_reassign": {
+                    "default": false,
+                    "description": "Set to \"true\" to assign any new conversation replies to your default inbox.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "away_status_reason_id": {
+                    "description": "The unique identifier of the away status reason",
+                    "example": 12345,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "away_mode_enabled",
+                  "away_mode_reassign"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "away_mode_enabled": true,
+                      "away_mode_reassign": true,
+                      "away_status_reason_id": "12345",
+                      "email": "admin2@email.com",
+                      "has_inbox_seat": true,
+                      "id": "991267460",
+                      "name": "Ciaran2 Lee",
+                      "team_ids": [],
+                      "type": "admin"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Admins are teammate accounts that have access to a workspace.",
+                  "nullable": true,
+                  "properties": {
+                    "avatar": {
+                      "description": "Image for the associated team or teammate",
+                      "example": "https://picsum.photos/200/300",
+                      "format": "uri",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "away_mode_enabled": {
+                      "description": "Identifies if this admin is currently set in away mode.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "away_mode_reassign": {
+                      "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "away_status_reason_id": {
+                      "description": "The unique identifier of the away status reason",
+                      "example": 12345,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "email": {
+                      "description": "The email of the admin.",
+                      "example": "jdoe@example.com",
+                      "type": "string"
+                    },
+                    "has_inbox_seat": {
+                      "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The id representing the admin.",
+                      "example": "1295",
+                      "type": "string"
+                    },
+                    "job_title": {
+                      "description": "The job title of the admin.",
+                      "example": "Associate",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the admin.",
+                      "example": "Joe Example",
+                      "type": "string"
+                    },
+                    "role": {
+                      "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "description": "The id of the role.",
+                          "example": "1",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the role.",
+                          "example": "Support Agent",
+                          "type": "string"
+                        },
+                        "type": {
+                          "description": "String representing the object's type. Always has the value `role`.",
+                          "example": "role",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "team_ids": {
+                      "description": "This object represents the avatar associated with the admin.",
+                      "example": [
+                        814865
+                      ],
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "team_priority_level": {
+                      "description": "Admin priority levels for teams",
+                      "nullable": true,
+                      "properties": {
+                        "primary_team_ids": {
+                          "description": "The primary team ids for the team",
+                          "example": [
+                            814865
+                          ],
+                          "items": {
+                            "type": "integer"
+                          },
+                          "nullable": true,
+                          "type": "array"
+                        },
+                        "secondary_team_ids": {
+                          "description": "The secondary team ids for the team",
+                          "example": [
+                            493881
+                          ],
+                          "items": {
+                            "type": "integer"
+                          },
+                          "nullable": true,
+                          "type": "array"
+                        }
+                      },
+                      "title": "Team Priority Level",
+                      "type": "object"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `admin`.",
+                      "example": "admin",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Admin",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "away_status_reason_mandatory": {
+                    "summary": "Example of a missing away_status_reason_id when away reasons are mandatory",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "away_status_reason_mandatory",
+                          "message": "Away status reason is mandatory"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  },
+                  "parameter_invalid": {
+                    "summary": "Example of an invalid away_status_reason_id",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Away status reason is deleted"
+                        }
+                      ],
+                      "type": "error.list"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "e76b2df0-2413-4215-8a5a-b5f6ebd4e642",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Admin not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "admin_not_found",
+                          "message": "Admin for admin_id not found"
+                        }
+                      ],
+                      "request_id": "efcd0531-798b-4c22-bccd-68877ed7faa4",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Admin not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

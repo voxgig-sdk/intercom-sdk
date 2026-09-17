@@ -1,0 +1,1649 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ConversationList | Intercom API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Intercom API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/intercom-sdk">voxgig-sdk/intercom-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Intercom API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/activity_log.html">ActivityLog</a>
+<a href="../api/activity_log_event_type.html">ActivityLogEventType</a>
+<a href="../api/activity_log_list.html">ActivityLogList</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/admin_with_app.html">AdminWithApp</a>
+<a href="../api/ai_call.html">AiCall</a>
+<a href="../api/ai_content.html">AiContent</a>
+<a href="../api/article.html">Article</a>
+<a href="../api/article_search.html">ArticleSearch</a>
+<a href="../api/article_version.html">ArticleVersion</a>
+<a href="../api/article_version_list.html">ArticleVersionList</a>
+<a href="../api/audience.html">Audience</a>
+<a href="../api/away_status_reason.html">AwayStatusReason</a>
+<a href="../api/banner.html">Banner</a>
+<a href="../api/banner_dismiss.html">BannerDismiss</a>
+<a href="../api/brand.html">Brand</a>
+<a href="../api/call.html">Call</a>
+<a href="../api/company.html">Company</a>
+<a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
+<a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
+<a href="../api/company_list.html">CompanyList</a>
+<a href="../api/company_scroll.html">CompanyScroll</a>
+<a href="../api/contact.html">Contact</a>
+<a href="../api/contact_attached_company.html">ContactAttachedCompany</a>
+<a href="../api/contact_list.html">ContactList</a>
+<a href="../api/contact_segment.html">ContactSegment</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/content_import_source.html">ContentImportSource</a>
+<a href="../api/content_search.html">ContentSearch</a>
+<a href="../api/content_snippet.html">ContentSnippet</a>
+<a href="../api/conversation.html">Conversation</a>
+<a href="../api/conversation_attribute.html">ConversationAttribute</a>
+<a href="../api/conversation_attribute_list.html">ConversationAttributeList</a>
+<a aria-current="page" href="../api/conversation_list.html">ConversationList</a><div class="nav-sections"><a class="nav-section" href="#post-conversationssearch">POST /conversations/search</a></div>
+<a href="../api/conversation_participant.html">ConversationParticipant</a>
+<a href="../api/custom_object_instance.html">CustomObjectInstance</a>
+<a href="../api/data.html">Data</a>
+<a href="../api/data_attribute.html">DataAttribute</a>
+<a href="../api/data_connector.html">DataConnector</a>
+<a href="../api/data_connector_execution_result.html">DataConnectorExecutionResult</a>
+<a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
+<a href="../api/data_event.html">DataEvent</a>
+<a href="../api/data_event_summary.html">DataEventSummary</a>
+<a href="../api/data_export.html">DataExport</a>
+<a href="../api/deleted.html">Deleted</a>
+<a href="../api/deleted_article_object.html">DeletedArticleObject</a>
+<a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
+<a href="../api/deleted_data_connector_object.html">DeletedDataConnectorObject</a>
+<a href="../api/deleted_internal_article_object.html">DeletedInternalArticleObject</a>
+<a href="../api/deleted_object.html">DeletedObject</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/external_page.html">ExternalPage</a>
+<a href="../api/fin_agent.html">FinAgent</a>
+<a href="../api/handling_event.html">HandlingEvent</a>
+<a href="../api/help_center.html">HelpCenter</a>
+<a href="../api/internal_article.html">InternalArticle</a>
+<a href="../api/internal_article_search.html">InternalArticleSearch</a>
+<a href="../api/ip_allowlist.html">IpAllowlist</a>
+<a href="../api/job.html">Job</a>
+<a href="../api/macro.html">Macro</a>
+<a href="../api/merge_history.html">MergeHistory</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/news_item.html">NewsItem</a>
+<a href="../api/newsfeed.html">Newsfeed</a>
+<a href="../api/note.html">Note</a>
+<a href="../api/office_hour.html">OfficeHour</a>
+<a href="../api/office_hours_exception.html">OfficeHoursException</a>
+<a href="../api/office_hours_schedule.html">OfficeHoursSchedule</a>
+<a href="../api/paginated.html">Paginated</a>
+<a href="../api/phone_switch.html">PhoneSwitch</a>
+<a href="../api/reporting_data.html">ReportingData</a>
+<a href="../api/reporting_data_export.html">ReportingDataExport</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/side_conversation.html">SideConversation</a>
+<a href="../api/subscription.html">Subscription</a>
+<a href="../api/subscription_type.html">SubscriptionType</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/team_metric_list.html">TeamMetricList</a>
+<a href="../api/ticket.html">Ticket</a>
+<a href="../api/ticket_list.html">TicketList</a>
+<a href="../api/ticket_reply.html">TicketReply</a>
+<a href="../api/ticket_state.html">TicketState</a>
+<a href="../api/ticket_type.html">TicketType</a>
+<a href="../api/ticket_type_attribute.html">TicketTypeAttribute</a>
+<a href="../api/visitor.html">Visitor</a>
+<a href="../api/whatsapp_message_status.html">WhatsappMessageStatus</a>
+<a href="../api/whatsapp_message_status_list.html">WhatsappMessageStatusList</a>
+<a href="../api/workflow.html">Workflow</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="conversationlist">ConversationList</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-conversationssearch"><code>/conversations/search</code></a></td>
+<td><code>create</code></td>
+<td>successful</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conversations</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The list of conversation objects</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Always conversation.list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-conversationssearch" class="operation" data-method="post"><code>POST</code> /conversations/search</h3>
+<p>Operation ID: <code>searchConversations</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>include_monitors</code> | <code>query</code> | <code>boolean</code> | No | If set to true, the response will include a <code>monitor_evaluations</code> array on each conversation with any QA monitor results that flagged it. |
+| <code>include_scorecards</code> | <code>query</code> | <code>boolean</code> | No | If set to true, the response will include a <code>scorecards</code> array on each conversation with any QA scorecard results. |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Pagination: Starting After</td>
+</tr>
+<tr>
+<td><code>pagination.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results to fetch per page.</td>
+</tr>
+<tr>
+<td><code>pagination.starting_after</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-successful" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conversations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The list of conversation objects</td>
+</tr>
+<tr>
+<td><code>conversations[].admin_assignee_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The id of the admin assigned to the conversation. If it's not assigned to an admin it will return 0.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Data related to AI Agent involvement in the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Content Source List</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources.content_sources</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The content sources used by AI Agent in the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources.content_sources[].content_type</code></td>
+<td><code>enum: file, article, external_content, content_snippet, workflow_connector_action</code></td>
+<td>No</td>
+<td>The type of the content source.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources.content_sources[].locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ISO 639 language code of the content source.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources.content_sources[].title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The title of the content source.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources.content_sources[].url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The internal URL linking to the content source for teammates.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The total number of content sources used by AI Agent in the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.content_sources.type</code></td>
+<td><code>enum: content_source.list</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time when the AI agent rating was created.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.last_answer_type</code></td>
+<td><code>enum: ai_answer,custom_answer</code></td>
+<td>No</td>
+<td>The type of the last answer delivered by AI Agent. If no answer was delivered then this will return <code>null</code></td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.rating</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The customer satisfaction rating given to AI Agent, from 1-5.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.rating_remark</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The customer satisfaction rating remark given to AI Agent.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.resolution_state</code></td>
+<td><code>enum: assumed_resolution, confirmed_resolution, escalated, negative_feedback, procedure_handoff, null</code></td>
+<td>No</td>
+<td>The resolution state of AI Agent. If no AI or custom answer has been delivered then this will return <code>null</code>.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.source_title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The title of the source that triggered AI Agent involvement in the conversation. If this is <code>essentials_plan_setup</code> then it will return <code>null</code>.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.source_type</code></td>
+<td><code>enum: essentials_plan_setup, profile, workflow, workflow_preview, fin_preview</code></td>
+<td>No</td>
+<td>The type of the source that triggered AI Agent involvement in the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent.updated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time when the AI agent rating was last updated.</td>
+</tr>
+<tr>
+<td><code>conversations[].ai_agent_participated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates whether the AI Agent participated in the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].channel</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The channel through which the conversation was initiated and its current channel.</td>
+</tr>
+<tr>
+<td><code>conversations[].company</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The company associated with the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.app_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Intercom defined code of the workspace the company is associated to.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.company_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The company id you have defined for the company.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The time the company was added in Intercom.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.custom_attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The custom attributes you have set on the company.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The Intercom defined id representing the company.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.industry</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The industry that the company operates in.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.last_request_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The time the company last recorded making a request.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.monthly_spend</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>How much revenue the company generates for your business.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the company.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The list of notes associated with the company</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.notes</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.notes[].author</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Optional. Represents the Admin that created the note.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.notes[].body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The body text of the note.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.notes[].company</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Represents the company that the note was created about.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.notes[].created_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>The time the note was created.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.notes[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the note.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.notes[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>note</code>.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.notes.type</code></td>
+<td><code>enum: note.list</code></td>
+<td>No</td>
+<td>The type of the object</td>
+</tr>
+<tr>
+<td><code>conversations[].company.plan</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].company.plan.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the plan</td>
+</tr>
+<tr>
+<td><code>conversations[].company.plan.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the plan</td>
+</tr>
+<tr>
+<td><code>conversations[].company.plan.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Value is always &quot;plan&quot;</td>
+</tr>
+<tr>
+<td><code>conversations[].company.remote_created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The time the company was created by you.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The list of segments associated with the company</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments[].count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of items in the user segment. It's returned when <code>include_count=true</code> is included in the request.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments[].created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The time the segment was created.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier representing the segment.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the segment.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments[].person_type</code></td>
+<td><code>enum: contact, user</code></td>
+<td>No</td>
+<td>Type of the contact: contact (lead) or user.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments[].type</code></td>
+<td><code>enum: segment</code></td>
+<td>No</td>
+<td>The type of object.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.segments[].updated_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The time the segment was updated.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.segments.type</code></td>
+<td><code>enum: segment.list</code></td>
+<td>No</td>
+<td>The type of the object</td>
+</tr>
+<tr>
+<td><code>conversations[].company.session_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>How many sessions the company has recorded.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.size</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of employees in the company.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.tags</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The list of tags associated with the company</td>
+</tr>
+<tr>
+<td><code>conversations[].company.tags.tags</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].company.tags.tags[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the tag</td>
+</tr>
+<tr>
+<td><code>conversations[].company.tags.tags[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the tag</td>
+</tr>
+<tr>
+<td><code>conversations[].company.tags.tags[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>value is &quot;tag&quot;</td>
+</tr>
+<tr>
+<td><code>conversations[].company.tags.type</code></td>
+<td><code>enum: tag.list</code></td>
+<td>No</td>
+<td>The type of the object</td>
+</tr>
+<tr>
+<td><code>conversations[].company.type</code></td>
+<td><code>enum: company</code></td>
+<td>No</td>
+<td>Value is <code>company</code></td>
+</tr>
+<tr>
+<td><code>conversations[].company.updated_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The last time the company was updated.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.user_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of users in the company.</td>
+</tr>
+<tr>
+<td><code>conversations[].company.website</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The URL for the company website.</td>
+</tr>
+<tr>
+<td><code>conversations[].contacts</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The list of contacts (users or leads) involved in this conversation. This will only contain one customer unless more were added via the group conversation feature.</td>
+</tr>
+<tr>
+<td><code>conversations[].contacts.contacts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The list of contacts (users or leads) involved in this conversation. This will only contain one customer unless more were added via the group conversation feature.</td>
+</tr>
+<tr>
+<td><code>conversations[].contacts.contacts[].external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is provided by the Client.</td>
+</tr>
+<tr>
+<td><code>conversations[].contacts.contacts[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>conversations[].contacts.contacts[].type</code></td>
+<td><code>enum: contact</code></td>
+<td>No</td>
+<td>always contact</td>
+</tr>
+<tr>
+<td><code>conversations[].contacts.type</code></td>
+<td><code>enum: contact.list</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The Conversation Rating object which contains information on the rating and/or remark added by a Contact and the Admin assigned to the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.contact</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>reference to contact object</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.contact.external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is provided by the Client.</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.contact.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.contact.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>always contact</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the rating was requested in the conversation being rated.</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.rating</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The rating, between 1 and 5, for the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.remark</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>An optional field to add a remark to correspond to the number rating</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.teammate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>reference to another object</td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.teammate.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.teammate.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].conversation_rating.updated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the rating was last updated.</td>
+</tr>
+<tr>
+<td><code>conversations[].created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the conversation was created.</td>
+</tr>
+<tr>
+<td><code>conversations[].custom_attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the different custom attributes associated to the conversation as key-value pairs. For relationship attributes the value will be a list of custom object instance models. System-defined attributes such as &quot;CX Score rating&quot; and &quot;CX Score explanation&quot; may also be included.</td>
+</tr>
+<tr>
+<td><code>conversations[].external_references</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>References linking this conversation to records in an external helpdesk or CRM system. Populated for Fin Standalone workspaces synced from an external platform; an empty array otherwise. Sorted alphabetically by <code>type</code> and capped at 20 entries.</td>
+</tr>
+<tr>
+<td><code>conversations[].external_references[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The identifier of the record in the external system. Always serialized as a string, since some external IDs exceed 32-bit integer range.</td>
+</tr>
+<tr>
+<td><code>conversations[].external_references[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of external system the reference points to. Possible values include <code>zendesk_ticket</code>, <code>zendesk_sunshine_conversation</code>, <code>salesforce_case</code>, <code>salesforce_in_app_message_conversation</code>, <code>freshdesk_ticket</code>, <code>freshchat_conversation</code>, <code>hubspot_conversation</code>, <code>custom_helpdesk_conversation</code>, <code>api_conversation</code>.</td>
+</tr>
+<tr>
+<td><code>conversations[].first_contact_reply</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing information on the first users message. For a contact initiated message this will represent the users original message.</td>
+</tr>
+<tr>
+<td><code>conversations[].first_contact_reply.created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].first_contact_reply.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].first_contact_reply.url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id representing the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing metadata about linked conversations and linked tickets. Up to 1000 can be returned.</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array containing the linked conversations and linked tickets.</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects.data[].category</code></td>
+<td><code>enum: Customer, Back-office, Tracker, null</code></td>
+<td>No</td>
+<td>Category of the Linked Ticket Object.</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the linked object</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects.data[].type</code></td>
+<td><code>enum: ticket, conversation</code></td>
+<td>No</td>
+<td>ticket or conversation</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether or not there are more linked objects than returned.</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The total number of linked objects.</td>
+</tr>
+<tr>
+<td><code>conversations[].linked_objects.type</code></td>
+<td><code>enum: list</code></td>
+<td>No</td>
+<td>Always list.</td>
+</tr>
+<tr>
+<td><code>conversations[].monitor_evaluations</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>QA monitor evaluations that flagged this conversation. Only included when <code>include_monitors=true</code> is passed as a query parameter.</td>
+</tr>
+<tr>
+<td><code>conversations[].monitor_evaluations[].evaluated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the monitor evaluated this conversation. Null in the rare case the underlying record's timestamp is not yet set.</td>
+</tr>
+<tr>
+<td><code>conversations[].monitor_evaluations[].explanation</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reasoning provided by the monitor for its result. May be null if no reasoning was generated.</td>
+</tr>
+<tr>
+<td><code>conversations[].monitor_evaluations[].monitor_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier of the monitor that produced this evaluation.</td>
+</tr>
+<tr>
+<td><code>conversations[].monitor_evaluations[].monitor_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the monitor at the time of evaluation. Null if the monitor has since been deleted.</td>
+</tr>
+<tr>
+<td><code>conversations[].monitor_evaluations[].monitor_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of the monitor. Null if the monitor has since been deleted.</td>
+</tr>
+<tr>
+<td><code>conversations[].monitor_evaluations[].result</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The evaluation outcome reported by the monitor.</td>
+</tr>
+<tr>
+<td><code>conversations[].open</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates whether a conversation is open (true) or closed (false).</td>
+</tr>
+<tr>
+<td><code>conversations[].priority</code></td>
+<td><code>enum: none, low, medium, high, urgent</code></td>
+<td>No</td>
+<td>The priority level of the conversation. Returns one of none, low, medium, high, or urgent.</td>
+</tr>
+<tr>
+<td><code>conversations[].read</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates whether a conversation has been read.</td>
+</tr>
+<tr>
+<td><code>conversations[].sales_agent</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Data related to Sales Agent involvement in the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].sales_agent.collected_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A flat key-value map of memory fields collected by the sales agent during the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].sales_agent.outcome</code></td>
+<td><code>enum: qualified, disqualified, product_discovery, escalated_to_support, spam</code></td>
+<td>No</td>
+<td>The fixed outcome of the sales agent interaction, used for billing and tracking.</td>
+</tr>
+<tr>
+<td><code>conversations[].sales_agent.routing_outcome</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The identifier of the user-defined routing outcome selected by the sales agent.</td>
+</tr>
+<tr>
+<td><code>conversations[].sales_agent_participated</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Indicates whether the Sales Agent participated in the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>QA scorecard results for this conversation. Only included when <code>include_scorecards=true</code> is passed as a query parameter.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].ai_score</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The numeric score produced by AI evaluation, if applicable. Null when not AI-scored.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].evaluated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the scorecard was last evaluated. Null in the rare case the underlying record's timestamp is not yet set.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].evaluators</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Per-evaluator results within this scorecard.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].evaluators[].evaluator_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier of the evaluator (criterion) within the scorecard.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].evaluators[].result</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The evaluator's result for this conversation. Null if the evaluator was not scored.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the scorecard.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].passed</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the conversation passed the scorecard. Null when the scorecard has not been scored.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].reviewed_teammate</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The teammate (or AI agent) whose handling of the conversation was reviewed by this scorecard.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].reviewed_teammate.admin_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the admin who was reviewed. Present only when <code>type</code> is <code>admin</code>.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].reviewed_teammate.type</code></td>
+<td><code>enum: ai, admin</code></td>
+<td>No</td>
+<td>The kind of reviewee. <code>ai</code> if the conversation was handled by Fin or scored without a specific teammate; <code>admin</code> if a specific teammate was reviewed.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].score</code></td>
+<td><code>number</code></td>
+<td>No</td>
+<td>The numeric score for the scorecard. Null when the scorecard has not been scored.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].scorecard_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier of the scorecard definition.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].scorecard_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of scorecard.</td>
+</tr>
+<tr>
+<td><code>conversations[].scorecards[].scorecard_version_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier of the specific scorecard version that produced this result.</td>
+</tr>
+<tr>
+<td><code>conversations[].sla_applied</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The SLA Applied object contains the details for which SLA has been applied to this conversation. Important: if there are any canceled sla_events for the conversation - meaning an SLA has been manually removed from a conversation, the sla_status will always be returned as null.</td>
+</tr>
+<tr>
+<td><code>conversations[].sla_applied.sla_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the SLA as given by the teammate when it was created.</td>
+</tr>
+<tr>
+<td><code>conversations[].sla_applied.sla_status</code></td>
+<td><code>enum: hit, missed, cancelled, active</code></td>
+<td>No</td>
+<td>SLA statuses: - <code>hit</code>: If there’s at least one hit event in the underlying sla_events table, and no “missed” or “canceled” events for the conversation. - <code>missed</code>: If there are any missed sla_events for the conversation and no canceled events. If there’s even a single missed sla event, the status will always be missed. A missed status is not applied when the SLA expires, only the next time a teammate replies. - <code>active</code>: An SLA has been applied to a conversation, but has not yet been fulfilled. SLA status is active only if there are no “hit, “missed”, or “canceled” events.</td>
+</tr>
+<tr>
+<td><code>conversations[].sla_applied.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>object type</td>
+</tr>
+<tr>
+<td><code>conversations[].snoozed_until</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>If set this is the time in the future when this conversation will be marked as open. that is it will be in a snoozed state until this time. that is it will be in a snoozed state until this time.</td>
+</tr>
+<tr>
+<td><code>conversations[].source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The type of the conversation part that started this conversation. Can be Contact, Admin, Campaign, Automated or Operator initiated.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of attachments for the part.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments[].content_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The content type of the attachment</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments[].filesize</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The size of the attachment</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments[].height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The height of the attachment</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the attachment</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of attachment</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments[].url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The URL of the attachment</td>
+</tr>
+<tr>
+<td><code>conversations[].source.attachments[].width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The width of the attachment</td>
+</tr>
+<tr>
+<td><code>conversations[].source.author</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The author who started the conversation. Can be a Contact, Admin, or Bot.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.author.email</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td>The email of the author.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.author.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the author.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.author.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the author.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.author.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of the author.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The message body, which may contain HTML. For Twitter, this will show a generic message regarding why the body is obscured. In webhook payloads for API version 2.15+, this field returns plain text.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.delivered_as</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>How the conversation was initiated.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Contains metadata if the message was sent as an email</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata.email_address_headers</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of an email address headers.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata.email_address_headers[].email_address</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The email address</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata.email_address_headers[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name associated with the email address</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata.email_address_headers[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of email address header</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata.history</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The HTML content of any quoted or forwarded email history from the initial inbound message</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata.message_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the email message as specified in the Message-ID header</td>
+</tr>
+<tr>
+<td><code>conversations[].source.email_message_metadata.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The subject of the email</td>
+</tr>
+<tr>
+<td><code>conversations[].source.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the source message.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.recipients</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The recipients of the source message. Only present for email conversations.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.recipients[].drop_reason</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The reason this recipient was dropped, if applicable.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.recipients[].email</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td>The recipient email address.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.recipients[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The recipient type. One of <code>to</code>, <code>cc</code>, or <code>bcc</code>.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.redacted</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether or not the source message has been redacted. Only applicable for contact initiated messages.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.reply_to</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The Reply-To header addresses of the source message, where a reply will be routed. Can differ from the sender's From address. Only present for email conversations.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.reply_to[].email</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td>The Reply-To email address.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.reply_to[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The display name associated with the Reply-To address.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.subject</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. The message subject. For Twitter, this will show a generic message regarding why the subject is obscured. In webhook payloads for API version 2.15+, this field returns plain text.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The origin of this conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].source.url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The URL where the conversation was started. For Twitter, Email, and Bots, this will be blank.</td>
+</tr>
+<tr>
+<td><code>conversations[].state</code></td>
+<td><code>enum: open, closed, snoozed</code></td>
+<td>No</td>
+<td>Can be set to &quot;open&quot;, &quot;closed&quot; or &quot;snoozed&quot;.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A Statistics object containing all information required for reporting, with timestamps and calculated metrics.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.adjusted_handling_time</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Adjusted handling time for conversation in seconds. This is the active handling time excluding idle periods when teammates are not actively working on the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of conversation response time objects</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time[].response_time</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>First response time of assigned team in seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time[].team_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Id of the assigned team.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time[].team_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Name of the assigned Team, null if team does not exist, Unassigned if no team is assigned.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time_in_office_hours</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array of conversation response time objects within office hours</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time_in_office_hours[].response_time</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>First response time of assigned team in seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time_in_office_hours[].team_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Id of the assigned team.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.assigned_team_first_response_time_in_office_hours[].team_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Name of the assigned Team, null if team does not exist, Unassigned if no team is assigned.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.count_assignments</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of assignments after first_contact_reply_at.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.count_conversation_parts</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Total number of conversation parts.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.count_reopens</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of reopens after first_contact_reply_at.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.first_admin_reply_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of first admin reply after first_contact_reply_at.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.first_assignment_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of first assignment after first_contact_reply_at.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.first_close_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of first close after first_contact_reply_at.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.first_contact_reply_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of first text conversation part from a contact.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.handling_time</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Time from conversation assignment to conversation close in seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.last_admin_reply_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of the last conversation part from an admin.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.last_assignment_admin_reply_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of first admin reply since most recent assignment.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.last_assignment_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of last assignment after first_contact_reply_at.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.last_close_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of the last conversation close.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.last_closed_by_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The last admin who closed the conversation. Returns a reference to an Admin object.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.last_contact_reply_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>Time of the last conversation part from a contact.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.median_time_to_reply</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Median based on all admin replies after a contact reply. Subtracts out of business hours. In seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.time_to_admin_reply</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Duration until first admin reply. Subtracts out of business hours. In seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.time_to_assignment</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Duration until last assignment before first admin reply. In seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.time_to_first_close</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Duration until conversation was closed first time. Subtracts out of business hours. In seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.time_to_last_close</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Duration until conversation was closed last time. Subtracts out of business hours. In seconds.</td>
+</tr>
+<tr>
+<td><code>conversations[].statistics.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].tags</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A list of tags objects associated with a conversation</td>
+</tr>
+<tr>
+<td><code>conversations[].tags.tags</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of tags objects associated with the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].tags.tags[].applied_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time when the tag was applied to the object. Only present when the tag is returned as part of a tagging operation on a contact, conversation, or ticket.</td>
+</tr>
+<tr>
+<td><code>conversations[].tags.tags[].applied_by</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The admin who applied the tag. Only present when the tag is returned as part of a tagging operation on a contact, conversation, or ticket.</td>
+</tr>
+<tr>
+<td><code>conversations[].tags.tags[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the tag</td>
+</tr>
+<tr>
+<td><code>conversations[].tags.tags[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the tag</td>
+</tr>
+<tr>
+<td><code>conversations[].tags.tags[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>value is &quot;tag&quot;</td>
+</tr>
+<tr>
+<td><code>conversations[].tags.type</code></td>
+<td><code>enum: tag.list</code></td>
+<td>No</td>
+<td>The type of the object</td>
+</tr>
+<tr>
+<td><code>conversations[].team_assignee_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The id of the team assigned to the conversation. If it's not assigned to a team it will return 0.</td>
+</tr>
+<tr>
+<td><code>conversations[].teammates</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The list of teammates who participated in the conversation (wrote at least one conversation part).</td>
+</tr>
+<tr>
+<td><code>conversations[].teammates.teammates</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The list of teammates who participated in the conversation (wrote at least one conversation part).</td>
+</tr>
+<tr>
+<td><code>conversations[].teammates.teammates[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].teammates.teammates[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>conversations[].teammates.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of the object - <code>admin.list</code>.</td>
+</tr>
+<tr>
+<td><code>conversations[].title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The title given to the conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Always conversation.</td>
+</tr>
+<tr>
+<td><code>conversations[].updated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The last time the conversation was updated.</td>
+</tr>
+<tr>
+<td><code>conversations[].waiting_since</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The last time a Contact responded to an Admin. In other words, the time a customer started waiting for a response. Set to null if last reply is from an Admin.</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A &quot;cursor&quot; or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or &quot;pages&quot; as needed.</td>
+</tr>
+<tr>
+<td><code>pages.next</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Pagination: Starting After</td>
+</tr>
+<tr>
+<td><code>pages.next.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results to fetch per page.</td>
+</tr>
+<tr>
+<td><code>pages.next.starting_after</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>pages.page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The current page</td>
+</tr>
+<tr>
+<td><code>pages.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of results per page</td>
+</tr>
+<tr>
+<td><code>pages.total_pages</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Total number of pages</td>
+</tr>
+<tr>
+<td><code>pages.type</code></td>
+<td><code>enum: pages</code></td>
+<td>No</td>
+<td>the type of object <code>pages</code>.</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: conversation.list</code></td>
+<td>No</td>
+<td>Always conversation.list</td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

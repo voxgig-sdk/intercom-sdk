@@ -1,0 +1,22 @@
+# BasicCompanyScrollFlow
+
+main: kit: flow: BasicCompanyScrollFlow:
+{
+  entity: "company_scroll",
+  kind: "basic",
+  name: "BasicCompanyScrollFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "company_scroll_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompanyScrollFlow"
+}

@@ -1,0 +1,32 @@
+# BasicNewsfeedFlow
+
+main: kit: flow: BasicNewsfeedFlow:
+{
+  entity: "newsfeed",
+  kind: "basic",
+  name: "BasicNewsfeedFlow",
+  step: [
+    {
+      input: {
+        ref: "newsfeed_ref01",
+        srcdatavar: "newsfeed_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "newsfeed01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-newsfeed_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNewsfeedFlow"
+}

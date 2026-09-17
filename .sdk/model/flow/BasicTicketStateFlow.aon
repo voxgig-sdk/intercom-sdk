@@ -1,0 +1,22 @@
+# BasicTicketStateFlow
+
+main: kit: flow: BasicTicketStateFlow:
+{
+  entity: "ticket_state",
+  kind: "basic",
+  name: "BasicTicketStateFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ticket_state_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTicketStateFlow"
+}

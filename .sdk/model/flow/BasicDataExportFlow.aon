@@ -1,0 +1,22 @@
+# BasicDataExportFlow
+
+main: kit: flow: BasicDataExportFlow:
+{
+  entity: "data_export",
+  kind: "basic",
+  name: "BasicDataExportFlow",
+  step: [
+    {
+      input: {
+        ref: "data_export_ref01"
+      }
+
+      match: {
+        job_identifier: "jobentifier01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicDataExportFlow"
+}

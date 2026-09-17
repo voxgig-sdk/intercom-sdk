@@ -1,0 +1,30 @@
+# BasicReportingDataExportFlow
+
+main: kit: flow: BasicReportingDataExportFlow:
+{
+  entity: "reporting_data_export",
+  kind: "basic",
+  name: "BasicReportingDataExportFlow",
+  step: [
+    {
+      input: {
+        ref: "reporting_data_export_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "reporting_data_export_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReportingDataExportFlow"
+}

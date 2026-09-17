@@ -1,0 +1,181 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { IntercomSDK, BaseFeature, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+// AFTER the imports on purpose: TypeScript hoists `import` above any
+// statement in the emitted CommonJS, so a loader placed above them would
+// run only after every imported module had already been evaluated - and
+// anything reading process.env at module scope would miss these values.
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('AdminEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when INTERCOM_TEST_LIVE=TRUE.
+  afterEach(liveDelay('INTERCOM_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = IntercomSDK.test()
+    const ent = testsdk.Admin()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.INTERCOM_TEST_LIVE
+    for (const op of ['list', 'update', 'load']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'admin.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"format":"uri","name":"avatar","req":false,"short":"Image for the associated team or teammate","type":"`$STRING`","index$":0},{"active":true,"name":"away_mode_enabled","req":false,"short":"Identifies if this admin is currently set in away mode.","type":"`$BOOLEAN`","index$":1},{"active":true,"name":"away_mode_reassign","req":false,"short":"Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.","type":"`$BOOLEAN`","index$":2},{"active":true,"name":"away_status_reason_id","req":false,"short":"The unique identifier of the away status reason","type":"`$INTEGER`","index$":3},{"active":true,"name":"email","req":false,"short":"The email of the admin.","type":"`$STRING`","index$":4},{"active":true,"name":"has_inbox_seat","req":false,"short":"Identifies if this admin has a paid inbox seat to restrict/allow features that require them.","type":"`$BOOLEAN`","index$":5},{"active":true,"name":"id","req":false,"short":"The id representing the admin.","type":"`$STRING`","index$":6},{"active":true,"name":"job_title","req":false,"short":"The job title of the admin.","type":"`$STRING`","index$":7},{"active":true,"name":"name","req":false,"short":"The name of the admin.","type":"`$STRING`","index$":8},{"active":true,"name":"role","req":false,"short":"The role assigned to this admin.","type":"`$OBJECT`","index$":9},{"active":true,"name":"team_ids","req":false,"short":"This object represents the avatar associated with the admin.","type":"`$ARRAY`","index$":10},{"active":true,"name":"team_priority_level","req":false,"short":"Admin priority levels for teams","type":"`$OBJECT`","index$":11},{"active":true,"name":"type","req":false,"short":"String representing the object's type.","type":"`$STRING`","index$":12}],"id":{"field":"id","name":"id"},"name":"admin","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}],"query":[{"active":true,"example":true,"kind":"query","name":"display_avatar","orig":"display_avatar","reqd":false,"type":"`$BOOLEAN`","index$":0}]},"contract":{"id":"GET /admins","json":"{\"operationId\":\"listAdmins\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"If set to true, the response will include the admin's avatar object containing the image URL. Defaults to false.\",\"example\":true,\"in\":\"query\",\"name\":\"display_avatar\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful response\":{\"value\":{\"admins\":[{\"away_mode_enabled\":false,\"away_mode_reassign\":false,\"email\":\"admin7@email.com\",\"has_inbox_seat\":true,\"id\":\"991267466\",\"name\":\"Ciaran7 Lee\",\"team_ids\":[],\"type\":\"admin\"}],\"type\":\"admin.list\"}}},\"schema\":{\"description\":\"A list of admins associated with a given workspace.\",\"properties\":{\"admins\":{\"description\":\"A list of admins associated with a given workspace.\",\"items\":{\"description\":\"Admins are teammate accounts that have access to a workspace.\",\"nullable\":true,\"properties\":{\"avatar\":{\"description\":\"Image for the associated team or teammate\",\"example\":\"https://picsum.photos/200/300\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"away_mode_enabled\":{\"description\":\"Identifies if this admin is currently set in away mode.\",\"example\":false,\"type\":\"boolean\"},\"away_mode_reassign\":{\"description\":\"Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.\",\"example\":false,\"type\":\"boolean\"},\"away_status_reason_id\":{\"description\":\"The unique identifier of the away status reason\",\"example\":12345,\"nullable\":true,\"type\":\"integer\"},\"email\":{\"description\":\"The email of the admin.\",\"example\":\"jdoe@example.com\",\"type\":\"string\"},\"has_inbox_seat\":{\"description\":\"Identifies if this admin has a paid inbox seat to restrict/allow features that require them.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The id representing the admin.\",\"example\":\"1295\",\"type\":\"string\"},\"job_title\":{\"description\":\"The job title of the admin.\",\"example\":\"Associate\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the admin.\",\"example\":\"Joe Example\",\"type\":\"string\"},\"role\":{\"description\":\"The role assigned to this admin. Only present if the admin has a role assigned.\",\"nullable\":true,\"properties\":{\"id\":{\"description\":\"The id of the role.\",\"example\":\"1\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the role.\",\"example\":\"Support Agent\",\"type\":\"string\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `role`.\",\"example\":\"role\",\"type\":\"string\"}},\"type\":\"object\"},\"team_ids\":{\"description\":\"This object represents the avatar associated with the admin.\",\"example\":[814865],\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"team_priority_level\":{\"description\":\"Admin priority levels for teams\",\"nullable\":true,\"properties\":{\"primary_team_ids\":{\"description\":\"The primary team ids for the team\",\"example\":[814865],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"secondary_team_ids\":{\"description\":\"The secondary team ids for the team\",\"example\":[493881],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"}},\"title\":\"Team Priority Level\",\"type\":\"object\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `admin`.\",\"example\":\"admin\",\"type\":\"string\"}},\"title\":\"Admin\",\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `admin.list`.\",\"example\":\"admin.list\",\"type\":\"string\"}},\"title\":\"Admins\",\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"5ef5682e-f66e-40a4-b828-8592175f83b8\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/admins","segments":[{"lit":"admins"}],"select":{"exist":["display_avatar","intercom_version"]},"transform":{"req":"`reqdata`","res":"`body.admins`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"example":123,"kind":"param","name":"id","orig":"admin_id","reqd":true,"type":"`$INTEGER`","index$":0}]},"contract":{"id":"GET /admins/{admin_id}","json":"{\"operationId\":\"retrieveAdmin\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier of a given admin\",\"example\":123,\"in\":\"path\",\"name\":\"admin_id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Admin found\":{\"value\":{\"away_mode_enabled\":false,\"away_mode_reassign\":false,\"away_status_reason_id\":null,\"email\":\"admin9@email.com\",\"has_inbox_seat\":true,\"id\":\"991267468\",\"name\":\"Ciaran9 Lee\",\"team_ids\":[],\"type\":\"admin\"}}},\"schema\":{\"description\":\"Admins are teammate accounts that have access to a workspace.\",\"nullable\":true,\"properties\":{\"avatar\":{\"description\":\"Image for the associated team or teammate\",\"example\":\"https://picsum.photos/200/300\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"away_mode_enabled\":{\"description\":\"Identifies if this admin is currently set in away mode.\",\"example\":false,\"type\":\"boolean\"},\"away_mode_reassign\":{\"description\":\"Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.\",\"example\":false,\"type\":\"boolean\"},\"away_status_reason_id\":{\"description\":\"The unique identifier of the away status reason\",\"example\":12345,\"nullable\":true,\"type\":\"integer\"},\"email\":{\"description\":\"The email of the admin.\",\"example\":\"jdoe@example.com\",\"type\":\"string\"},\"has_inbox_seat\":{\"description\":\"Identifies if this admin has a paid inbox seat to restrict/allow features that require them.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The id representing the admin.\",\"example\":\"1295\",\"type\":\"string\"},\"job_title\":{\"description\":\"The job title of the admin.\",\"example\":\"Associate\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the admin.\",\"example\":\"Joe Example\",\"type\":\"string\"},\"role\":{\"description\":\"The role assigned to this admin. Only present if the admin has a role assigned.\",\"nullable\":true,\"properties\":{\"id\":{\"description\":\"The id of the role.\",\"example\":\"1\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the role.\",\"example\":\"Support Agent\",\"type\":\"string\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `role`.\",\"example\":\"role\",\"type\":\"string\"}},\"type\":\"object\"},\"team_ids\":{\"description\":\"This object represents the avatar associated with the admin.\",\"example\":[814865],\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"team_priority_level\":{\"description\":\"Admin priority levels for teams\",\"nullable\":true,\"properties\":{\"primary_team_ids\":{\"description\":\"The primary team ids for the team\",\"example\":[814865],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"secondary_team_ids\":{\"description\":\"The secondary team ids for the team\",\"example\":[493881],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"}},\"title\":\"Team Priority Level\",\"type\":\"object\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `admin`.\",\"example\":\"admin\",\"type\":\"string\"}},\"title\":\"Admin\",\"type\":\"object\"}}},\"description\":\"Admin found\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"ff783bc1-754f-4a9f-887b-22f94fec18f0\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Admin not found\":{\"value\":{\"errors\":[{\"code\":\"admin_not_found\",\"message\":\"Admin not found\"}],\"request_id\":\"c59f7ca5-1639-4284-a66d-50e34ed98ab3\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Admin not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/admins/{admin_id}","rename":{"param":{"admin_id":"id"}},"segments":[{"lit":"admins"},{"var":"id"}],"select":{"exist":["id","intercom_version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"},"update":{"input":"data","name":"update","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"kind":"param","name":"id","orig":"admin_id","reqd":true,"type":"`$INTEGER`","index$":0}]},"contract":{"id":"PUT /admins/{admin_id}/away","json":"{\"operationId\":\"setAwayAdmin\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier of a given admin\",\"in\":\"path\",\"name\":\"admin_id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"admin_not_found\":{\"summary\":\"Admin not found\",\"value\":{\"away_mode_enabled\":true,\"away_mode_reassign\":true}},\"successful_response\":{\"summary\":\"Successful response\",\"value\":{\"away_mode_enabled\":true,\"away_mode_reassign\":true,\"away_status_reason_id\":12345}},\"unauthorized\":{\"summary\":\"Unauthorized\",\"value\":{\"away_mode_enabled\":true,\"away_mode_reassign\":true}}},\"schema\":{\"properties\":{\"away_mode_enabled\":{\"default\":true,\"description\":\"Set to \\\"true\\\" to change the status of the admin to away.\",\"example\":true,\"type\":\"boolean\"},\"away_mode_reassign\":{\"default\":false,\"description\":\"Set to \\\"true\\\" to assign any new conversation replies to your default inbox.\",\"example\":false,\"type\":\"boolean\"},\"away_status_reason_id\":{\"description\":\"The unique identifier of the away status reason\",\"example\":12345,\"type\":\"integer\"}},\"required\":[\"away_mode_enabled\",\"away_mode_reassign\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful response\":{\"value\":{\"away_mode_enabled\":true,\"away_mode_reassign\":true,\"away_status_reason_id\":\"12345\",\"email\":\"admin2@email.com\",\"has_inbox_seat\":true,\"id\":\"991267460\",\"name\":\"Ciaran2 Lee\",\"team_ids\":[],\"type\":\"admin\"}}},\"schema\":{\"description\":\"Admins are teammate accounts that have access to a workspace.\",\"nullable\":true,\"properties\":{\"avatar\":{\"description\":\"Image for the associated team or teammate\",\"example\":\"https://picsum.photos/200/300\",\"format\":\"uri\",\"nullable\":true,\"type\":\"string\"},\"away_mode_enabled\":{\"description\":\"Identifies if this admin is currently set in away mode.\",\"example\":false,\"type\":\"boolean\"},\"away_mode_reassign\":{\"description\":\"Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.\",\"example\":false,\"type\":\"boolean\"},\"away_status_reason_id\":{\"description\":\"The unique identifier of the away status reason\",\"example\":12345,\"nullable\":true,\"type\":\"integer\"},\"email\":{\"description\":\"The email of the admin.\",\"example\":\"jdoe@example.com\",\"type\":\"string\"},\"has_inbox_seat\":{\"description\":\"Identifies if this admin has a paid inbox seat to restrict/allow features that require them.\",\"example\":true,\"type\":\"boolean\"},\"id\":{\"description\":\"The id representing the admin.\",\"example\":\"1295\",\"type\":\"string\"},\"job_title\":{\"description\":\"The job title of the admin.\",\"example\":\"Associate\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the admin.\",\"example\":\"Joe Example\",\"type\":\"string\"},\"role\":{\"description\":\"The role assigned to this admin. Only present if the admin has a role assigned.\",\"nullable\":true,\"properties\":{\"id\":{\"description\":\"The id of the role.\",\"example\":\"1\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the role.\",\"example\":\"Support Agent\",\"type\":\"string\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `role`.\",\"example\":\"role\",\"type\":\"string\"}},\"type\":\"object\"},\"team_ids\":{\"description\":\"This object represents the avatar associated with the admin.\",\"example\":[814865],\"items\":{\"type\":\"integer\"},\"type\":\"array\"},\"team_priority_level\":{\"description\":\"Admin priority levels for teams\",\"nullable\":true,\"properties\":{\"primary_team_ids\":{\"description\":\"The primary team ids for the team\",\"example\":[814865],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"secondary_team_ids\":{\"description\":\"The secondary team ids for the team\",\"example\":[493881],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"}},\"title\":\"Team Priority Level\",\"type\":\"object\"},\"type\":{\"description\":\"String representing the object's type. Always has the value `admin`.\",\"example\":\"admin\",\"type\":\"string\"}},\"title\":\"Admin\",\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"away_status_reason_mandatory\":{\"summary\":\"Example of a missing away_status_reason_id when away reasons are mandatory\",\"value\":{\"errors\":[{\"code\":\"away_status_reason_mandatory\",\"message\":\"Away status reason is mandatory\"}],\"type\":\"error.list\"}},\"parameter_invalid\":{\"summary\":\"Example of an invalid away_status_reason_id\",\"value\":{\"errors\":[{\"code\":\"parameter_invalid\",\"message\":\"Away status reason is deleted\"}],\"type\":\"error.list\"}}}}},\"description\":\"Bad Request\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"e76b2df0-2413-4215-8a5a-b5f6ebd4e642\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Admin not found\":{\"value\":{\"errors\":[{\"code\":\"admin_not_found\",\"message\":\"Admin for admin_id not found\"}],\"request_id\":\"efcd0531-798b-4c22-bccd-68877ed7faa4\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Admin not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"PUT","orig":"/admins/{admin_id}/away","rename":{"param":{"admin_id":"id"}},"segments":[{"lit":"admins"},{"var":"id"},{"lit":"away"}],"select":{"$action":"away","exist":["id","intercom_version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"update"}},"relations":{"ancestors":[]},"key$":"admin","name__orig":"admin","Name":"Admin","name_":"admin","name-":"admin","NAME":"ADMIN","index$":3}, {"active":true,"entity":"admin","key$":"BasicAdminFlow","kind":"basic","name":"BasicAdminFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"admin_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"admin_ref01","srcdatavar":"admin_ref01_data","suffix":"_up0","textfield":"avatar"},"match":{},"op":"update","spec":[{"apply":"TextFieldMark","def":{"mark":"Mark01-admin_ref01"}}],"valid":[],"index$":1},{"active":true,"data":{},"input":{"ref":"admin_ref01","srcdatavar":"admin_ref01_data","suffix":"_dt0"},"match":{"id":"admin01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-admin_ref01"}}],"index$":2}]}, 'Admin')
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+    let admin_ref01_data = Object.values(setup.data.existing.admin)[0] as any
+
+    // LIST
+    const admin_ref01_ent = client.Admin()
+    const admin_ref01_match: any = {}
+
+    const admin_ref01_list = (await admin_ref01_ent.list(admin_ref01_match)).map((e: any) => e.data())
+
+
+    // UPDATE
+    const admin_ref01_data_up0: any = {}
+    admin_ref01_data_up0.id = admin_ref01_data.id
+
+    const admin_ref01_markdef_up0 = { name: 'avatar', value: 'Mark01-admin_ref01_' + setup.now }
+    ;(admin_ref01_data_up0 as any)[admin_ref01_markdef_up0.name] = admin_ref01_markdef_up0.value
+
+    const admin_ref01_resdata_up0 = (await admin_ref01_ent.update(admin_ref01_data_up0)).data()
+    assert(admin_ref01_resdata_up0.id === admin_ref01_data_up0.id)
+
+    assert((admin_ref01_resdata_up0 as any)[admin_ref01_markdef_up0.name] === admin_ref01_markdef_up0.value)
+
+
+    // LOAD
+    const admin_ref01_match_dt0: any = {}
+    admin_ref01_match_dt0.id = admin_ref01_data.id
+    const admin_ref01_data_dt0 = (await admin_ref01_ent.load(admin_ref01_match_dt0)).data()
+    assert(admin_ref01_data_dt0.id === admin_ref01_data.id)
+
+
+  })
+})
+
+
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/admin/AdminTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = IntercomSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['admin01','admin02','admin03'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'INTERCOM_TEST_ADMIN_ENTID': idmap,
+    'INTERCOM_TEST_LIVE': 'FALSE',
+    'INTERCOM_TEST_EXPLAIN': 'FALSE',
+    'INTERCOM_APIKEY': '',
+  })
+
+  idmap = env['INTERCOM_TEST_ADMIN_ENTID']
+
+  const live = 'TRUE' === env.INTERCOM_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['INTERCOM_TEST_ADMIN_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new IntercomSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.INTERCOM_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.INTERCOM_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

@@ -1,0 +1,109 @@
+# Entity: away_status_reason
+
+main: kit: entity: away_status_reason: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "created_at"
+      req: false
+      short: "The Unix timestamp when the status reason was created"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "deleted"
+      req: false
+      short: "Whether the status reason has been soft deleted"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "emoji"
+      req: false
+      short: "The emoji associated with the status reason"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The unique identifier for the away status reason"
+      type: "`$STRING`"
+    }
+    {
+      name: "label"
+      req: false
+      short: "The display text for the away status reason"
+      type: "`$STRING`"
+    }
+    {
+      name: "order"
+      req: false
+      short: "The display order of the status reason"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: false
+      short: "The Unix timestamp when the status reason was last updated"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "away_status_reason"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /away_status_reasons"
+            json: "{\"operationId\":\"listAwayStatusReasons\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"A list of away status reasons.\",\"properties\":{\"data\":{\"description\":\"A list of away status reason objects.\",\"items\":{\"properties\":{\"created_at\":{\"description\":\"The Unix timestamp when the status reason was created\",\"example\":1734537243,\"type\":\"integer\"},\"deleted\":{\"description\":\"Whether the status reason has been soft deleted\",\"example\":false,\"type\":\"boolean\"},\"emoji\":{\"description\":\"The emoji associated with the status reason\",\"example\":\"☕\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the away status reason\",\"type\":\"string\"},\"label\":{\"description\":\"The display text for the away status reason\",\"example\":\"On a break\",\"type\":\"string\"},\"order\":{\"description\":\"The display order of the status reason\",\"example\":1,\"type\":\"integer\"},\"type\":{\"example\":\"away_status_reason\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The Unix timestamp when the status reason was last updated\",\"example\":1734537243,\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object\",\"enum\":[\"list\"],\"example\":\"list\",\"type\":\"string\"}},\"title\":\"Away Status Reasons\",\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/away_status_reasons"
+          segments: [
+            {
+              lit: "away_status_reasons"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

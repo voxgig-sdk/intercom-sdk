@@ -89,8 +89,184 @@ func runOp(client *sdk.IntercomSDK, op string, query *eng.Value, entityAtom eng.
 // emits one `case "<name>":` per entity defined in the SDK model.
 func entityFor(client *sdk.IntercomSDK, name string) (sdk.IntercomEntity, error) {
 	switch strings.ToLower(name) {
+	case "activity_log":
+		return client.ActivityLog(nil), nil
+	case "activity_log_event_type":
+		return client.ActivityLogEventType(nil), nil
+	case "activity_log_list":
+		return client.ActivityLogList(nil), nil
+	case "admin":
+		return client.Admin(nil), nil
+	case "admin_with_app":
+		return client.AdminWithApp(nil), nil
+	case "ai_call":
+		return client.AiCall(nil), nil
+	case "ai_content":
+		return client.AiContent(nil), nil
+	case "article":
+		return client.Article(nil), nil
+	case "article_search":
+		return client.ArticleSearch(nil), nil
+	case "article_version":
+		return client.ArticleVersion(nil), nil
+	case "article_version_list":
+		return client.ArticleVersionList(nil), nil
+	case "audience":
+		return client.Audience(nil), nil
+	case "away_status_reason":
+		return client.AwayStatusReason(nil), nil
+	case "banner":
+		return client.Banner(nil), nil
+	case "banner_dismiss":
+		return client.BannerDismiss(nil), nil
+	case "brand":
+		return client.Brand(nil), nil
+	case "call":
+		return client.Call(nil), nil
+	case "company":
+		return client.Company(nil), nil
+	case "company_attached_contact":
+		return client.CompanyAttachedContact(nil), nil
+	case "company_attached_segment":
+		return client.CompanyAttachedSegment(nil), nil
+	case "company_list":
+		return client.CompanyList(nil), nil
+	case "company_scroll":
+		return client.CompanyScroll(nil), nil
 	case "contact":
 		return client.Contact(nil), nil
+	case "contact_attached_company":
+		return client.ContactAttachedCompany(nil), nil
+	case "contact_list":
+		return client.ContactList(nil), nil
+	case "contact_segment":
+		return client.ContactSegment(nil), nil
+	case "content":
+		return client.Content(nil), nil
+	case "content_import_source":
+		return client.ContentImportSource(nil), nil
+	case "content_search":
+		return client.ContentSearch(nil), nil
+	case "content_snippet":
+		return client.ContentSnippet(nil), nil
+	case "conversation":
+		return client.Conversation(nil), nil
+	case "conversation_attribute":
+		return client.ConversationAttribute(nil), nil
+	case "conversation_attribute_list":
+		return client.ConversationAttributeList(nil), nil
+	case "conversation_list":
+		return client.ConversationList(nil), nil
+	case "conversation_participant":
+		return client.ConversationParticipant(nil), nil
+	case "custom_object_instance":
+		return client.CustomObjectInstance(nil), nil
+	case "data":
+		return client.Data(nil), nil
+	case "data_attribute":
+		return client.DataAttribute(nil), nil
+	case "data_connector":
+		return client.DataConnector(nil), nil
+	case "data_connector_execution_result":
+		return client.DataConnectorExecutionResult(nil), nil
+	case "data_connector_execution_result_list":
+		return client.DataConnectorExecutionResultList(nil), nil
+	case "data_event":
+		return client.DataEvent(nil), nil
+	case "data_event_summary":
+		return client.DataEventSummary(nil), nil
+	case "data_export":
+		return client.DataExport(nil), nil
+	case "deleted":
+		return client.Deleted(nil), nil
+	case "deleted_article_object":
+		return client.DeletedArticleObject(nil), nil
+	case "deleted_company_object":
+		return client.DeletedCompanyObject(nil), nil
+	case "deleted_data_connector_object":
+		return client.DeletedDataConnectorObject(nil), nil
+	case "deleted_internal_article_object":
+		return client.DeletedInternalArticleObject(nil), nil
+	case "deleted_object":
+		return client.DeletedObject(nil), nil
+	case "email":
+		return client.Email(nil), nil
+	case "external_page":
+		return client.ExternalPage(nil), nil
+	case "fin_agent":
+		return client.FinAgent(nil), nil
+	case "handling_event":
+		return client.HandlingEvent(nil), nil
+	case "help_center":
+		return client.HelpCenter(nil), nil
+	case "internal_article":
+		return client.InternalArticle(nil), nil
+	case "internal_article_search":
+		return client.InternalArticleSearch(nil), nil
+	case "ip_allowlist":
+		return client.IpAllowlist(nil), nil
+	case "job":
+		return client.Job(nil), nil
+	case "macro":
+		return client.Macro(nil), nil
+	case "merge_history":
+		return client.MergeHistory(nil), nil
+	case "message":
+		return client.Message(nil), nil
+	case "news_item":
+		return client.NewsItem(nil), nil
+	case "newsfeed":
+		return client.Newsfeed(nil), nil
+	case "note":
+		return client.Note(nil), nil
+	case "office_hour":
+		return client.OfficeHour(nil), nil
+	case "office_hours_exception":
+		return client.OfficeHoursException(nil), nil
+	case "office_hours_schedule":
+		return client.OfficeHoursSchedule(nil), nil
+	case "paginated":
+		return client.Paginated(nil), nil
+	case "phone_switch":
+		return client.PhoneSwitch(nil), nil
+	case "reporting_data":
+		return client.ReportingData(nil), nil
+	case "reporting_data_export":
+		return client.ReportingDataExport(nil), nil
+	case "segment":
+		return client.Segment(nil), nil
+	case "side_conversation":
+		return client.SideConversation(nil), nil
+	case "subscription":
+		return client.Subscription(nil), nil
+	case "subscription_type":
+		return client.SubscriptionType(nil), nil
+	case "tag":
+		return client.Tag(nil), nil
+	case "team":
+		return client.Team(nil), nil
+	case "team_metric_list":
+		return client.TeamMetricList(nil), nil
+	case "ticket":
+		return client.Ticket(nil), nil
+	case "ticket_list":
+		return client.TicketList(nil), nil
+	case "ticket_reply":
+		return client.TicketReply(nil), nil
+	case "ticket_state":
+		return client.TicketState(nil), nil
+	case "ticket_type":
+		return client.TicketType(nil), nil
+	case "ticket_type_attribute":
+		return client.TicketTypeAttribute(nil), nil
+	case "visitor":
+		return client.Visitor(nil), nil
+	case "whatsapp_message_status":
+		return client.WhatsappMessageStatus(nil), nil
+	case "whatsapp_message_status_list":
+		return client.WhatsappMessageStatusList(nil), nil
+	case "workflow":
+		return client.Workflow(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

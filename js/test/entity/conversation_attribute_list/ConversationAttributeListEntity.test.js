@@ -1,0 +1,147 @@
+
+const envlocal = __dirname + '/../../../.env.local'
+require('../../utility').loadEnvLocal(envlocal)
+
+const Path = require('node:path')
+const Fs = require('node:fs')
+
+const { test, describe, afterEach } = require('node:test')
+const assert = require('node:assert')
+const { createLiveTransport } = require('../../live-runner')
+const { runLiveEntity } = require('../../live-entity')
+
+
+const { IntercomSDK, BaseFeature, stdutil, config } = require('../../..')
+
+const {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+} = require('../../utility')
+
+
+describe('ConversationAttributeListEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when INTERCOM_TEST_LIVE=TRUE.
+  afterEach(liveDelay('INTERCOM_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = IntercomSDK.test()
+    const ent = testsdk.ConversationAttributeList()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"data","req":false,"short":"A list of conversation attributes.","type":"`$ARRAY`","index$":0},{"active":true,"name":"type","req":false,"short":"The type of the object.","type":"`$STRING`","index$":1}],"name":"conversation_attribute_list","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}],"query":[{"active":true,"example":false,"kind":"query","name":"include_archived","orig":"include_archived","reqd":false,"type":"`$BOOLEAN`","index$":0}]},"contract":{"id":"GET /conversations/attributes","json":"{\"operationId\":\"listConversationAttributes\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"Include archived attributes in the list. Default `false`.\",\"example\":false,\"in\":\"query\",\"name\":\"include_archived\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful response\":{\"value\":{\"data\":[{\"admin_id\":\"16\",\"archived\":false,\"created_at\":1777473061,\"data_type\":\"string\",\"description\":\"\",\"id\":3,\"multiline\":false,\"name\":\"test 2\",\"required\":false,\"type\":\"conversation_attribute\",\"updated_at\":1777473061,\"visible_to_team_ids\":[]},{\"admin_id\":\"16\",\"archived\":false,\"created_at\":1777472538,\"data_type\":\"list\",\"description\":\"\",\"id\":2,\"name\":\"test list\",\"options\":[{\"archived\":false,\"id\":\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"label\":\"1\"},{\"archived\":false,\"id\":\"b2c3d4e5-f6a7-8901-bcde-f01234567891\",\"label\":\"2\"},{\"archived\":false,\"id\":\"c3d4e5f6-a7b8-9012-cdef-012345678912\",\"label\":\"3\"}],\"required\":false,\"type\":\"conversation_attribute\",\"updated_at\":1777537799,\"visible_to_team_ids\":[]},{\"admin_id\":\"16\",\"archived\":false,\"created_at\":1777547482,\"data_type\":\"relationship\",\"description\":\"\",\"id\":6,\"name\":\"Ref to Test\",\"reference\":{\"object_type_id\":\"Test_Object\",\"type\":\"many\"},\"required\":false,\"type\":\"conversation_attribute\",\"updated_at\":1777547482,\"visible_to_team_ids\":[]}],\"type\":\"list\"}}},\"schema\":{\"description\":\"A list of all conversation attributes belonging to a workspace.\",\"properties\":{\"data\":{\"description\":\"A list of conversation attributes.\",\"items\":{\"description\":\"Conversation Attributes represent custom metadata fields for conversations. They support type-specific properties: strings (multiline), lists (options), and relationships (reference).\",\"discriminator\":{\"mapping\":{\"boolean\":\"#/components/schemas/conversation_attribute_boolean_type\",\"datetime\":\"#/components/schemas/conversation_attribute_datetime_type\",\"decimal\":\"#/components/schemas/conversation_attribute_decimal_type\",\"files\":\"#/components/schemas/conversation_attribute_files_type\",\"integer\":\"#/components/schemas/conversation_attribute_integer_type\",\"list\":\"#/components/schemas/conversation_attribute_list_type\",\"relationship\":\"#/components/schemas/conversation_attribute_relationship_type\",\"string\":\"#/components/schemas/conversation_attribute_string_type\"},\"propertyName\":\"data_type\"},\"oneOf\":[{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":[\"string\",\"integer\",\"list\",\"decimal\",\"boolean\",\"datetime\",\"relationship\",\"files\"],\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":[\"conversation_attribute\"],\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"string\"],\"type\":\"string\"},\"multiline\":{\"description\":\"Whether this string attribute is multiline.\",\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (String)\"},{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":[\"string\",\"integer\",\"list\",\"decimal\",\"boolean\",\"datetime\",\"relationship\",\"files\"],\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":[\"conversation_attribute\"],\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"integer\"],\"type\":\"string\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (Integer)\"},{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":[\"string\",\"integer\",\"list\",\"decimal\",\"boolean\",\"datetime\",\"relationship\",\"files\"],\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":[\"conversation_attribute\"],\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"list\"],\"type\":\"string\"},\"options\":{\"description\":\"Predefined options for this attribute. Each option has a unique UUID used to identify it in the options management endpoints.\",\"items\":{\"description\":\"A single option on a list-type conversation attribute.\",\"properties\":{\"archived\":{\"description\":\"Whether this option is archived (soft-deleted).\",\"example\":false,\"type\":\"boolean\"},\"id\":{\"description\":\"The unique UUID identifier for this option. Use this value as `option_id` in the options management endpoints.\",\"example\":\"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\"type\":\"string\"},\"label\":{\"description\":\"The display label for the option.\",\"example\":\"High\",\"type\":\"string\"}},\"title\":\"Conversation Attribute Option\",\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (List)\"},{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":[\"string\",\"integer\",\"list\",\"decimal\",\"boolean\",\"datetime\",\"relationship\",\"files\"],\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":[\"conversation_attribute\"],\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"decimal\"],\"type\":\"string\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (Decimal)\"},{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":[\"string\",\"integer\",\"list\",\"decimal\",\"boolean\",\"datetime\",\"relationship\",\"files\"],\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":[\"conversation_attribute\"],\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"boolean\"],\"type\":\"string\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (Boolean)\"},{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":[\"string\",\"integer\",\"list\",\"decimal\",\"boolean\",\"datetime\",\"relationship\",\"files\"],\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":[\"conversation_attribute\"],\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"datetime\"],\"type\":\"string\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (Datetime)\"},{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":[\"string\",\"integer\",\"list\",\"decimal\",\"boolean\",\"datetime\",\"relationship\",\"files\"],\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":[\"conversation_attribute\"],\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":[],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"relationship\"],\"type\":\"string\"},\"reference\":{\"description\":\"Reference configuration for related objects.\",\"properties\":{\"object_type_id\":{\"description\":\"The ID of the related custom object type.\",\"example\":\"Test_Object\",\"type\":\"string\"},\"type\":{\"description\":\"The cardinality of the relationship: `one` or `many`.\",\"enum\":[\"one\",\"many\"],\"example\":\"many\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (Relationship)\"},{\"allOf\":[{\"properties\":{\"admin_id\":{\"description\":\"ID of the admin who created the attribute.\",\"example\":\"16\",\"type\":\"string\"},\"archived\":{\"description\":\"Whether this attribute is archived.\",\"example\":false,\"type\":\"boolean\"},\"created_at\":{\"description\":\"The time the attribute was created as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"data_type\":{\"description\":\"The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.\",\"enum\":{\"$ref\":\"#/responses/200/content/application~1json/schema/properties/data/items/oneOf/6/allOf/0/properties/data_type/enum\"},\"example\":\"string\",\"type\":\"string\"},\"description\":{\"description\":\"Readable description of the attribute.\",\"example\":\"Created via API test\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the conversation attribute.\",\"example\":8,\"type\":\"integer\"},\"name\":{\"description\":\"Name of the attribute.\",\"example\":\"api_test_attr\",\"type\":\"string\"},\"required\":{\"description\":\"Whether this attribute is required.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"Value is `conversation_attribute`.\",\"enum\":{\"$ref\":\"#/responses/200/content/application~1json/schema/properties/data/items/oneOf/6/allOf/0/properties/type/enum\"},\"example\":\"conversation_attribute\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the attribute was last updated as a UTC Unix timestamp.\",\"example\":1778239701,\"format\":\"date-time\",\"type\":\"integer\"},\"visible_to_team_ids\":{\"description\":\"Team IDs that can see this attribute. Empty array means all teams.\",\"example\":{\"$ref\":\"#/responses/200/content/application~1json/schema/properties/data/items/oneOf/6/allOf/0/properties/visible_to_team_ids/example\"},\"items\":{\"$ref\":\"#/responses/200/content/application~1json/schema/properties/data/items/oneOf/6/allOf/0/properties/visible_to_team_ids/items\"},\"type\":\"array\"}},\"title\":\"Conversation Attribute Base\",\"type\":\"object\"},{\"properties\":{\"data_type\":{\"enum\":[\"files\"],\"type\":\"string\"}},\"type\":\"object\"}],\"title\":\"Conversation Attribute (Files)\"}],\"title\":\"Conversation Attribute\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object.\",\"enum\":[\"list\"],\"example\":\"list\",\"type\":\"string\"}},\"title\":\"Conversation Attribute List\",\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"310f55b0-2660-43e8-bed4-7e82b2f40920\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/conversations/attributes","segments":[{"lit":"conversations"},{"lit":"attributes"}],"select":{"exist":["include_archived","intercom_version"]},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"conversation_attribute_list","name__orig":"conversation_attribute_list","Name":"ConversationAttributeList","name_":"conversation_attribute_list","name-":"conversation-attribute-list","NAME":"CONVERSATION_ATTRIBUTE_LIST","index$":32}, {"active":true,"entity":"conversation_attribute_list","key$":"BasicConversationAttributeListFlow","kind":"basic","name":"BasicConversationAttributeListFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"conversation_attribute_list_ref01"}}],"index$":0}]}, 'ConversationAttributeList')
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+    let conversation_attribute_list_ref01_data = Object.values(setup.data.existing.conversation_attribute_list)[0]
+
+    // LIST
+    const conversation_attribute_list_ref01_ent = client.ConversationAttributeList()
+    const conversation_attribute_list_ref01_match = {}
+
+    const conversation_attribute_list_ref01_list = (await conversation_attribute_list_ref01_ent.list(conversation_attribute_list_ref01_match)).map((e) => e.data())
+
+
+  })
+})
+
+
+
+function basicSetup(extra) {
+  // TODO: fix test def options
+  const options = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname,
+      '../../../../.sdk/test/entity/conversation_attribute_list/ConversationAttributeListTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = IntercomSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['conversation_attribute_list01','conversation_attribute_list02','conversation_attribute_list03'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'INTERCOM_TEST_CONVERSATION_ATTRIBUTE_LIST_ENTID': idmap,
+    'INTERCOM_TEST_LIVE': 'FALSE',
+    'INTERCOM_TEST_EXPLAIN': 'FALSE',
+    'INTERCOM_APIKEY': '',
+  })
+
+  idmap = env['INTERCOM_TEST_CONVERSATION_ATTRIBUTE_LIST_ENTID']
+
+  const live = 'TRUE' === env.INTERCOM_TEST_LIVE
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['INTERCOM_TEST_CONVERSATION_ATTRIBUTE_LIST_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new IntercomSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.INTERCOM_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when
+      // the last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey and
+      // server values above and handed the SDK undefined.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.INTERCOM_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

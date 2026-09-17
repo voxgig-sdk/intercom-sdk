@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>TicketList | Intercom API</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Intercom API<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/intercom-sdk">voxgig-sdk/intercom-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Intercom API</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/activity_log.html">ActivityLog</a>
+<a href="../api/activity_log_event_type.html">ActivityLogEventType</a>
+<a href="../api/activity_log_list.html">ActivityLogList</a>
+<a href="../api/admin.html">Admin</a>
+<a href="../api/admin_with_app.html">AdminWithApp</a>
+<a href="../api/ai_call.html">AiCall</a>
+<a href="../api/ai_content.html">AiContent</a>
+<a href="../api/article.html">Article</a>
+<a href="../api/article_search.html">ArticleSearch</a>
+<a href="../api/article_version.html">ArticleVersion</a>
+<a href="../api/article_version_list.html">ArticleVersionList</a>
+<a href="../api/audience.html">Audience</a>
+<a href="../api/away_status_reason.html">AwayStatusReason</a>
+<a href="../api/banner.html">Banner</a>
+<a href="../api/banner_dismiss.html">BannerDismiss</a>
+<a href="../api/brand.html">Brand</a>
+<a href="../api/call.html">Call</a>
+<a href="../api/company.html">Company</a>
+<a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
+<a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
+<a href="../api/company_list.html">CompanyList</a>
+<a href="../api/company_scroll.html">CompanyScroll</a>
+<a href="../api/contact.html">Contact</a>
+<a href="../api/contact_attached_company.html">ContactAttachedCompany</a>
+<a href="../api/contact_list.html">ContactList</a>
+<a href="../api/contact_segment.html">ContactSegment</a>
+<a href="../api/content.html">Content</a>
+<a href="../api/content_import_source.html">ContentImportSource</a>
+<a href="../api/content_search.html">ContentSearch</a>
+<a href="../api/content_snippet.html">ContentSnippet</a>
+<a href="../api/conversation.html">Conversation</a>
+<a href="../api/conversation_attribute.html">ConversationAttribute</a>
+<a href="../api/conversation_attribute_list.html">ConversationAttributeList</a>
+<a href="../api/conversation_list.html">ConversationList</a>
+<a href="../api/conversation_participant.html">ConversationParticipant</a>
+<a href="../api/custom_object_instance.html">CustomObjectInstance</a>
+<a href="../api/data.html">Data</a>
+<a href="../api/data_attribute.html">DataAttribute</a>
+<a href="../api/data_connector.html">DataConnector</a>
+<a href="../api/data_connector_execution_result.html">DataConnectorExecutionResult</a>
+<a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
+<a href="../api/data_event.html">DataEvent</a>
+<a href="../api/data_event_summary.html">DataEventSummary</a>
+<a href="../api/data_export.html">DataExport</a>
+<a href="../api/deleted.html">Deleted</a>
+<a href="../api/deleted_article_object.html">DeletedArticleObject</a>
+<a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
+<a href="../api/deleted_data_connector_object.html">DeletedDataConnectorObject</a>
+<a href="../api/deleted_internal_article_object.html">DeletedInternalArticleObject</a>
+<a href="../api/deleted_object.html">DeletedObject</a>
+<a href="../api/email.html">Email</a>
+<a href="../api/external_page.html">ExternalPage</a>
+<a href="../api/fin_agent.html">FinAgent</a>
+<a href="../api/handling_event.html">HandlingEvent</a>
+<a href="../api/help_center.html">HelpCenter</a>
+<a href="../api/internal_article.html">InternalArticle</a>
+<a href="../api/internal_article_search.html">InternalArticleSearch</a>
+<a href="../api/ip_allowlist.html">IpAllowlist</a>
+<a href="../api/job.html">Job</a>
+<a href="../api/macro.html">Macro</a>
+<a href="../api/merge_history.html">MergeHistory</a>
+<a href="../api/message.html">Message</a>
+<a href="../api/news_item.html">NewsItem</a>
+<a href="../api/newsfeed.html">Newsfeed</a>
+<a href="../api/note.html">Note</a>
+<a href="../api/office_hour.html">OfficeHour</a>
+<a href="../api/office_hours_exception.html">OfficeHoursException</a>
+<a href="../api/office_hours_schedule.html">OfficeHoursSchedule</a>
+<a href="../api/paginated.html">Paginated</a>
+<a href="../api/phone_switch.html">PhoneSwitch</a>
+<a href="../api/reporting_data.html">ReportingData</a>
+<a href="../api/reporting_data_export.html">ReportingDataExport</a>
+<a href="../api/segment.html">Segment</a>
+<a href="../api/side_conversation.html">SideConversation</a>
+<a href="../api/subscription.html">Subscription</a>
+<a href="../api/subscription_type.html">SubscriptionType</a>
+<a href="../api/tag.html">Tag</a>
+<a href="../api/team.html">Team</a>
+<a href="../api/team_metric_list.html">TeamMetricList</a>
+<a href="../api/ticket.html">Ticket</a>
+<a aria-current="page" href="../api/ticket_list.html">TicketList</a><div class="nav-sections"><a class="nav-section" href="#post-ticketssearch">POST /tickets/search</a></div>
+<a href="../api/ticket_reply.html">TicketReply</a>
+<a href="../api/ticket_state.html">TicketState</a>
+<a href="../api/ticket_type.html">TicketType</a>
+<a href="../api/ticket_type_attribute.html">TicketTypeAttribute</a>
+<a href="../api/visitor.html">Visitor</a>
+<a href="../api/whatsapp_message_status.html">WhatsappMessageStatus</a>
+<a href="../api/whatsapp_message_status_list.html">WhatsappMessageStatusList</a>
+<a href="../api/workflow.html">Workflow</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/js.html">JavaScript</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
+<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
+<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
+<a href="../features/paging.html">Pagination signals for list operations</a>
+<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
+<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
+<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
+<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="ticketlist">TicketList</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-ticketssearch"><code>/tickets/search</code></a></td>
+<td><code>create</code></td>
+<td>successful</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.</td>
+</tr>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>any</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tickets</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>The list of ticket objects</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Always ticket.list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-ticketssearch" class="operation" data-method="post"><code>POST</code> /tickets/search</h3>
+<p>Operation ID: <code>searchTickets</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pagination</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Pagination: Starting After</td>
+</tr>
+<tr>
+<td><code>pagination.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results to fetch per page.</td>
+</tr>
+<tr>
+<td><code>pagination.starting_after</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>query</code></td>
+<td><code>object or object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<h5 id="200-successful" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A &quot;cursor&quot; or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or &quot;pages&quot; as needed.</td>
+</tr>
+<tr>
+<td><code>pages.next</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Pagination: Starting After</td>
+</tr>
+<tr>
+<td><code>pages.next.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results to fetch per page.</td>
+</tr>
+<tr>
+<td><code>pages.next.starting_after</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>pages.page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The current page</td>
+</tr>
+<tr>
+<td><code>pages.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of results per page</td>
+</tr>
+<tr>
+<td><code>pages.total_pages</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Total number of pages</td>
+</tr>
+<tr>
+<td><code>pages.type</code></td>
+<td><code>enum: pages</code></td>
+<td>No</td>
+<td>the type of object <code>pages</code>.</td>
+</tr>
+<tr>
+<td><code>tickets</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The list of ticket objects</td>
+</tr>
+<tr>
+<td><code>tickets[].admin_assignee_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The id representing the admin assigned to the ticket. If it's not assigned to an admin it will return 0.</td>
+</tr>
+<tr>
+<td><code>tickets[].category</code></td>
+<td><code>enum: Customer, Back-office, Tracker</code></td>
+<td>No</td>
+<td>Category of the Ticket.</td>
+</tr>
+<tr>
+<td><code>tickets[].contacts</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The list of contacts affected by a ticket.</td>
+</tr>
+<tr>
+<td><code>tickets[].contacts.contacts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>The list of contacts affected by this ticket.</td>
+</tr>
+<tr>
+<td><code>tickets[].contacts.contacts[].external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is provided by the Client.</td>
+</tr>
+<tr>
+<td><code>tickets[].contacts.contacts[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the contact which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>tickets[].contacts.contacts[].type</code></td>
+<td><code>enum: contact</code></td>
+<td>No</td>
+<td>always contact</td>
+</tr>
+<tr>
+<td><code>tickets[].contacts.type</code></td>
+<td><code>enum: contact.list</code></td>
+<td>No</td>
+<td>always contact.list</td>
+</tr>
+<tr>
+<td><code>tickets[].created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the ticket was created as a UTC Unix timestamp.</td>
+</tr>
+<tr>
+<td><code>tickets[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the ticket which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>tickets[].is_shared</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether or not the ticket is shared with the customer.</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing metadata about linked conversations and linked tickets. Up to 1000 can be returned.</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>An array containing the linked conversations and linked tickets.</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects.data[].category</code></td>
+<td><code>enum: Customer, Back-office, Tracker, null</code></td>
+<td>No</td>
+<td>Category of the Linked Ticket Object.</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the linked object</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects.data[].type</code></td>
+<td><code>enum: ticket, conversation</code></td>
+<td>No</td>
+<td>ticket or conversation</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects.has_more</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether or not there are more linked objects than returned.</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The total number of linked objects.</td>
+</tr>
+<tr>
+<td><code>tickets[].linked_objects.type</code></td>
+<td><code>enum: list</code></td>
+<td>No</td>
+<td>Always list.</td>
+</tr>
+<tr>
+<td><code>tickets[].open</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether or not the ticket is open. If false, the ticket is closed.</td>
+</tr>
+<tr>
+<td><code>tickets[].previous_ticket_state_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the previous ticket state from the most recent state change. Returns null if no state change history exists. Useful for tracking state transitions for reporting and compliance.</td>
+</tr>
+<tr>
+<td><code>tickets[].snoozed_until</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the ticket will be snoozed until as a UTC Unix timestamp. If null, the ticket is not currently snoozed.</td>
+</tr>
+<tr>
+<td><code>tickets[].team_assignee_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The id representing the team assigned to the ticket. If it's not assigned to a team it will return 0.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_default_title_</code> and <code>_default_description_</code>.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use ticket_id for API queries.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A list of Ticket Part objects for each note and event in the ticket. There is a limit of 500 parts.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of Ticket Part objects for each ticket. There is a limit of 500 parts.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].app_package_code</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The app package code if this part was created via API. Note this field won't show if the part was not created via API.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].assigned_to</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The assignee this ticket_part assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].assigned_to.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].assigned_to.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of attachments for the part.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments[].content_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The content type of the attachment</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments[].filesize</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The size of the attachment</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments[].height</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The height of the attachment</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the attachment</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of attachment</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments[].url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The URL of the attachment</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].attachments[].width</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The width of the attachment</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].author</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The author that wrote or triggered the part. Can be a bot, admin, team or user.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].author.email</code></td>
+<td><code>string (email)</code></td>
+<td>No</td>
+<td>The email of the author</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].author.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the author</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].author.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the author</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].author.type</code></td>
+<td><code>enum: admin, bot, team, user</code></td>
+<td>No</td>
+<td>The type of the author</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The message body, which may contain HTML.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].created_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The time the ticket part was created.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].external_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The external id of the ticket part</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id representing the ticket part.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].part_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of ticket part.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].previous_ticket_state</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
+<td>No</td>
+<td>The previous state of the ticket.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].redacted</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether or not the ticket part has been redacted.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].ticket_state</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
+<td>No</td>
+<td>The state of the ticket.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Always ticket_part</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].updated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The last time the ticket part was updated.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].updated_attribute_data</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>The updated attribute data of the ticket part. Only present for attribute update parts.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].updated_attribute_data.attribute</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Information about the attribute that was updated.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.ticket_parts[].updated_attribute_data.value</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>The new value of the attribute.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_parts.type</code></td>
+<td><code>enum: ticket_part.list</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_state</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A ticket state, used to define the state of a ticket.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_state.category</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
+<td>No</td>
+<td>The category of the ticket state</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_state.external_label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state the ticket is currently in, in a human readable form - visible to customers, in the messenger, email and tickets portal.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_state.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the ticket state</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_state.internal_label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state the ticket is currently in, in a human readable form - visible in Intercom</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_state.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>ticket_state</code>.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A ticket type, used to define the data fields to be captured in a ticket.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.archived</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the ticket type is archived or not.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.category</code></td>
+<td><code>enum: Customer, Back-office, Tracker</code></td>
+<td>No</td>
+<td>Category of the Ticket Type.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.created_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>The date and time the ticket type was created.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The description of the ticket type</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.icon</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The icon of the ticket type</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id representing the ticket type.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the ticket type</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A list of ticket states associated with a given ticket type.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states.data</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of ticket states associated with a given ticket type.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states.data[].category</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The category of the ticket state</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states.data[].external_label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state the ticket is currently in, in a human readable form - visible to customers, in the messenger, email and tickets portal.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states.data[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the ticket state</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states.data[].internal_label</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The state the ticket is currently in, in a human readable form - visible in Intercom</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states.data[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>ticket_state</code>.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_states.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>list</code>.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>A list of attributes associated with a given ticket type.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of ticket type attributes associated with a given ticket type.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].archived</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the ticket type attribute is archived or not.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].created_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>The date and time the ticket type attribute was created.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].data_type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The type of the data attribute (allowed values: &quot;string list integer decimal boolean datetime files&quot;)</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].default</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the attribute is built in or not.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].description</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The description of the ticket type attribute</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id representing the ticket type attribute.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].input_options</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Input options for the attribute</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the ticket type attribute</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].order</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The order of the attribute against other attributes</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].required_to_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the attribute is required or not for teammates.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].required_to_create_for_contacts</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the attribute is required or not for contacts.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].ticket_type_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The id of the ticket type that the attribute belongs to.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>ticket_type_attribute</code>.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].updated_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>The date and time the ticket type attribute was last updated.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].visible_on_create</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the attribute is visible or not to teammates.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].visible_to_contacts</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the attribute is visible or not to contacts.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.ticket_type_attributes[].workspace_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the workspace that the ticket type attribute belongs to.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.ticket_type_attributes.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>ticket_type_attributes.list</code>.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.type</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>String representing the object's type. Always has the value <code>ticket_type</code>.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.updated_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>The date and time the ticket type was last updated.</td>
+</tr>
+<tr>
+<td><code>tickets[].ticket_type.workspace_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the workspace that the ticket type belongs to.</td>
+</tr>
+<tr>
+<td><code>tickets[].type</code></td>
+<td><code>enum: ticket</code></td>
+<td>No</td>
+<td>Always ticket</td>
+</tr>
+<tr>
+<td><code>tickets[].updated_at</code></td>
+<td><code>integer (date-time)</code></td>
+<td>No</td>
+<td>The last time the ticket was updated as a UTC Unix timestamp.</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: ticket.list</code></td>
+<td>No</td>
+<td>Always ticket.list</td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

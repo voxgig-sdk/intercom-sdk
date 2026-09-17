@@ -1,0 +1,227 @@
+# Entity: internal_article
+
+main: kit: entity: internal_article: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ai_chatbot_availability"
+      req: false
+      short: "Whether the internal article is available for AI Chatbot (Fin)."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "ai_copilot_availability"
+      req: false
+      short: "Whether the internal article is available for AI Copilot."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "ai_sales_agent_availability"
+      req: false
+      short: "Whether the internal article is available for AI Sales Agent."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "audience_ids"
+      req: false
+      short: "The list of audience IDs this internal article is targeted to for Fin AI Agent."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "author_id"
+      req: false
+      short: "The id of the author of the article."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "body"
+      req: false
+      short: "The body of the article in HTML."
+      type: "`$STRING`"
+    }
+    {
+      name: "body_markdown"
+      req: false
+      short: "The body of the article in markdown."
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "created_at"
+      req: false
+      short: "The time when the article was created."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The unique identifier for the article which is given by Intercom."
+      type: "`$STRING`"
+    }
+    {
+      name: "locale"
+      req: false
+      short: "The default locale of the article."
+      type: "`$STRING`"
+    }
+    {
+      name: "owner_id"
+      req: false
+      short: "The id of the owner of the article."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "The title of the article."
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "The type of object - `internal_article`."
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "updated_at"
+      req: false
+      short: "The time when the article was last updated."
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "internal_article"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: 123
+                kind: "param"
+                name: "id"
+                orig: "internal_article_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /internal_articles/{internal_article_id}"
+            json: "{\"operationId\":\"retrieveInternalArticle\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the article which is given by Intercom.\",\"example\":123,\"in\":\"path\",\"name\":\"internal_article_id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Internal article found\":{\"value\":{\"author_id\":991266252,\"body\":\"Body of the Article\",\"id\":\"45\",\"locale\":\"en\",\"owner_id\":991266252}}},\"schema\":{\"allOf\":[{\"description\":\"The data returned about your internal articles when you list them.\",\"properties\":{\"ai_chatbot_availability\":{\"description\":\"Whether the internal article is available for AI Chatbot (Fin).\",\"example\":true,\"type\":\"boolean\"},\"ai_copilot_availability\":{\"description\":\"Whether the internal article is available for AI Copilot.\",\"example\":true,\"type\":\"boolean\"},\"ai_sales_agent_availability\":{\"description\":\"Whether the internal article is available for AI Sales Agent.\",\"example\":true,\"type\":\"boolean\"},\"audience_ids\":{\"description\":\"The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set.\",\"example\":[1,2],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"author_id\":{\"description\":\"The id of the author of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"body\":{\"description\":\"The body of the article in HTML.\",\"example\":\"Default language body in html\",\"nullable\":true,\"type\":\"string\"},\"body_markdown\":{\"description\":\"The body of the article in markdown.\",\"example\":\"# Internal Guide\\n\\nBody of the article in markdown\\n\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"The time when the article was created.\",\"example\":1672928359,\"format\":\"date-time\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier for the article which is given by Intercom.\",\"example\":\"6871119\",\"type\":\"string\"},\"locale\":{\"description\":\"The default locale of the article.\",\"type\":\"string\"},\"owner_id\":{\"description\":\"The id of the owner of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"title\":{\"description\":\"The title of the article.\",\"type\":\"string\"},\"type\":{\"default\":\"internal_article\",\"description\":\"The type of object - `internal_article`.\",\"enum\":[\"internal_article\"],\"example\":\"internal_article\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time when the article was last updated.\",\"example\":1672928610,\"format\":\"date-time\",\"type\":\"integer\"}},\"title\":\"Internal Articles\",\"type\":\"object\"}],\"description\":\"The Internal Articles API is a central place to gather all information and take actions on your internal articles.\",\"title\":\"Internal Article\",\"type\":\"object\"}}},\"description\":\"Internal article found\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"2eab07fb-5092-49a4-ba74-44094f31f264\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Internal article not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Resource Not Found\"}],\"request_id\":\"79abd27a-1bfb-42ec-a404-5728c76ba773\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Internal article not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/internal_articles/{internal_article_id}"
+          rename: {
+            param: {
+              internal_article_id: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "internal_articles"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: 123
+                kind: "param"
+                name: "id"
+                orig: "internal_article_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          contract: {
+            id: "PUT /internal_articles/{internal_article_id}"
+            json: "{\"operationId\":\"updateInternalArticle\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the internal article which is given by Intercom.\",\"example\":123,\"in\":\"path\",\"name\":\"internal_article_id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"internal_article_not_found\":{\"summary\":\"Internal article not found\",\"value\":{\"body\":\"<p>New gifts in store for the jolly season</p>\",\"title\":\"Christmas is here!\"}},\"successful\":{\"summary\":\"successful\",\"value\":{\"body\":\"<p>New gifts in store for the jolly season</p>\",\"title\":\"Christmas is here!\"}}},\"schema\":{\"description\":\"You can Update an Internal Article\",\"nullable\":true,\"properties\":{\"ai_chatbot_availability\":{\"description\":\"Whether the internal article should be available for AI Chatbot (Fin).\",\"example\":true,\"type\":\"boolean\"},\"ai_copilot_availability\":{\"description\":\"Whether the internal article should be available for AI Copilot.\",\"example\":true,\"type\":\"boolean\"},\"ai_sales_agent_availability\":{\"description\":\"Whether the internal article should be available for AI Sales Agent.\",\"example\":true,\"type\":\"boolean\"},\"audience_ids\":{\"description\":\"The list of audience IDs to target this internal article to for Fin AI Agent. Omitting the field leaves existing audience memberships unchanged (PATCH semantics). Pass `[]` to clear all audience memberships. Unknown audience IDs return a `404` error with no partial commit.\",\"example\":[1,2],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"author_id\":{\"description\":\"The id of the author of the article.\",\"example\":1295,\"type\":\"integer\"},\"body\":{\"description\":\"The content of the article in HTML. Mutually exclusive with `body_markdown`.\",\"type\":\"string\"},\"body_markdown\":{\"description\":\"The content of the article in markdown. An alternative to `body` — you can provide content as markdown instead of HTML. Mutually exclusive with `body`.\",\"example\":\"## Updated\\n\\nNew content.\\n\",\"type\":\"string\"},\"owner_id\":{\"description\":\"The id of the author of the article.\",\"example\":1295,\"type\":\"integer\"},\"title\":{\"description\":\"The title of the article.\",\"example\":\"Thanks for everything\",\"type\":\"string\"}},\"title\":\"Update Internal Article Request Payload\",\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"author_id\":991266252,\"body\":\"Body of the Article\",\"id\":\"48\",\"locale\":\"en\",\"owner_id\":991266252}}},\"schema\":{\"allOf\":[{\"description\":\"The data returned about your internal articles when you list them.\",\"properties\":{\"ai_chatbot_availability\":{\"description\":\"Whether the internal article is available for AI Chatbot (Fin).\",\"example\":true,\"type\":\"boolean\"},\"ai_copilot_availability\":{\"description\":\"Whether the internal article is available for AI Copilot.\",\"example\":true,\"type\":\"boolean\"},\"ai_sales_agent_availability\":{\"description\":\"Whether the internal article is available for AI Sales Agent.\",\"example\":true,\"type\":\"boolean\"},\"audience_ids\":{\"description\":\"The list of audience IDs this internal article is targeted to for Fin AI Agent. Empty array means no audience targeting is set.\",\"example\":[1,2],\"items\":{\"type\":\"integer\"},\"nullable\":true,\"type\":\"array\"},\"author_id\":{\"description\":\"The id of the author of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"body\":{\"description\":\"The body of the article in HTML.\",\"example\":\"Default language body in html\",\"nullable\":true,\"type\":\"string\"},\"body_markdown\":{\"description\":\"The body of the article in markdown.\",\"example\":\"# Internal Guide\\n\\nBody of the article in markdown\\n\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"The time when the article was created.\",\"example\":1672928359,\"format\":\"date-time\",\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier for the article which is given by Intercom.\",\"example\":\"6871119\",\"type\":\"string\"},\"locale\":{\"description\":\"The default locale of the article.\",\"type\":\"string\"},\"owner_id\":{\"description\":\"The id of the owner of the article.\",\"example\":\"5017691\",\"type\":\"integer\"},\"title\":{\"description\":\"The title of the article.\",\"type\":\"string\"},\"type\":{\"default\":\"internal_article\",\"description\":\"The type of object - `internal_article`.\",\"enum\":[\"internal_article\"],\"example\":\"internal_article\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time when the article was last updated.\",\"example\":1672928610,\"format\":\"date-time\",\"type\":\"integer\"}},\"title\":\"Internal Articles\",\"type\":\"object\"}],\"description\":\"The Internal Articles API is a central place to gather all information and take actions on your internal articles.\",\"title\":\"Internal Article\",\"type\":\"object\"}}},\"description\":\"successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"d1ea223d-bb62-42e3-8bcf-30fdcf7dbd99\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Internal article not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Resource Not Found\"}],\"request_id\":\"f9adccb2-9fca-4b87-bbb7-65f2af5e1d78\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Internal article not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "PUT"
+          orig: "/internal_articles/{internal_article_id}"
+          rename: {
+            param: {
+              internal_article_id: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "internal_articles"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

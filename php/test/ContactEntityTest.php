@@ -103,7 +103,7 @@ class ContactEntityTest extends TestCase
             "id" => $contact_ref01_data["id"],
         ];
 
-        $contact_ref01_markdef_up0_name = "email";
+        $contact_ref01_markdef_up0_name = "android_app_name";
         $contact_ref01_markdef_up0_value = "Mark01-contact_ref01_" . $setup["now"];
         $contact_ref01_data_up0_up[$contact_ref01_markdef_up0_name] = $contact_ref01_markdef_up0_value;
 
@@ -157,7 +157,7 @@ function contact_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["contact01", "contact02", "contact03"] as $k) {
+    foreach (["contact01", "contact02", "contact03", "find_by_external_id01", "find_by_external_id02", "find_by_external_id03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

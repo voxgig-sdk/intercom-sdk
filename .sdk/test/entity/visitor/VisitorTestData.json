@@ -1,0 +1,2110 @@
+{
+  "existing": {
+    "visitor": {
+      "VISITOR00": {
+        "anonymous": true,
+        "app_id": "APP01",
+        "avatar": {},
+        "companies": {},
+        "created_at": 334,
+        "custom_attributes": {},
+        "do_not_track": true,
+        "email": "s151",
+        "has_hard_bounced": true,
+        "id": "VISITOR00",
+        "las_request_at": 340,
+        "location_data": {},
+        "marked_email_as_spam": true,
+        "name": "s157",
+        "owner_id": "OWNER01",
+        "phone": "s159",
+        "pseudonym": "s15a",
+        "referrer": "s15b",
+        "remote_created_at": 348,
+        "segments": {},
+        "session_count": 350,
+        "signed_up_at": 351,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s162",
+        "unsubscribed_from_emails": false,
+        "updated_at": 356,
+        "user_id": "USER01",
+        "utm_campaign": "s166",
+        "utm_content": "s167",
+        "utm_medium": "s168",
+        "utm_source": "s169",
+        "utm_term": "s16a"
+      },
+      "VISITOR01": {
+        "anonymous": true,
+        "app_id": "APP01",
+        "avatar": {},
+        "companies": {},
+        "created_at": 664,
+        "custom_attributes": {},
+        "do_not_track": true,
+        "email": "s29b",
+        "has_hard_bounced": true,
+        "id": "VISITOR01",
+        "las_request_at": 670,
+        "location_data": {},
+        "marked_email_as_spam": true,
+        "name": "s2a1",
+        "owner_id": "OWNER01",
+        "phone": "s2a3",
+        "pseudonym": "s2a4",
+        "referrer": "s2a5",
+        "remote_created_at": 678,
+        "segments": {},
+        "session_count": 680,
+        "signed_up_at": 681,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s2ac",
+        "unsubscribed_from_emails": false,
+        "updated_at": 686,
+        "user_id": "USER01",
+        "utm_campaign": "s2b0",
+        "utm_content": "s2b1",
+        "utm_medium": "s2b2",
+        "utm_source": "s2b3",
+        "utm_term": "s2b4"
+      },
+      "VISITOR02": {
+        "anonymous": true,
+        "app_id": "APP01",
+        "avatar": {},
+        "companies": {},
+        "created_at": 994,
+        "custom_attributes": {},
+        "do_not_track": true,
+        "email": "s3e5",
+        "has_hard_bounced": true,
+        "id": "VISITOR02",
+        "las_request_at": 1000,
+        "location_data": {},
+        "marked_email_as_spam": true,
+        "name": "s3eb",
+        "owner_id": "OWNER01",
+        "phone": "s3ed",
+        "pseudonym": "s3ee",
+        "referrer": "s3ef",
+        "remote_created_at": 1008,
+        "segments": {},
+        "session_count": 1010,
+        "signed_up_at": 1011,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s3f6",
+        "unsubscribed_from_emails": false,
+        "updated_at": 1016,
+        "user_id": "USER01",
+        "utm_campaign": "s3fa",
+        "utm_content": "s3fb",
+        "utm_medium": "s3fc",
+        "utm_source": "s3fd",
+        "utm_term": "s3fe"
+      }
+    }
+  },
+  "new": {
+    "visitor": {
+      "visitor_ref01": {
+        "anonymous": true,
+        "app_id": "APP01",
+        "avatar": {},
+        "companies": {},
+        "created_at": 1324,
+        "custom_attributes": {},
+        "do_not_track": true,
+        "email": "s52f",
+        "has_hard_bounced": true,
+        "las_request_at": 1330,
+        "location_data": {},
+        "marked_email_as_spam": true,
+        "name": "s535",
+        "owner_id": "OWNER01",
+        "phone": "s537",
+        "pseudonym": "s538",
+        "referrer": "s539",
+        "remote_created_at": 1338,
+        "segments": {},
+        "session_count": 1340,
+        "signed_up_at": 1341,
+        "social_profiles": {},
+        "tags": {},
+        "type": "s540",
+        "unsubscribed_from_emails": false,
+        "updated_at": 1346,
+        "user_id": "USER01",
+        "utm_campaign": "s544",
+        "utm_content": "s545",
+        "utm_medium": "s546",
+        "utm_source": "s547",
+        "utm_term": "s548"
+      }
+    }
+  },
+  "requests": {
+    "GET /visitors": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "retrieveVisitorWithUserId",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The user_id of the Visitor you want to retrieve.",
+            "in": "query",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "anonymous": true,
+                      "app_id": "this_is_an_id722_that_should_be_at_least_",
+                      "avatar": {
+                        "image_url": null,
+                        "type": "avatar"
+                      },
+                      "companies": {
+                        "companies": [],
+                        "type": "company.list"
+                      },
+                      "created_at": 1734538000,
+                      "custom_attributes": {},
+                      "do_not_track": null,
+                      "email": "",
+                      "has_hard_bounced": false,
+                      "id": "6762f3101bb69f9f2193bc64",
+                      "last_request_at": null,
+                      "location_data": {},
+                      "marked_email_as_spam": false,
+                      "name": null,
+                      "owner_id": null,
+                      "phone": null,
+                      "pseudonym": null,
+                      "referrer": null,
+                      "remote_created_at": 1734538000,
+                      "segments": {
+                        "segments": [],
+                        "type": "segment.list"
+                      },
+                      "session_count": 0,
+                      "signed_up_at": 1734538000,
+                      "social_profiles": {
+                        "social_profiles": [],
+                        "type": "social_profile.list"
+                      },
+                      "tags": {
+                        "tags": [],
+                        "type": "tag.list"
+                      },
+                      "type": "visitor",
+                      "unsubscribed_from_emails": false,
+                      "updated_at": 1734538000,
+                      "user_id": "3ecf64d0-9ed1-4e9f-88e1-da7d6e6782f3",
+                      "utm_campaign": null,
+                      "utm_content": null,
+                      "utm_medium": null,
+                      "utm_source": null,
+                      "utm_term": null
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Visitors are useful for representing anonymous people that have not yet been identified. They usually represent website visitors. Visitors are not visible in Intercom platform. The Visitors resource provides methods to fetch, update, convert and delete.",
+                  "nullable": true,
+                  "properties": {
+                    "anonymous": {
+                      "description": "Identifies if this visitor is anonymous.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "app_id": {
+                      "description": "The id of the app the visitor is associated with.",
+                      "example": "hfi1bx4l",
+                      "type": "string"
+                    },
+                    "avatar": {
+                      "properties": {
+                        "image_url": {
+                          "description": "This object represents the avatar associated with the visitor.",
+                          "example": "https://example.com/avatar.png",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "type": {
+                          "default": "avatar",
+                          "description": "",
+                          "example": "avatar",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "companies": {
+                      "properties": {
+                        "companies": {
+                          "items": {
+                            "description": "Companies allow you to represent organizations using your product. Each company will have its own description and be associated with contacts. You can fetch, create, update and list companies.",
+                            "properties": {
+                              "app_id": {
+                                "description": "The Intercom defined code of the workspace the company is associated to.",
+                                "example": "ecahpwf5",
+                                "type": "string"
+                              },
+                              "company_id": {
+                                "description": "The company id you have defined for the company.",
+                                "example": "6",
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "description": "The time the company was added in Intercom.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "custom_attributes": {
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "description": "The custom attributes you have set on the company.",
+                                "example": {
+                                  "monthly_spend": 155.5,
+                                  "paid_subscriber": true,
+                                  "team_mates": 9
+                                },
+                                "type": "object"
+                              },
+                              "id": {
+                                "description": "The Intercom defined id representing the company.",
+                                "example": "531ee472cce572a6ec000006",
+                                "type": "string"
+                              },
+                              "industry": {
+                                "description": "The industry that the company operates in.",
+                                "example": "Software",
+                                "type": "string"
+                              },
+                              "last_request_at": {
+                                "description": "The time the company last recorded making a request.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "monthly_spend": {
+                                "description": "How much revenue the company generates for your business.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "name": {
+                                "description": "The name of the company.",
+                                "example": "Blue Sun",
+                                "type": "string"
+                              },
+                              "notes": {
+                                "description": "The list of notes associated with the company",
+                                "properties": {
+                                  "notes": {
+                                    "items": {
+                                      "description": "Notes allow you to annotate and comment on companies.",
+                                      "properties": {
+                                        "author": {
+                                          "description": "Optional. Represents the Admin that created the note.",
+                                          "nullable": true,
+                                          "properties": {
+                                            "avatar": {
+                                              "description": "Image for the associated team or teammate",
+                                              "example": "https://picsum.photos/200/300",
+                                              "format": "uri",
+                                              "nullable": true,
+                                              "type": "string"
+                                            },
+                                            "away_mode_enabled": {
+                                              "description": "Identifies if this admin is currently set in away mode.",
+                                              "example": false,
+                                              "type": "boolean"
+                                            },
+                                            "away_mode_reassign": {
+                                              "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                                              "example": false,
+                                              "type": "boolean"
+                                            },
+                                            "away_status_reason_id": {
+                                              "description": "The unique identifier of the away status reason",
+                                              "example": 12345,
+                                              "nullable": true,
+                                              "type": "integer"
+                                            },
+                                            "email": {
+                                              "description": "The email of the admin.",
+                                              "example": "jdoe@example.com",
+                                              "type": "string"
+                                            },
+                                            "has_inbox_seat": {
+                                              "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                                              "example": true,
+                                              "type": "boolean"
+                                            },
+                                            "id": {
+                                              "description": "The id representing the admin.",
+                                              "example": "1295",
+                                              "type": "string"
+                                            },
+                                            "job_title": {
+                                              "description": "The job title of the admin.",
+                                              "example": "Associate",
+                                              "type": "string"
+                                            },
+                                            "name": {
+                                              "description": "The name of the admin.",
+                                              "example": "Joe Example",
+                                              "type": "string"
+                                            },
+                                            "role": {
+                                              "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                                              "nullable": true,
+                                              "properties": {
+                                                "id": {
+                                                  "description": "The id of the role.",
+                                                  "example": "1",
+                                                  "type": "string"
+                                                },
+                                                "name": {
+                                                  "description": "The name of the role.",
+                                                  "example": "Support Agent",
+                                                  "type": "string"
+                                                },
+                                                "type": {
+                                                  "description": "String representing the object's type. Always has the value `role`.",
+                                                  "example": "role",
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "type": "object"
+                                            },
+                                            "team_ids": {
+                                              "description": "This object represents the avatar associated with the admin.",
+                                              "example": [
+                                                814865
+                                              ],
+                                              "items": {
+                                                "type": "integer"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "team_priority_level": {
+                                              "description": "Admin priority levels for teams",
+                                              "nullable": true,
+                                              "properties": {
+                                                "primary_team_ids": {
+                                                  "description": "The primary team ids for the team",
+                                                  "example": [
+                                                    814865
+                                                  ],
+                                                  "items": {
+                                                    "type": "integer"
+                                                  },
+                                                  "nullable": true,
+                                                  "type": "array"
+                                                },
+                                                "secondary_team_ids": {
+                                                  "description": "The secondary team ids for the team",
+                                                  "example": [
+                                                    493881
+                                                  ],
+                                                  "items": {
+                                                    "type": "integer"
+                                                  },
+                                                  "nullable": true,
+                                                  "type": "array"
+                                                }
+                                              },
+                                              "title": "Team Priority Level",
+                                              "type": "object"
+                                            },
+                                            "type": {
+                                              "description": "String representing the object's type. Always has the value `admin`.",
+                                              "example": "admin",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "title": "Admin",
+                                          "type": "object"
+                                        },
+                                        "body": {
+                                          "description": "The body text of the note.",
+                                          "example": "<p>Text for the note.</p>",
+                                          "type": "string"
+                                        },
+                                        "company": {
+                                          "description": "Represents the company that the note was created about.",
+                                          "nullable": true,
+                                          "properties": {
+                                            "id": {
+                                              "description": "The id of the company.",
+                                              "example": "6329bd9ffe4e2e91dac76188",
+                                              "type": "string"
+                                            },
+                                            "type": {
+                                              "description": "String representing the object's type. Always has the value `company`.",
+                                              "example": "company",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "created_at": {
+                                          "description": "The time the note was created.",
+                                          "example": 1674589321,
+                                          "format": "timestamp",
+                                          "type": "integer"
+                                        },
+                                        "id": {
+                                          "description": "The id of the note.",
+                                          "example": "17495962",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "String representing the object's type. Always has the value `note`.",
+                                          "example": "note",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "title": "Company Note",
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "type": {
+                                    "description": "The type of the object",
+                                    "enum": [
+                                      "note.list"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "plan": {
+                                "properties": {
+                                  "id": {
+                                    "description": "The id of the plan",
+                                    "example": "269315",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "The name of the plan",
+                                    "example": "Pro",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Value is always \"plan\"",
+                                    "example": "plan",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "remote_created_at": {
+                                "description": "The time the company was created by you.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "segments": {
+                                "description": "The list of segments associated with the company",
+                                "properties": {
+                                  "segments": {
+                                    "items": {
+                                      "description": "A segment is a group of your contacts defined by the rules that you set.",
+                                      "properties": {
+                                        "count": {
+                                          "description": "The number of items in the user segment. It's returned when `include_count=true` is included in the request.",
+                                          "example": 3,
+                                          "nullable": true,
+                                          "type": "integer"
+                                        },
+                                        "created_at": {
+                                          "description": "The time the segment was created.",
+                                          "example": 1394621988,
+                                          "type": "integer"
+                                        },
+                                        "id": {
+                                          "description": "The unique identifier representing the segment.",
+                                          "example": "56203d253cba154d39010062",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "The name of the segment.",
+                                          "example": "Active",
+                                          "type": "string"
+                                        },
+                                        "person_type": {
+                                          "description": "Type of the contact: contact (lead) or user.",
+                                          "enum": [
+                                            "contact",
+                                            "user"
+                                          ],
+                                          "example": "contact",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "The type of object.",
+                                          "enum": [
+                                            "segment"
+                                          ],
+                                          "example": "segment",
+                                          "type": "string"
+                                        },
+                                        "updated_at": {
+                                          "description": "The time the segment was updated.",
+                                          "example": 1394622004,
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "title": "Segment",
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "type": {
+                                    "description": "The type of the object",
+                                    "enum": [
+                                      "segment.list"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "session_count": {
+                                "description": "How many sessions the company has recorded.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "size": {
+                                "description": "The number of employees in the company.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "tags": {
+                                "description": "The list of tags associated with the company",
+                                "properties": {
+                                  "tags": {
+                                    "items": {
+                                      "description": "A tag allows you to label your contacts, companies, and conversations and list them using that tag.",
+                                      "properties": {
+                                        "id": {
+                                          "description": "The id of the tag",
+                                          "example": "123456",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "The name of the tag",
+                                          "example": "Test tag",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "value is \"tag\"",
+                                          "example": "tag",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "title": "Tag",
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "type": {
+                                    "description": "The type of the object",
+                                    "enum": [
+                                      "tag.list"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": {
+                                "description": "Value is `company`",
+                                "enum": [
+                                  "company"
+                                ],
+                                "example": "company",
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "description": "The last time the company was updated.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "user_count": {
+                                "description": "The number of users in the company.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "website": {
+                                "description": "The URL for the company website.",
+                                "example": "https://www.intercom.com",
+                                "type": "string"
+                              }
+                            },
+                            "title": "Company",
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "company.list"
+                          ],
+                          "example": "company.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "created_at": {
+                      "description": "The time the Visitor was added to Intercom.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "custom_attributes": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "The custom attributes you have set on the Visitor.",
+                      "type": "object"
+                    },
+                    "do_not_track": {
+                      "description": "Identifies if this visitor has do not track enabled.",
+                      "example": false,
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "description": "The email of the visitor.",
+                      "example": "jane.doe@example.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "has_hard_bounced": {
+                      "description": "Identifies if this visitor has had a hard bounce.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The Intercom defined id representing the Visitor.",
+                      "example": "530370b477ad7120001d",
+                      "type": "string"
+                    },
+                    "las_request_at": {
+                      "description": "The time the Lead last recorded making a request.",
+                      "example": 1663597260,
+                      "type": "integer"
+                    },
+                    "location_data": {
+                      "properties": {
+                        "city_name": {
+                          "description": "The city name of the visitor.",
+                          "example": "Dublin",
+                          "type": "string"
+                        },
+                        "continent_code": {
+                          "description": "The continent code of the visitor.",
+                          "example": "EU",
+                          "type": "string"
+                        },
+                        "country_code": {
+                          "description": "The country code of the visitor.",
+                          "example": "IRL",
+                          "type": "string"
+                        },
+                        "country_name": {
+                          "description": "The country name of the visitor.",
+                          "example": "Ireland",
+                          "type": "string"
+                        },
+                        "postal_code": {
+                          "description": "The postal code of the visitor.",
+                          "example": "D02 N960",
+                          "type": "string"
+                        },
+                        "region_name": {
+                          "description": "The region name of the visitor.",
+                          "example": "Leinster",
+                          "type": "string"
+                        },
+                        "timezone": {
+                          "description": "The timezone of the visitor.",
+                          "example": "Europe/Dublin",
+                          "type": "string"
+                        },
+                        "type": {
+                          "default": "location_data",
+                          "description": "",
+                          "example": "location_data",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "marked_email_as_spam": {
+                      "description": "Identifies if this visitor has marked an email as spam.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "The name of the visitor.",
+                      "example": "Jane Doe",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "owner_id": {
+                      "description": "The id of the admin that owns the Visitor.",
+                      "example": "5169261",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "phone": {
+                      "description": "The phone number of the visitor.",
+                      "example": "555-555-5555",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "pseudonym": {
+                      "description": "The pseudonym of the visitor.",
+                      "example": "Red Duck from Dublin",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "referrer": {
+                      "description": "The referer of the visitor.",
+                      "example": "https://www.google.com/",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "remote_created_at": {
+                      "description": "The time the Visitor was added to Intercom.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "segments": {
+                      "properties": {
+                        "segments": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "segment.list"
+                          ],
+                          "example": "segment.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "session_count": {
+                      "description": "The number of sessions the Visitor has had.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "signed_up_at": {
+                      "description": "The time the Visitor signed up for your product.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "social_profiles": {
+                      "properties": {
+                        "social_profiles": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "social_profile.list"
+                          ],
+                          "example": "social_profile.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tags": {
+                      "properties": {
+                        "tags": {
+                          "items": {
+                            "properties": {
+                              "id": {
+                                "description": "The id of the tag.",
+                                "example": "8482",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "The name of the tag.",
+                                "example": "tag_name",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "The type of the object",
+                                "enum": [
+                                  "tag"
+                                ],
+                                "example": "tag",
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "tag.list"
+                          ],
+                          "example": "tag.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "default": "visitor",
+                      "description": "Value is 'visitor'",
+                      "example": "visitor",
+                      "type": "string"
+                    },
+                    "unsubscribed_from_emails": {
+                      "description": "Whether the Visitor is unsubscribed from emails.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "updated_at": {
+                      "description": "The last time the Visitor was updated.",
+                      "example": 1663597260,
+                      "type": "integer"
+                    },
+                    "user_id": {
+                      "description": "Automatically generated identifier for the Visitor.",
+                      "example": "8a88a590-e1c3-41e2-a502-e0649dbf721c",
+                      "type": "string"
+                    },
+                    "utm_campaign": {
+                      "description": "The utm_campaign of the visitor.",
+                      "example": "intercom-link",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_content": {
+                      "description": "The utm_content of the visitor.",
+                      "example": "banner",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_medium": {
+                      "description": "The utm_medium of the visitor.",
+                      "example": "email",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_source": {
+                      "description": "The utm_source of the visitor.",
+                      "example": "Intercom",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_term": {
+                      "description": "The utm_term of the visitor.",
+                      "example": "messenger",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "title": "Visitor",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "1d7f49b3-10bc-4bf8-a28a-1ac95de3a6ff",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Visitor not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Visitor Not Found"
+                        }
+                      ],
+                      "request_id": "3c1b017d-39fb-4d13-8cc9-540ad0d37106",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Visitor not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /visitors": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateVisitor",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "successful": {
+                  "summary": "successful",
+                  "value": {
+                    "id": "6762f30c1bb69f9f2193bc5e",
+                    "name": "Gareth Bale"
+                  }
+                },
+                "visitor_not_found": {
+                  "summary": "visitor Not Found",
+                  "value": {
+                    "name": "Christian Fail",
+                    "user_id": "fail"
+                  }
+                }
+              },
+              "schema": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "id"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "user_id"
+                    ]
+                  }
+                ],
+                "description": "Update an existing visitor.",
+                "properties": {
+                  "custom_attributes": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "The custom attributes which are set for the visitor.",
+                    "example": {
+                      "monthly_spend": 155.5,
+                      "paid_subscriber": true,
+                      "team_mates": 9
+                    },
+                    "type": "object"
+                  },
+                  "id": {
+                    "description": "A unique identified for the visitor which is given by Intercom.",
+                    "example": "8a88a590-e",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The visitor's name.",
+                    "example": "Christian Bale",
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "description": "A unique identified for the visitor which is given by you.",
+                    "example": "123",
+                    "type": "string"
+                  }
+                },
+                "title": "Update Visitor Request Payload",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "anonymous": true,
+                      "app_id": "this_is_an_id716_that_should_be_at_least_",
+                      "avatar": {
+                        "image_url": "https://static.intercomassets.com/app/pseudonym_avatars_2019/violet-suitcase.png",
+                        "type": "avatar"
+                      },
+                      "companies": {
+                        "companies": [],
+                        "type": "company.list"
+                      },
+                      "created_at": 1734537996,
+                      "custom_attributes": {},
+                      "do_not_track": null,
+                      "email": "",
+                      "has_hard_bounced": false,
+                      "id": "6762f30c1bb69f9f2193bc5e",
+                      "last_request_at": null,
+                      "location_data": {},
+                      "marked_email_as_spam": false,
+                      "name": "Gareth Bale",
+                      "owner_id": null,
+                      "phone": null,
+                      "pseudonym": "Violet Suitcase",
+                      "referrer": null,
+                      "remote_created_at": 1734537996,
+                      "segments": {
+                        "segments": [],
+                        "type": "segment.list"
+                      },
+                      "session_count": 0,
+                      "signed_up_at": 1734537996,
+                      "social_profiles": {
+                        "social_profiles": [],
+                        "type": "social_profile.list"
+                      },
+                      "tags": {
+                        "tags": [],
+                        "type": "tag.list"
+                      },
+                      "type": "visitor",
+                      "unsubscribed_from_emails": false,
+                      "updated_at": 1734537997,
+                      "user_id": "3ecf64d0-9ed1-4e9f-88e1-da7d6e6782f3",
+                      "utm_campaign": null,
+                      "utm_content": null,
+                      "utm_medium": null,
+                      "utm_source": null,
+                      "utm_term": null
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Visitors are useful for representing anonymous people that have not yet been identified. They usually represent website visitors. Visitors are not visible in Intercom platform. The Visitors resource provides methods to fetch, update, convert and delete.",
+                  "nullable": true,
+                  "properties": {
+                    "anonymous": {
+                      "description": "Identifies if this visitor is anonymous.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "app_id": {
+                      "description": "The id of the app the visitor is associated with.",
+                      "example": "hfi1bx4l",
+                      "type": "string"
+                    },
+                    "avatar": {
+                      "properties": {
+                        "image_url": {
+                          "description": "This object represents the avatar associated with the visitor.",
+                          "example": "https://example.com/avatar.png",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "type": {
+                          "default": "avatar",
+                          "description": "",
+                          "example": "avatar",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "companies": {
+                      "properties": {
+                        "companies": {
+                          "items": {
+                            "description": "Companies allow you to represent organizations using your product. Each company will have its own description and be associated with contacts. You can fetch, create, update and list companies.",
+                            "properties": {
+                              "app_id": {
+                                "description": "The Intercom defined code of the workspace the company is associated to.",
+                                "example": "ecahpwf5",
+                                "type": "string"
+                              },
+                              "company_id": {
+                                "description": "The company id you have defined for the company.",
+                                "example": "6",
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "description": "The time the company was added in Intercom.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "custom_attributes": {
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "description": "The custom attributes you have set on the company.",
+                                "example": {
+                                  "monthly_spend": 155.5,
+                                  "paid_subscriber": true,
+                                  "team_mates": 9
+                                },
+                                "type": "object"
+                              },
+                              "id": {
+                                "description": "The Intercom defined id representing the company.",
+                                "example": "531ee472cce572a6ec000006",
+                                "type": "string"
+                              },
+                              "industry": {
+                                "description": "The industry that the company operates in.",
+                                "example": "Software",
+                                "type": "string"
+                              },
+                              "last_request_at": {
+                                "description": "The time the company last recorded making a request.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "monthly_spend": {
+                                "description": "How much revenue the company generates for your business.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "name": {
+                                "description": "The name of the company.",
+                                "example": "Blue Sun",
+                                "type": "string"
+                              },
+                              "notes": {
+                                "description": "The list of notes associated with the company",
+                                "properties": {
+                                  "notes": {
+                                    "items": {
+                                      "description": "Notes allow you to annotate and comment on companies.",
+                                      "properties": {
+                                        "author": {
+                                          "description": "Optional. Represents the Admin that created the note.",
+                                          "nullable": true,
+                                          "properties": {
+                                            "avatar": {
+                                              "description": "Image for the associated team or teammate",
+                                              "example": "https://picsum.photos/200/300",
+                                              "format": "uri",
+                                              "nullable": true,
+                                              "type": "string"
+                                            },
+                                            "away_mode_enabled": {
+                                              "description": "Identifies if this admin is currently set in away mode.",
+                                              "example": false,
+                                              "type": "boolean"
+                                            },
+                                            "away_mode_reassign": {
+                                              "description": "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox.",
+                                              "example": false,
+                                              "type": "boolean"
+                                            },
+                                            "away_status_reason_id": {
+                                              "description": "The unique identifier of the away status reason",
+                                              "example": 12345,
+                                              "nullable": true,
+                                              "type": "integer"
+                                            },
+                                            "email": {
+                                              "description": "The email of the admin.",
+                                              "example": "jdoe@example.com",
+                                              "type": "string"
+                                            },
+                                            "has_inbox_seat": {
+                                              "description": "Identifies if this admin has a paid inbox seat to restrict/allow features that require them.",
+                                              "example": true,
+                                              "type": "boolean"
+                                            },
+                                            "id": {
+                                              "description": "The id representing the admin.",
+                                              "example": "1295",
+                                              "type": "string"
+                                            },
+                                            "job_title": {
+                                              "description": "The job title of the admin.",
+                                              "example": "Associate",
+                                              "type": "string"
+                                            },
+                                            "name": {
+                                              "description": "The name of the admin.",
+                                              "example": "Joe Example",
+                                              "type": "string"
+                                            },
+                                            "role": {
+                                              "description": "The role assigned to this admin. Only present if the admin has a role assigned.",
+                                              "nullable": true,
+                                              "properties": {
+                                                "id": {
+                                                  "description": "The id of the role.",
+                                                  "example": "1",
+                                                  "type": "string"
+                                                },
+                                                "name": {
+                                                  "description": "The name of the role.",
+                                                  "example": "Support Agent",
+                                                  "type": "string"
+                                                },
+                                                "type": {
+                                                  "description": "String representing the object's type. Always has the value `role`.",
+                                                  "example": "role",
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "type": "object"
+                                            },
+                                            "team_ids": {
+                                              "description": "This object represents the avatar associated with the admin.",
+                                              "example": [
+                                                814865
+                                              ],
+                                              "items": {
+                                                "type": "integer"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "team_priority_level": {
+                                              "description": "Admin priority levels for teams",
+                                              "nullable": true,
+                                              "properties": {
+                                                "primary_team_ids": {
+                                                  "description": "The primary team ids for the team",
+                                                  "example": [
+                                                    814865
+                                                  ],
+                                                  "items": {
+                                                    "type": "integer"
+                                                  },
+                                                  "nullable": true,
+                                                  "type": "array"
+                                                },
+                                                "secondary_team_ids": {
+                                                  "description": "The secondary team ids for the team",
+                                                  "example": [
+                                                    493881
+                                                  ],
+                                                  "items": {
+                                                    "type": "integer"
+                                                  },
+                                                  "nullable": true,
+                                                  "type": "array"
+                                                }
+                                              },
+                                              "title": "Team Priority Level",
+                                              "type": "object"
+                                            },
+                                            "type": {
+                                              "description": "String representing the object's type. Always has the value `admin`.",
+                                              "example": "admin",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "title": "Admin",
+                                          "type": "object"
+                                        },
+                                        "body": {
+                                          "description": "The body text of the note.",
+                                          "example": "<p>Text for the note.</p>",
+                                          "type": "string"
+                                        },
+                                        "company": {
+                                          "description": "Represents the company that the note was created about.",
+                                          "nullable": true,
+                                          "properties": {
+                                            "id": {
+                                              "description": "The id of the company.",
+                                              "example": "6329bd9ffe4e2e91dac76188",
+                                              "type": "string"
+                                            },
+                                            "type": {
+                                              "description": "String representing the object's type. Always has the value `company`.",
+                                              "example": "company",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "created_at": {
+                                          "description": "The time the note was created.",
+                                          "example": 1674589321,
+                                          "format": "timestamp",
+                                          "type": "integer"
+                                        },
+                                        "id": {
+                                          "description": "The id of the note.",
+                                          "example": "17495962",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "String representing the object's type. Always has the value `note`.",
+                                          "example": "note",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "title": "Company Note",
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "type": {
+                                    "description": "The type of the object",
+                                    "enum": [
+                                      "note.list"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "plan": {
+                                "properties": {
+                                  "id": {
+                                    "description": "The id of the plan",
+                                    "example": "269315",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "The name of the plan",
+                                    "example": "Pro",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "description": "Value is always \"plan\"",
+                                    "example": "plan",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "remote_created_at": {
+                                "description": "The time the company was created by you.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "segments": {
+                                "description": "The list of segments associated with the company",
+                                "properties": {
+                                  "segments": {
+                                    "items": {
+                                      "description": "A segment is a group of your contacts defined by the rules that you set.",
+                                      "properties": {
+                                        "count": {
+                                          "description": "The number of items in the user segment. It's returned when `include_count=true` is included in the request.",
+                                          "example": 3,
+                                          "nullable": true,
+                                          "type": "integer"
+                                        },
+                                        "created_at": {
+                                          "description": "The time the segment was created.",
+                                          "example": 1394621988,
+                                          "type": "integer"
+                                        },
+                                        "id": {
+                                          "description": "The unique identifier representing the segment.",
+                                          "example": "56203d253cba154d39010062",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "The name of the segment.",
+                                          "example": "Active",
+                                          "type": "string"
+                                        },
+                                        "person_type": {
+                                          "description": "Type of the contact: contact (lead) or user.",
+                                          "enum": [
+                                            "contact",
+                                            "user"
+                                          ],
+                                          "example": "contact",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "The type of object.",
+                                          "enum": [
+                                            "segment"
+                                          ],
+                                          "example": "segment",
+                                          "type": "string"
+                                        },
+                                        "updated_at": {
+                                          "description": "The time the segment was updated.",
+                                          "example": 1394622004,
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "title": "Segment",
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "type": {
+                                    "description": "The type of the object",
+                                    "enum": [
+                                      "segment.list"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "session_count": {
+                                "description": "How many sessions the company has recorded.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "size": {
+                                "description": "The number of employees in the company.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "tags": {
+                                "description": "The list of tags associated with the company",
+                                "properties": {
+                                  "tags": {
+                                    "items": {
+                                      "description": "A tag allows you to label your contacts, companies, and conversations and list them using that tag.",
+                                      "properties": {
+                                        "id": {
+                                          "description": "The id of the tag",
+                                          "example": "123456",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "The name of the tag",
+                                          "example": "Test tag",
+                                          "type": "string"
+                                        },
+                                        "type": {
+                                          "description": "value is \"tag\"",
+                                          "example": "tag",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "title": "Tag",
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "type": {
+                                    "description": "The type of the object",
+                                    "enum": [
+                                      "tag.list"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": {
+                                "description": "Value is `company`",
+                                "enum": [
+                                  "company"
+                                ],
+                                "example": "company",
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "description": "The last time the company was updated.",
+                                "example": 1663597223,
+                                "type": "integer"
+                              },
+                              "user_count": {
+                                "description": "The number of users in the company.",
+                                "example": 100,
+                                "type": "integer"
+                              },
+                              "website": {
+                                "description": "The URL for the company website.",
+                                "example": "https://www.intercom.com",
+                                "type": "string"
+                              }
+                            },
+                            "title": "Company",
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "company.list"
+                          ],
+                          "example": "company.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "created_at": {
+                      "description": "The time the Visitor was added to Intercom.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "custom_attributes": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "The custom attributes you have set on the Visitor.",
+                      "type": "object"
+                    },
+                    "do_not_track": {
+                      "description": "Identifies if this visitor has do not track enabled.",
+                      "example": false,
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "description": "The email of the visitor.",
+                      "example": "jane.doe@example.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "has_hard_bounced": {
+                      "description": "Identifies if this visitor has had a hard bounce.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "The Intercom defined id representing the Visitor.",
+                      "example": "530370b477ad7120001d",
+                      "type": "string"
+                    },
+                    "las_request_at": {
+                      "description": "The time the Lead last recorded making a request.",
+                      "example": 1663597260,
+                      "type": "integer"
+                    },
+                    "location_data": {
+                      "properties": {
+                        "city_name": {
+                          "description": "The city name of the visitor.",
+                          "example": "Dublin",
+                          "type": "string"
+                        },
+                        "continent_code": {
+                          "description": "The continent code of the visitor.",
+                          "example": "EU",
+                          "type": "string"
+                        },
+                        "country_code": {
+                          "description": "The country code of the visitor.",
+                          "example": "IRL",
+                          "type": "string"
+                        },
+                        "country_name": {
+                          "description": "The country name of the visitor.",
+                          "example": "Ireland",
+                          "type": "string"
+                        },
+                        "postal_code": {
+                          "description": "The postal code of the visitor.",
+                          "example": "D02 N960",
+                          "type": "string"
+                        },
+                        "region_name": {
+                          "description": "The region name of the visitor.",
+                          "example": "Leinster",
+                          "type": "string"
+                        },
+                        "timezone": {
+                          "description": "The timezone of the visitor.",
+                          "example": "Europe/Dublin",
+                          "type": "string"
+                        },
+                        "type": {
+                          "default": "location_data",
+                          "description": "",
+                          "example": "location_data",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "marked_email_as_spam": {
+                      "description": "Identifies if this visitor has marked an email as spam.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "The name of the visitor.",
+                      "example": "Jane Doe",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "owner_id": {
+                      "description": "The id of the admin that owns the Visitor.",
+                      "example": "5169261",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "phone": {
+                      "description": "The phone number of the visitor.",
+                      "example": "555-555-5555",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "pseudonym": {
+                      "description": "The pseudonym of the visitor.",
+                      "example": "Red Duck from Dublin",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "referrer": {
+                      "description": "The referer of the visitor.",
+                      "example": "https://www.google.com/",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "remote_created_at": {
+                      "description": "The time the Visitor was added to Intercom.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "segments": {
+                      "properties": {
+                        "segments": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "segment.list"
+                          ],
+                          "example": "segment.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "session_count": {
+                      "description": "The number of sessions the Visitor has had.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "signed_up_at": {
+                      "description": "The time the Visitor signed up for your product.",
+                      "example": 1663597223,
+                      "type": "integer"
+                    },
+                    "social_profiles": {
+                      "properties": {
+                        "social_profiles": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "social_profile.list"
+                          ],
+                          "example": "social_profile.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tags": {
+                      "properties": {
+                        "tags": {
+                          "items": {
+                            "properties": {
+                              "id": {
+                                "description": "The id of the tag.",
+                                "example": "8482",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "The name of the tag.",
+                                "example": "tag_name",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "The type of the object",
+                                "enum": [
+                                  "tag"
+                                ],
+                                "example": "tag",
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "type": "array"
+                        },
+                        "type": {
+                          "description": "The type of the object",
+                          "enum": [
+                            "tag.list"
+                          ],
+                          "example": "tag.list",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "default": "visitor",
+                      "description": "Value is 'visitor'",
+                      "example": "visitor",
+                      "type": "string"
+                    },
+                    "unsubscribed_from_emails": {
+                      "description": "Whether the Visitor is unsubscribed from emails.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "updated_at": {
+                      "description": "The last time the Visitor was updated.",
+                      "example": 1663597260,
+                      "type": "integer"
+                    },
+                    "user_id": {
+                      "description": "Automatically generated identifier for the Visitor.",
+                      "example": "8a88a590-e1c3-41e2-a502-e0649dbf721c",
+                      "type": "string"
+                    },
+                    "utm_campaign": {
+                      "description": "The utm_campaign of the visitor.",
+                      "example": "intercom-link",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_content": {
+                      "description": "The utm_content of the visitor.",
+                      "example": "banner",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_medium": {
+                      "description": "The utm_medium of the visitor.",
+                      "example": "email",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_source": {
+                      "description": "The utm_source of the visitor.",
+                      "example": "Intercom",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "utm_term": {
+                      "description": "The utm_term of the visitor.",
+                      "example": "messenger",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "title": "Visitor",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "3f474ec4-4e61-42ee-9acc-eac64982e393",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "visitor Not Found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Visitor Not Found"
+                        }
+                      ],
+                      "request_id": "6a6d5522-54e2-437d-8fd0-1109686af965",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "visitor Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

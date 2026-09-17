@@ -1,0 +1,44 @@
+# BasicSegmentFlow
+
+main: kit: flow: BasicSegmentFlow:
+{
+  entity: "segment",
+  kind: "basic",
+  name: "BasicSegmentFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "segment_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "segment_ref01",
+        srcdatavar: "segment_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "segment01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-segment_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSegmentFlow"
+}

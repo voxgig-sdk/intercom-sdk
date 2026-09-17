@@ -40,27 +40,13 @@ const utility_1 = require("../../utility");
         const params = {};
         const query = {};
         if (setup.live) {
-            const listResult = await client.direct({
-                path: 'contacts',
-                method: 'GET',
-                params: {},
-            });
-            (0, node_assert_1.default)(listResult.ok && listResult.status >= 200 && listResult.status < 300, 'Live list discovery failed');
-            const listArr = unwrapListData(listResult.data);
-            if (null == listArr || listArr.length === 0) {
-                throw new Error('Live load blocked: discovery returned no entities');
-            }
-            const candidateId = listArr[0]?.id ?? listArr[0]?.id;
-            if (null == candidateId) {
-                throw new Error('Live load blocked: discovery returned no usable identity');
-            }
-            params.id = candidateId;
+            params.external_id = "cdd29344-5e0c-4ef0-ac56-f9ba2979bc27";
         }
         else {
-            params.id = 'direct01';
+            params.external_id = 'direct01';
         }
         const result = await client.direct({
-            path: 'contacts/{id}',
+            path: 'contacts/find_by_external_id/{external_id}',
             method: 'GET',
             params,
             query,

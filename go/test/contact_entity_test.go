@@ -137,7 +137,7 @@ func TestContactEntity(t *testing.T) {
 			"id": contactRef01Data["id"],
 		}
 
-		contactRef01MarkdefUp0Name := "email"
+		contactRef01MarkdefUp0Name := "android_app_name"
 		contactRef01MarkdefUp0Value := fmt.Sprintf("Mark01-contact_ref01_%d", setup.now)
 		contactRef01DataUp0Up[contactRef01MarkdefUp0Name] = contactRef01MarkdefUp0Value
 
@@ -226,7 +226,7 @@ func contactBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"contact01", "contact02", "contact03"},
+		[]any{"contact01", "contact02", "contact03", "find_by_external_id01", "find_by_external_id02", "find_by_external_id03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

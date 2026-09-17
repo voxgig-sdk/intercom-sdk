@@ -95,32 +95,13 @@ func TestContactDirect(t *testing.T) {
 		params := map[string]any{}
 		query := map[string]any{}
 		if setup.live {
-			listParams := map[string]any{}
-			listResult, listErr := client.Direct(map[string]any{
-				"path":   "contacts",
-				"method": "GET",
-				"params": listParams,
-			})
-			if listErr != nil {
-				t.Fatalf("list call failed (likely synthetic IDs against live API): %v", listErr)
-			}
-			if listResult["ok"] != true {
-				t.Fatalf("list call not ok (likely synthetic IDs against live API): %v", listResult)
-			}
-
-			// Get first entity ID from list
-			listData, _ := listResult["data"].([]any)
-			if len(listData) == 0 {
-				t.Skip("no entities to load in live mode")
-			}
-			firstEnt := core.ToMapAny(listData[0])
-			params["id"] = firstEnt["id"]
+			params["external_id"] = "cdd29344-5e0c-4ef0-ac56-f9ba2979bc27"
 		} else {
-			params["id"] = "direct01"
+			params["external_id"] = "direct01"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "contacts/{id}",
+			"path":   "contacts/find_by_external_id/{external_id}",
 			"method": "GET",
 			"params": params,
 			"query":  query,

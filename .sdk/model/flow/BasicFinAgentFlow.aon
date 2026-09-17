@@ -1,0 +1,18 @@
+# BasicFinAgentFlow
+
+main: kit: flow: BasicFinAgentFlow:
+{
+  entity: "fin_agent",
+  kind: "basic",
+  name: "BasicFinAgentFlow",
+  step: [
+    {
+      input: {
+        ref: "fin_agent_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicFinAgentFlow"
+}

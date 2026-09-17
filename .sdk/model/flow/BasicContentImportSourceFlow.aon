@@ -1,0 +1,71 @@
+# BasicContentImportSourceFlow
+
+main: kit: flow: BasicContentImportSourceFlow:
+{
+  entity: "content_import_source",
+  kind: "basic",
+  name: "BasicContentImportSourceFlow",
+  step: [
+    {
+      input: {
+        ref: "content_import_source_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "content_import_source_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "content_import_source_ref01",
+        srcdatavar: "content_import_source_ref01_data",
+        suffix: "_up0",
+        textfield: "status"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-content_import_source_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "content_import_source_ref01",
+        srcdatavar: "content_import_source_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "content_import_source01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-content_import_source_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicContentImportSourceFlow"
+}

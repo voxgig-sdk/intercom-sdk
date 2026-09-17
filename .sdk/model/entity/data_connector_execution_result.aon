@@ -1,0 +1,202 @@
+# Entity: data_connector_execution_result
+
+main: kit: entity: data_connector_execution_result: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "conversation_id"
+      req: false
+      short: "The conversation associated with this execution, if any."
+      type: "`$STRING`"
+    }
+    {
+      format: "date-time"
+      name: "created_at"
+      req: false
+      short: "The time the execution occurred."
+      type: "`$STRING`"
+    }
+    {
+      name: "data_connector_id"
+      req: false
+      short: "The unique identifier of the data connector that produced this result."
+      type: "`$STRING`"
+    }
+    {
+      name: "error_message"
+      req: false
+      short: "A human-readable error message."
+      type: "`$STRING`"
+    }
+    {
+      name: "error_type"
+      req: false
+      short: "The type of error that occurred, if any."
+      type: "`$STRING`"
+    }
+    {
+      name: "execution_time_ms"
+      req: false
+      short: "The execution time in milliseconds."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "http_method"
+      req: false
+      short: "The HTTP method used for the request."
+      type: "`$STRING`"
+    }
+    {
+      name: "http_status"
+      req: false
+      short: "The HTTP status code returned by the external API."
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The unique identifier for the execution result."
+      type: "`$STRING`"
+    }
+    {
+      name: "raw_response_body"
+      req: false
+      short: "The raw (unmapped) response body."
+      type: "`$STRING`"
+    }
+    {
+      name: "request_body"
+      req: false
+      short: "The request body sent to the external API."
+      type: "`$STRING`"
+    }
+    {
+      name: "request_url"
+      req: false
+      short: "The request URL."
+      type: "`$STRING`"
+    }
+    {
+      name: "response_body"
+      req: false
+      short: "The response body from the external API."
+      type: "`$STRING`"
+    }
+    {
+      name: "source_id"
+      req: false
+      short: "The identifier of the source that triggered this execution."
+      type: "`$STRING`"
+    }
+    {
+      name: "source_type"
+      req: false
+      short: "The type of source that triggered this execution."
+      type: "`$STRING`"
+    }
+    {
+      name: "success"
+      req: false
+      short: "Whether the execution was successful."
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "The type of object - `data_connector.execution`."
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "data_connector_execution_result"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "12345"
+                kind: "param"
+                name: "data_connector_id"
+                orig: "data_connector_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "99001"
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /data_connectors/{data_connector_id}/execution_results/{id}"
+            json: "{\"operationId\":\"showDataConnectorExecutionResult\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the data connector.\",\"in\":\"path\",\"name\":\"data_connector_id\",\"required\":true,\"schema\":{\"example\":\"12345\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the execution result.\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"example\":\"99001\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"successful\":{\"value\":{\"conversation_id\":\"8001\",\"created_at\":\"2026-02-10T18:15:32Z\",\"data_connector_id\":\"12345\",\"execution_time_ms\":150,\"http_method\":\"post\",\"http_status\":200,\"id\":\"99001\",\"raw_response_body\":\"{\\\"ok\\\": true}\",\"request_body\":\"{\\\"channel\\\": \\\"#alerts\\\", \\\"text\\\": \\\"Conversation updated\\\"}\",\"request_url\":\"https://api.example.com/webhook\",\"response_body\":\"{\\\"ok\\\": true}\",\"source_id\":\"5001\",\"source_type\":\"workflow\",\"success\":true,\"type\":\"data_connector.execution\"}}},\"schema\":{\"description\":\"An execution result from a data connector HTTP request.\",\"properties\":{\"conversation_id\":{\"description\":\"The conversation associated with this execution, if any.\",\"example\":\"8001\",\"nullable\":true,\"type\":\"string\"},\"created_at\":{\"description\":\"The time the execution occurred.\",\"example\":\"2026-02-10T18:15:32Z\",\"format\":\"date-time\",\"type\":\"string\"},\"data_connector_id\":{\"description\":\"The unique identifier of the data connector that produced this result.\",\"example\":\"12345\",\"type\":\"string\"},\"error_message\":{\"description\":\"A human-readable error message. Query parameters, userinfo, and fragments in URLs are redacted.\",\"example\":\"Connection refused\",\"nullable\":true,\"type\":\"string\"},\"error_type\":{\"description\":\"The type of error that occurred, if any.\",\"enum\":[\"request_configuration_error\",\"faraday_error\",\"3rd_party_error\",\"response_mapping_error\",\"token_refresh_error\",\"fin_action_response_formatting_error\",\"fin_action_identity_verification_error\",\"email_verification_error\",\"non_fin_standalone_action_identity_verification_error\",\"request_validation_error\",\"client_side_action_error\"],\"example\":\"3rd_party_error\",\"nullable\":true,\"type\":\"string\"},\"execution_time_ms\":{\"description\":\"The execution time in milliseconds.\",\"example\":245,\"nullable\":true,\"type\":\"integer\"},\"http_method\":{\"description\":\"The HTTP method used for the request.\",\"enum\":[\"get\",\"post\",\"put\",\"delete\",\"patch\"],\"example\":\"post\",\"type\":\"string\"},\"http_status\":{\"description\":\"The HTTP status code returned by the external API.\",\"example\":200,\"nullable\":true,\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier for the execution result.\",\"example\":\"99001\",\"type\":\"string\"},\"raw_response_body\":{\"description\":\"The raw (unmapped) response body.\",\"example\":\"{\\\"status\\\": \\\"ok\\\"}\",\"nullable\":true,\"type\":\"string\"},\"request_body\":{\"description\":\"The request body sent to the external API.\",\"example\":\"{\\\"message\\\": \\\"hello\\\"}\",\"nullable\":true,\"type\":\"string\"},\"request_url\":{\"description\":\"The request URL. Query parameters, userinfo, and fragments are redacted.\",\"example\":\"https://api.example.com/webhook\",\"nullable\":true,\"type\":\"string\"},\"response_body\":{\"description\":\"The response body from the external API.\",\"example\":\"{\\\"status\\\": \\\"ok\\\"}\",\"nullable\":true,\"type\":\"string\"},\"source_id\":{\"description\":\"The identifier of the source that triggered this execution.\",\"example\":\"5001\",\"nullable\":true,\"type\":\"string\"},\"source_type\":{\"description\":\"The type of source that triggered this execution.\",\"enum\":[\"custom_bot\",\"inbound_custom_bot\",\"button_custom_bot\",\"answer\",\"workflow\",\"saved_reply\",\"triggerable_custom_bot\",\"inbox\",\"fin\"],\"example\":\"workflow\",\"nullable\":true,\"type\":\"string\"},\"success\":{\"description\":\"Whether the execution was successful.\",\"example\":true,\"type\":\"boolean\"},\"type\":{\"description\":\"The type of object - `data_connector.execution`.\",\"enum\":[\"data_connector.execution\"],\"example\":\"data_connector.execution\",\"type\":\"string\"}},\"title\":\"Data Connector Execution Result\",\"type\":\"object\"}}},\"description\":\"successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"test-uuid-replacement\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Data connector not found\":{\"value\":{\"errors\":[{\"code\":\"data_connector_not_found\",\"message\":\"Data connector not found\"}],\"request_id\":\"test-uuid-replacement\",\"type\":\"error.list\"}},\"Execution result not found\":{\"value\":{\"errors\":[{\"code\":\"execution_result_not_found\",\"message\":\"Execution result not found\"}],\"request_id\":\"test-uuid-replacement\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Execution result not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/data_connectors/{data_connector_id}/execution_results/{id}"
+          segments: [
+            {
+              lit: "data_connectors"
+            }
+            {
+              var: "data_connector_id"
+            }
+            {
+              lit: "execution_results"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "data_connector_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "data_connector"
+      ]
+    ]
+  }
+
+
+
+}

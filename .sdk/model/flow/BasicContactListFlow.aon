@@ -1,0 +1,18 @@
+# BasicContactListFlow
+
+main: kit: flow: BasicContactListFlow:
+{
+  entity: "contact_list",
+  kind: "basic",
+  name: "BasicContactListFlow",
+  step: [
+    {
+      input: {
+        ref: "contact_list_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicContactListFlow"
+}

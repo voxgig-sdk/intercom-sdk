@@ -4,7 +4,15 @@
 main: {
   kit: {
     info: {
-      description: "Create, read, update, and delete Intercom contacts."
+      contact: {
+        name: "Intercom Developer Hub"
+        url: "https://developers.intercom.com"
+      }
+      description: "The intercom API reference."
+      license: {
+        name: "MIT"
+        url: "https://spdx.org/licenses/MIT"
+      }
       security: {
         in: "header"
         name: "Authorization"
@@ -14,12 +22,21 @@ main: {
       }
       servers: [
         {
+          description: "The production API server"
           url: "https://api.intercom.io"
         }
+        {
+          description: "The european API server"
+          url: "https://api.eu.intercom.io"
+        }
+        {
+          description: "The australian API server"
+          url: "https://api.au.intercom.io"
+        }
       ]
-      summary: "Create, read, update, and delete Intercom contacts."
-      title: "Intercom Contacts API"
-      version: "2.11"
+      summary: "The intercom API reference."
+      title: "Intercom API"
+      version: "2.16"
       website: "https://intercom.io"
     }
   }

@@ -1,0 +1,22 @@
+# BasicContentSearchFlow
+
+main: kit: flow: BasicContentSearchFlow:
+{
+  entity: "content_search",
+  kind: "basic",
+  name: "BasicContentSearchFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "content_search_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicContentSearchFlow"
+}

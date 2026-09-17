@@ -1,0 +1,49 @@
+# BasicDataAttributeFlow
+
+main: kit: flow: BasicDataAttributeFlow:
+{
+  entity: "data_attribute",
+  kind: "basic",
+  name: "BasicDataAttributeFlow",
+  step: [
+    {
+      input: {
+        ref: "data_attribute_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "data_attribute_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "data_attribute_ref01",
+        srcdatavar: "data_attribute_ref01_data",
+        suffix: "_up0",
+        textfield: "admin_id"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-data_attribute_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataAttributeFlow"
+}

@@ -1,0 +1,105 @@
+# BasicCompanyFlow
+
+main: kit: flow: BasicCompanyFlow:
+{
+  entity: "company",
+  kind: "basic",
+  name: "BasicCompanyFlow",
+  step: [
+    {
+      input: {
+        ref: "company_ref01"
+      }
+
+      match: {
+        contact_id: "contact01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "company_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "company_ref01",
+        srcdatavar: "company_ref01_data",
+        suffix: "_up0",
+        textfield: "app_id"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-company_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "company_ref01",
+        srcdatavar: "company_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "company01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-company_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "company_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        contact_id: "contact01",
+        id: "company01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "company_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompanyFlow"
+}

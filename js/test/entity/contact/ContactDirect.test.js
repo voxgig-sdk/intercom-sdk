@@ -54,13 +54,13 @@ describe('ContactDirect', async () => {
         throw new Error('Live load blocked: discovery returned no usable entities')
       }
       params.id = listData[0].id
-
+      params.external_id = setup.idmap['external01']
     } else {
-      params.id = 'direct01'
+      params.external_id = 'direct01'
     }
 
     const result = await client.direct({
-      path: 'contacts/{id}',
+      path: 'contacts/find_by_external_id/{external_id}',
       method: 'GET',
       params,
     })

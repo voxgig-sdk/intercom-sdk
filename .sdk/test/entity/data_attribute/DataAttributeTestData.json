@@ -1,0 +1,1652 @@
+{
+  "existing": {
+    "data_attribute": {
+      "DATA_ATTRIBUTE00": {
+        "admin_id": "ADMIN01",
+        "api_writable": false,
+        "archived": true,
+        "created_at": 173,
+        "custom": true,
+        "data_type": "saf",
+        "description": "sb0",
+        "full_name": "sb1",
+        "id": "DATA_ATTRIBUTE00",
+        "label": "sb3",
+        "messenger_writable": true,
+        "model": "sb5",
+        "name": "sb6",
+        "options": [],
+        "type": "sb8",
+        "ui_writable": false,
+        "updated_at": 186
+      },
+      "DATA_ATTRIBUTE01": {
+        "admin_id": "ADMIN01",
+        "api_writable": false,
+        "archived": true,
+        "created_at": 343,
+        "custom": true,
+        "data_type": "s159",
+        "description": "s15a",
+        "full_name": "s15b",
+        "id": "DATA_ATTRIBUTE01",
+        "label": "s15d",
+        "messenger_writable": true,
+        "model": "s15f",
+        "name": "s160",
+        "options": [],
+        "type": "s162",
+        "ui_writable": false,
+        "updated_at": 356
+      },
+      "DATA_ATTRIBUTE02": {
+        "admin_id": "ADMIN01",
+        "api_writable": false,
+        "archived": true,
+        "created_at": 513,
+        "custom": true,
+        "data_type": "s203",
+        "description": "s204",
+        "full_name": "s205",
+        "id": "DATA_ATTRIBUTE02",
+        "label": "s207",
+        "messenger_writable": true,
+        "model": "s209",
+        "name": "s20a",
+        "options": [],
+        "type": "s20c",
+        "ui_writable": false,
+        "updated_at": 526
+      }
+    }
+  },
+  "new": {
+    "data_attribute": {
+      "data_attribute_ref01": {
+        "admin_id": "ADMIN01",
+        "api_writable": false,
+        "archived": true,
+        "created_at": 683,
+        "custom": true,
+        "data_type": "s2ad",
+        "description": "s2ae",
+        "full_name": "s2af",
+        "label": "s2b1",
+        "messenger_writable": true,
+        "model": "s2b3",
+        "name": "s2b4",
+        "options": [],
+        "type": "s2b6",
+        "ui_writable": false,
+        "updated_at": 696
+      }
+    }
+  },
+  "requests": {
+    "POST /data_attributes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createDataAttribute",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "attribute_already_exists": {
+                  "summary": "Attribute already exists",
+                  "value": {
+                    "data_type": "string",
+                    "model": "company",
+                    "name": "The One Ring"
+                  }
+                },
+                "invalid_data_type": {
+                  "summary": "Invalid Data Type",
+                  "value": {
+                    "data_type": "mithril",
+                    "model": "company",
+                    "name": "The Second Ring"
+                  }
+                },
+                "invalid_name": {
+                  "summary": "Invalid name",
+                  "value": {
+                    "data_type": "string",
+                    "model": "company",
+                    "name": "!nv@l!d n@me"
+                  }
+                },
+                "same_name_already_exists": {
+                  "summary": "Same name already exists",
+                  "value": {
+                    "data_type": "integer",
+                    "model": "contact",
+                    "name": "The One Ring"
+                  }
+                },
+                "successful": {
+                  "summary": "Successful",
+                  "value": {
+                    "data_type": "string",
+                    "model": "company",
+                    "name": "Mithril Shirt"
+                  }
+                },
+                "too_few_options_for_list": {
+                  "summary": "Too few options for list",
+                  "value": {
+                    "archived": false,
+                    "description": "Just a plain old ring",
+                    "options": [
+                      {
+                        "value": "1-10"
+                      }
+                    ]
+                  }
+                }
+              },
+              "schema": {
+                "description": "",
+                "oneOf": [
+                  {
+                    "properties": {
+                      "data_type": {
+                        "enum": [
+                          "options"
+                        ]
+                      },
+                      "options": {
+                        "description": "Array of objects representing the options of the list, with `value` as the key and the option as the value. At least two options are required.",
+                        "example": [
+                          {
+                            "value": "1-10"
+                          },
+                          {
+                            "value": "11-50"
+                          }
+                        ],
+                        "items": {
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "required": [
+                      "options"
+                    ],
+                    "title": "list attribute"
+                  },
+                  {
+                    "properties": {
+                      "data_type": {
+                        "enum": [
+                          "string",
+                          "integer",
+                          "float",
+                          "boolean",
+                          "datetime",
+                          "date"
+                        ]
+                      }
+                    },
+                    "title": "other type"
+                  }
+                ],
+                "properties": {
+                  "description": {
+                    "description": "The readable description you see in the UI for the attribute.",
+                    "example": "My Data Attribute Description",
+                    "type": "string"
+                  },
+                  "messenger_writable": {
+                    "description": "Can this attribute be updated by the Messenger",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "model": {
+                    "description": "The model that the data attribute belongs to.",
+                    "enum": [
+                      "contact",
+                      "company"
+                    ],
+                    "example": "contact",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name of the data attribute.",
+                    "example": "My Data Attribute",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "model",
+                  "data_type"
+                ],
+                "title": "Create Data Attribute Request",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful": {
+                    "value": {
+                      "admin_id": "991267786",
+                      "api_writable": true,
+                      "archived": false,
+                      "created_at": 1734537756,
+                      "custom": true,
+                      "data_type": "string",
+                      "full_name": "custom_attributes.Mithril Shirt",
+                      "id": 37,
+                      "label": "Mithril Shirt",
+                      "messenger_writable": false,
+                      "model": "company",
+                      "name": "Mithril Shirt",
+                      "type": "data_attribute",
+                      "ui_writable": false,
+                      "updated_at": 1734537756
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Data Attributes are metadata used to describe your contact and company models. These include standard and custom attributes. By using the data attributes endpoint, you can get the global list of attributes for your workspace, as well as create and archive custom attributes.",
+                  "properties": {
+                    "admin_id": {
+                      "description": "Teammate who created the attribute. Only applicable to CDAs",
+                      "example": "5712945",
+                      "type": "string"
+                    },
+                    "api_writable": {
+                      "description": "Can this attribute be updated through API",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "archived": {
+                      "description": "Is this attribute archived. (Only applicable to CDAs)",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "The time the attribute was created as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "custom": {
+                      "description": "Set to true if this is a CDA",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "data_type": {
+                      "description": "The data type of the attribute.",
+                      "enum": [
+                        "string",
+                        "integer",
+                        "float",
+                        "boolean",
+                        "date"
+                      ],
+                      "example": "boolean",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Readable description of the attribute.",
+                      "example": "Whether the user is a paid subscriber.",
+                      "type": "string"
+                    },
+                    "full_name": {
+                      "description": "Full name of the attribute. Should match the name unless it's a nested attribute. We can split full_name on `.` to access nested user object values.",
+                      "example": "custom_attributes.paid_subscriber",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the data attribute which is given by Intercom. Only available for custom attributes.",
+                      "example": 12878,
+                      "type": "integer"
+                    },
+                    "label": {
+                      "description": "Readable name of the attribute (i.e. name you see in the UI)",
+                      "example": "Paid Subscriber",
+                      "type": "string"
+                    },
+                    "messenger_writable": {
+                      "description": "Can this attribute be updated by the Messenger",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "model": {
+                      "description": "Value is `contact` for user/lead attributes and `company` for company attributes.",
+                      "enum": [
+                        "contact",
+                        "company"
+                      ],
+                      "example": "contact",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Name of the attribute.",
+                      "example": "paid_subscriber",
+                      "type": "string"
+                    },
+                    "options": {
+                      "description": "List of predefined options for attribute value.",
+                      "example": [
+                        "true",
+                        "false"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "Value is `data_attribute`.",
+                      "enum": [
+                        "data_attribute"
+                      ],
+                      "example": "data_attribute",
+                      "type": "string"
+                    },
+                    "ui_writable": {
+                      "description": "Can this attribute be updated in the UI",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "updated_at": {
+                      "description": "The time the attribute was last updated as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Data Attribute",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Attribute already exists": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "You already have 'The One Ring' in your company data. To save this as new company data, use a different name."
+                        }
+                      ],
+                      "request_id": "55999605-a170-4894-a3d0-090c4fee8d11",
+                      "type": "error.list"
+                    }
+                  },
+                  "Invalid Data Type": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Data Type isn't an option"
+                        }
+                      ],
+                      "request_id": "e0a9ccc7-a540-4ef0-8ffc-28ab86658b04",
+                      "type": "error.list"
+                    }
+                  },
+                  "Invalid name": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Your name for this attribute must only contain alphanumeric characters, currency symbols, and hyphens"
+                        }
+                      ],
+                      "request_id": "1c45cfd9-ffd1-4e3e-9f7a-2ac99abdf03d",
+                      "type": "error.list"
+                    }
+                  },
+                  "Same name already exists": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "You already have 'The One Ring' in your company data. To save this as new people data, use a different name."
+                        }
+                      ],
+                      "request_id": "da2a7037-11f4-4fcc-8d19-27da3b3a4336",
+                      "type": "error.list"
+                    }
+                  },
+                  "Too few options for list": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "The Data Attribute model field must be either contact or company"
+                        }
+                      ],
+                      "request_id": "6544ccf8-435d-49e1-91ed-e49356f14255",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too few options for list"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "fa71b91c-4a25-4fe6-88a9-884f6950860e",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /data_attributes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "lisDataAttributes",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Specify the data attribute model to return. For conversation attributes, use GET /conversations/attributes instead.",
+            "example": "company",
+            "in": "query",
+            "name": "model",
+            "required": false,
+            "schema": {
+              "enum": [
+                "contact",
+                "company"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include archived attributes in the list. By default we return only non archived data attributes.",
+            "example": false,
+            "in": "query",
+            "name": "include_archived",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "data": [
+                        {
+                          "api_writable": true,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "The name of a company",
+                          "full_name": "name",
+                          "label": "Company name",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "name",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "A number identifying a company",
+                          "full_name": "company_id",
+                          "label": "Company ID",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "company_id",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "date",
+                          "description": "The last day anyone from a company visited your site or app",
+                          "full_name": "last_request_at",
+                          "label": "Company last seen",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "last_request_at",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": true,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "date",
+                          "description": "The day a company was added to Intercom",
+                          "full_name": "remote_created_at",
+                          "label": "Company created at",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "remote_created_at",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "integer",
+                          "description": "The number of people in a company",
+                          "full_name": "user_count",
+                          "label": "People",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "user_count",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "integer",
+                          "description": "All visits from anyone in a company to your product's site or app",
+                          "full_name": "session_count",
+                          "label": "Company web sessions",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "session_count",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "A specific plan or level within your product that companies have signed up to",
+                          "full_name": "plan.name",
+                          "label": "Plan",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "name",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": true,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "float",
+                          "description": "The monthly revenue you receive from a company",
+                          "full_name": "monthly_spend",
+                          "label": "Monthly Spend",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "monthly_spend",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": true,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "integer",
+                          "description": "The number of people employed in this company, expressed as a single number",
+                          "full_name": "size",
+                          "label": "Company size",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "size",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": true,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "The category or domain this company belongs to e.g. 'ecommerce' or 'SaaS'",
+                          "full_name": "industry",
+                          "label": "Company industry",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "industry",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": true,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "The web address for the company's primary marketing site",
+                          "full_name": "website",
+                          "label": "Company website",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "website",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "admin_id": "991267784",
+                          "api_writable": true,
+                          "archived": false,
+                          "created_at": 1734537753,
+                          "custom": true,
+                          "data_type": "string",
+                          "description": "One ring to rule them all, one ring to find them, One ring to bring them all and in the darkness bind them.",
+                          "full_name": "custom_attributes.The One Ring",
+                          "id": 34,
+                          "label": "The One Ring",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "The One Ring",
+                          "type": "data_attribute",
+                          "ui_writable": false,
+                          "updated_at": 1734537753
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "The Intercom defined id representing the company",
+                          "full_name": "id",
+                          "label": "ID",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "id",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "date",
+                          "description": "The time the company was added to Intercom",
+                          "full_name": "created_at",
+                          "label": "Created at",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "created_at",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "date",
+                          "description": "The last time the company was updated",
+                          "full_name": "updated_at",
+                          "label": "Updated at",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "updated_at",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "The Intercom defined id representing the plan",
+                          "full_name": "plan.id",
+                          "label": "Plan ID",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "id",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        },
+                        {
+                          "api_writable": false,
+                          "archived": false,
+                          "custom": false,
+                          "data_type": "string",
+                          "description": "The Intercom defined id representing the app",
+                          "full_name": "app_id",
+                          "label": "App ID",
+                          "messenger_writable": true,
+                          "model": "company",
+                          "name": "app_id",
+                          "type": "data_attribute",
+                          "ui_writable": false
+                        }
+                      ],
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A list of all data attributes belonging to a workspace for contacts or companies.",
+                  "properties": {
+                    "data": {
+                      "description": "A list of data attributes",
+                      "items": {
+                        "description": "Data Attributes are metadata used to describe your contact and company models. These include standard and custom attributes. By using the data attributes endpoint, you can get the global list of attributes for your workspace, as well as create and archive custom attributes.",
+                        "properties": {
+                          "admin_id": {
+                            "description": "Teammate who created the attribute. Only applicable to CDAs",
+                            "example": "5712945",
+                            "type": "string"
+                          },
+                          "api_writable": {
+                            "description": "Can this attribute be updated through API",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "archived": {
+                            "description": "Is this attribute archived. (Only applicable to CDAs)",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "created_at": {
+                            "description": "The time the attribute was created as a UTC Unix timestamp",
+                            "example": 1671028894,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "custom": {
+                            "description": "Set to true if this is a CDA",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "data_type": {
+                            "description": "The data type of the attribute.",
+                            "enum": [
+                              "string",
+                              "integer",
+                              "float",
+                              "boolean",
+                              "date"
+                            ],
+                            "example": "boolean",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "Readable description of the attribute.",
+                            "example": "Whether the user is a paid subscriber.",
+                            "type": "string"
+                          },
+                          "full_name": {
+                            "description": "Full name of the attribute. Should match the name unless it's a nested attribute. We can split full_name on `.` to access nested user object values.",
+                            "example": "custom_attributes.paid_subscriber",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier for the data attribute which is given by Intercom. Only available for custom attributes.",
+                            "example": 12878,
+                            "type": "integer"
+                          },
+                          "label": {
+                            "description": "Readable name of the attribute (i.e. name you see in the UI)",
+                            "example": "Paid Subscriber",
+                            "type": "string"
+                          },
+                          "messenger_writable": {
+                            "description": "Can this attribute be updated by the Messenger",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "model": {
+                            "description": "Value is `contact` for user/lead attributes and `company` for company attributes.",
+                            "enum": [
+                              "contact",
+                              "company"
+                            ],
+                            "example": "contact",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Name of the attribute.",
+                            "example": "paid_subscriber",
+                            "type": "string"
+                          },
+                          "options": {
+                            "description": "List of predefined options for attribute value.",
+                            "example": [
+                              "true",
+                              "false"
+                            ],
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "type": {
+                            "description": "Value is `data_attribute`.",
+                            "enum": [
+                              "data_attribute"
+                            ],
+                            "example": "data_attribute",
+                            "type": "string"
+                          },
+                          "ui_writable": {
+                            "description": "Can this attribute be updated in the UI",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "updated_at": {
+                            "description": "The time the attribute was last updated as a UTC Unix timestamp",
+                            "example": 1671028894,
+                            "format": "date-time",
+                            "type": "integer"
+                          }
+                        },
+                        "title": "Data Attribute",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of the object",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Data Attribute List",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "6d231766-b44b-4e78-bc9e-9c268ff19671",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Deprecated conversation model": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "model=conversation is no longer supported. Use GET /conversations/attributes instead"
+                        }
+                      ],
+                      "request_id": "b7912266-b12e-4d12-b2ce-9cd44d33f0c0",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unprocessable entity - model=conversation is no longer supported"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /data_attributes/{data_attribute_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateDataAttribute",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The data attribute id",
+            "example": 1,
+            "in": "path",
+            "name": "data_attribute_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "attribute_not_found": {
+                  "summary": "Attribute Not Found",
+                  "value": {
+                    "archived": false,
+                    "description": "Just a plain old ring",
+                    "options": [
+                      {
+                        "value": "1-10"
+                      },
+                      {
+                        "value": "11-20"
+                      }
+                    ]
+                  }
+                },
+                "has_dependant_object": {
+                  "summary": "Has Dependant Object",
+                  "value": {
+                    "archived": true,
+                    "description": "Trying to archieve"
+                  }
+                },
+                "successful": {
+                  "summary": "Successful",
+                  "value": {
+                    "archived": false,
+                    "description": "Just a plain old ring",
+                    "options": [
+                      {
+                        "value": "1-10"
+                      },
+                      {
+                        "value": "11-20"
+                      }
+                    ]
+                  }
+                },
+                "too_few_options_in_list": {
+                  "summary": "Too few options in list",
+                  "value": {
+                    "archived": false,
+                    "description": "Too few options",
+                    "options": {
+                      "value": "1-10"
+                    }
+                  }
+                }
+              },
+              "schema": {
+                "description": "",
+                "oneOf": [
+                  {
+                    "properties": {
+                      "options": {
+                        "description": "Array of objects representing the options of the list, with `value` as the key and the option as the value. At least two options are required.",
+                        "example": [
+                          {
+                            "value": "1-10"
+                          },
+                          {
+                            "value": "11-50"
+                          }
+                        ],
+                        "items": {
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "required": [
+                      "options"
+                    ],
+                    "title": "list attribute"
+                  },
+                  {
+                    "title": "other type"
+                  }
+                ],
+                "properties": {
+                  "archived": {
+                    "description": "Whether the attribute is to be archived or not.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "description": {
+                    "description": "The readable description you see in the UI for the attribute.",
+                    "example": "My Data Attribute Description",
+                    "type": "string"
+                  },
+                  "messenger_writable": {
+                    "description": "Can this attribute be updated by the Messenger",
+                    "example": false,
+                    "type": "boolean"
+                  }
+                },
+                "title": "Update Data Attribute Request",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful": {
+                    "value": {
+                      "admin_id": "991267793",
+                      "api_writable": true,
+                      "archived": false,
+                      "created_at": 1734537762,
+                      "custom": true,
+                      "data_type": "string",
+                      "description": "Just a plain old ring",
+                      "full_name": "custom_attributes.The One Ring",
+                      "id": 44,
+                      "label": "The One Ring",
+                      "messenger_writable": true,
+                      "model": "company",
+                      "name": "The One Ring",
+                      "options": [
+                        "1-10",
+                        "11-20"
+                      ],
+                      "type": "data_attribute",
+                      "ui_writable": false,
+                      "updated_at": 1734537763
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Data Attributes are metadata used to describe your contact and company models. These include standard and custom attributes. By using the data attributes endpoint, you can get the global list of attributes for your workspace, as well as create and archive custom attributes.",
+                  "properties": {
+                    "admin_id": {
+                      "description": "Teammate who created the attribute. Only applicable to CDAs",
+                      "example": "5712945",
+                      "type": "string"
+                    },
+                    "api_writable": {
+                      "description": "Can this attribute be updated through API",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "archived": {
+                      "description": "Is this attribute archived. (Only applicable to CDAs)",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "The time the attribute was created as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "custom": {
+                      "description": "Set to true if this is a CDA",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "data_type": {
+                      "description": "The data type of the attribute.",
+                      "enum": [
+                        "string",
+                        "integer",
+                        "float",
+                        "boolean",
+                        "date"
+                      ],
+                      "example": "boolean",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Readable description of the attribute.",
+                      "example": "Whether the user is a paid subscriber.",
+                      "type": "string"
+                    },
+                    "full_name": {
+                      "description": "Full name of the attribute. Should match the name unless it's a nested attribute. We can split full_name on `.` to access nested user object values.",
+                      "example": "custom_attributes.paid_subscriber",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the data attribute which is given by Intercom. Only available for custom attributes.",
+                      "example": 12878,
+                      "type": "integer"
+                    },
+                    "label": {
+                      "description": "Readable name of the attribute (i.e. name you see in the UI)",
+                      "example": "Paid Subscriber",
+                      "type": "string"
+                    },
+                    "messenger_writable": {
+                      "description": "Can this attribute be updated by the Messenger",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "model": {
+                      "description": "Value is `contact` for user/lead attributes and `company` for company attributes.",
+                      "enum": [
+                        "contact",
+                        "company"
+                      ],
+                      "example": "contact",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Name of the attribute.",
+                      "example": "paid_subscriber",
+                      "type": "string"
+                    },
+                    "options": {
+                      "description": "List of predefined options for attribute value.",
+                      "example": [
+                        "true",
+                        "false"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "Value is `data_attribute`.",
+                      "enum": [
+                        "data_attribute"
+                      ],
+                      "example": "data_attribute",
+                      "type": "string"
+                    },
+                    "ui_writable": {
+                      "description": "Can this attribute be updated in the UI",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "updated_at": {
+                      "description": "The time the attribute was last updated as a UTC Unix timestamp",
+                      "example": 1671028894,
+                      "format": "date-time",
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Data Attribute",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Too few options in list": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Options isn't an array"
+                        }
+                      ],
+                      "request_id": "37cff4c5-5e1a-4958-a2ba-149b09d1915c",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too few options in list"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "c60ce63d-1c74-4fe2-8e21-31d1f817a0c2",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Attribute Not Found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "field_not_found",
+                          "message": "We couldn't find that data attribute to update"
+                        }
+                      ],
+                      "request_id": "eee16d31-0b0a-4b5f-b95a-25d37528c80f",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Attribute Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Has Dependant Object": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_invalid",
+                          "message": "The Data Attribute you are trying to archive has a dependant object"
+                        }
+                      ],
+                      "request_id": "f04b6b14-1c5b-46e1-9c95-4a914557062c",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Has Dependant Object"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

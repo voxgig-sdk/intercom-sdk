@@ -1,0 +1,1688 @@
+{
+  "existing": {
+    "external_page": {
+      "EXTERNAL_PAGE00": {
+        "ai_agent_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "created_at": 153,
+        "external_id": "EXTERNAL01",
+        "fin_availability": false,
+        "html": "s9c",
+        "id": "EXTERNAL_PAGE00",
+        "last_ingested_at": 158,
+        "locale": "s9f",
+        "source_id": "SOURCE01",
+        "title": "sa1",
+        "type": "sa2",
+        "updated_at": 163,
+        "url": "sa4"
+      },
+      "EXTERNAL_PAGE01": {
+        "ai_agent_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "created_at": 303,
+        "external_id": "EXTERNAL01",
+        "fin_availability": false,
+        "html": "s132",
+        "id": "EXTERNAL_PAGE01",
+        "last_ingested_at": 308,
+        "locale": "s135",
+        "source_id": "SOURCE01",
+        "title": "s137",
+        "type": "s138",
+        "updated_at": 313,
+        "url": "s13a"
+      },
+      "EXTERNAL_PAGE02": {
+        "ai_agent_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "created_at": 453,
+        "external_id": "EXTERNAL01",
+        "fin_availability": false,
+        "html": "s1c8",
+        "id": "EXTERNAL_PAGE02",
+        "last_ingested_at": 458,
+        "locale": "s1cb",
+        "source_id": "SOURCE01",
+        "title": "s1cd",
+        "type": "s1ce",
+        "updated_at": 463,
+        "url": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "external_page": {
+      "external_page_ref01": {
+        "ai_agent_availability": true,
+        "ai_copilot_availability": false,
+        "ai_sales_agent_availability": true,
+        "created_at": 603,
+        "external_id": "EXTERNAL01",
+        "fin_availability": false,
+        "html": "s25e",
+        "last_ingested_at": 608,
+        "locale": "s261",
+        "source_id": "SOURCE01",
+        "title": "s263",
+        "type": "s264",
+        "updated_at": 613,
+        "url": "s266"
+      }
+    }
+  },
+  "requests": {
+    "POST /ai/external_pages": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createExternalPage",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "successful": {
+                  "summary": "successful",
+                  "value": {
+                    "external_id": "abc1234",
+                    "html": "<html><body><h1>Test</h1></body></html>",
+                    "locale": "en",
+                    "source_id": 44,
+                    "title": "Test",
+                    "url": "https://www.example.com"
+                  }
+                }
+              },
+              "schema": {
+                "description": "You can add an External Page to your Fin Content Library.",
+                "nullable": false,
+                "properties": {
+                  "ai_agent_availability": {
+                    "default": false,
+                    "description": "Whether the external page should be used to answer questions by AI Agent. Will not default when updating an existing external page.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "ai_copilot_availability": {
+                    "default": false,
+                    "description": "Whether the external page should be used to answer questions by AI Copilot. Will not default when updating an existing external page.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "external_id": {
+                    "description": "The identifier for the external page which was given by the source. Must be unique for the source.",
+                    "example": "5678",
+                    "type": "string"
+                  },
+                  "html": {
+                    "description": "The body of the external page in HTML.",
+                    "example": "<p>Hello world!</p>",
+                    "type": "string"
+                  },
+                  "locale": {
+                    "default": "en",
+                    "description": "Always en",
+                    "enum": [
+                      "en"
+                    ],
+                    "example": "en",
+                    "type": "string"
+                  },
+                  "source_id": {
+                    "description": "The unique identifier for the source of the external page which was given by Intercom. Every external page must be associated with a Content Import Source which represents the place it comes from and from which it inherits a default audience (configured in the UI). For a new source, make a POST request to the Content Import Source endpoint and an ID for the source will be returned in the response.",
+                    "example": 1234,
+                    "type": "integer"
+                  },
+                  "title": {
+                    "description": "The title of the external page.",
+                    "example": "Getting started with...",
+                    "type": "string"
+                  },
+                  "url": {
+                    "description": "The URL of the external page. This will be used by Fin to link end users to the page it based its answer on. When a URL is not present, Fin will not reference the source.",
+                    "example": "https://help.example.com/en/articles/1234-getting-started",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "html",
+                  "locale",
+                  "source_id",
+                  "external_id"
+                ],
+                "title": "Create External Page Payload",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "ai_agent_availability": true,
+                      "ai_copilot_availability": true,
+                      "ai_sales_agent_availability": true,
+                      "created_at": 1734537273,
+                      "external_id": "abc1234",
+                      "fin_availability": true,
+                      "html": "<html><body><h1>Test</h1></body></html>",
+                      "id": "21",
+                      "last_ingested_at": 1734537274,
+                      "locale": "en",
+                      "source_id": 44,
+                      "title": "Test",
+                      "type": "external_page",
+                      "updated_at": 1734537274,
+                      "url": "https://www.example.com"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "External pages that you have added to your Fin Content Library.",
+                  "nullable": false,
+                  "properties": {
+                    "ai_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_copilot_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Copilot.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_sales_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Sales Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "The time when the external page was created.",
+                      "example": 1672928359,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "external_id": {
+                      "description": "The identifier for the external page which was given by the source. Must be unique for the source.",
+                      "example": "5678",
+                      "type": "string"
+                    },
+                    "fin_availability": {
+                      "description": "Deprecated. Use ai_agent_availability and ai_copilot_availability instead.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "html": {
+                      "description": "The body of the external page in HTML.",
+                      "example": "<p>Hello world!</p>",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the external page which is given by Intercom.",
+                      "example": "1234",
+                      "type": "string"
+                    },
+                    "last_ingested_at": {
+                      "description": "The time when the external page was last ingested.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "locale": {
+                      "default": "en",
+                      "description": "Always en",
+                      "enum": [
+                        "en"
+                      ],
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "source_id": {
+                      "description": "The unique identifier for the source of the external page which was given by Intercom. Every external page must be associated with a Content Import Source which represents the place it comes from and from which it inherits a default audience (configured in the UI). For a new source, make a POST request to the Content Import Source endpoint and an ID for the source will be returned in the response.",
+                      "example": 1234,
+                      "type": "integer"
+                    },
+                    "title": {
+                      "description": "The title of the external page.",
+                      "example": "Getting started with...",
+                      "type": "string"
+                    },
+                    "type": {
+                      "default": "external_page",
+                      "description": "Always external_page",
+                      "enum": [
+                        "external_page"
+                      ],
+                      "example": "external_page",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time when the external page was last updated.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "url": {
+                      "description": "The URL of the external page. This will be used by Fin to link end users to the page it based its answer on.",
+                      "example": "https://help.example.com/en/articles/1234-getting-started",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "title",
+                    "html",
+                    "ai_agent_availability",
+                    "ai_copilot_availability",
+                    "locale",
+                    "source_id",
+                    "created_at",
+                    "updated_at",
+                    "last_ingested_at",
+                    "external_id"
+                  ],
+                  "title": "External Page",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "205ffc13-1b25-43b2-a176-cb817af5f899",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /ai/external_pages": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listExternalPages",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "data": [
+                        {
+                          "ai_agent_availability": true,
+                          "ai_copilot_availability": true,
+                          "ai_sales_agent_availability": true,
+                          "created_at": 1734537269,
+                          "external_id": "3",
+                          "fin_availability": true,
+                          "html": "<h1>Hello world</h1><p>This is external content</p>",
+                          "id": "19",
+                          "last_ingested_at": 1734537269,
+                          "locale": "en",
+                          "source_id": 42,
+                          "title": "My External Content",
+                          "type": "external_page",
+                          "updated_at": 1734537269,
+                          "url": "https://support.example.com/us/3"
+                        },
+                        {
+                          "ai_agent_availability": true,
+                          "ai_copilot_availability": true,
+                          "ai_sales_agent_availability": true,
+                          "created_at": 1734537269,
+                          "external_id": "2",
+                          "fin_availability": true,
+                          "html": "<h1>Hello world</h1><p>This is external content</p>",
+                          "id": "18",
+                          "last_ingested_at": 1734537269,
+                          "locale": "en",
+                          "source_id": 41,
+                          "title": "My External Content",
+                          "type": "external_page",
+                          "updated_at": 1734537269,
+                          "url": "https://support.example.com/us/2"
+                        },
+                        {
+                          "ai_agent_availability": true,
+                          "ai_copilot_availability": true,
+                          "ai_sales_agent_availability": true,
+                          "created_at": 1734537269,
+                          "external_id": "1",
+                          "fin_availability": true,
+                          "html": "<h1>Hello world</h1><p>This is external content</p>",
+                          "id": "17",
+                          "last_ingested_at": 1734537269,
+                          "locale": "en",
+                          "source_id": 40,
+                          "title": "My External Content",
+                          "type": "external_page",
+                          "updated_at": 1734537269,
+                          "url": "https://support.example.com/us/1"
+                        }
+                      ],
+                      "pages": {
+                        "page": 1,
+                        "per_page": 50,
+                        "total_pages": 1,
+                        "type": "pages"
+                      },
+                      "total_count": 3,
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "This will return a list of external pages for the App.",
+                  "nullable": false,
+                  "properties": {
+                    "data": {
+                      "description": "An array of External Page objects",
+                      "items": {
+                        "description": "External pages that you have added to your Fin Content Library.",
+                        "nullable": false,
+                        "properties": {
+                          "ai_agent_availability": {
+                            "description": "Whether the external page should be used to answer questions by AI Agent.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "ai_copilot_availability": {
+                            "description": "Whether the external page should be used to answer questions by AI Copilot.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "ai_sales_agent_availability": {
+                            "description": "Whether the external page should be used to answer questions by AI Sales Agent.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "created_at": {
+                            "description": "The time when the external page was created.",
+                            "example": 1672928359,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "external_id": {
+                            "description": "The identifier for the external page which was given by the source. Must be unique for the source.",
+                            "example": "5678",
+                            "type": "string"
+                          },
+                          "fin_availability": {
+                            "description": "Deprecated. Use ai_agent_availability and ai_copilot_availability instead.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "html": {
+                            "description": "The body of the external page in HTML.",
+                            "example": "<p>Hello world!</p>",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier for the external page which is given by Intercom.",
+                            "example": "1234",
+                            "type": "string"
+                          },
+                          "last_ingested_at": {
+                            "description": "The time when the external page was last ingested.",
+                            "example": 1672928610,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "locale": {
+                            "default": "en",
+                            "description": "Always en",
+                            "enum": [
+                              "en"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                          },
+                          "source_id": {
+                            "description": "The unique identifier for the source of the external page which was given by Intercom. Every external page must be associated with a Content Import Source which represents the place it comes from and from which it inherits a default audience (configured in the UI). For a new source, make a POST request to the Content Import Source endpoint and an ID for the source will be returned in the response.",
+                            "example": 1234,
+                            "type": "integer"
+                          },
+                          "title": {
+                            "description": "The title of the external page.",
+                            "example": "Getting started with...",
+                            "type": "string"
+                          },
+                          "type": {
+                            "default": "external_page",
+                            "description": "Always external_page",
+                            "enum": [
+                              "external_page"
+                            ],
+                            "example": "external_page",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "The time when the external page was last updated.",
+                            "example": 1672928610,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "url": {
+                            "description": "The URL of the external page. This will be used by Fin to link end users to the page it based its answer on.",
+                            "example": "https://help.example.com/en/articles/1234-getting-started",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "type",
+                          "title",
+                          "html",
+                          "ai_agent_availability",
+                          "ai_copilot_availability",
+                          "locale",
+                          "source_id",
+                          "created_at",
+                          "updated_at",
+                          "last_ingested_at",
+                          "external_id"
+                        ],
+                        "title": "External Page",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "The majority of list resources in the API are paginated to allow clients to traverse data over multiple requests.\n\nTheir responses are likely to contain a pages object that hosts pagination links which a client can use to paginate through the data without having to construct a query. The link relations for the pages field are as follows.\n",
+                      "properties": {
+                        "next": {
+                          "description": "A link to the next page of results. A response that does not contain a next link does not have further data to fetch.",
+                          "format": "uri",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "page": {
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "per_page": {
+                          "example": 50,
+                          "type": "integer"
+                        },
+                        "total_pages": {
+                          "example": 1,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "title": "Pagination Object",
+                      "type": "object"
+                    },
+                    "total_count": {
+                      "description": "A count of the total number of external pages.",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "type": {
+                      "description": "The type of the object - `list`.",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "External Pages",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "bd0c53dd-d3fd-4095-be25-94537a8ba364",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /ai/external_pages/{page_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getExternalPage",
+        "parameters": [
+          {
+            "description": "The unique identifier for the external page which is given by Intercom.",
+            "in": "path",
+            "name": "page_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "ai_agent_availability": true,
+                      "ai_copilot_availability": true,
+                      "ai_sales_agent_availability": true,
+                      "created_at": 1734537278,
+                      "external_id": "5",
+                      "fin_availability": true,
+                      "html": "<h1>Hello world</h1><p>This is external content</p>",
+                      "id": "23",
+                      "last_ingested_at": 1734537278,
+                      "locale": "en",
+                      "source_id": 46,
+                      "title": "My External Content",
+                      "type": "external_page",
+                      "updated_at": 1734537278,
+                      "url": "https://support.example.com/us/6"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "External pages that you have added to your Fin Content Library.",
+                  "nullable": false,
+                  "properties": {
+                    "ai_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_copilot_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Copilot.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_sales_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Sales Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "The time when the external page was created.",
+                      "example": 1672928359,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "external_id": {
+                      "description": "The identifier for the external page which was given by the source. Must be unique for the source.",
+                      "example": "5678",
+                      "type": "string"
+                    },
+                    "fin_availability": {
+                      "description": "Deprecated. Use ai_agent_availability and ai_copilot_availability instead.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "html": {
+                      "description": "The body of the external page in HTML.",
+                      "example": "<p>Hello world!</p>",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the external page which is given by Intercom.",
+                      "example": "1234",
+                      "type": "string"
+                    },
+                    "last_ingested_at": {
+                      "description": "The time when the external page was last ingested.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "locale": {
+                      "default": "en",
+                      "description": "Always en",
+                      "enum": [
+                        "en"
+                      ],
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "source_id": {
+                      "description": "The unique identifier for the source of the external page which was given by Intercom. Every external page must be associated with a Content Import Source which represents the place it comes from and from which it inherits a default audience (configured in the UI). For a new source, make a POST request to the Content Import Source endpoint and an ID for the source will be returned in the response.",
+                      "example": 1234,
+                      "type": "integer"
+                    },
+                    "title": {
+                      "description": "The title of the external page.",
+                      "example": "Getting started with...",
+                      "type": "string"
+                    },
+                    "type": {
+                      "default": "external_page",
+                      "description": "Always external_page",
+                      "enum": [
+                        "external_page"
+                      ],
+                      "example": "external_page",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time when the external page was last updated.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "url": {
+                      "description": "The URL of the external page. This will be used by Fin to link end users to the page it based its answer on.",
+                      "example": "https://help.example.com/en/articles/1234-getting-started",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "title",
+                    "html",
+                    "ai_agent_availability",
+                    "ai_copilot_availability",
+                    "locale",
+                    "source_id",
+                    "created_at",
+                    "updated_at",
+                    "last_ingested_at",
+                    "external_id"
+                  ],
+                  "title": "External Page",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "504cde98-f786-4f64-b373-e26a6a41fd11",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "DELETE /ai/external_pages/{page_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "deleteExternalPage",
+        "parameters": [
+          {
+            "description": "The unique identifier for the external page which is given by Intercom.",
+            "in": "path",
+            "name": "page_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "ai_agent_availability": true,
+                      "ai_copilot_availability": true,
+                      "ai_sales_agent_availability": true,
+                      "created_at": 1734537276,
+                      "external_id": "4",
+                      "fin_availability": true,
+                      "html": "",
+                      "id": "22",
+                      "last_ingested_at": 1734537276,
+                      "locale": "en",
+                      "source_id": 45,
+                      "title": "My External Content",
+                      "type": "external_page",
+                      "updated_at": 1734537276,
+                      "url": "https://support.example.com/us/5"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "External pages that you have added to your Fin Content Library.",
+                  "nullable": false,
+                  "properties": {
+                    "ai_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_copilot_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Copilot.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_sales_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Sales Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "The time when the external page was created.",
+                      "example": 1672928359,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "external_id": {
+                      "description": "The identifier for the external page which was given by the source. Must be unique for the source.",
+                      "example": "5678",
+                      "type": "string"
+                    },
+                    "fin_availability": {
+                      "description": "Deprecated. Use ai_agent_availability and ai_copilot_availability instead.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "html": {
+                      "description": "The body of the external page in HTML.",
+                      "example": "<p>Hello world!</p>",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the external page which is given by Intercom.",
+                      "example": "1234",
+                      "type": "string"
+                    },
+                    "last_ingested_at": {
+                      "description": "The time when the external page was last ingested.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "locale": {
+                      "default": "en",
+                      "description": "Always en",
+                      "enum": [
+                        "en"
+                      ],
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "source_id": {
+                      "description": "The unique identifier for the source of the external page which was given by Intercom. Every external page must be associated with a Content Import Source which represents the place it comes from and from which it inherits a default audience (configured in the UI). For a new source, make a POST request to the Content Import Source endpoint and an ID for the source will be returned in the response.",
+                      "example": 1234,
+                      "type": "integer"
+                    },
+                    "title": {
+                      "description": "The title of the external page.",
+                      "example": "Getting started with...",
+                      "type": "string"
+                    },
+                    "type": {
+                      "default": "external_page",
+                      "description": "Always external_page",
+                      "enum": [
+                        "external_page"
+                      ],
+                      "example": "external_page",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time when the external page was last updated.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "url": {
+                      "description": "The URL of the external page. This will be used by Fin to link end users to the page it based its answer on.",
+                      "example": "https://help.example.com/en/articles/1234-getting-started",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "title",
+                    "html",
+                    "ai_agent_availability",
+                    "ai_copilot_availability",
+                    "locale",
+                    "source_id",
+                    "created_at",
+                    "updated_at",
+                    "last_ingested_at",
+                    "external_id"
+                  ],
+                  "title": "External Page",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "2380cdd5-c4a0-451a-b07d-a6f4b720add3",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PUT /ai/external_pages/{page_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateExternalPage",
+        "parameters": [
+          {
+            "description": "The unique identifier for the external page which is given by Intercom.",
+            "in": "path",
+            "name": "page_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "successful": {
+                  "summary": "successful",
+                  "value": {
+                    "external_id": "5678",
+                    "html": "<html><body><h1>Test</h1></body></html>",
+                    "locale": "en",
+                    "source_id": 47,
+                    "title": "Test",
+                    "url": "https://www.example.com"
+                  }
+                }
+              },
+              "schema": {
+                "description": "You can update an External Page in your Fin Content Library.",
+                "nullable": false,
+                "properties": {
+                  "external_id": {
+                    "description": "The identifier for the external page which was given by the source. Must be unique for the source.",
+                    "example": "5678",
+                    "type": "string"
+                  },
+                  "fin_availability": {
+                    "default": true,
+                    "description": "Whether the external page should be used to answer questions by Fin.",
+                    "example": true,
+                    "type": "boolean"
+                  },
+                  "html": {
+                    "description": "The body of the external page in HTML.",
+                    "example": "<p>Hello world!</p>",
+                    "type": "string"
+                  },
+                  "locale": {
+                    "default": "en",
+                    "description": "Always en",
+                    "enum": [
+                      "en"
+                    ],
+                    "example": "en",
+                    "type": "string"
+                  },
+                  "source_id": {
+                    "description": "The unique identifier for the source of the external page which was given by Intercom. Every external page must be associated with a Content Import Source which represents the place it comes from and from which it inherits a default audience (configured in the UI). For a new source, make a POST request to the Content Import Source endpoint and an ID for the source will be returned in the response.",
+                    "example": 1234,
+                    "type": "integer"
+                  },
+                  "title": {
+                    "description": "The title of the external page.",
+                    "example": "Getting started with...",
+                    "type": "string"
+                  },
+                  "url": {
+                    "description": "The URL of the external page. This will be used by Fin to link end users to the page it based its answer on.",
+                    "example": "https://help.example.com/en/articles/1234-getting-started",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "html",
+                  "url",
+                  "locale",
+                  "source_id"
+                ],
+                "title": "Update External Page Payload",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "ai_agent_availability": true,
+                      "ai_copilot_availability": true,
+                      "ai_sales_agent_availability": true,
+                      "created_at": 1734537280,
+                      "external_id": "5678",
+                      "fin_availability": true,
+                      "html": "<html><body><h1>Test</h1></body></html>",
+                      "id": "24",
+                      "last_ingested_at": 1734537281,
+                      "locale": "en",
+                      "source_id": 47,
+                      "title": "Test",
+                      "type": "external_page",
+                      "updated_at": 1734537281,
+                      "url": "https://www.example.com"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "External pages that you have added to your Fin Content Library.",
+                  "nullable": false,
+                  "properties": {
+                    "ai_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_copilot_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Copilot.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "ai_sales_agent_availability": {
+                      "description": "Whether the external page should be used to answer questions by AI Sales Agent.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "The time when the external page was created.",
+                      "example": 1672928359,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "external_id": {
+                      "description": "The identifier for the external page which was given by the source. Must be unique for the source.",
+                      "example": "5678",
+                      "type": "string"
+                    },
+                    "fin_availability": {
+                      "description": "Deprecated. Use ai_agent_availability and ai_copilot_availability instead.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "html": {
+                      "description": "The body of the external page in HTML.",
+                      "example": "<p>Hello world!</p>",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the external page which is given by Intercom.",
+                      "example": "1234",
+                      "type": "string"
+                    },
+                    "last_ingested_at": {
+                      "description": "The time when the external page was last ingested.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "locale": {
+                      "default": "en",
+                      "description": "Always en",
+                      "enum": [
+                        "en"
+                      ],
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "source_id": {
+                      "description": "The unique identifier for the source of the external page which was given by Intercom. Every external page must be associated with a Content Import Source which represents the place it comes from and from which it inherits a default audience (configured in the UI). For a new source, make a POST request to the Content Import Source endpoint and an ID for the source will be returned in the response.",
+                      "example": 1234,
+                      "type": "integer"
+                    },
+                    "title": {
+                      "description": "The title of the external page.",
+                      "example": "Getting started with...",
+                      "type": "string"
+                    },
+                    "type": {
+                      "default": "external_page",
+                      "description": "Always external_page",
+                      "enum": [
+                        "external_page"
+                      ],
+                      "example": "external_page",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time when the external page was last updated.",
+                      "example": 1672928610,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "url": {
+                      "description": "The URL of the external page. This will be used by Fin to link end users to the page it based its answer on.",
+                      "example": "https://help.example.com/en/articles/1234-getting-started",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "title",
+                    "html",
+                    "ai_agent_availability",
+                    "ai_copilot_availability",
+                    "locale",
+                    "source_id",
+                    "created_at",
+                    "updated_at",
+                    "last_ingested_at",
+                    "external_id"
+                  ],
+                  "title": "External Page",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "8217b189-b908-4562-962d-2a19a7b77f25",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

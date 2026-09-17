@@ -1,0 +1,22 @@
+# BasicActivityLogFlow
+
+main: kit: flow: BasicActivityLogFlow:
+{
+  entity: "activity_log",
+  kind: "basic",
+  name: "BasicActivityLogFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "activity_log_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicActivityLogFlow"
+}

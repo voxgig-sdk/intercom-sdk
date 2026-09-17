@@ -1,0 +1,183 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { IntercomSDK, BaseFeature, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+// AFTER the imports on purpose: TypeScript hoists `import` above any
+// statement in the emitted CommonJS, so a loader placed above them would
+// run only after every imported module had already been evaluated - and
+// anything reading process.env at module scope would miss these values.
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('OfficeHourEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when INTERCOM_TEST_LIVE=TRUE.
+  afterEach(liveDelay('INTERCOM_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = IntercomSDK.test()
+    const ent = testsdk.OfficeHour()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.INTERCOM_TEST_LIVE
+    for (const op of ['create', 'list', 'remove']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'office_hour.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"created_at","req":false,"short":"The time the schedule was created as a Unix timestamp.","type":"`$INTEGER`","index$":0},{"active":true,"name":"id","req":false,"short":"The unique identifier for the office hours schedule.","type":"`$STRING`","index$":1},{"active":true,"name":"name","op":{"list":{"req":false,"type":"`$STRING`"}},"req":true,"short":"The name of the office hours schedule.","type":"`$STRING`","index$":2},{"active":true,"name":"time_intervals","op":{"list":{"req":false,"type":"`$ARRAY`"}},"req":true,"short":"The open intervals for the schedule.","type":"`$ARRAY`","index$":3},{"active":true,"name":"time_zone_name","op":{"list":{"req":false,"type":"`$STRING`"}},"req":true,"short":"The IANA time zone the schedule's hours are evaluated in.","type":"`$STRING`","index$":4},{"active":true,"name":"twenty_four_seven","req":false,"short":"Whether the schedule is open 24/7.","type":"`$BOOLEAN`","index$":5},{"active":true,"name":"type","req":false,"short":"The type of the object - always `office_hours_schedule`.","type":"`$STRING`","index$":6},{"active":true,"name":"updated_at","req":false,"short":"The time the schedule was last updated as a Unix timestamp.","type":"`$INTEGER`","index$":7}],"id":{"field":"id","name":"id"},"name":"office_hour","op":{"create":{"input":"data","name":"create","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}]},"contract":{"id":"POST /office_hours_schedules","json":"{\"operationId\":\"createOfficeHoursSchedule\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"Create schedule\":{\"value\":{\"name\":\"Standard Support Hours\",\"time_intervals\":[{\"end_minute\":1020,\"start_minute\":540}],\"time_zone_name\":\"America/New_York\"}}},\"schema\":{\"description\":\"The request payload for creating an office hours schedule.\",\"properties\":{\"name\":{\"description\":\"The name of the office hours schedule.\",\"example\":\"Standard Support Hours\",\"type\":\"string\"},\"time_intervals\":{\"description\":\"The open intervals for the schedule. `start_minute` and `end_minute` must be on a 15-minute boundary.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"type\":\"array\"},\"time_zone_name\":{\"description\":\"The IANA time zone the schedule's hours are evaluated in.\",\"example\":\"America/New_York\",\"type\":\"string\"}},\"required\":[\"name\",\"time_zone_name\",\"time_intervals\"],\"title\":\"Create Office Hours Schedule Request\",\"type\":\"object\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"Office hours schedule created\":{\"value\":{\"created_at\":1717200000,\"id\":\"125\",\"name\":\"Standard Support Hours\",\"time_intervals\":[{\"day_of_week\":0,\"end_minute\":1020,\"start_minute\":540}],\"time_zone_name\":\"America/New_York\",\"twenty_four_seven\":false,\"type\":\"office_hours_schedule\",\"updated_at\":1717200000}}},\"schema\":{\"description\":\"An office hours schedule defines the recurring weekly hours during which the workspace is open.\",\"properties\":{\"created_at\":{\"description\":\"The time the schedule was created as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the office hours schedule.\",\"example\":\"Standard Support Hours\",\"type\":\"string\"},\"time_intervals\":{\"description\":\"The open intervals that make up the weekly schedule.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"type\":\"array\"},\"time_zone_name\":{\"description\":\"The IANA time zone the schedule's hours are evaluated in.\",\"example\":\"America/New_York\",\"type\":\"string\"},\"twenty_four_seven\":{\"description\":\"Whether the schedule is open 24/7.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"The type of the object - always `office_hours_schedule`.\",\"example\":\"office_hours_schedule\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the schedule was last updated as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"}},\"title\":\"Office Hours Schedule\",\"type\":\"object\"}}},\"description\":\"Office hours schedule created\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"422\":{\"content\":{\"application/json\":{\"examples\":{\"ValidationError\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Invalid or duplicated record reference\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"POST","orig":"/office_hours_schedules","segments":[{"lit":"office_hours_schedules"}],"select":{"exist":["intercom_version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"list":{"input":"data","name":"list","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}]},"contract":{"id":"GET /office_hours_schedules","json":"{\"operationId\":\"listOfficeHoursSchedules\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful response\":{\"value\":{\"data\":[{\"created_at\":1717200000,\"id\":\"123\",\"name\":\"Standard Support Hours\",\"time_intervals\":[{\"day_of_week\":0,\"end_minute\":1020,\"start_minute\":540},{\"day_of_week\":1,\"end_minute\":2460,\"start_minute\":1980}],\"time_zone_name\":\"America/New_York\",\"twenty_four_seven\":false,\"type\":\"office_hours_schedule\",\"updated_at\":1717200000}],\"type\":\"office_hours_schedule.list\"}}},\"schema\":{\"description\":\"A list of office hours schedules.\",\"properties\":{\"data\":{\"description\":\"An array of office hours schedules.\",\"items\":{\"description\":\"An office hours schedule defines the recurring weekly hours during which the workspace is open.\",\"properties\":{\"created_at\":{\"description\":\"The time the schedule was created as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"},\"id\":{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"type\":\"string\"},\"name\":{\"description\":\"The name of the office hours schedule.\",\"example\":\"Standard Support Hours\",\"type\":\"string\"},\"time_intervals\":{\"description\":\"The open intervals that make up the weekly schedule.\",\"items\":{\"description\":\"A single open interval. For schedules, `start_minute` and `end_minute` are minute offsets from the start of the week (Monday 00:00 = 0), in the range 0 to 10080. For exceptions, they are minute offsets from midnight on `exception_date`, in the range 0 to 1440.\",\"properties\":{\"day_of_week\":{\"description\":\"Derived day of the week the interval falls on (0 = Monday … 6 = Sunday). For exceptions, this is derived from `exception_date`.\",\"example\":0,\"readOnly\":true,\"type\":\"integer\"},\"end_minute\":{\"description\":\"Minute the interval ends. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":1020,\"type\":\"integer\"},\"start_minute\":{\"description\":\"Minute the interval starts. For schedules, offset from the start of the week (Monday 00:00 = 0); for exceptions, offset from midnight on `exception_date`.\",\"example\":540,\"type\":\"integer\"}},\"title\":\"Office Hours Time Interval\",\"type\":\"object\"},\"type\":\"array\"},\"time_zone_name\":{\"description\":\"The IANA time zone the schedule's hours are evaluated in.\",\"example\":\"America/New_York\",\"type\":\"string\"},\"twenty_four_seven\":{\"description\":\"Whether the schedule is open 24/7.\",\"example\":false,\"type\":\"boolean\"},\"type\":{\"description\":\"The type of the object - always `office_hours_schedule`.\",\"example\":\"office_hours_schedule\",\"type\":\"string\"},\"updated_at\":{\"description\":\"The time the schedule was last updated as a Unix timestamp.\",\"example\":1717200000,\"type\":\"integer\"}},\"title\":\"Office Hours Schedule\",\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - always `office_hours_schedule.list`.\",\"example\":\"office_hours_schedule.list\",\"type\":\"string\"}},\"title\":\"Office Hours Schedule List\",\"type\":\"object\"}}},\"description\":\"Successful response\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/office_hours_schedules","segments":[{"lit":"office_hours_schedules"}],"select":{"exist":["intercom_version"]},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"list"},"remove":{"input":"data","name":"remove","points":[{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"example":"456","kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"123","kind":"param","name":"office_hours_schedule_id","orig":"office_hours_schedule_id","reqd":true,"type":"`$STRING`","index$":1}]},"contract":{"id":"DELETE /office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}","json":"{\"operationId\":\"deleteOfficeHoursException\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"in\":\"path\",\"name\":\"office_hours_schedule_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours exception.\",\"example\":\"456\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Office hours exception deleted\":{\"value\":{\"deleted\":true,\"id\":\"456\",\"object\":\"office_hours_exception\"}}},\"schema\":{\"properties\":{\"deleted\":{\"example\":true,\"type\":\"boolean\"},\"id\":{\"example\":\"456\",\"type\":\"string\"},\"object\":{\"example\":\"office_hours_exception\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Office hours exception deleted\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"CustomObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Custom object instance not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"IntegrationNotFound\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Integration not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"ObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Object not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"DELETE","orig":"/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}","segments":[{"lit":"office_hours_schedules"},{"var":"office_hours_schedule_id"},{"lit":"office_hours_exceptions"},{"var":"id"}],"select":{"exist":["id","intercom_version","office_hours_schedule_id"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0},{"active":true,"args":{"header":[{"active":true,"example":"2.16","kind":"header","name":"intercom_version","orig":"intercom_version","reqd":false,"type":"`$STRING`"}],"params":[{"active":true,"example":"123","kind":"param","name":"id","orig":"id","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"DELETE /office_hours_schedules/{id}","json":"{\"operationId\":\"deleteOfficeHoursSchedule\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the office hours schedule.\",\"example\":\"123\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Office hours schedule deleted\":{\"value\":{\"deleted\":true,\"id\":\"123\",\"object\":\"office_hours_schedule\"}}},\"schema\":{\"properties\":{\"deleted\":{\"example\":true,\"type\":\"boolean\"},\"id\":{\"example\":\"123\",\"type\":\"string\"},\"object\":{\"example\":\"office_hours_schedule\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Office hours schedule deleted\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"CustomObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Custom object instance not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"IntegrationNotFound\":{\"value\":{\"errors\":[{\"code\":\"data_invalid\",\"message\":\"Integration not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}},\"ObjectNotFound\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Object not found\"}],\"request_id\":\"12a938a3-314e-4939-b773-5cd45738bd21\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Not Found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"DELETE","orig":"/office_hours_schedules/{id}","segments":[{"lit":"office_hours_schedules"},{"var":"id"}],"select":{"exist":["id","intercom_version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"remove"}},"relations":{"ancestors":[["office_hours_schedule"]]},"key$":"office_hour","name__orig":"office_hour","Name":"OfficeHour","name_":"office_hour","name-":"office-hour","NAME":"OFFICE_HOUR","index$":65}, {"active":true,"entity":"office_hour","key$":"BasicOfficeHourFlow","kind":"basic","name":"BasicOfficeHourFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"office_hour_ref01"},"match":{"office_hours_schedule_id":"office_hours_schedule01"},"op":"create","spec":[],"valid":[],"index$":0},{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"office_hour_ref01"}}],"index$":1},{"active":true,"data":{},"input":{"ref":"office_hour_ref01","suffix":"_rm0"},"match":{"id":"office_hour01"},"op":"remove","spec":[],"valid":[],"index$":2},{"active":true,"data":{},"input":{"suffix":"_rt0"},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemNotExists","def":{"ref":"office_hour_ref01"}}],"index$":3}]}, 'OfficeHour')
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+
+    // CREATE
+    const office_hour_ref01_ent = client.OfficeHour()
+    let office_hour_ref01_data = setup.data.new.office_hour['office_hour_ref01']
+    office_hour_ref01_data['office_hours_schedule_id'] = setup.idmap['office_hours_schedule01']
+
+    office_hour_ref01_data = (await office_hour_ref01_ent.create(office_hour_ref01_data)).data()
+    assert(null != office_hour_ref01_data.id)
+
+
+    // LIST
+    const office_hour_ref01_match: any = {}
+
+    const office_hour_ref01_list = (await office_hour_ref01_ent.list(office_hour_ref01_match)).map((e: any) => e.data())
+
+    assert(!isempty(select(office_hour_ref01_list, { id: office_hour_ref01_data.id })))
+
+
+    // REMOVE
+    const office_hour_ref01_match_rm0: any = { id: office_hour_ref01_data.id }
+    await office_hour_ref01_ent.remove(office_hour_ref01_match_rm0)
+  
+
+    // LIST
+    const office_hour_ref01_match_rt0: any = {}
+
+    const office_hour_ref01_list_rt0 = (await office_hour_ref01_ent.list(office_hour_ref01_match_rt0)).map((e: any) => e.data())
+
+    assert(isempty(select(office_hour_ref01_list_rt0, { id: office_hour_ref01_data.id })))
+
+
+  })
+})
+
+
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/office_hour/OfficeHourTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = IntercomSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['office_hour01','office_hour02','office_hour03','office_hours_schedule01','office_hours_schedule02','office_hours_schedule03'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'INTERCOM_TEST_OFFICE_HOUR_ENTID': idmap,
+    'INTERCOM_TEST_LIVE': 'FALSE',
+    'INTERCOM_TEST_EXPLAIN': 'FALSE',
+    'INTERCOM_APIKEY': '',
+  })
+
+  idmap = env['INTERCOM_TEST_OFFICE_HOUR_ENTID']
+
+  const live = 'TRUE' === env.INTERCOM_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['INTERCOM_TEST_OFFICE_HOUR_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new IntercomSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.INTERCOM_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.INTERCOM_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

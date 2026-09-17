@@ -1,0 +1,100 @@
+# BasicContentSnippetFlow
+
+main: kit: flow: BasicContentSnippetFlow:
+{
+  entity: "content_snippet",
+  kind: "basic",
+  name: "BasicContentSnippetFlow",
+  step: [
+    {
+      input: {
+        ref: "content_snippet_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "content_snippet_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "content_snippet_ref01",
+        srcdatavar: "content_snippet_ref01_data",
+        suffix: "_up0",
+        textfield: "body_markdown"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-content_snippet_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "content_snippet_ref01",
+        srcdatavar: "content_snippet_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "content_snippet01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-content_snippet_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "content_snippet_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "content_snippet01"
+      }
+
+      op: "remove"
+    }
+
+    {
+      input: {
+        suffix: "_rt0"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "content_snippet_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicContentSnippetFlow"
+}

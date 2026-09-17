@@ -1,6 +1,6 @@
 {
   "name": "voxgig-sdk/intercom",
-  "description": "Unofficial generated PHP SDK for the Intercom Contacts public API. Not affiliated with or endorsed by the upstream API provider.",
+  "description": "Unofficial generated PHP SDK for the Intercom public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "intercom"],
   "homepage": "https://github.com/voxgig-sdk/intercom-sdk",
@@ -21,7 +21,7 @@
   },
   "autoload": {
     "files": ["intercom_sdk.php"],
-    "classmap": ["core/", "entity/", "feature/", "types/", "utility/", "config.php", "features.php"]
+    "classmap": ["core/", "entity/", "feature/", "types/", "utility/", "config.php", "schema.php", "features.php"]
   },
   "autoload-dev": {
     "classmap": ["test/"]

@@ -1,0 +1,440 @@
+{
+  "existing": {
+    "article_version": {
+      "ARTICLE_VERSION00": {
+        "article_id": "ARTICLE01",
+        "author_id": "AUTHOR01",
+        "body": "s8e",
+        "body_markdown": "s8f",
+        "created_at": 144,
+        "created_by_id": "CREATED_BY01",
+        "created_via": "s92",
+        "description": "s93",
+        "from_version_id": "FROM_VERSION01",
+        "id": "ARTICLE_VERSION00",
+        "state": "s96",
+        "title": "s97",
+        "type": "s98",
+        "updated_at": 153
+      },
+      "ARTICLE_VERSION01": {
+        "article_id": "ARTICLE01",
+        "author_id": "AUTHOR01",
+        "body": "s11a",
+        "body_markdown": "s11b",
+        "created_at": 284,
+        "created_by_id": "CREATED_BY01",
+        "created_via": "s11e",
+        "description": "s11f",
+        "from_version_id": "FROM_VERSION01",
+        "id": "ARTICLE_VERSION01",
+        "state": "s122",
+        "title": "s123",
+        "type": "s124",
+        "updated_at": 293
+      },
+      "ARTICLE_VERSION02": {
+        "article_id": "ARTICLE01",
+        "author_id": "AUTHOR01",
+        "body": "s1a6",
+        "body_markdown": "s1a7",
+        "created_at": 424,
+        "created_by_id": "CREATED_BY01",
+        "created_via": "s1aa",
+        "description": "s1ab",
+        "from_version_id": "FROM_VERSION01",
+        "id": "ARTICLE_VERSION02",
+        "state": "s1ae",
+        "title": "s1af",
+        "type": "s1b0",
+        "updated_at": 433
+      }
+    }
+  },
+  "new": {
+    "article_version": {
+      "article_version_ref01": {
+        "article_id": "ARTICLE01",
+        "author_id": "AUTHOR01",
+        "body": "s232",
+        "body_markdown": "s233",
+        "created_at": 564,
+        "created_by_id": "CREATED_BY01",
+        "created_via": "s236",
+        "description": "s237",
+        "from_version_id": "FROM_VERSION01",
+        "state": "s23a",
+        "title": "s23b",
+        "type": "s23c",
+        "updated_at": 573
+      }
+    }
+  },
+  "requests": {
+    "GET /articles/{article_id}/versions/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "retrieveArticleVersion",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier for the article.",
+            "example": 123,
+            "in": "path",
+            "name": "article_id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The unique identifier for the version.",
+            "example": "301",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Return the version's content for a specific locale. If the locale is not configured for the workspace, a `400` is returned.",
+            "example": "en",
+            "in": "query",
+            "name": "locale",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Version found": {
+                    "value": {
+                      "article_id": "123",
+                      "author_id": "991267502",
+                      "body": "<p class=\"no-margin\">Body of this version</p>",
+                      "body_markdown": "Body of this version\n",
+                      "created_at": 1734537292,
+                      "created_by_id": "5017691",
+                      "created_via": "web",
+                      "description": "",
+                      "from_version_id": "300",
+                      "id": "301",
+                      "state": "published",
+                      "title": "This is the article title",
+                      "type": "article_version",
+                      "updated_at": 1734537292
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A historical version of an article, including its content.",
+                  "properties": {
+                    "article_id": {
+                      "description": "The unique identifier of the article this version belongs to.",
+                      "example": "123",
+                      "type": "string"
+                    },
+                    "author_id": {
+                      "description": "The id of the teammate listed as the article's author at this version.",
+                      "example": "991267502",
+                      "type": "string"
+                    },
+                    "body": {
+                      "description": "The HTML body of the article at this version.",
+                      "example": "<p class=\"no-margin\">Body of this version</p>",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "body_markdown": {
+                      "description": "The Markdown body of the article at this version.",
+                      "example": "Body of this version\n",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "The time the version was created, as a UTC Unix timestamp.",
+                      "example": 1734537292,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "created_by_id": {
+                      "description": "The id of the teammate who created this version.",
+                      "example": "5017691",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "created_via": {
+                      "description": "How this version was created (for example `web`, `api`).",
+                      "example": "web",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "The description of the article at this version.",
+                      "example": "",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "from_version_id": {
+                      "description": "The id of the version this version was created from, or `null` if this is the first version.",
+                      "example": "300",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the version.",
+                      "example": "301",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`).",
+                      "enum": [
+                        "published",
+                        "draft"
+                      ],
+                      "example": "published",
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "The title of the article at this version.",
+                      "example": "This is the article title",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "String representing the object's type. Always has the value `article_version`.",
+                      "enum": [
+                        "article_version"
+                      ],
+                      "example": "article_version",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the version was last updated, as a UTC Unix timestamp.",
+                      "example": 1734537292,
+                      "format": "date-time",
+                      "type": "integer"
+                    }
+                  },
+                  "title": "Article Version",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Version found"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unknown locale": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Unknown locale"
+                        }
+                      ],
+                      "request_id": "6f3c2b1a-2d4e-4f6a-9b8c-1a2b3c4d5e6f",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unknown locale"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "CustomObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Custom object instance not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "IntegrationNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_invalid",
+                          "message": "Integration not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  },
+                  "ObjectNotFound": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Object not found"
+                        }
+                      ],
+                      "request_id": "12a938a3-314e-4939-b773-5cd45738bd21",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

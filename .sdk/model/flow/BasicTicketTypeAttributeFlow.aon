@@ -1,0 +1,45 @@
+# BasicTicketTypeAttributeFlow
+
+main: kit: flow: BasicTicketTypeAttributeFlow:
+{
+  entity: "ticket_type_attribute",
+  kind: "basic",
+  name: "BasicTicketTypeAttributeFlow",
+  step: [
+    {
+      input: {
+        ref: "ticket_type_attribute_ref01"
+      }
+
+      match: {
+        ticket_type_id: "ticket_type01"
+      }
+
+      op: "create"
+    }
+
+    {
+      data: {
+        ticket_type_id: "ticket_type01"
+      }
+
+      input: {
+        ref: "ticket_type_attribute_ref01",
+        srcdatavar: "ticket_type_attribute_ref01_data",
+        suffix: "_up0",
+        textfield: "data_type"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ticket_type_attribute_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTicketTypeAttributeFlow"
+}

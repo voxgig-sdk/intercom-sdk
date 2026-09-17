@@ -1,0 +1,40 @@
+# BasicJobFlow
+
+main: kit: flow: BasicJobFlow:
+{
+  entity: "job",
+  kind: "basic",
+  name: "BasicJobFlow",
+  step: [
+    {
+      input: {
+        ref: "job_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "job_ref01",
+        srcdatavar: "job_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "job01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-job_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicJobFlow"
+}

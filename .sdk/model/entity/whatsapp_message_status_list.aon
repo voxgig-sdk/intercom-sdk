@@ -1,0 +1,140 @@
+# Entity: whatsapp_message_status_list
+
+main: kit: entity: whatsapp_message_status_list: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "conversation_id"
+      req: true
+      short: "ID of the conversation"
+      type: "`$STRING`"
+    }
+    {
+      name: "created_at"
+      req: true
+      short: "Creation timestamp"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: true
+      short: "Event ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: true
+      short: "Current status of the message"
+      type: "`$STRING`"
+    }
+    {
+      name: "template_name"
+      req: false
+      short: "Name of the WhatsApp template used"
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      short: "Event type"
+      type: "`$STRING`"
+    }
+    {
+      name: "updated_at"
+      req: true
+      short: "Last update timestamp"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "whatsapp_message_id"
+      req: true
+      short: "WhatsApp's message identifier"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "whatsapp_message_status_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 50
+                kind: "query"
+                name: "per_page"
+                orig: "per_page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "ruleset_id"
+                orig: "ruleset_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "starting_after"
+                orig: "starting_after"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /messages/status"
+            json: "{\"operationId\":\"getWhatsAppMessageStatus\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the set of messages to check status for\",\"in\":\"query\",\"name\":\"ruleset_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results per page (default 50, max 100)\",\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"default\":50,\"maximum\":100,\"type\":\"integer\"}},{\"description\":\"Cursor for pagination, used to fetch the next page of results\",\"in\":\"query\",\"name\":\"starting_after\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful response\":{\"value\":{\"events\":[{\"conversation_id\":\"conv_123\",\"created_at\":1734537980,\"id\":\"event_1\",\"status\":\"delivered\",\"template_name\":\"appointment_reminder\",\"type\":\"broadcast_outbound\",\"updated_at\":1734538000,\"user_id\":\"user_123\",\"whatsapp_message_id\":\"wamid_123\"},{\"conversation_id\":\"conv_456\",\"created_at\":1734537970,\"id\":\"event_2\",\"status\":\"sent\",\"template_name\":\"order_update\",\"type\":\"broadcast_outbound\",\"updated_at\":1734538010,\"user_id\":\"user_456\",\"whatsapp_message_id\":\"wamid_456\"}],\"pages\":{\"next\":{\"starting_after\":\"abc123\"},\"per_page\":50,\"total_pages\":3,\"type\":\"pages\"},\"ruleset_id\":12345,\"total_count\":125,\"type\":\"list\"}}},\"schema\":{\"properties\":{\"events\":{\"items\":{\"properties\":{\"conversation_id\":{\"description\":\"ID of the conversation\",\"type\":\"string\"},\"created_at\":{\"description\":\"Creation timestamp\",\"type\":\"integer\"},\"id\":{\"description\":\"Event ID\",\"type\":\"string\"},\"status\":{\"description\":\"Current status of the message\",\"enum\":[\"sent\",\"delivered\",\"read\",\"failed\"],\"type\":\"string\"},\"template_name\":{\"description\":\"Name of the WhatsApp template used\",\"type\":\"string\"},\"type\":{\"description\":\"Event type\",\"enum\":[\"broadcast_outbound\"],\"type\":\"string\"},\"updated_at\":{\"description\":\"Last update timestamp\",\"type\":\"integer\"},\"whatsapp_message_id\":{\"description\":\"WhatsApp's message identifier\",\"type\":\"string\"}},\"required\":[\"id\",\"conversation_id\",\"status\",\"type\",\"created_at\",\"updated_at\",\"whatsapp_message_id\"],\"type\":\"object\"},\"type\":\"array\"},\"pages\":{\"properties\":{\"next\":{\"description\":\"Information for fetching next page (null if no more pages)\",\"nullable\":true,\"properties\":{\"starting_after\":{\"description\":\"Cursor for the next page\",\"type\":\"string\"}},\"type\":\"object\"},\"per_page\":{\"description\":\"Number of results per page\",\"type\":\"integer\"},\"total_pages\":{\"description\":\"Total number of pages\",\"type\":\"integer\"},\"type\":{\"enum\":[\"pages\"],\"type\":\"string\"}},\"required\":[\"type\",\"per_page\",\"total_pages\"],\"type\":\"object\"},\"ruleset_id\":{\"description\":\"The provided ruleset ID\",\"type\":\"string\"},\"total_count\":{\"description\":\"Total number of events\",\"type\":\"integer\"},\"type\":{\"enum\":[\"list\"],\"type\":\"string\"}},\"required\":[\"type\",\"ruleset_id\",\"pages\",\"total_count\",\"events\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"examples\":{\"missing ruleset_id\":{\"value\":{\"message\":\"ruleset_id is required\",\"request_id\":\"req_123\",\"type\":\"error\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Bad request - missing required parameters\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"d7997515-cd92-4fe4-966c-cb1f4bdda1d4\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"403\":{\"content\":{\"application/json\":{\"examples\":{\"API plan restricted\":{\"value\":{\"errors\":[{\"code\":\"api_plan_restricted\",\"message\":\"Active subscription needed.\"}],\"request_id\":\"591a0c2f-78b3-41bb-bfa7-f1fae15107b0\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"API plan restricted\"},\"500\":{\"content\":{\"application/json\":{\"examples\":{\"server error\":{\"value\":{\"message\":\"Request failed due to an internal error. Please reach out to support\",\"request_id\":\"591a0c2f-78b3-41bb-bfa7-f1fae15107b2\",\"type\":\"error\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/400/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/400/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/messages/status"
+          segments: [
+            {
+              lit: "messages"
+            }
+            {
+              lit: "status"
+            }
+          ]
+          select: {
+            exist: [
+              "intercom_version"
+              "per_page"
+              "ruleset_id"
+              "starting_after"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,72 @@
+# BasicTicketFlow
+
+main: kit: flow: BasicTicketFlow:
+{
+  entity: "ticket",
+  kind: "basic",
+  name: "BasicTicketFlow",
+  step: [
+    {
+      input: {
+        ref: "ticket_ref01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "ticket_ref01",
+        srcdatavar: "ticket_ref01_data",
+        suffix: "_up0",
+        textfield: "category"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ticket_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "ticket_ref01",
+        srcdatavar: "ticket_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "ticket01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ticket_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "ticket_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "ticket01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicTicketFlow"
+}

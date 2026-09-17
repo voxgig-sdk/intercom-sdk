@@ -1,0 +1,76 @@
+# BasicConversationAttributeFlow
+
+main: kit: flow: BasicConversationAttributeFlow:
+{
+  entity: "conversation_attribute",
+  kind: "basic",
+  name: "BasicConversationAttributeFlow",
+  step: [
+    {
+      input: {
+        ref: "conversation_attribute_ref01"
+      }
+
+      match: {
+        attribute_id: "attribute01"
+      }
+
+      op: "create"
+    }
+
+    {
+      input: {
+        ref: "conversation_attribute_ref01",
+        srcdatavar: "conversation_attribute_ref01_data",
+        suffix: "_up0",
+        textfield: "admin_id"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-conversation_attribute_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "conversation_attribute_ref01",
+        srcdatavar: "conversation_attribute_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "conversation_attribute01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-conversation_attribute_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "conversation_attribute_ref01",
+        suffix: "_rm0"
+      }
+
+      match: {
+        id: "conversation_attribute01"
+      }
+
+      op: "remove"
+    }
+  ],
+  "key$": "BasicConversationAttributeFlow"
+}

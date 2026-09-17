@@ -27,11 +27,11 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // intercom_list: first page of records
-{ "entity": "contact" }
-{ "entity": "contact", "query": { } }
+{ "entity": "activity_log" }
+{ "entity": "activity_log", "query": { } }
 
 // intercom_load: one record by id
-{ "entity": "contact", "query": { "id": 1 } }
+{ "entity": "admin", "query": { "id": 1 } }
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -60,8 +60,8 @@ Tool-call arguments (what an agent sends):
    ```
 
 4. **Restart Claude Code.** The `intercom_list` and `intercom_load` tools now appear
-   in new sessions. Ask the agent to *"list contact using intercom"*
-   and it calls `intercom_list` with `{"entity":"contact"}`.
+   in new sessions. Ask the agent to *"list activity_log using intercom"*
+   and it calls `intercom_list` with `{"entity":"activity_log"}`.
 
 ## How-to guides
 
@@ -92,7 +92,7 @@ Args: `entity` (required), `query` (optional filter map). Returns the first
 page of records as JSON:
 
 ```jsonc
-{ "entity": "contact" }
+{ "entity": "activity_log" }
 ```
 
 ### Call the `intercom_load` tool
@@ -101,7 +101,7 @@ Args: `entity` (required), `query` = `{"id":N}` (required). Returns the single
 record as JSON:
 
 ```jsonc
-{ "entity": "contact", "query": { "id": 1 } }
+{ "entity": "admin", "query": { "id": 1 } }
 ```
 
 ### Cross-compile release binaries
@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 1 supported entities (see below). |
+| `entity` | string | One of the 89 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 1 entity valid as the `entity` argument:
+The 89 entities valid as the `entity` argument:
 
-contact
+activity_log | activity_log_event_type | activity_log_list | admin | admin_with_app | ai_call | ai_content | article | article_search | article_version | article_version_list | audience | away_status_reason | banner | banner_dismiss | brand | call | company | company_attached_contact | company_attached_segment | company_list | company_scroll | contact | contact_attached_company | contact_list | contact_segment | content | content_import_source | content_search | content_snippet | conversation | conversation_attribute | conversation_attribute_list | conversation_list | conversation_participant | custom_object_instance | data | data_attribute | data_connector | data_connector_execution_result | data_connector_execution_result_list | data_event | data_event_summary | data_export | deleted | deleted_article_object | deleted_company_object | deleted_data_connector_object | deleted_internal_article_object | deleted_object | email | external_page | fin_agent | handling_event | help_center | internal_article | internal_article_search | ip_allowlist | job | macro | merge_history | message | news_item | newsfeed | note | office_hour | office_hours_exception | office_hours_schedule | paginated | phone_switch | reporting_data | reporting_data_export | segment | side_conversation | subscription | subscription_type | tag | team | team_metric_list | ticket | ticket_list | ticket_reply | ticket_state | ticket_type | ticket_type_attribute | visitor | whatsapp_message_status | whatsapp_message_status_list | workflow
 
 ### Smoke test via HTTP (raw JSON-RPC)
 
@@ -173,7 +173,7 @@ curl -sN -X POST http://localhost:18080 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
   -H "Mcp-Session-Id: $SESSION" \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"intercom_load","arguments":{"entity":"contact","query":{"id":1}}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"intercom_load","arguments":{"entity":"admin","query":{"id":1}}}}'
 ```
 
 ## Explanation

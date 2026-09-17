@@ -1,0 +1,9 @@
+# BasicDeletedDataConnectorObjectFlow
+
+main: kit: flow: BasicDeletedDataConnectorObjectFlow:
+{
+  entity: "deleted_data_connector_object",
+  kind: "basic",
+  name: "BasicDeletedDataConnectorObjectFlow",
+  "key$": "BasicDeletedDataConnectorObjectFlow"
+}

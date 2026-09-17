@@ -1,0 +1,331 @@
+{
+  "existing": {
+    "merge_history": {
+      "MERGE_HISTORY00": {
+        "merged_at": 40,
+        "source_contact_id": "SOURCE_CONTACT01",
+        "source_contact_role": "s2a",
+        "type": "s2b",
+        "contact_id": "CONTACT01"
+      },
+      "MERGE_HISTORY01": {
+        "merged_at": 80,
+        "source_contact_id": "SOURCE_CONTACT01",
+        "source_contact_role": "s52",
+        "type": "s53",
+        "contact_id": "CONTACT01"
+      },
+      "MERGE_HISTORY02": {
+        "merged_at": 120,
+        "source_contact_id": "SOURCE_CONTACT01",
+        "source_contact_role": "s7a",
+        "type": "s7b",
+        "contact_id": "CONTACT01"
+      }
+    }
+  },
+  "new": {
+    "merge_history": {
+      "merge_history_ref01": {
+        "merged_at": 160,
+        "source_contact_id": "SOURCE_CONTACT01",
+        "source_contact_role": "sa2",
+        "type": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /contacts/{id}/merge_history": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "ListContactMergeHistory",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The id of the contact to fetch merge history for.",
+            "example": "63a07ddf05a32042dffac965",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A cursor for pagination. Pass the `next_cursor` value from a previous response to fetch the next page.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The number of results to return per page (default 50, max 150).",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 150,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The order to return results in. Defaults to descending.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "data": [
+                        {
+                          "merged_at": 1571672154,
+                          "source_contact_id": "5ba682d23d7cf92bef87bfd3",
+                          "source_contact_role": "lead",
+                          "type": "merge_history"
+                        }
+                      ],
+                      "has_more": true,
+                      "next_cursor": "eyJpZCI6IjYyMzQ1NiJ9",
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of merge history entries for a contact.",
+                  "properties": {
+                    "data": {
+                      "description": "An array of merge history entries.",
+                      "items": {
+                        "description": "A record of a contact that was merged into another contact.",
+                        "properties": {
+                          "merged_at": {
+                            "description": "(Unix timestamp in seconds) The time when the merge occurred.",
+                            "example": 1571672154,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "source_contact_id": {
+                            "description": "The Intercom ID of the contact that was merged into this contact.",
+                            "example": "5ba682d23d7cf92bef87bfd3",
+                            "type": "string"
+                          },
+                          "source_contact_role": {
+                            "description": "The role of the contact that was merged in.",
+                            "enum": [
+                              "lead",
+                              "user"
+                            ],
+                            "example": "lead",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type of object.",
+                            "example": "merge_history",
+                            "type": "string"
+                          }
+                        },
+                        "title": "Merge History Item",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "has_more": {
+                      "description": "Whether there are more results to fetch.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "next_cursor": {
+                      "description": "A cursor to pass as the `cursor` query parameter to fetch the next page of results. Absent when there are no more pages.",
+                      "example": "WyIxNjM0NTY3ODkwIl0",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of object.",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Merge History List",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "45b30bd1-75d2-40cc-bb39-74ac133a2836",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Contact not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Contact not found"
+                        }
+                      ],
+                      "request_id": "45b30bd1-75d2-40cc-bb39-74ac133a2836",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Contact not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

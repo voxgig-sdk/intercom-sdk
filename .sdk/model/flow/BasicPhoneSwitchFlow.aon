@@ -1,0 +1,18 @@
+# BasicPhoneSwitchFlow
+
+main: kit: flow: BasicPhoneSwitchFlow:
+{
+  entity: "phone_switch",
+  kind: "basic",
+  name: "BasicPhoneSwitchFlow",
+  step: [
+    {
+      input: {
+        ref: "phone_switch_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicPhoneSwitchFlow"
+}

@@ -1,0 +1,858 @@
+{
+  "existing": {
+    "ai_call": {
+      "AI_CALL00": {
+        "app_id": "APP01",
+        "call_id": "CALL01",
+        "call_summary": "s8e",
+        "call_transcript": [],
+        "data": {},
+        "external_call_id": "EXTERNAL_CALL01",
+        "id": "AI_CALL00",
+        "intent": [],
+        "intercom_call_id": "INTERCOM_CALL01",
+        "intercom_conversation_id": "INTERCOM_CONVERSATION01",
+        "phone_number": "s96",
+        "source": "s97",
+        "status": "s98",
+        "user_phone_number": "s99",
+        "conversation_id": "CONVERSATION01",
+        "external_id": "EXTERNAL01"
+      },
+      "AI_CALL01": {
+        "app_id": "APP01",
+        "call_id": "CALL01",
+        "call_summary": "s11a",
+        "call_transcript": [],
+        "data": {},
+        "external_call_id": "EXTERNAL_CALL01",
+        "id": "AI_CALL01",
+        "intent": [],
+        "intercom_call_id": "INTERCOM_CALL01",
+        "intercom_conversation_id": "INTERCOM_CONVERSATION01",
+        "phone_number": "s122",
+        "source": "s123",
+        "status": "s124",
+        "user_phone_number": "s125",
+        "conversation_id": "CONVERSATION01",
+        "external_id": "EXTERNAL01"
+      },
+      "AI_CALL02": {
+        "app_id": "APP01",
+        "call_id": "CALL01",
+        "call_summary": "s1a6",
+        "call_transcript": [],
+        "data": {},
+        "external_call_id": "EXTERNAL_CALL01",
+        "id": "AI_CALL02",
+        "intent": [],
+        "intercom_call_id": "INTERCOM_CALL01",
+        "intercom_conversation_id": "INTERCOM_CONVERSATION01",
+        "phone_number": "s1ae",
+        "source": "s1af",
+        "status": "s1b0",
+        "user_phone_number": "s1b1",
+        "conversation_id": "CONVERSATION01",
+        "external_id": "EXTERNAL01"
+      }
+    }
+  },
+  "new": {
+    "ai_call": {
+      "ai_call_ref01": {
+        "app_id": "APP01",
+        "call_id": "CALL01",
+        "call_summary": "s232",
+        "call_transcript": [],
+        "data": {},
+        "external_call_id": "EXTERNAL_CALL01",
+        "intent": [],
+        "intercom_call_id": "INTERCOM_CALL01",
+        "intercom_conversation_id": "INTERCOM_CONVERSATION01",
+        "phone_number": "s23a",
+        "source": "s23b",
+        "status": "s23c",
+        "user_phone_number": "s23d"
+      }
+    }
+  },
+  "requests": {
+    "POST /fin_voice/register": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "registerFinVoiceCall",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Register a Fin Voice call with Intercom",
+                "nullable": true,
+                "properties": {
+                  "call_id": {
+                    "description": "External call identifier from the call provider",
+                    "example": "call-123-abc",
+                    "type": "string"
+                  },
+                  "data": {
+                    "description": "Additional metadata about the call",
+                    "example": {
+                      "key": "value"
+                    },
+                    "nullable": true,
+                    "type": "object"
+                  },
+                  "phone_number": {
+                    "description": "Phone number in E.164 format for the call",
+                    "example": "+1234567890",
+                    "type": "string"
+                  },
+                  "source": {
+                    "description": "Source of the call. Can be \"five9\", \"zoom_phone\", or defaults to \"aws_connect\"",
+                    "enum": [
+                      "five9",
+                      "zoom_phone",
+                      "aws_connect"
+                    ],
+                    "example": "aws_connect",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "phone_number",
+                  "call_id"
+                ],
+                "title": "Register Fin Voice Call Request Payload",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Response containing information about a Fin Voice call",
+                  "properties": {
+                    "app_id": {
+                      "description": "The workspace identifier",
+                      "example": 12345,
+                      "type": "integer"
+                    },
+                    "call_summary": {
+                      "description": "Summary of the call conversation, truncated to 256 characters. Empty string if no summary available.",
+                      "example": "Customer called about billing issue...",
+                      "type": "string"
+                    },
+                    "call_transcript": {
+                      "description": "Array of transcript entries for the call",
+                      "example": [],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "external_call_id": {
+                      "description": "The external call identifier from the call provider",
+                      "example": "call-123-abc",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the external reference",
+                      "example": 12345,
+                      "type": "integer"
+                    },
+                    "intent": {
+                      "description": "Array of intent classifications for the call",
+                      "example": [],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "intercom_call_id": {
+                      "description": "The Intercom call identifier, if the call has been matched",
+                      "example": "1234",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "intercom_conversation_id": {
+                      "description": "The Intercom conversation identifier, if a conversation has been created",
+                      "example": "5678",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Status of the call. Can be \"registered\", \"in-progress\", or a resolution state",
+                      "example": "registered",
+                      "type": "string"
+                    },
+                    "user_phone_number": {
+                      "description": "Phone number in E.164 format for the call",
+                      "example": "+1234567890",
+                      "type": "string"
+                    }
+                  },
+                  "title": "AI Call Response",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "bad request - missing phone_number or call_id"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "conflict - duplicate call registration"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /fin_voice/conversation/{conversation_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "collectFinVoiceCallsByConversationId",
+        "parameters": [
+          {
+            "description": "The Intercom conversation identifier",
+            "in": "path",
+            "name": "conversation_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "description": "Response containing information about a Fin Voice call",
+                    "properties": {
+                      "app_id": {
+                        "description": "The workspace identifier",
+                        "example": 12345,
+                        "type": "integer"
+                      },
+                      "call_summary": {
+                        "description": "Summary of the call conversation, truncated to 256 characters. Empty string if no summary available.",
+                        "example": "Customer called about billing issue...",
+                        "type": "string"
+                      },
+                      "call_transcript": {
+                        "description": "Array of transcript entries for the call",
+                        "example": [],
+                        "items": {
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "external_call_id": {
+                        "description": "The external call identifier from the call provider",
+                        "example": "call-123-abc",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "The unique identifier for the external reference",
+                        "example": 12345,
+                        "type": "integer"
+                      },
+                      "intent": {
+                        "description": "Array of intent classifications for the call",
+                        "example": [],
+                        "items": {
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "intercom_call_id": {
+                        "description": "The Intercom call identifier, if the call has been matched",
+                        "example": "1234",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "intercom_conversation_id": {
+                        "description": "The Intercom conversation identifier, if a conversation has been created",
+                        "example": "5678",
+                        "nullable": true,
+                        "type": "string"
+                      },
+                      "status": {
+                        "description": "Status of the call. Can be \"registered\", \"in-progress\", or a resolution state",
+                        "example": "registered",
+                        "type": "string"
+                      },
+                      "user_phone_number": {
+                        "description": "Phone number in E.164 format for the call",
+                        "example": "+1234567890",
+                        "type": "string"
+                      }
+                    },
+                    "title": "AI Call Response",
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /fin_voice/external_id/{external_id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "collectFinVoiceCallByExternalId",
+        "parameters": [
+          {
+            "description": "The external call identifier from the call provider",
+            "in": "path",
+            "name": "external_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Response containing information about a Fin Voice call",
+                  "properties": {
+                    "app_id": {
+                      "description": "The workspace identifier",
+                      "example": 12345,
+                      "type": "integer"
+                    },
+                    "call_summary": {
+                      "description": "Summary of the call conversation, truncated to 256 characters. Empty string if no summary available.",
+                      "example": "Customer called about billing issue...",
+                      "type": "string"
+                    },
+                    "call_transcript": {
+                      "description": "Array of transcript entries for the call",
+                      "example": [],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "external_call_id": {
+                      "description": "The external call identifier from the call provider",
+                      "example": "call-123-abc",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the external reference",
+                      "example": 12345,
+                      "type": "integer"
+                    },
+                    "intent": {
+                      "description": "Array of intent classifications for the call",
+                      "example": [],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "intercom_call_id": {
+                      "description": "The Intercom call identifier, if the call has been matched",
+                      "example": "1234",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "intercom_conversation_id": {
+                      "description": "The Intercom conversation identifier, if a conversation has been created",
+                      "example": "5678",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Status of the call. Can be \"registered\", \"in-progress\", or a resolution state",
+                      "example": "registered",
+                      "type": "string"
+                    },
+                    "user_phone_number": {
+                      "description": "Phone number in E.164 format for the call",
+                      "example": "+1234567890",
+                      "type": "string"
+                    }
+                  },
+                  "title": "AI Call Response",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "not found - external reference not found or not matched"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/404/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/404/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /fin_voice/collect/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "collectFinVoiceCallById",
+        "parameters": [
+          {
+            "description": "The external reference ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Response containing information about a Fin Voice call",
+                  "properties": {
+                    "app_id": {
+                      "description": "The workspace identifier",
+                      "example": 12345,
+                      "type": "integer"
+                    },
+                    "call_summary": {
+                      "description": "Summary of the call conversation, truncated to 256 characters. Empty string if no summary available.",
+                      "example": "Customer called about billing issue...",
+                      "type": "string"
+                    },
+                    "call_transcript": {
+                      "description": "Array of transcript entries for the call",
+                      "example": [],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "external_call_id": {
+                      "description": "The external call identifier from the call provider",
+                      "example": "call-123-abc",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the external reference",
+                      "example": 12345,
+                      "type": "integer"
+                    },
+                    "intent": {
+                      "description": "Array of intent classifications for the call",
+                      "example": [],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "intercom_call_id": {
+                      "description": "The Intercom call identifier, if the call has been matched",
+                      "example": "1234",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "intercom_conversation_id": {
+                      "description": "The Intercom conversation identifier, if a conversation has been created",
+                      "example": "5678",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Status of the call. Can be \"registered\", \"in-progress\", or a resolution state",
+                      "example": "registered",
+                      "type": "string"
+                    },
+                    "user_phone_number": {
+                      "description": "Phone number in E.164 format for the call",
+                      "example": "+1234567890",
+                      "type": "string"
+                    }
+                  },
+                  "title": "AI Call Response",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "not found - external reference not found or not matched"
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/404/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/404/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unexpected error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

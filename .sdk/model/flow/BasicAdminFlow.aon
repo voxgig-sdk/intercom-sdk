@@ -1,0 +1,63 @@
+# BasicAdminFlow
+
+main: kit: flow: BasicAdminFlow:
+{
+  entity: "admin",
+  kind: "basic",
+  name: "BasicAdminFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "admin_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "admin_ref01",
+        srcdatavar: "admin_ref01_data",
+        suffix: "_up0",
+        textfield: "avatar"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-admin_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "admin_ref01",
+        srcdatavar: "admin_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "admin01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-admin_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAdminFlow"
+}

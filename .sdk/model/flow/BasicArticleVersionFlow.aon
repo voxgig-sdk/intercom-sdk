@@ -1,0 +1,33 @@
+# BasicArticleVersionFlow
+
+main: kit: flow: BasicArticleVersionFlow:
+{
+  entity: "article_version",
+  kind: "basic",
+  name: "BasicArticleVersionFlow",
+  step: [
+    {
+      input: {
+        ref: "article_version_ref01",
+        srcdatavar: "article_version_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        article_id: "article01",
+        id: "article_version01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-article_version_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArticleVersionFlow"
+}

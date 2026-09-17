@@ -1,0 +1,51 @@
+# BasicOfficeHoursScheduleFlow
+
+main: kit: flow: BasicOfficeHoursScheduleFlow:
+{
+  entity: "office_hours_schedule",
+  kind: "basic",
+  name: "BasicOfficeHoursScheduleFlow",
+  step: [
+    {
+      input: {
+        ref: "office_hours_schedule_ref01",
+        srcdatavar: "office_hours_schedule_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      op: "update",
+      spec: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-office_hours_schedule_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "office_hours_schedule_ref01",
+        srcdatavar: "office_hours_schedule_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "office_hours_schedule01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-office_hours_schedule_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOfficeHoursScheduleFlow"
+}

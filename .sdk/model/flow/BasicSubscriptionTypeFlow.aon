@@ -1,0 +1,22 @@
+# BasicSubscriptionTypeFlow
+
+main: kit: flow: BasicSubscriptionTypeFlow:
+{
+  entity: "subscription_type",
+  kind: "basic",
+  name: "BasicSubscriptionTypeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "subscription_type_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSubscriptionTypeFlow"
+}

@@ -1,0 +1,22 @@
+# BasicWhatsappMessageStatusListFlow
+
+main: kit: flow: BasicWhatsappMessageStatusListFlow:
+{
+  entity: "whatsapp_message_status_list",
+  kind: "basic",
+  name: "BasicWhatsappMessageStatusListFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "whatsapp_message_status_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhatsappMessageStatusListFlow"
+}

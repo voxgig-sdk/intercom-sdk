@@ -1,0 +1,26 @@
+# BasicCompanyAttachedSegmentFlow
+
+main: kit: flow: BasicCompanyAttachedSegmentFlow:
+{
+  entity: "company_attached_segment",
+  kind: "basic",
+  name: "BasicCompanyAttachedSegmentFlow",
+  step: [
+    {
+      match: {
+        company_id: "company01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "company_attached_segment_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompanyAttachedSegmentFlow"
+}

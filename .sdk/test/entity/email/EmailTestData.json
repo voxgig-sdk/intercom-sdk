@@ -1,0 +1,530 @@
+{
+  "existing": {
+    "email": {
+      "EMAIL00": {
+        "brand_id": "BRAND01",
+        "created_at": 101,
+        "domain": "s66",
+        "email": "s67",
+        "forwarded_email_last_received_at": 104,
+        "forwarding_enabled": false,
+        "id": "EMAIL00",
+        "type": "s6b",
+        "updated_at": 108,
+        "verified": false
+      },
+      "EMAIL01": {
+        "brand_id": "BRAND01",
+        "created_at": 201,
+        "domain": "sca",
+        "email": "scb",
+        "forwarded_email_last_received_at": 204,
+        "forwarding_enabled": false,
+        "id": "EMAIL01",
+        "type": "scf",
+        "updated_at": 208,
+        "verified": false
+      },
+      "EMAIL02": {
+        "brand_id": "BRAND01",
+        "created_at": 301,
+        "domain": "s12e",
+        "email": "s12f",
+        "forwarded_email_last_received_at": 304,
+        "forwarding_enabled": false,
+        "id": "EMAIL02",
+        "type": "s133",
+        "updated_at": 308,
+        "verified": false
+      }
+    }
+  },
+  "new": {
+    "email": {
+      "email_ref01": {
+        "brand_id": "BRAND01",
+        "created_at": 401,
+        "domain": "s192",
+        "email": "s193",
+        "forwarded_email_last_received_at": 404,
+        "forwarding_enabled": false,
+        "type": "s197",
+        "updated_at": 408,
+        "verified": false
+      }
+    }
+  },
+  "requests": {
+    "GET /emails": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listEmails",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "data": [
+                        {
+                          "brand_id": "9",
+                          "created_at": 1692530400,
+                          "domain": "company.com",
+                          "email": "support@company.com",
+                          "forwarded_email_last_received_at": 1710498600,
+                          "forwarding_enabled": true,
+                          "id": "1",
+                          "type": "email_setting",
+                          "updated_at": 1710498600,
+                          "verified": true
+                        },
+                        {
+                          "brand_id": "10",
+                          "created_at": 1683729000,
+                          "domain": "company.com",
+                          "email": "hello@company.com",
+                          "forwarded_email_last_received_at": null,
+                          "forwarding_enabled": false,
+                          "id": "2",
+                          "type": "email_setting",
+                          "updated_at": 1701424500,
+                          "verified": true
+                        }
+                      ],
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A list of email settings",
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "description": "Represents a sender email address configuration",
+                        "properties": {
+                          "brand_id": {
+                            "description": "Associated brand identifier",
+                            "example": "10",
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "description": "Unix timestamp of creation",
+                            "example": 1692530400,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "domain": {
+                            "description": "Domain portion of the email address",
+                            "example": "company.com",
+                            "type": "string"
+                          },
+                          "email": {
+                            "description": "Full sender email address",
+                            "example": "support@company.com",
+                            "type": "string"
+                          },
+                          "forwarded_email_last_received_at": {
+                            "description": "Unix timestamp of last forwarded email received (null if never)",
+                            "example": 1710498600,
+                            "format": "date-time",
+                            "nullable": true,
+                            "type": "integer"
+                          },
+                          "forwarding_enabled": {
+                            "description": "Whether email forwarding is active",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "id": {
+                            "description": "Unique email setting identifier",
+                            "example": "10",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type of object",
+                            "example": "email_setting",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "Unix timestamp of last modification",
+                            "example": 1710498600,
+                            "format": "date-time",
+                            "type": "integer"
+                          },
+                          "verified": {
+                            "description": "Whether the email address has been verified",
+                            "example": true,
+                            "type": "boolean"
+                          }
+                        },
+                        "title": "Email Setting",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of object",
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Email List",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /emails/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "retrieveEmail",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the email setting",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "brand_id": "15",
+                      "created_at": 1692530400,
+                      "domain": "company.com",
+                      "email": "support@company.com",
+                      "forwarded_email_last_received_at": 1710498600,
+                      "forwarding_enabled": true,
+                      "id": "10",
+                      "type": "email_setting",
+                      "updated_at": 1710498600,
+                      "verified": true
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Represents a sender email address configuration",
+                  "properties": {
+                    "brand_id": {
+                      "description": "Associated brand identifier",
+                      "example": "10",
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "Unix timestamp of creation",
+                      "example": 1692530400,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "domain": {
+                      "description": "Domain portion of the email address",
+                      "example": "company.com",
+                      "type": "string"
+                    },
+                    "email": {
+                      "description": "Full sender email address",
+                      "example": "support@company.com",
+                      "type": "string"
+                    },
+                    "forwarded_email_last_received_at": {
+                      "description": "Unix timestamp of last forwarded email received (null if never)",
+                      "example": 1710498600,
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "forwarding_enabled": {
+                      "description": "Whether email forwarding is active",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "description": "Unique email setting identifier",
+                      "example": "10",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of object",
+                      "example": "email_setting",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "Unix timestamp of last modification",
+                      "example": 1710498600,
+                      "format": "date-time",
+                      "type": "integer"
+                    },
+                    "verified": {
+                      "description": "Whether the email address has been verified",
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "title": "Email Setting",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Email setting not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "not_found",
+                          "message": "Email setting not found"
+                        }
+                      ],
+                      "request_id": "req_12345",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Email setting not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

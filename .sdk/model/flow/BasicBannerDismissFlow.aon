@@ -1,0 +1,23 @@
+# BasicBannerDismissFlow
+
+main: kit: flow: BasicBannerDismissFlow:
+{
+  entity: "banner_dismiss",
+  kind: "basic",
+  name: "BasicBannerDismissFlow",
+  step: [
+    {
+      input: {
+        ref: "banner_dismiss_ref01"
+      }
+
+      match: {
+        contact_id: "contact01",
+        view_id: "view01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicBannerDismissFlow"
+}

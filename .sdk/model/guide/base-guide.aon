@@ -1,20 +1,996 @@
 # Guide
 
 guide: {
-  metrics: count: entity: 1
-  metrics: count: path: 2
-  metrics: count: method: 5
+  metrics: count: entity: 89
+  metrics: count: path: 164
+  metrics: count: method: 231
+
+  entity: activity_log: {
+    path: "/admins/activity_logs": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: activity_log_event_type: {
+    path: "/admins/activity_log_event_types": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.event_types`")|top
+    }
+  }
+
+  entity: activity_log_list: {
+    path: "/admins/activity_logs/search": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: admin: {
+    path: "/admins": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.admins`")|top
+    }
+    path: "/admins/{admin_id}": {
+      rename: param: "admin_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/admins/{admin_id}/away": {
+      action: "away": {}
+      rename: param: "admin_id": *"id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: admin_with_app: {
+    path: "/me": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: ai_call: {
+    path: "/fin_voice/collect/{id}": {
+      op: load: method: *GET
+    }
+    path: "/fin_voice/conversation/{conversation_id}": {
+      op: load: method: *GET
+    }
+    path: "/fin_voice/external_id/{external_id}": {
+      op: load: method: *GET
+    }
+    path: "/fin_voice/register": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: ai_content: {
+    path: "/ai/content_import_sources/{source_id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: article: {
+    path: "/articles": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.statistics`")|top
+      op: list: method: *GET
+    }
+    path: "/articles/{article_id}": {
+      rename: param: "article_id": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.statistics`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.statistics`")|top
+    }
+    path: "/articles/{id}/draft": {
+      action: "draft": {}
+      op: list: method: *GET
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.statistics`")|top
+    }
+    path: "/articles/{id}/draft/publish": {
+      action: "draft_publish": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.statistics`")|top
+    }
+  }
+
+  entity: article_search: {
+    path: "/articles/search": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: article_version: {
+    path: "/articles/{article_id}/versions/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: article_version_list: {
+    path: "/articles/{article_id}/versions": {
+      action: "versions": {}
+      rename: param: "article_id": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: audience: {
+    path: "/audiences": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/audiences/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: away_status_reason: {
+    path: "/away_status_reasons": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: banner: {
+    path: "/contacts/{id}/banners": {
+      rename: param: "id": *"contact_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: banner_dismiss: {
+    path: "/contacts/{id}/banners/{view_id}/dismiss": {
+      rename: param: "id": *"contact_id"
+      rename: param: "view_id": *"id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: brand: {
+    path: "/brands": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/brands/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: call: {
+    path: "/calls": {
+      op: list: method: *GET
+    }
+    path: "/calls/search": {
+      action: "search": {}
+      op: create: method: *POST
+    }
+    path: "/calls/{call_id}": {
+      rename: param: "call_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/calls/{call_id}/recording": {
+      action: "recording": {}
+      rename: param: "call_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/calls/{call_id}/transcript": {
+      action: "transcript": {}
+      rename: param: "call_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/fin_voice/phone_number/{phone_number}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: company: {
+    path: "/companies": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/companies/{company_id}": {
+      rename: param: "company_id": *"id"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+    path: "/contacts/{contact_id}/companies": {
+      op: create: method: *POST
+    }
+    path: "/contacts/{contact_id}/companies/{company_id}": {
+      rename: param: "company_id": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: company_attached_contact: {
+    path: "/companies/{company_id}/contacts": {
+      rename: param: "company_id": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: company_attached_segment: {
+    path: "/companies/{company_id}/segments": {
+      rename: param: "company_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: company_list: {
+    path: "/companies/list": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: company_scroll: {
+    path: "/companies/scroll": {
+      op: list: method: *GET
+    }
+  }
 
   entity: contact: {
     path: "/contacts": {
       op: create: method: *POST
       op: list: method: *GET
-      op: list: transform: res: *("`body.data`")|top
     }
-    path: "/contacts/{id}": {
+    path: "/contacts/find_by_external_id/{external_id}": {
+      op: load: method: *GET
+    }
+    path: "/contacts/merge": {
+      action: "merge": {}
+      op: create: method: *POST
+    }
+    path: "/contacts/{contact_id}": {
+      rename: param: "contact_id": *"id"
       op: load: method: *GET
       op: remove: method: *DELETE
       op: update: method: *PUT
+    }
+    path: "/contacts/{contact_id}/archive": {
+      action: "archive": {}
+      rename: param: "contact_id": *"id"
+      op: create: method: *POST
+    }
+    path: "/contacts/{contact_id}/block": {
+      action: "block": {}
+      rename: param: "contact_id": *"id"
+      op: create: method: *POST
+    }
+    path: "/contacts/{contact_id}/unarchive": {
+      action: "unarchive": {}
+      rename: param: "contact_id": *"id"
+      op: create: method: *POST
+    }
+    path: "/visitors/convert": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: contact_attached_company: {
+    path: "/contacts/{contact_id}/companies": {
+      rename: param: "contact_id": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: contact_list: {
+    path: "/contacts/search": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: contact_segment: {
+    path: "/contacts/{contact_id}/segments": {
+      rename: param: "contact_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: content: {
+    path: "/content/bulk_actions": {
+      action: "bulk_action": {}
+      op: create: method: *POST
+    }
+  }
+
+  entity: content_import_source: {
+    path: "/ai/content_import_sources": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/ai/content_import_sources/{source_id}": {
+      rename: param: "source_id": *"id"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: content_search: {
+    path: "/content/search": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: content_snippet: {
+    path: "/content_snippets": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/content_snippets/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: conversation: {
+    path: "/conversations": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/conversations/redact": {
+      action: "redact": {}
+      op: create: method: *POST
+    }
+    path: "/conversations/{conversation_id}": {
+      rename: param: "conversation_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/conversations/{conversation_id}/parts": {
+      action: "part": {}
+      rename: param: "conversation_id": *"id"
+      op: create: method: *POST
+    }
+    path: "/conversations/{conversation_id}/reply": {
+      action: "reply": {}
+      rename: param: "conversation_id": *"id"
+      op: create: method: *POST
+    }
+    path: "/conversations/{id}/merge": {
+      action: "merge": {}
+      op: create: method: *POST
+    }
+    path: "/tickets/{ticket_id}/linked_conversations": {
+      op: create: method: *POST
+    }
+    path: "/tickets/{ticket_id}/linked_conversations/{id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: conversation_attribute: {
+    path: "/conversations/attributes": {
+      op: create: method: *POST
+    }
+    path: "/conversations/attributes/{id}": {
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/conversations/attributes/{id}/options": {
+      rename: param: "id": *"attribute_id"
+      op: create: method: *POST
+    }
+    path: "/conversations/attributes/{id}/options/{option_id}": {
+      rename: param: "id": *"attribute_id"
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: conversation_attribute_list: {
+    path: "/conversations/attributes": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: conversation_list: {
+    path: "/conversations/search": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: conversation_participant: {
+    path: "/conversations/{conversation_id}/customers": {
+      action: "customers": {}
+      rename: param: "conversation_id": *"id"
+      op: create: method: *POST
+    }
+    path: "/conversations/{conversation_id}/customers/{contact_id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: custom_object_instance: {
+    path: "/custom_object_instances/{custom_object_type_identifier}": {
+      rename: param: "custom_object_type_identifier": *"id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.custom_attributes`")|top
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/custom_object_instances/{custom_object_type_identifier}/{custom_object_instance_id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.custom_attributes`")|top
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: data: {
+    path: "/download/content/data/{job_identifier}": {
+      rename: param: "job_identifier": *"id"
+      op: load: method: *GET
+    }
+    path: "/export/content/data": {
+      op: create: method: *POST
+    }
+    path: "/export/content/data/{job_identifier}": {
+      rename: param: "job_identifier": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: data_attribute: {
+    path: "/data_attributes": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/data_attributes/{data_attribute_id}": {
+      rename: param: "data_attribute_id": *"id"
+      op: update: method: *PUT
+    }
+  }
+
+  entity: data_connector: {
+    path: "/data_connectors": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/data_connectors/{id}": {
+      op: load: method: *GET
+      op: patch: method: *PATCH
+    }
+  }
+
+  entity: data_connector_execution_result: {
+    path: "/data_connectors/{data_connector_id}/execution_results/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: data_connector_execution_result_list: {
+    path: "/data_connectors/{data_connector_id}/execution_results": {
+      action: "execution_results": {}
+      rename: param: "data_connector_id": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: data_event: {
+    path: "/events": {
+      op: create: method: *POST
+    }
+    path: "/events/summaries": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: data_event_summary: {
+    path: "/events": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.events`")|top
+    }
+  }
+
+  entity: data_export: {
+    path: "/export/cancel/{job_identifier}": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: deleted: {
+    path: "/conversations/deleted": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: deleted_article_object: {
+    path: "/articles/{article_id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: deleted_company_object: {
+    path: "/companies/{company_id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: deleted_data_connector_object: {
+    path: "/data_connectors/{id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: deleted_internal_article_object: {
+    path: "/internal_articles": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/internal_articles/{internal_article_id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: deleted_object: {
+    path: "/news/news_items/{news_item_id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: email: {
+    path: "/emails": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/emails/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: external_page: {
+    path: "/ai/external_pages": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/ai/external_pages/{page_id}": {
+      rename: param: "page_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+  }
+
+  entity: fin_agent: {
+    path: "/fin/csat": {
+      op: create: method: *POST
+    }
+    path: "/fin/reply": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.errors`")|top
+    }
+    path: "/fin/start": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.errors`")|top
+    }
+  }
+
+  entity: handling_event: {
+    path: "/conversations/{id}/handling_events": {
+      rename: param: "id": *"conversation_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.handling_events`")|top
+    }
+  }
+
+  entity: help_center: {
+    path: "/help_center/collections": {
+      action: "collection": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.translated_content`")|top
+      op: list: method: *GET
+    }
+    path: "/help_center/collections/{collection_id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.translated_content`")|top
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.translated_content`")|top
+    }
+    path: "/help_center/help_centers": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/help_center/help_centers/{help_center_id}": {
+      rename: param: "help_center_id": *"id"
+      op: load: method: *GET
+    }
+    path: "/help_center/help_centers/{help_center_id}/redirects": {
+      action: "redirect": {}
+      rename: param: "help_center_id": *"id"
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/help_center/help_centers/{help_center_id}/redirects/{id}": {
+      rename: param: "help_center_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: internal_article: {
+    path: "/internal_articles/{internal_article_id}": {
+      rename: param: "internal_article_id": *"id"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: internal_article_search: {
+    path: "/internal_articles/search": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: ip_allowlist: {
+    path: "/ip_allowlist": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.ip_allowlist`")|top
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.ip_allowlist`")|top
+      op: update: transform: req: "ip_allowlist": *("`reqdata`")|top
+    }
+  }
+
+  entity: job: {
+    path: "/jobs/status/{job_id}": {
+      op: load: method: *GET
+    }
+    path: "/tickets/enqueue": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: macro: {
+    path: "/macros": {
+      op: list: method: *GET
+    }
+    path: "/macros/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: merge_history: {
+    path: "/contacts/{id}/merge_history": {
+      rename: param: "id": *"contact_id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: message: {
+    path: "/messages": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: news_item: {
+    path: "/news/news_items": {
+      op: create: method: *POST
+    }
+    path: "/news/news_items/{news_item_id}": {
+      rename: param: "news_item_id": *"id"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: newsfeed: {
+    path: "/news/newsfeeds/{newsfeed_id}": {
+      rename: param: "newsfeed_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: note: {
+    path: "/companies/{company_id}/notes": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/contacts/{contact_id}/notes": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/notes/{note_id}": {
+      rename: param: "note_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: office_hour: {
+    path: "/office_hours_schedules": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/office_hours_schedules/{id}": {
+      op: remove: method: *DELETE
+    }
+    path: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}": {
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: office_hours_exception: {
+    path: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: office_hours_schedule: {
+    path: "/office_hours_schedules/{id}": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: paginated: {
+    path: "/news/news_items": {
+      op: list: method: *GET
+    }
+    path: "/news/newsfeeds": {
+      op: list: method: *GET
+    }
+    path: "/news/newsfeeds/{newsfeed_id}/items": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: phone_switch: {
+    path: "/phone_call_redirects": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: reporting_data: {
+    path: "/download/reporting_data/{job_identifier}": {
+      rename: param: "job_identifier": *"id"
+      op: load: method: *GET
+    }
+    path: "/export/reporting_data/{job_identifier}": {
+      rename: param: "job_identifier": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: reporting_data_export: {
+    path: "/export/reporting_data/enqueue": {
+      op: create: method: *POST
+    }
+    path: "/export/reporting_data/get_datasets": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: segment: {
+    path: "/segments": {
+      op: list: method: *GET
+    }
+    path: "/segments/{segment_id}": {
+      rename: param: "segment_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: side_conversation: {
+    path: "/conversations/{id}/side_conversations": {
+      rename: param: "id": *"conversation_id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: subscription: {
+    path: "/contacts/{contact_id}/subscriptions": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/contacts/{contact_id}/subscriptions/{subscription_id}": {
+      rename: param: "subscription_id": *"id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: subscription_type: {
+    path: "/subscription_types": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: tag: {
+    path: "/articles/{article_id}/tags": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/articles/{article_id}/tags/{id}": {
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/contacts/{contact_id}/tags": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.applied_by`")|top
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/contacts/{contact_id}/tags/{tag_id}": {
+      rename: param: "tag_id": *"id"
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/content_snippets/{content_snippet_id}/tags": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/content_snippets/{content_snippet_id}/tags/{id}": {
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/conversations/{conversation_id}/tags": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/conversations/{conversation_id}/tags/{tag_id}": {
+      rename: param: "tag_id": *"id"
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/internal_articles/{internal_article_id}/tags": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/internal_articles/{internal_article_id}/tags/{id}": {
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/tags": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/tags/{tag_id}": {
+      rename: param: "tag_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/tickets/{ticket_id}/tags": {
+      op: create: method: *POST
+      op: create: transform: res: *("`body.applied_by`")|top
+    }
+    path: "/tickets/{ticket_id}/tags/{tag_id}": {
+      rename: param: "tag_id": *"id"
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.applied_by`")|top
+    }
+  }
+
+  entity: team: {
+    path: "/teams": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.teams`")|top
+    }
+    path: "/teams/{team_id}": {
+      rename: param: "team_id": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: team_metric_list: {
+    path: "/teams/{team_id}/metrics": {
+      action: "metrics": {}
+      rename: param: "team_id": *"id"
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: ticket: {
+    path: "/conversations/{conversation_id}/convert": {
+      op: create: method: *POST
+    }
+    path: "/tickets": {
+      op: create: method: *POST
+    }
+    path: "/tickets/{ticket_id}": {
+      rename: param: "ticket_id": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+      op: update: method: *PUT
+    }
+    path: "/tickets/{ticket_id}/change_type": {
+      action: "change_type": {}
+      rename: param: "ticket_id": *"id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: ticket_list: {
+    path: "/tickets/search": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: ticket_reply: {
+    path: "/tickets/{ticket_id}/reply": {
+      rename: param: "ticket_id": *"id"
+      op: create: method: *POST
+    }
+  }
+
+  entity: ticket_state: {
+    path: "/ticket_states": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+  }
+
+  entity: ticket_type: {
+    path: "/ticket_types": {
+      op: create: method: *POST
+      op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
+    }
+    path: "/ticket_types/{ticket_type_id}": {
+      rename: param: "ticket_type_id": *"id"
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: ticket_type_attribute: {
+    path: "/ticket_types/{ticket_type_id}/attributes": {
+      rename: param: "ticket_type_id": *"id"
+      op: create: method: *POST
+      op: create: transform: res: *("`body.input_options`")|top
+    }
+    path: "/ticket_types/{ticket_type_id}/attributes/{attribute_id}": {
+      rename: param: "attribute_id": *"id"
+      op: update: method: *PUT
+      op: update: transform: res: *("`body.input_options`")|top
+    }
+  }
+
+  entity: visitor: {
+    path: "/visitors": {
+      op: load: method: *GET
+      op: update: method: *PUT
+    }
+  }
+
+  entity: whatsapp_message_status: {
+    path: "/messages/whatsapp/status": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.error`")|top
+    }
+  }
+
+  entity: whatsapp_message_status_list: {
+    path: "/messages/status": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: workflow: {
+    path: "/export/workflows/{id}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.workflow`")|top
     }
   }
 

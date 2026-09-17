@@ -31,7 +31,7 @@ main: kit: flow: BasicContactFlow:
         ref: "contact_ref01",
         srcdatavar: "contact_ref01_data",
         suffix: "_up0",
-        textfield: "email"
+        textfield: "android_app_name"
       }
 
       op: "update",

@@ -64,20 +64,18 @@ class ContactDirectTest extends TestCase
             $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
             return;
         }
-        if ($setup["live"]) {
-            $this->markTestSkipped("live direct-load needs real ID — set *_ENTID env var with real IDs to run");
-            return;
-        }
         $client = $setup["client"];
 
         $params = [];
         $query = [];
-        if (!$setup["live"]) {
-            $params["id"] = "direct01";
+        if ($setup["live"]) {
+            $params["external_id"] = "cdd29344-5e0c-4ef0-ac56-f9ba2979bc27";
+        } else {
+            $params["external_id"] = "direct01";
         }
 
         $result = $client->direct([
-            "path" => "contacts/{id}",
+            "path" => "contacts/find_by_external_id/{external_id}",
             "method" => "GET",
             "params" => $params,
             "query" => $query,

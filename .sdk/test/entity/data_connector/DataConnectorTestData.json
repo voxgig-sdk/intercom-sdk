@@ -1,0 +1,2707 @@
+{
+  "existing": {
+    "data_connector": {
+      "DATA_CONNECTOR00": {
+        "audiences": [],
+        "body": "s123",
+        "bypass_authentication": true,
+        "client_function_name": "s125",
+        "client_function_timeout_ms": 294,
+        "configuration_response_type": "s127",
+        "created_at": "s128",
+        "created_by_admin_id": "CREATED_BY_ADMIN01",
+        "customer_authentication": true,
+        "data_inputs": [],
+        "data_transformation_type": "s12c",
+        "description": "s12d",
+        "direct_fin_usage": true,
+        "execution_results_url": "s12f",
+        "execution_type": "s130",
+        "headers": [],
+        "http_method": "s132",
+        "id": "DATA_CONNECTOR00",
+        "mock_response": {},
+        "name": "s135",
+        "object_mappings": [],
+        "response_fields": [],
+        "state": "s138",
+        "token_ids": [],
+        "type": "s13a",
+        "updated_at": "s13b",
+        "updated_by_admin_id": "UPDATED_BY_ADMIN01",
+        "url": "s13d",
+        "validate_missing_attributes": true
+      },
+      "DATA_CONNECTOR01": {
+        "audiences": [],
+        "body": "s245",
+        "bypass_authentication": true,
+        "client_function_name": "s247",
+        "client_function_timeout_ms": 584,
+        "configuration_response_type": "s249",
+        "created_at": "s24a",
+        "created_by_admin_id": "CREATED_BY_ADMIN01",
+        "customer_authentication": true,
+        "data_inputs": [],
+        "data_transformation_type": "s24e",
+        "description": "s24f",
+        "direct_fin_usage": true,
+        "execution_results_url": "s251",
+        "execution_type": "s252",
+        "headers": [],
+        "http_method": "s254",
+        "id": "DATA_CONNECTOR01",
+        "mock_response": {},
+        "name": "s257",
+        "object_mappings": [],
+        "response_fields": [],
+        "state": "s25a",
+        "token_ids": [],
+        "type": "s25c",
+        "updated_at": "s25d",
+        "updated_by_admin_id": "UPDATED_BY_ADMIN01",
+        "url": "s25f",
+        "validate_missing_attributes": true
+      },
+      "DATA_CONNECTOR02": {
+        "audiences": [],
+        "body": "s367",
+        "bypass_authentication": true,
+        "client_function_name": "s369",
+        "client_function_timeout_ms": 874,
+        "configuration_response_type": "s36b",
+        "created_at": "s36c",
+        "created_by_admin_id": "CREATED_BY_ADMIN01",
+        "customer_authentication": true,
+        "data_inputs": [],
+        "data_transformation_type": "s370",
+        "description": "s371",
+        "direct_fin_usage": true,
+        "execution_results_url": "s373",
+        "execution_type": "s374",
+        "headers": [],
+        "http_method": "s376",
+        "id": "DATA_CONNECTOR02",
+        "mock_response": {},
+        "name": "s379",
+        "object_mappings": [],
+        "response_fields": [],
+        "state": "s37c",
+        "token_ids": [],
+        "type": "s37e",
+        "updated_at": "s37f",
+        "updated_by_admin_id": "UPDATED_BY_ADMIN01",
+        "url": "s381",
+        "validate_missing_attributes": true
+      }
+    }
+  },
+  "new": {
+    "data_connector": {
+      "data_connector_ref01": {
+        "audiences": [],
+        "body": "s489",
+        "bypass_authentication": true,
+        "client_function_name": "s48b",
+        "client_function_timeout_ms": 1164,
+        "configuration_response_type": "s48d",
+        "created_at": "s48e",
+        "created_by_admin_id": "CREATED_BY_ADMIN01",
+        "customer_authentication": true,
+        "data_inputs": [],
+        "data_transformation_type": "s492",
+        "description": "s493",
+        "direct_fin_usage": true,
+        "execution_results_url": "s495",
+        "execution_type": "s496",
+        "headers": [],
+        "http_method": "s498",
+        "mock_response": {},
+        "name": "s49b",
+        "object_mappings": [],
+        "response_fields": [],
+        "state": "s49e",
+        "token_ids": [],
+        "type": "s4a0",
+        "updated_at": "s4a1",
+        "updated_by_admin_id": "UPDATED_BY_ADMIN01",
+        "url": "s4a3",
+        "validate_missing_attributes": true
+      }
+    }
+  },
+  "requests": {
+    "POST /data_connectors": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createDataConnector",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "data_connector_created": {
+                  "summary": "Data connector created",
+                  "value": {
+                    "audiences": [
+                      "leads",
+                      "visitors"
+                    ],
+                    "bypass_authentication": false,
+                    "customer_authentication": true,
+                    "data_inputs": [
+                      {
+                        "default_value": "",
+                        "description": "The order ID to look up",
+                        "name": "order_id",
+                        "required": true,
+                        "type": "string"
+                      }
+                    ],
+                    "description": "Looks up order status from an external service",
+                    "direct_fin_usage": true,
+                    "headers": [
+                      {
+                        "name": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "http_method": "get",
+                    "name": "Get Order Status",
+                    "url": "https://api.example.com/orders/{{order_id}}/status",
+                    "validate_missing_attributes": true
+                  }
+                },
+                "minimal": {
+                  "summary": "Minimal - name only",
+                  "value": {
+                    "name": "My Connector"
+                  }
+                },
+                "with_mock_response": {
+                  "summary": "With mock response",
+                  "value": {
+                    "mock_response": {
+                      "order": {
+                        "id": 12345,
+                        "status": "shipped"
+                      }
+                    },
+                    "name": "Order Lookup"
+                  }
+                }
+              },
+              "schema": {
+                "description": "You can create a data connector by providing the required parameters.",
+                "properties": {
+                  "audiences": {
+                    "description": "The user types this connector is available for.",
+                    "example": [
+                      "leads",
+                      "visitors"
+                    ],
+                    "items": {
+                      "enum": [
+                        "leads",
+                        "users",
+                        "visitors"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "body": {
+                    "description": "The request body template. Supports template variables.",
+                    "type": "string"
+                  },
+                  "bypass_authentication": {
+                    "description": "Whether authentication is bypassed entirely (public endpoint). Defaults to false.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "customer_authentication": {
+                    "description": "Whether the connector requires customer authentication before executing. Defaults to false.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "data_inputs": {
+                    "description": "Input parameters accepted by the connector.",
+                    "items": {
+                      "properties": {
+                        "default_value": {
+                          "description": "The default value for the parameter. Defaults to an empty string if omitted.",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "A description of the parameter.",
+                          "example": "The order ID to look up",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The parameter name.",
+                          "example": "order_id",
+                          "type": "string"
+                        },
+                        "required": {
+                          "description": "Whether the parameter is required.",
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "description": "The parameter type.",
+                          "enum": [
+                            "string",
+                            "integer",
+                            "decimal",
+                            "boolean"
+                          ],
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "description": {
+                    "description": "A description of what this data connector does.",
+                    "example": "Looks up order status from an external service",
+                    "type": "string"
+                  },
+                  "direct_fin_usage": {
+                    "description": "Whether the connector is used directly by Fin (true) or only in workflows (false). Defaults to false.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "headers": {
+                    "description": "HTTP headers to include in the request.",
+                    "items": {
+                      "properties": {
+                        "name": {
+                          "description": "The header name.",
+                          "example": "Content-Type",
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "The header value. Supports template variables.",
+                          "example": "application/json",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "http_method": {
+                    "description": "The HTTP method used when calling the external API.",
+                    "enum": [
+                      "get",
+                      "post",
+                      "put",
+                      "delete",
+                      "patch"
+                    ],
+                    "example": "get",
+                    "type": "string"
+                  },
+                  "mock_response": {
+                    "description": "A sample JSON response from the external API. Auto-generates `response_fields` and sets `configuration_response_type` to `mock_response_type`.",
+                    "example": {
+                      "order": {
+                        "id": 12345,
+                        "status": "shipped"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "name": {
+                    "description": "The name of the data connector.",
+                    "example": "Get Order Status",
+                    "type": "string"
+                  },
+                  "token_ids": {
+                    "description": "IDs of authentication tokens to attach to this data connector.",
+                    "example": [
+                      "1234",
+                      "5678"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "url": {
+                    "description": "The URL of the external API endpoint. Supports template variables like `{{order_id}}`.",
+                    "example": "https://api.example.com/orders/{{order_id}}/status",
+                    "type": "string"
+                  },
+                  "validate_missing_attributes": {
+                    "description": "Whether to validate that all required data inputs have values before executing.",
+                    "example": false,
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "title": "Create Data Connector Request",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Data connector created": {
+                    "value": {
+                      "audiences": [
+                        "leads",
+                        "visitors"
+                      ],
+                      "bypass_authentication": false,
+                      "client_function_timeout_ms": 30000,
+                      "configuration_response_type": "test_response_type",
+                      "created_at": "2026-03-19T11:27:36Z",
+                      "created_by_admin_id": "128",
+                      "customer_authentication": true,
+                      "data_inputs": [
+                        {
+                          "default_value": "",
+                          "description": "The order ID to look up",
+                          "name": "order_id",
+                          "required": true,
+                          "type": "string"
+                        }
+                      ],
+                      "data_transformation_type": "full_access",
+                      "description": "Looks up order status from an external service",
+                      "direct_fin_usage": true,
+                      "execution_results_url": "/data_connectors/125/execution_results",
+                      "execution_type": "server_side",
+                      "http_method": "get",
+                      "id": "125",
+                      "name": "Get Order Status",
+                      "object_mappings": [],
+                      "response_fields": [],
+                      "state": "draft",
+                      "token_ids": [],
+                      "type": "data_connector",
+                      "updated_at": "2026-03-19T11:27:36Z",
+                      "updated_by_admin_id": "128",
+                      "validate_missing_attributes": true
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Full detail view of a data connector, returned by `GET /data_connectors/{id}`.\nIncludes configuration, data inputs, response fields, and object mappings.\n",
+                  "properties": {
+                    "audiences": {
+                      "description": "The audience types this connector targets.",
+                      "example": [
+                        "users",
+                        "leads"
+                      ],
+                      "items": {
+                        "enum": [
+                          "users",
+                          "leads",
+                          "visitors"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "body": {
+                      "description": "The request body template. Supports template variables.",
+                      "example": "{\"text\": \"{{message}}\"}",
+                      "type": "string"
+                    },
+                    "bypass_authentication": {
+                      "description": "Whether authentication is bypassed for this connector.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "client_function_name": {
+                      "description": "The name of the client-side function, if applicable.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "client_function_timeout_ms": {
+                      "description": "Timeout in milliseconds for the client function, if applicable.",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "configuration_response_type": {
+                      "description": "The expected response format from the connector.",
+                      "enum": [
+                        "test_response_type",
+                        "mock_response_type"
+                      ],
+                      "example": "test_response_type",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "The time the data connector was created.",
+                      "example": "2025-11-15T09:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "created_by_admin_id": {
+                      "description": "The ID of the admin who created this connector.",
+                      "example": "456",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "customer_authentication": {
+                      "description": "Whether OTP authentication is enabled for this connector.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "data_inputs": {
+                      "description": "The input parameters accepted by this data connector.",
+                      "items": {
+                        "properties": {
+                          "default_value": {
+                            "description": "The default value for this input, if any.",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "A description of the input parameter.",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the input parameter.",
+                            "example": "conversation_id",
+                            "type": "string"
+                          },
+                          "required": {
+                            "description": "Whether this input is required.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "description": "The data type of the input.",
+                            "enum": [
+                              "string",
+                              "integer",
+                              "decimal",
+                              "boolean"
+                            ],
+                            "example": "string",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "data_transformation_type": {
+                      "description": "The type of data transformation applied to the response.",
+                      "enum": [
+                        "full_access",
+                        "redacted_access",
+                        "code_block_transformation"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "A description of what this data connector does.",
+                      "example": "Fetches order status from external fulfillment API",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "direct_fin_usage": {
+                      "description": "Whether this connector is used directly by Fin.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "execution_results_url": {
+                      "description": "The URL path to fetch execution results for this connector.",
+                      "example": "/data_connectors/12345/execution_results",
+                      "type": "string"
+                    },
+                    "execution_type": {
+                      "description": "How the connector executes.",
+                      "enum": [
+                        "server_side",
+                        "client_side"
+                      ],
+                      "example": "server_side",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "headers": {
+                      "description": "HTTP headers for the request. Header values are always redacted as `\"****\"` in responses.",
+                      "example": [
+                        {
+                          "name": "Authorization",
+                          "value": "****"
+                        }
+                      ],
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "description": "The header name.",
+                            "example": "Authorization",
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "Always `\"****\"` in responses.",
+                            "example": "****",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "http_method": {
+                      "description": "The HTTP method used by the data connector.",
+                      "enum": [
+                        "get",
+                        "post",
+                        "put",
+                        "delete",
+                        "patch"
+                      ],
+                      "example": "post",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the data connector.",
+                      "example": "12345",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the data connector.",
+                      "example": "Order Status Service",
+                      "type": "string"
+                    },
+                    "object_mappings": {
+                      "description": "Mappings from connector response objects to Intercom objects.",
+                      "items": {
+                        "properties": {
+                          "attribute_mappings": {
+                            "items": {
+                              "properties": {
+                                "intercom_attribute_identifier": {
+                                  "type": "string"
+                                },
+                                "mapping_type": {
+                                  "enum": [
+                                    "primitive_mapping",
+                                    "context_mapping"
+                                  ],
+                                  "type": "string"
+                                },
+                                "response_attribute_path": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "intercom_object_type": {
+                            "enum": [
+                              "conversation",
+                              "user"
+                            ],
+                            "type": "string"
+                          },
+                          "reference_mappings": {
+                            "items": {
+                              "properties": {
+                                "intercom_attribute_identifier": {
+                                  "type": "string"
+                                },
+                                "intercom_object_type": {
+                                  "enum": [
+                                    "conversation",
+                                    "user"
+                                  ],
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "response_object_path": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "response_fields": {
+                      "description": "The fields returned in the connector response.",
+                      "items": {
+                        "properties": {
+                          "example_value": {
+                            "description": "An example value for this field.",
+                            "example": "ok",
+                            "nullable": true
+                          },
+                          "path": {
+                            "description": "The JSON path of the response field.",
+                            "example": "status",
+                            "type": "string"
+                          },
+                          "redacted": {
+                            "description": "Whether this field is redacted in logs.",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "description": "The data type of the response field.",
+                            "enum": [
+                              "unknown",
+                              "string",
+                              "integer",
+                              "decimal",
+                              "datetime",
+                              "boolean"
+                            ],
+                            "example": "string",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "state": {
+                      "description": "The current state of the data connector.",
+                      "enum": [
+                        "draft",
+                        "live"
+                      ],
+                      "example": "live",
+                      "type": "string"
+                    },
+                    "token_ids": {
+                      "description": "IDs of authentication tokens associated with this connector.",
+                      "example": [],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of object - `data_connector`.",
+                      "enum": [
+                        "data_connector"
+                      ],
+                      "example": "data_connector",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the data connector was last updated.",
+                      "example": "2026-01-20T14:22:15Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "updated_by_admin_id": {
+                      "description": "The ID of the admin who last updated this connector.",
+                      "example": "456",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "The URL of the external API endpoint. Supports template variables like `{{order_id}}`.",
+                      "example": "https://api.example.com/orders/{{order_id}}/status",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "validate_missing_attributes": {
+                      "description": "Whether to validate missing attributes before execution.",
+                      "nullable": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "title": "Data Connector (Detail)",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Data connector created"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "test-uuid-replacement",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid audiences": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Invalid audiences. Must be a subset of: leads, users, visitors"
+                        }
+                      ],
+                      "request_id": "c5b56f3d-8b9e-5g4f-0d2b-3e6f9g8b7c4d",
+                      "type": "error.list"
+                    }
+                  },
+                  "Missing name": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_not_found",
+                          "message": "Name is required"
+                        }
+                      ],
+                      "request_id": "b4a45e2c-7a8d-4f3e-9c1a-2d5e8f7a6b3c",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid parameter"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /data_connectors": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "listDataConnectors",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The number of results to return per page. Defaults to 20, minimum 1, maximum 50.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The cursor value from `pages.next.starting_after` in a previous response. Used to paginate through results.",
+            "in": "query",
+            "name": "starting_after",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successful": {
+                    "value": {
+                      "data": [
+                        {
+                          "created_at": "2025-11-15T09:30:00Z",
+                          "created_by_admin_id": "128",
+                          "description": "Fetches order status from external fulfillment API",
+                          "direct_fin_usage": false,
+                          "execution_results_url": "/data_connectors/12345/execution_results",
+                          "http_method": "post",
+                          "id": "12345",
+                          "name": "Order Status Service",
+                          "state": "live",
+                          "type": "data_connector",
+                          "updated_at": "2026-01-20T14:22:15Z",
+                          "updated_by_admin_id": "128"
+                        }
+                      ],
+                      "pages": {
+                        "next": {
+                          "starting_after": "WzE3MDc1OTQ3MTUuMCwxMjM0NV0="
+                        },
+                        "per_page": 20,
+                        "type": "pages"
+                      },
+                      "type": "list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "A paginated list of data connectors.",
+                  "properties": {
+                    "data": {
+                      "description": "An array of data connector objects.",
+                      "items": {
+                        "description": "A data connector allows you to make HTTP requests to external APIs from Intercom workflows and AI agents.\n",
+                        "properties": {
+                          "created_at": {
+                            "description": "The time the data connector was created.",
+                            "example": "2025-11-15T09:30:00Z",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "created_by_admin_id": {
+                            "description": "The ID of the admin who created this data connector.",
+                            "example": "12345",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "A description of what this data connector does.",
+                            "example": "Fetches order status from external fulfillment API",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "direct_fin_usage": {
+                            "description": "Whether this data connector is assigned to Fin for direct usage.",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "execution_results_url": {
+                            "description": "The URL path to fetch execution results for this connector.",
+                            "example": "/data_connectors/12345/execution_results",
+                            "type": "string"
+                          },
+                          "http_method": {
+                            "description": "The HTTP method used by the data connector.",
+                            "enum": [
+                              "get",
+                              "post",
+                              "put",
+                              "delete",
+                              "patch"
+                            ],
+                            "example": "post",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The unique identifier for the data connector.",
+                            "example": "12345",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the data connector.",
+                            "example": "Order Status Service",
+                            "type": "string"
+                          },
+                          "state": {
+                            "description": "The current state of the data connector.",
+                            "enum": [
+                              "draft",
+                              "live"
+                            ],
+                            "example": "live",
+                            "type": "string"
+                          },
+                          "type": {
+                            "description": "The type of object - `data_connector`.",
+                            "enum": [
+                              "data_connector"
+                            ],
+                            "example": "data_connector",
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "description": "The time the data connector was last updated.",
+                            "example": "2026-01-20T14:22:15Z",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "updated_by_admin_id": {
+                            "description": "The ID of the admin who last updated this data connector.",
+                            "example": "12345",
+                            "type": "string"
+                          }
+                        },
+                        "title": "Data Connector",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "description": "Pagination information.",
+                      "properties": {
+                        "next": {
+                          "description": "Cursor for the next page of results.",
+                          "nullable": true,
+                          "properties": {
+                            "starting_after": {
+                              "description": "The cursor value to use for the next page.",
+                              "example": "WzE3MDc1OTQ3MTUuMCwxMjM0NV0=",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "per_page": {
+                          "description": "The number of results per page.",
+                          "example": 20,
+                          "type": "integer"
+                        },
+                        "type": {
+                          "enum": [
+                            "pages"
+                          ],
+                          "example": "pages",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "description": "The type of object - `list`.",
+                      "enum": [
+                        "list"
+                      ],
+                      "example": "list",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Data Connector List",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "successful"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid cursor": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "client_error",
+                          "message": "Invalid starting_after param. Please try again using a starting_after value from a paginated response"
+                        }
+                      ],
+                      "request_id": "test-uuid-replacement",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "test-uuid-replacement",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /data_connectors/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "RetrieveDataConnector",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the data connector.",
+            "example": "12345",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Which version of the data connector to return. Defaults to live.",
+            "in": "query",
+            "name": "state_version",
+            "required": false,
+            "schema": {
+              "default": "live",
+              "enum": [
+                "draft",
+                "live"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Data connector found": {
+                    "value": {
+                      "audiences": [
+                        "users",
+                        "leads"
+                      ],
+                      "bypass_authentication": false,
+                      "client_function_name": null,
+                      "client_function_timeout_ms": null,
+                      "configuration_response_type": "test_response_type",
+                      "created_at": "2025-11-15T09:30:00Z",
+                      "created_by_admin_id": "456",
+                      "customer_authentication": false,
+                      "data_inputs": [
+                        {
+                          "default_value": "",
+                          "description": "The Intercom conversation ID",
+                          "name": "conversation_id",
+                          "required": true,
+                          "type": "string"
+                        }
+                      ],
+                      "data_transformation_type": null,
+                      "description": "Fetches order status from external fulfillment API",
+                      "direct_fin_usage": false,
+                      "execution_results_url": "/data_connectors/12345/execution_results",
+                      "execution_type": "server_side",
+                      "http_method": "post",
+                      "id": "12345",
+                      "name": "Order Status Service",
+                      "object_mappings": [],
+                      "response_fields": [
+                        {
+                          "example_value": "ok",
+                          "path": "status",
+                          "redacted": false,
+                          "type": "string"
+                        }
+                      ],
+                      "state": "live",
+                      "token_ids": [],
+                      "type": "data_connector",
+                      "updated_at": "2026-01-20T14:22:15Z",
+                      "updated_by_admin_id": "456",
+                      "validate_missing_attributes": null
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Full detail view of a data connector, returned by `GET /data_connectors/{id}`.\nIncludes configuration, data inputs, response fields, and object mappings.\n",
+                  "properties": {
+                    "audiences": {
+                      "description": "The audience types this connector targets.",
+                      "example": [
+                        "users",
+                        "leads"
+                      ],
+                      "items": {
+                        "enum": [
+                          "users",
+                          "leads",
+                          "visitors"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "body": {
+                      "description": "The request body template. Supports template variables.",
+                      "example": "{\"text\": \"{{message}}\"}",
+                      "type": "string"
+                    },
+                    "bypass_authentication": {
+                      "description": "Whether authentication is bypassed for this connector.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "client_function_name": {
+                      "description": "The name of the client-side function, if applicable.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "client_function_timeout_ms": {
+                      "description": "Timeout in milliseconds for the client function, if applicable.",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "configuration_response_type": {
+                      "description": "The expected response format from the connector.",
+                      "enum": [
+                        "test_response_type",
+                        "mock_response_type"
+                      ],
+                      "example": "test_response_type",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "The time the data connector was created.",
+                      "example": "2025-11-15T09:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "created_by_admin_id": {
+                      "description": "The ID of the admin who created this connector.",
+                      "example": "456",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "customer_authentication": {
+                      "description": "Whether OTP authentication is enabled for this connector.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "data_inputs": {
+                      "description": "The input parameters accepted by this data connector.",
+                      "items": {
+                        "properties": {
+                          "default_value": {
+                            "description": "The default value for this input, if any.",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "A description of the input parameter.",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the input parameter.",
+                            "example": "conversation_id",
+                            "type": "string"
+                          },
+                          "required": {
+                            "description": "Whether this input is required.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "description": "The data type of the input.",
+                            "enum": [
+                              "string",
+                              "integer",
+                              "decimal",
+                              "boolean"
+                            ],
+                            "example": "string",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "data_transformation_type": {
+                      "description": "The type of data transformation applied to the response.",
+                      "enum": [
+                        "full_access",
+                        "redacted_access",
+                        "code_block_transformation"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "A description of what this data connector does.",
+                      "example": "Fetches order status from external fulfillment API",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "direct_fin_usage": {
+                      "description": "Whether this connector is used directly by Fin.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "execution_results_url": {
+                      "description": "The URL path to fetch execution results for this connector.",
+                      "example": "/data_connectors/12345/execution_results",
+                      "type": "string"
+                    },
+                    "execution_type": {
+                      "description": "How the connector executes.",
+                      "enum": [
+                        "server_side",
+                        "client_side"
+                      ],
+                      "example": "server_side",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "headers": {
+                      "description": "HTTP headers for the request. Header values are always redacted as `\"****\"` in responses.",
+                      "example": [
+                        {
+                          "name": "Authorization",
+                          "value": "****"
+                        }
+                      ],
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "description": "The header name.",
+                            "example": "Authorization",
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "Always `\"****\"` in responses.",
+                            "example": "****",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "http_method": {
+                      "description": "The HTTP method used by the data connector.",
+                      "enum": [
+                        "get",
+                        "post",
+                        "put",
+                        "delete",
+                        "patch"
+                      ],
+                      "example": "post",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the data connector.",
+                      "example": "12345",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the data connector.",
+                      "example": "Order Status Service",
+                      "type": "string"
+                    },
+                    "object_mappings": {
+                      "description": "Mappings from connector response objects to Intercom objects.",
+                      "items": {
+                        "properties": {
+                          "attribute_mappings": {
+                            "items": {
+                              "properties": {
+                                "intercom_attribute_identifier": {
+                                  "type": "string"
+                                },
+                                "mapping_type": {
+                                  "enum": [
+                                    "primitive_mapping",
+                                    "context_mapping"
+                                  ],
+                                  "type": "string"
+                                },
+                                "response_attribute_path": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "intercom_object_type": {
+                            "enum": [
+                              "conversation",
+                              "user"
+                            ],
+                            "type": "string"
+                          },
+                          "reference_mappings": {
+                            "items": {
+                              "properties": {
+                                "intercom_attribute_identifier": {
+                                  "type": "string"
+                                },
+                                "intercom_object_type": {
+                                  "enum": [
+                                    "conversation",
+                                    "user"
+                                  ],
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "response_object_path": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "response_fields": {
+                      "description": "The fields returned in the connector response.",
+                      "items": {
+                        "properties": {
+                          "example_value": {
+                            "description": "An example value for this field.",
+                            "example": "ok",
+                            "nullable": true
+                          },
+                          "path": {
+                            "description": "The JSON path of the response field.",
+                            "example": "status",
+                            "type": "string"
+                          },
+                          "redacted": {
+                            "description": "Whether this field is redacted in logs.",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "description": "The data type of the response field.",
+                            "enum": [
+                              "unknown",
+                              "string",
+                              "integer",
+                              "decimal",
+                              "datetime",
+                              "boolean"
+                            ],
+                            "example": "string",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "state": {
+                      "description": "The current state of the data connector.",
+                      "enum": [
+                        "draft",
+                        "live"
+                      ],
+                      "example": "live",
+                      "type": "string"
+                    },
+                    "token_ids": {
+                      "description": "IDs of authentication tokens associated with this connector.",
+                      "example": [],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of object - `data_connector`.",
+                      "enum": [
+                        "data_connector"
+                      ],
+                      "example": "data_connector",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the data connector was last updated.",
+                      "example": "2026-01-20T14:22:15Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "updated_by_admin_id": {
+                      "description": "The ID of the admin who last updated this connector.",
+                      "example": "456",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "The URL of the external API endpoint. Supports template variables like `{{order_id}}`.",
+                      "example": "https://api.example.com/orders/{{order_id}}/status",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "validate_missing_attributes": {
+                      "description": "Whether to validate missing attributes before execution.",
+                      "nullable": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "title": "Data Connector (Detail)",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Data connector found"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid state_version": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Invalid state_version. Must be one of: live, draft"
+                        }
+                      ],
+                      "request_id": "b4a45e2c-7a8d-4f3e-9c1a-2d5e8f7a6b3c",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid state_version parameter"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "test-uuid-replacement",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Data connector not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_connector_not_found",
+                          "message": "Data connector not found"
+                        }
+                      ],
+                      "request_id": "b4a45e2c-7a8d-4f3e-9c1a-2d5e8f7a6b3c",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/400/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/400/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Data connector not found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "PATCH /data_connectors/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateDataConnector",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The unique identifier of the data connector.",
+            "example": "12345",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "Set state to draft": {
+                  "summary": "Set a connector to draft",
+                  "value": {
+                    "state": "draft"
+                  }
+                },
+                "Set state to live": {
+                  "summary": "Set a connector to live",
+                  "value": {
+                    "state": "live"
+                  }
+                },
+                "Update name and description": {
+                  "summary": "Update basic fields",
+                  "value": {
+                    "description": "Updated description",
+                    "name": "Updated Connector Name"
+                  }
+                },
+                "with_mock_response": {
+                  "summary": "Update with mock response",
+                  "value": {
+                    "mock_response": {
+                      "user": {
+                        "email": "alice@example.com",
+                        "name": "Alice"
+                      }
+                    }
+                  }
+                }
+              },
+              "schema": {
+                "description": "Update an existing data connector. All fields are optional — only provided fields will be updated. Set `state` to `live` or `draft` to change the connector's state.\n",
+                "properties": {
+                  "audiences": {
+                    "description": "The audience types this connector targets.",
+                    "example": [
+                      "leads",
+                      "users"
+                    ],
+                    "items": {
+                      "enum": [
+                        "leads",
+                        "users",
+                        "visitors"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "body": {
+                    "description": "The request body template. Supports template variables.",
+                    "type": "string"
+                  },
+                  "bypass_authentication": {
+                    "description": "Whether authentication is bypassed for this connector.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "customer_authentication": {
+                    "description": "Whether OTP authentication is enabled for this connector.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "data_inputs": {
+                    "description": "The input parameters accepted by this data connector. Replaces all existing inputs.",
+                    "items": {
+                      "properties": {
+                        "default_value": {
+                          "description": "The default value for this input, if any.",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "A description of the input parameter. Required for each input.",
+                          "example": "The order ID to look up",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the input parameter.",
+                          "example": "order_id",
+                          "type": "string"
+                        },
+                        "required": {
+                          "description": "Whether this input is required.",
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "description": "The data type of the input.",
+                          "enum": [
+                            "string",
+                            "integer",
+                            "decimal",
+                            "boolean"
+                          ],
+                          "example": "string",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "description": {
+                    "description": "A description of what this data connector does.",
+                    "example": "Updated description",
+                    "type": "string"
+                  },
+                  "direct_fin_usage": {
+                    "description": "Whether this connector is used directly by Fin.",
+                    "example": false,
+                    "type": "boolean"
+                  },
+                  "headers": {
+                    "description": "HTTP headers to include in the request.",
+                    "items": {
+                      "properties": {
+                        "name": {
+                          "description": "The header name.",
+                          "example": "Content-Type",
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "The header value. Supports template variables.",
+                          "example": "application/json",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "http_method": {
+                    "description": "The HTTP method used by the data connector.",
+                    "enum": [
+                      "get",
+                      "post",
+                      "put",
+                      "delete",
+                      "patch"
+                    ],
+                    "example": "post",
+                    "type": "string"
+                  },
+                  "mock_response": {
+                    "description": "A sample JSON response from the external API. Auto-generates `response_fields` and sets `configuration_response_type` to `mock_response_type`.",
+                    "example": {
+                      "order": {
+                        "id": 12345,
+                        "status": "shipped"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "name": {
+                    "description": "The name of the data connector.",
+                    "example": "Updated Connector Name",
+                    "type": "string"
+                  },
+                  "state": {
+                    "description": "The desired state of the connector.",
+                    "enum": [
+                      "draft",
+                      "live"
+                    ],
+                    "type": "string"
+                  },
+                  "token_ids": {
+                    "description": "IDs of authentication tokens to attach to this data connector. An empty array removes all tokens.",
+                    "example": [
+                      "1234",
+                      "5678"
+                    ],
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "url": {
+                    "description": "The URL of the external API endpoint. Supports template variables like `{{order_id}}`.",
+                    "example": "https://api.example.com/orders/{{order_id}}/status",
+                    "type": "string"
+                  },
+                  "validate_missing_attributes": {
+                    "description": "Whether to validate missing attributes before execution.",
+                    "example": true,
+                    "type": "boolean"
+                  }
+                },
+                "title": "Update Data Connector Request",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Data connector updated": {
+                    "value": {
+                      "audiences": [
+                        "users",
+                        "leads"
+                      ],
+                      "bypass_authentication": false,
+                      "client_function_name": null,
+                      "client_function_timeout_ms": null,
+                      "configuration_response_type": "test_response_type",
+                      "created_at": "2025-11-15T09:30:00Z",
+                      "created_by_admin_id": "456",
+                      "customer_authentication": false,
+                      "data_inputs": [
+                        {
+                          "default_value": "",
+                          "description": "The Intercom conversation ID",
+                          "name": "conversation_id",
+                          "required": true,
+                          "type": "string"
+                        }
+                      ],
+                      "data_transformation_type": null,
+                      "description": "Updated description",
+                      "direct_fin_usage": false,
+                      "execution_results_url": "/data_connectors/12345/execution_results",
+                      "execution_type": "server_side",
+                      "http_method": "post",
+                      "id": "12345",
+                      "name": "Updated Connector Name",
+                      "object_mappings": [],
+                      "response_fields": [],
+                      "state": "draft",
+                      "token_ids": [],
+                      "type": "data_connector",
+                      "updated_at": "2026-03-24T14:22:15Z",
+                      "updated_by_admin_id": "456",
+                      "validate_missing_attributes": false
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "Full detail view of a data connector, returned by `GET /data_connectors/{id}`.\nIncludes configuration, data inputs, response fields, and object mappings.\n",
+                  "properties": {
+                    "audiences": {
+                      "description": "The audience types this connector targets.",
+                      "example": [
+                        "users",
+                        "leads"
+                      ],
+                      "items": {
+                        "enum": [
+                          "users",
+                          "leads",
+                          "visitors"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "body": {
+                      "description": "The request body template. Supports template variables.",
+                      "example": "{\"text\": \"{{message}}\"}",
+                      "type": "string"
+                    },
+                    "bypass_authentication": {
+                      "description": "Whether authentication is bypassed for this connector.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "client_function_name": {
+                      "description": "The name of the client-side function, if applicable.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "client_function_timeout_ms": {
+                      "description": "Timeout in milliseconds for the client function, if applicable.",
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "configuration_response_type": {
+                      "description": "The expected response format from the connector.",
+                      "enum": [
+                        "test_response_type",
+                        "mock_response_type"
+                      ],
+                      "example": "test_response_type",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "The time the data connector was created.",
+                      "example": "2025-11-15T09:30:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "created_by_admin_id": {
+                      "description": "The ID of the admin who created this connector.",
+                      "example": "456",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "customer_authentication": {
+                      "description": "Whether OTP authentication is enabled for this connector.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "data_inputs": {
+                      "description": "The input parameters accepted by this data connector.",
+                      "items": {
+                        "properties": {
+                          "default_value": {
+                            "description": "The default value for this input, if any.",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "A description of the input parameter.",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the input parameter.",
+                            "example": "conversation_id",
+                            "type": "string"
+                          },
+                          "required": {
+                            "description": "Whether this input is required.",
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "description": "The data type of the input.",
+                            "enum": [
+                              "string",
+                              "integer",
+                              "decimal",
+                              "boolean"
+                            ],
+                            "example": "string",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "data_transformation_type": {
+                      "description": "The type of data transformation applied to the response.",
+                      "enum": [
+                        "full_access",
+                        "redacted_access",
+                        "code_block_transformation"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "A description of what this data connector does.",
+                      "example": "Fetches order status from external fulfillment API",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "direct_fin_usage": {
+                      "description": "Whether this connector is used directly by Fin.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "execution_results_url": {
+                      "description": "The URL path to fetch execution results for this connector.",
+                      "example": "/data_connectors/12345/execution_results",
+                      "type": "string"
+                    },
+                    "execution_type": {
+                      "description": "How the connector executes.",
+                      "enum": [
+                        "server_side",
+                        "client_side"
+                      ],
+                      "example": "server_side",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "headers": {
+                      "description": "HTTP headers for the request. Header values are always redacted as `\"****\"` in responses.",
+                      "example": [
+                        {
+                          "name": "Authorization",
+                          "value": "****"
+                        }
+                      ],
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "description": "The header name.",
+                            "example": "Authorization",
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "Always `\"****\"` in responses.",
+                            "example": "****",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "http_method": {
+                      "description": "The HTTP method used by the data connector.",
+                      "enum": [
+                        "get",
+                        "post",
+                        "put",
+                        "delete",
+                        "patch"
+                      ],
+                      "example": "post",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The unique identifier for the data connector.",
+                      "example": "12345",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the data connector.",
+                      "example": "Order Status Service",
+                      "type": "string"
+                    },
+                    "object_mappings": {
+                      "description": "Mappings from connector response objects to Intercom objects.",
+                      "items": {
+                        "properties": {
+                          "attribute_mappings": {
+                            "items": {
+                              "properties": {
+                                "intercom_attribute_identifier": {
+                                  "type": "string"
+                                },
+                                "mapping_type": {
+                                  "enum": [
+                                    "primitive_mapping",
+                                    "context_mapping"
+                                  ],
+                                  "type": "string"
+                                },
+                                "response_attribute_path": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "intercom_object_type": {
+                            "enum": [
+                              "conversation",
+                              "user"
+                            ],
+                            "type": "string"
+                          },
+                          "reference_mappings": {
+                            "items": {
+                              "properties": {
+                                "intercom_attribute_identifier": {
+                                  "type": "string"
+                                },
+                                "intercom_object_type": {
+                                  "enum": [
+                                    "conversation",
+                                    "user"
+                                  ],
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "response_object_path": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "response_fields": {
+                      "description": "The fields returned in the connector response.",
+                      "items": {
+                        "properties": {
+                          "example_value": {
+                            "description": "An example value for this field.",
+                            "example": "ok",
+                            "nullable": true
+                          },
+                          "path": {
+                            "description": "The JSON path of the response field.",
+                            "example": "status",
+                            "type": "string"
+                          },
+                          "redacted": {
+                            "description": "Whether this field is redacted in logs.",
+                            "example": false,
+                            "type": "boolean"
+                          },
+                          "type": {
+                            "description": "The data type of the response field.",
+                            "enum": [
+                              "unknown",
+                              "string",
+                              "integer",
+                              "decimal",
+                              "datetime",
+                              "boolean"
+                            ],
+                            "example": "string",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "state": {
+                      "description": "The current state of the data connector.",
+                      "enum": [
+                        "draft",
+                        "live"
+                      ],
+                      "example": "live",
+                      "type": "string"
+                    },
+                    "token_ids": {
+                      "description": "IDs of authentication tokens associated with this connector.",
+                      "example": [],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The type of object - `data_connector`.",
+                      "enum": [
+                        "data_connector"
+                      ],
+                      "example": "data_connector",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "The time the data connector was last updated.",
+                      "example": "2026-01-20T14:22:15Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "updated_by_admin_id": {
+                      "description": "The ID of the admin who last updated this connector.",
+                      "example": "456",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "The URL of the external API endpoint. Supports template variables like `{{order_id}}`.",
+                      "example": "https://api.example.com/orders/{{order_id}}/status",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "validate_missing_attributes": {
+                      "description": "Whether to validate missing attributes before execution.",
+                      "nullable": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "title": "Data Connector (Detail)",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Data connector updated"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "test-uuid-replacement",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Data connector not found": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_connector_not_found",
+                          "message": "Data connector not found"
+                        }
+                      ],
+                      "request_id": "b4a45e2c-7a8d-4f3e-9c1a-2d5e8f7a6b3c",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Data connector not found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Data connector in use": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "data_connector_in_use",
+                          "message": "Data connector is in use by other resources and cannot be set to draft"
+                        }
+                      ],
+                      "request_id": "d6c78e4f-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid audiences": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Invalid audiences. Must be a subset of: leads, users, visitors"
+                        }
+                      ],
+                      "request_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                      "type": "error.list"
+                    }
+                  },
+                  "Invalid field value": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Http Method isn't an option"
+                        }
+                      ],
+                      "request_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                      "type": "error.list"
+                    }
+                  },
+                  "Invalid state": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "parameter_invalid",
+                          "message": "Invalid state. Must be one of: draft, live"
+                        }
+                      ],
+                      "request_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "$ref": "#/responses/401/content/application~1json/schema/properties"
+                  },
+                  "required": {
+                    "$ref": "#/responses/401/content/application~1json/schema/required"
+                  },
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid parameter"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

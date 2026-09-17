@@ -1,0 +1,432 @@
+{
+  "existing": {
+    "data_event": {
+      "DATA_EVENT00": {
+        "created_at": 70,
+        "email": "s47",
+        "event_name": "s48",
+        "event_summaries": {},
+        "id": "DATA_EVENT00",
+        "metadata": {},
+        "user_id": "USER01"
+      },
+      "DATA_EVENT01": {
+        "created_at": 140,
+        "email": "s8d",
+        "event_name": "s8e",
+        "event_summaries": {},
+        "id": "DATA_EVENT01",
+        "metadata": {},
+        "user_id": "USER01"
+      },
+      "DATA_EVENT02": {
+        "created_at": 210,
+        "email": "sd3",
+        "event_name": "sd4",
+        "event_summaries": {},
+        "id": "DATA_EVENT02",
+        "metadata": {},
+        "user_id": "USER01"
+      }
+    }
+  },
+  "new": {
+    "data_event": {
+      "data_event_ref01": {
+        "created_at": 280,
+        "email": "s119",
+        "event_name": "s11a",
+        "event_summaries": {},
+        "metadata": {},
+        "user_id": "USER01"
+      }
+    }
+  },
+  "requests": {
+    "POST /events": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createDataEvent",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "event_name",
+                      "created_at",
+                      "id"
+                    ],
+                    "title": "id required"
+                  },
+                  {
+                    "required": [
+                      "event_name",
+                      "created_at",
+                      "user_id"
+                    ],
+                    "title": "user_id required"
+                  },
+                  {
+                    "required": [
+                      "event_name",
+                      "created_at",
+                      "email"
+                    ],
+                    "title": "email required"
+                  }
+                ],
+                "description": "",
+                "properties": {
+                  "created_at": {
+                    "description": "The time the event occurred as a UTC Unix timestamp",
+                    "example": 1671028894,
+                    "format": "date-time",
+                    "type": "integer"
+                  },
+                  "email": {
+                    "description": "An email address for your user. An email should only be used where your application uses email to uniquely identify users.",
+                    "example": "frodo.baggins@example.com",
+                    "type": "string"
+                  },
+                  "event_name": {
+                    "description": "The name of the event that occurred. This is presented to your App's admins when filtering and creating segments - a good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`.",
+                    "example": "invited-friend",
+                    "type": "string"
+                  },
+                  "id": {
+                    "description": "The unique identifier for the contact (lead or user) which is given by Intercom.",
+                    "example": "8a88a590-e1c3-41e2-a502-e0649dbf721c",
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "Optional metadata about the event.",
+                    "example": {
+                      "invite_code": "ADDAFRIEND"
+                    },
+                    "type": "object"
+                  },
+                  "user_id": {
+                    "description": "Your identifier for the user.",
+                    "example": "314159",
+                    "type": "string"
+                  }
+                },
+                "title": "Create Data Event Request",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "212c8206-e7a6-44c8-8f27-5f0ad7f1d243",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "POST /events/summaries": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "dataEventSummaries",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "You can send a list of event summaries for a user. Each event summary should contain the event name, the time the event occurred, and the number of times the event occurred. The event name should be a past tense \"verb-noun\" combination, to improve readability, for example `updated-plan`.",
+                "properties": {
+                  "event_summaries": {
+                    "description": "A list of event summaries for the user. Each event summary should contain the event name, the time the event occurred, and the number of times the event occurred. The event name should be a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`.",
+                    "properties": {
+                      "count": {
+                        "description": "The number of times the event occurred.",
+                        "example": 1,
+                        "type": "integer"
+                      },
+                      "event_name": {
+                        "description": "The name of the event that occurred. A good event name is typically a past tense 'verb-noun' combination, to improve readability, for example `updated-plan`.",
+                        "example": "invited-friend",
+                        "type": "string"
+                      },
+                      "first": {
+                        "description": "The first time the event was sent",
+                        "example": 1671028894,
+                        "format": "date-time",
+                        "type": "integer"
+                      },
+                      "last": {
+                        "description": "The last time the event was sent",
+                        "example": 1671028894,
+                        "format": "date-time",
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "user_id": {
+                    "description": "Your identifier for the user.",
+                    "example": "314159",
+                    "type": "string"
+                  }
+                },
+                "title": "Create Data Event Summaries Request",
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "7a7d8425-2c1b-46ab-8133-c043fc1e5711",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

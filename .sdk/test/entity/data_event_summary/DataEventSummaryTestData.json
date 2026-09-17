@@ -1,0 +1,323 @@
+{
+  "existing": {
+    "data_event_summary": {
+      "DATA_EVENT_SUMMARY00": {
+        "count": 50,
+        "description": "s33",
+        "first": "s34",
+        "last": "s35",
+        "name": "s36"
+      },
+      "DATA_EVENT_SUMMARY01": {
+        "count": 100,
+        "description": "s65",
+        "first": "s66",
+        "last": "s67",
+        "name": "s68"
+      },
+      "DATA_EVENT_SUMMARY02": {
+        "count": 150,
+        "description": "s97",
+        "first": "s98",
+        "last": "s99",
+        "name": "s9a"
+      }
+    }
+  },
+  "new": {
+    "data_event_summary": {
+      "data_event_summary_ref01": {
+        "count": 200,
+        "description": "sc9",
+        "first": "sca",
+        "last": "scb",
+        "name": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /events": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "lisDataEvents",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Intercom-Version",
+            "schema": {
+              "default": "2.16",
+              "description": "Intercom API version.</br>By default, it's equal to the version set in the app package.",
+              "enum": [
+                "1.0",
+                "1.1",
+                "1.2",
+                "1.3",
+                "1.4",
+                "2.0",
+                "2.1",
+                "2.2",
+                "2.3",
+                "2.4",
+                "2.5",
+                "2.6",
+                "2.7",
+                "2.8",
+                "2.9",
+                "2.10",
+                "2.11",
+                "2.12",
+                "2.13",
+                "2.14",
+                "2.15",
+                "2.16"
+              ],
+              "example": "2.16",
+              "type": "string"
+            }
+          },
+          {
+            "explode": true,
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "user_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "user_id"
+                  ],
+                  "title": "user_id query parameter"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "intercom_user_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "intercom_user_id"
+                  ],
+                  "title": "intercom_user_id query parameter"
+                },
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "email"
+                  ],
+                  "title": "email query parameter"
+                }
+              ],
+              "type": "object"
+            },
+            "style": "form"
+          },
+          {
+            "description": "The value must be user",
+            "in": "query",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "summary flag",
+            "in": "query",
+            "name": "summary",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Successful response": {
+                    "value": {
+                      "email": "user26@email.com",
+                      "events": [],
+                      "intercom_user_id": "6762f22b1bb69f9f2193bc12",
+                      "pages": {
+                        "next": "http://api.intercom.test/events?next page"
+                      },
+                      "type": "event.summary",
+                      "user_id": "3ecf64d0-9ed1-4e9f-88e1-da7d6e6782f3"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "This will return a summary of data events for the App.",
+                  "properties": {
+                    "email": {
+                      "description": "The email address of the user",
+                      "example": "Sam.Sung@example.com",
+                      "type": "string"
+                    },
+                    "events": {
+                      "description": "A summary of data events",
+                      "items": {
+                        "description": "This will return a summary of a data event for the App.",
+                        "nullable": true,
+                        "properties": {
+                          "count": {
+                            "description": "The number of times the event was sent",
+                            "example": 1,
+                            "type": "integer"
+                          },
+                          "description": {
+                            "description": "The description of the event",
+                            "example": "A user placed an order",
+                            "type": "string"
+                          },
+                          "first": {
+                            "description": "The first time the event was sent",
+                            "example": "2014-01-16T23:12:21.000+00:00",
+                            "type": "string"
+                          },
+                          "last": {
+                            "description": "The last time the event was sent",
+                            "example": "2014-01-16T23:12:21.000+00:00 ",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the event",
+                            "example": "placed-order",
+                            "type": "string"
+                          }
+                        },
+                        "title": "Data Event Summary Item",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "intercom_user_id": {
+                      "description": "The Intercom user ID of the user",
+                      "example": "63a0979a5eeebeaf28dd56ba",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of the object",
+                      "enum": [
+                        "event.summary"
+                      ],
+                      "example": "event.summary",
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "description": "The user ID of the user",
+                      "example": "62b997f288e14803c5006932",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Data Event Summary",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Unauthorized": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "unauthorized",
+                          "message": "Access Token Invalid"
+                        }
+                      ],
+                      "request_id": "e6f50446-be4a-40ac-8c8d-6fb91e1040fd",
+                      "type": "error.list"
+                    }
+                  }
+                },
+                "schema": {
+                  "description": "The API will return an Error List for a failed request, which will contain one or more Error objects.",
+                  "properties": {
+                    "errors": {
+                      "description": "An array of one or more error objects",
+                      "items": {
+                        "properties": {
+                          "code": {
+                            "description": "A string indicating the kind of error, used to further qualify the HTTP response code",
+                            "example": "unauthorized",
+                            "type": "string"
+                          },
+                          "field": {
+                            "description": "Optional. Used to identify a particular field or query parameter that was in error.",
+                            "example": "email",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "message": {
+                            "description": "Optional. Human readable description of the error.",
+                            "example": "Access Token Invalid",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "code"
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "request_id": {
+                      "description": "",
+                      "example": "f93ecfa8-d08a-4325-8694-89aeb89c8f85",
+                      "format": "uuid",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type is error.list",
+                      "example": "error.list",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "errors"
+                  ],
+                  "title": "Error",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "bearerAuth": {
+            "scheme": "bearer",
+            "type": "http"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
+  }
+}

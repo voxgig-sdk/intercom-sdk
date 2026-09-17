@@ -20,7 +20,7 @@ import (
 const prompt = "intercom"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "contact"
+const entitiesHelp = "activity_log activity_log_event_type activity_log_list admin admin_with_app ai_call ai_content article article_search article_version article_version_list audience away_status_reason banner banner_dismiss brand call company company_attached_contact company_attached_segment company_list company_scroll contact contact_attached_company contact_list contact_segment content content_import_source content_search content_snippet conversation conversation_attribute conversation_attribute_list conversation_list conversation_participant custom_object_instance data data_attribute data_connector data_connector_execution_result data_connector_execution_result_list data_event data_event_summary data_export deleted deleted_article_object deleted_company_object deleted_data_connector_object deleted_internal_article_object deleted_object email external_page fin_agent handling_event help_center internal_article internal_article_search ip_allowlist job macro merge_history message news_item newsfeed note office_hour office_hours_exception office_hours_schedule paginated phone_switch reporting_data reporting_data_export segment side_conversation subscription subscription_type tag team team_metric_list ticket ticket_list ticket_reply ticket_state ticket_type ticket_type_attribute visitor whatsapp_message_status whatsapp_message_status_list workflow"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

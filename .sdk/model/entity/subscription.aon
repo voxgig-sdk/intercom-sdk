@@ -1,0 +1,274 @@
+# Entity: subscription
+
+main: kit: entity: subscription: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "consent_type"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "Describes the type of consent."
+      type: "`$STRING`"
+    }
+    {
+      name: "content_types"
+      req: false
+      short: "The message types that this subscription supports - can contain `email` or `sms_message`."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "default_translation"
+      req: false
+      short: "A translation object contains the localised details of a subscription type."
+      type: "`$OBJECT`"
+    }
+    {
+      name: "id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "The unique identifier representing the subscription type."
+      type: "`$STRING`"
+    }
+    {
+      name: "state"
+      req: false
+      short: "The state of the subscription type."
+      type: "`$STRING`"
+    }
+    {
+      name: "translations"
+      req: false
+      short: "An array of translations objects with the localised version of the subscription type in each available locale within your translation settings."
+      type: "`$ARRAY`"
+    }
+    {
+      name: "type"
+      req: false
+      short: "The type of the object - subscription"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "subscription"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "63a07ddf05a32042dffac965"
+                kind: "param"
+                name: "contact_id"
+                orig: "contact_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "POST /contacts/{contact_id}/subscriptions"
+            json: "{\"operationId\":\"attachSubscriptionTypeToContact\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the contact which is given by Intercom\",\"example\":\"63a07ddf05a32042dffac965\",\"in\":\"path\",\"name\":\"contact_id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"contact_not_found\":{\"summary\":\"Contact not found\",\"value\":{\"consent_type\":\"opt_in\",\"id\":110}},\"resource_not_found\":{\"summary\":\"Resource not found\",\"value\":{\"consent_type\":\"opt_in\",\"id\":\"invalid_id\"}},\"successful\":{\"summary\":\"Successful\",\"value\":{\"consent_type\":\"opt_in\",\"id\":106}}},\"schema\":{\"properties\":{\"consent_type\":{\"description\":\"The consent_type of a subscription, opt_out or opt_in.\",\"example\":\"opt_in\",\"type\":\"string\"},\"id\":{\"description\":\"The unique identifier for the subscription which is given by Intercom\",\"example\":\"37846\",\"type\":\"string\"}},\"required\":[\"id\",\"consent_type\"],\"type\":\"object\"}}}},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful\":{\"value\":{\"consent_type\":\"opt_in\",\"content_types\":[\"sms_message\"],\"default_translation\":{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"},\"id\":\"106\",\"state\":\"live\",\"translations\":[{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"}],\"type\":\"subscription\"}}},\"schema\":{\"description\":\"A subscription type lets customers easily opt out of non-essential communications without missing what's important to them.\",\"properties\":{\"consent_type\":{\"description\":\"Describes the type of consent.\",\"enum\":[\"opt_out\",\"opt_in\"],\"example\":\"opt_in\",\"type\":\"string\"},\"content_types\":{\"description\":\"The message types that this subscription supports - can contain `email` or `sms_message`.\",\"items\":{\"enum\":[\"email\",\"sms_message\"],\"example\":\"email\",\"type\":\"string\"},\"type\":\"array\"},\"default_translation\":{\"description\":\"A translation object contains the localised details of a subscription type.\",\"properties\":{\"description\":{\"description\":\"The localised description of the subscription type.\",\"example\":\"Offers, product and feature announcements\",\"type\":\"string\"},\"locale\":{\"description\":\"The two character identifier for the language of the translation object.\",\"example\":\"en\",\"type\":\"string\"},\"name\":{\"description\":\"The localised name of the subscription type.\",\"example\":\"Announcements\",\"type\":\"string\"}},\"title\":\"Translation\",\"type\":\"object\"},\"id\":{\"description\":\"The unique identifier representing the subscription type.\",\"example\":\"123456\",\"type\":\"string\"},\"state\":{\"description\":\"The state of the subscription type.\",\"enum\":[\"live\",\"draft\",\"archived\"],\"example\":\"live\",\"type\":\"string\"},\"translations\":{\"description\":\"An array of translations objects with the localised version of the subscription type in each available locale within your translation settings.\",\"items\":{\"description\":\"A translation object contains the localised details of a subscription type.\",\"properties\":{\"description\":{\"description\":\"The localised description of the subscription type.\",\"example\":\"Offers, product and feature announcements\",\"type\":\"string\"},\"locale\":{\"description\":\"The two character identifier for the language of the translation object.\",\"example\":\"en\",\"type\":\"string\"},\"name\":{\"description\":\"The localised name of the subscription type.\",\"example\":\"Announcements\",\"type\":\"string\"}},\"title\":\"Translation\",\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - subscription\",\"example\":\"subscription\",\"type\":\"string\"}},\"title\":\"Subscription Types\",\"type\":\"object\"}}},\"description\":\"Successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"f615465d-fd5f-4d68-8498-389130b897e4\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Contact not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"User Not Found\"}],\"request_id\":\"0c2871af-abed-4bce-a5c5-77efbe721711\",\"type\":\"error.list\"}},\"Resource not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Resource Not Found\"}],\"request_id\":\"2774db46-34d9-4925-a24d-8203d4a39f65\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "POST"
+          orig: "/contacts/{contact_id}/subscriptions"
+          segments: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "subscriptions"
+            }
+          ]
+          select: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "63a07ddf05a32042dffac965"
+                kind: "param"
+                name: "contact_id"
+                orig: "contact_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "GET /contacts/{contact_id}/subscriptions"
+            json: "{\"operationId\":\"listSubscriptionsForAContact\",\"parameters\":[{\"description\":\"The unique identifier for the contact which is given by Intercom\",\"example\":\"63a07ddf05a32042dffac965\",\"in\":\"path\",\"name\":\"contact_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful\":{\"value\":{\"data\":[{\"consent_type\":\"opt_out\",\"content_types\":[\"email\"],\"default_translation\":{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"},\"id\":\"91\",\"state\":\"live\",\"translations\":[{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"}],\"type\":\"subscription\"},{\"consent_type\":\"opt_in\",\"content_types\":[\"sms_message\"],\"default_translation\":{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"},\"id\":\"93\",\"state\":\"live\",\"translations\":[{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"}],\"type\":\"subscription\"}],\"type\":\"list\"}}},\"schema\":{\"description\":\"A list of subscription type objects.\",\"properties\":{\"data\":{\"description\":\"A list of subscription type objects associated with the workspace .\",\"items\":{\"description\":\"A subscription type lets customers easily opt out of non-essential communications without missing what's important to them.\",\"properties\":{\"consent_type\":{\"description\":\"Describes the type of consent.\",\"enum\":[\"opt_out\",\"opt_in\"],\"example\":\"opt_in\",\"type\":\"string\"},\"content_types\":{\"description\":\"The message types that this subscription supports - can contain `email` or `sms_message`.\",\"items\":{\"enum\":[\"email\",\"sms_message\"],\"example\":\"email\",\"type\":\"string\"},\"type\":\"array\"},\"default_translation\":{\"description\":\"A translation object contains the localised details of a subscription type.\",\"properties\":{\"description\":{\"description\":\"The localised description of the subscription type.\",\"example\":\"Offers, product and feature announcements\",\"type\":\"string\"},\"locale\":{\"description\":\"The two character identifier for the language of the translation object.\",\"example\":\"en\",\"type\":\"string\"},\"name\":{\"description\":\"The localised name of the subscription type.\",\"example\":\"Announcements\",\"type\":\"string\"}},\"title\":\"Translation\",\"type\":\"object\"},\"id\":{\"description\":\"The unique identifier representing the subscription type.\",\"example\":\"123456\",\"type\":\"string\"},\"state\":{\"description\":\"The state of the subscription type.\",\"enum\":[\"live\",\"draft\",\"archived\"],\"example\":\"live\",\"type\":\"string\"},\"translations\":{\"description\":\"An array of translations objects with the localised version of the subscription type in each available locale within your translation settings.\",\"items\":{\"description\":\"A translation object contains the localised details of a subscription type.\",\"properties\":{\"description\":{\"description\":\"The localised description of the subscription type.\",\"example\":\"Offers, product and feature announcements\",\"type\":\"string\"},\"locale\":{\"description\":\"The two character identifier for the language of the translation object.\",\"example\":\"en\",\"type\":\"string\"},\"name\":{\"description\":\"The localised name of the subscription type.\",\"example\":\"Announcements\",\"type\":\"string\"}},\"title\":\"Translation\",\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - subscription\",\"example\":\"subscription\",\"type\":\"string\"}},\"title\":\"Subscription Types\",\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object\",\"enum\":[\"list\"],\"example\":\"list\",\"type\":\"string\"}},\"title\":\"Subscription Types\",\"type\":\"object\"}}},\"description\":\"Successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"7323b97b-9ba4-4c54-946c-38cecea65b3c\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Contact not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"User Not Found\"}],\"request_id\":\"c9b793ad-ff39-436c-80c9-db6f24d0d444\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Contact not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "GET"
+          orig: "/contacts/{contact_id}/subscriptions"
+          segments: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "subscriptions"
+            }
+          ]
+          select: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            header: [
+              {
+                example: "2.16"
+                kind: "header"
+                name: "intercom_version"
+                orig: "intercom_version"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                example: "63a07ddf05a32042dffac965"
+                kind: "param"
+                name: "contact_id"
+                orig: "contact_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "37846"
+                kind: "param"
+                name: "id"
+                orig: "subscription_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          contract: {
+            id: "DELETE /contacts/{contact_id}/subscriptions/{subscription_id}"
+            json: "{\"operationId\":\"detachSubscriptionTypeToContact\",\"parameters\":[{\"in\":\"header\",\"name\":\"Intercom-Version\",\"schema\":{\"default\":\"2.16\",\"description\":\"Intercom API version.</br>By default, it's equal to the version set in the app package.\",\"enum\":[\"1.0\",\"1.1\",\"1.2\",\"1.3\",\"1.4\",\"2.0\",\"2.1\",\"2.2\",\"2.3\",\"2.4\",\"2.5\",\"2.6\",\"2.7\",\"2.8\",\"2.9\",\"2.10\",\"2.11\",\"2.12\",\"2.13\",\"2.14\",\"2.15\",\"2.16\"],\"example\":\"2.16\",\"type\":\"string\"}},{\"description\":\"The unique identifier for the contact which is given by Intercom\",\"example\":\"63a07ddf05a32042dffac965\",\"in\":\"path\",\"name\":\"contact_id\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"The unique identifier for the subscription type which is given by Intercom\",\"example\":\"37846\",\"in\":\"path\",\"name\":\"subscription_id\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"Successful\":{\"value\":{\"consent_type\":\"opt_in\",\"content_types\":[\"sms_message\"],\"default_translation\":{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"},\"id\":\"122\",\"state\":\"live\",\"translations\":[{\"description\":\"Lorem ipsum dolor sit amet\",\"locale\":\"en\",\"name\":\"Newsletters\"}],\"type\":\"subscription\"}}},\"schema\":{\"description\":\"A subscription type lets customers easily opt out of non-essential communications without missing what's important to them.\",\"properties\":{\"consent_type\":{\"description\":\"Describes the type of consent.\",\"enum\":[\"opt_out\",\"opt_in\"],\"example\":\"opt_in\",\"type\":\"string\"},\"content_types\":{\"description\":\"The message types that this subscription supports - can contain `email` or `sms_message`.\",\"items\":{\"enum\":[\"email\",\"sms_message\"],\"example\":\"email\",\"type\":\"string\"},\"type\":\"array\"},\"default_translation\":{\"description\":\"A translation object contains the localised details of a subscription type.\",\"properties\":{\"description\":{\"description\":\"The localised description of the subscription type.\",\"example\":\"Offers, product and feature announcements\",\"type\":\"string\"},\"locale\":{\"description\":\"The two character identifier for the language of the translation object.\",\"example\":\"en\",\"type\":\"string\"},\"name\":{\"description\":\"The localised name of the subscription type.\",\"example\":\"Announcements\",\"type\":\"string\"}},\"title\":\"Translation\",\"type\":\"object\"},\"id\":{\"description\":\"The unique identifier representing the subscription type.\",\"example\":\"123456\",\"type\":\"string\"},\"state\":{\"description\":\"The state of the subscription type.\",\"enum\":[\"live\",\"draft\",\"archived\"],\"example\":\"live\",\"type\":\"string\"},\"translations\":{\"description\":\"An array of translations objects with the localised version of the subscription type in each available locale within your translation settings.\",\"items\":{\"description\":\"A translation object contains the localised details of a subscription type.\",\"properties\":{\"description\":{\"description\":\"The localised description of the subscription type.\",\"example\":\"Offers, product and feature announcements\",\"type\":\"string\"},\"locale\":{\"description\":\"The two character identifier for the language of the translation object.\",\"example\":\"en\",\"type\":\"string\"},\"name\":{\"description\":\"The localised name of the subscription type.\",\"example\":\"Announcements\",\"type\":\"string\"}},\"title\":\"Translation\",\"type\":\"object\"},\"type\":\"array\"},\"type\":{\"description\":\"The type of the object - subscription\",\"example\":\"subscription\",\"type\":\"string\"}},\"title\":\"Subscription Types\",\"type\":\"object\"}}},\"description\":\"Successful\"},\"401\":{\"content\":{\"application/json\":{\"examples\":{\"Unauthorized\":{\"value\":{\"errors\":[{\"code\":\"unauthorized\",\"message\":\"Access Token Invalid\"}],\"request_id\":\"c7de741d-dc8f-49b1-8cbe-791668ade76c\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"errors\":{\"description\":\"An array of one or more error objects\",\"items\":{\"properties\":{\"code\":{\"description\":\"A string indicating the kind of error, used to further qualify the HTTP response code\",\"example\":\"unauthorized\",\"type\":\"string\"},\"field\":{\"description\":\"Optional. Used to identify a particular field or query parameter that was in error.\",\"example\":\"email\",\"nullable\":true,\"type\":\"string\"},\"message\":{\"description\":\"Optional. Human readable description of the error.\",\"example\":\"Access Token Invalid\",\"nullable\":true,\"type\":\"string\"}},\"required\":[\"code\"]},\"type\":\"array\"},\"request_id\":{\"description\":\"\",\"example\":\"f93ecfa8-d08a-4325-8694-89aeb89c8f85\",\"format\":\"uuid\",\"nullable\":true,\"type\":\"string\"},\"type\":{\"description\":\"The type is error.list\",\"example\":\"error.list\",\"type\":\"string\"}},\"required\":[\"type\",\"errors\"],\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Unauthorized\"},\"404\":{\"content\":{\"application/json\":{\"examples\":{\"Contact not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"User Not Found\"}],\"request_id\":\"82b37940-b43f-46ee-a492-11543a317c97\",\"type\":\"error.list\"}},\"Resource not found\":{\"value\":{\"errors\":[{\"code\":\"not_found\",\"message\":\"Resource Not Found\"}],\"request_id\":\"c18422ca-5454-42af-9e1d-dd92066e6e9d\",\"type\":\"error.list\"}}},\"schema\":{\"description\":\"The API will return an Error List for a failed request, which will contain one or more Error objects.\",\"properties\":{\"$ref\":\"#/responses/401/content/application~1json/schema/properties\"},\"required\":{\"$ref\":\"#/responses/401/content/application~1json/schema/required\"},\"title\":\"Error\",\"type\":\"object\"}}},\"description\":\"Resource not found\"}},\"security\":[{\"bearerAuth\":[]}],\"securitySchemes\":{\"bearerAuth\":{\"scheme\":\"bearer\",\"type\":\"http\"}},\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
+          method: "DELETE"
+          orig: "/contacts/{contact_id}/subscriptions/{subscription_id}"
+          rename: {
+            param: {
+              subscription_id: "id"
+            }
+          }
+          segments: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "subscriptions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          select: {
+            exist: [
+              "contact_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "contact"
+      ]
+    ]
+  }
+
+
+
+}

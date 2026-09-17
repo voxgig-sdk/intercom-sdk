@@ -1,0 +1,26 @@
+# BasicDataConnectorExecutionResultListFlow
+
+main: kit: flow: BasicDataConnectorExecutionResultListFlow:
+{
+  entity: "data_connector_execution_result_list",
+  kind: "basic",
+  name: "BasicDataConnectorExecutionResultListFlow",
+  step: [
+    {
+      match: {
+        data_connector_id: "data_connector01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "data_connector_execution_result_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataConnectorExecutionResultListFlow"
+}

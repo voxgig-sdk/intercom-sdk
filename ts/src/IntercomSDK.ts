@@ -1,6 +1,94 @@
 // Intercom Ts SDK
 
+import { ActivityLogEntity } from './entity/ActivityLogEntity'
+import { ActivityLogEventTypeEntity } from './entity/ActivityLogEventTypeEntity'
+import { ActivityLogListEntity } from './entity/ActivityLogListEntity'
+import { AdminEntity } from './entity/AdminEntity'
+import { AdminWithAppEntity } from './entity/AdminWithAppEntity'
+import { AiCallEntity } from './entity/AiCallEntity'
+import { AiContentEntity } from './entity/AiContentEntity'
+import { ArticleEntity } from './entity/ArticleEntity'
+import { ArticleSearchEntity } from './entity/ArticleSearchEntity'
+import { ArticleVersionEntity } from './entity/ArticleVersionEntity'
+import { ArticleVersionListEntity } from './entity/ArticleVersionListEntity'
+import { AudienceEntity } from './entity/AudienceEntity'
+import { AwayStatusReasonEntity } from './entity/AwayStatusReasonEntity'
+import { BannerEntity } from './entity/BannerEntity'
+import { BannerDismissEntity } from './entity/BannerDismissEntity'
+import { BrandEntity } from './entity/BrandEntity'
+import { CallEntity } from './entity/CallEntity'
+import { CompanyEntity } from './entity/CompanyEntity'
+import { CompanyAttachedContactEntity } from './entity/CompanyAttachedContactEntity'
+import { CompanyAttachedSegmentEntity } from './entity/CompanyAttachedSegmentEntity'
+import { CompanyListEntity } from './entity/CompanyListEntity'
+import { CompanyScrollEntity } from './entity/CompanyScrollEntity'
 import { ContactEntity } from './entity/ContactEntity'
+import { ContactAttachedCompanyEntity } from './entity/ContactAttachedCompanyEntity'
+import { ContactListEntity } from './entity/ContactListEntity'
+import { ContactSegmentEntity } from './entity/ContactSegmentEntity'
+import { ContentEntity } from './entity/ContentEntity'
+import { ContentImportSourceEntity } from './entity/ContentImportSourceEntity'
+import { ContentSearchEntity } from './entity/ContentSearchEntity'
+import { ContentSnippetEntity } from './entity/ContentSnippetEntity'
+import { ConversationEntity } from './entity/ConversationEntity'
+import { ConversationAttributeEntity } from './entity/ConversationAttributeEntity'
+import { ConversationAttributeListEntity } from './entity/ConversationAttributeListEntity'
+import { ConversationListEntity } from './entity/ConversationListEntity'
+import { ConversationParticipantEntity } from './entity/ConversationParticipantEntity'
+import { CustomObjectInstanceEntity } from './entity/CustomObjectInstanceEntity'
+import { DataEntity } from './entity/DataEntity'
+import { DataAttributeEntity } from './entity/DataAttributeEntity'
+import { DataConnectorEntity } from './entity/DataConnectorEntity'
+import { DataConnectorExecutionResultEntity } from './entity/DataConnectorExecutionResultEntity'
+import { DataConnectorExecutionResultListEntity } from './entity/DataConnectorExecutionResultListEntity'
+import { DataEventEntity } from './entity/DataEventEntity'
+import { DataEventSummaryEntity } from './entity/DataEventSummaryEntity'
+import { DataExportEntity } from './entity/DataExportEntity'
+import { DeletedEntity } from './entity/DeletedEntity'
+import { DeletedArticleObjectEntity } from './entity/DeletedArticleObjectEntity'
+import { DeletedCompanyObjectEntity } from './entity/DeletedCompanyObjectEntity'
+import { DeletedDataConnectorObjectEntity } from './entity/DeletedDataConnectorObjectEntity'
+import { DeletedInternalArticleObjectEntity } from './entity/DeletedInternalArticleObjectEntity'
+import { DeletedObjectEntity } from './entity/DeletedObjectEntity'
+import { EmailEntity } from './entity/EmailEntity'
+import { ExternalPageEntity } from './entity/ExternalPageEntity'
+import { FinAgentEntity } from './entity/FinAgentEntity'
+import { HandlingEventEntity } from './entity/HandlingEventEntity'
+import { HelpCenterEntity } from './entity/HelpCenterEntity'
+import { InternalArticleEntity } from './entity/InternalArticleEntity'
+import { InternalArticleSearchEntity } from './entity/InternalArticleSearchEntity'
+import { IpAllowlistEntity } from './entity/IpAllowlistEntity'
+import { JobEntity } from './entity/JobEntity'
+import { MacroEntity } from './entity/MacroEntity'
+import { MergeHistoryEntity } from './entity/MergeHistoryEntity'
+import { MessageEntity } from './entity/MessageEntity'
+import { NewsItemEntity } from './entity/NewsItemEntity'
+import { NewsfeedEntity } from './entity/NewsfeedEntity'
+import { NoteEntity } from './entity/NoteEntity'
+import { OfficeHourEntity } from './entity/OfficeHourEntity'
+import { OfficeHoursExceptionEntity } from './entity/OfficeHoursExceptionEntity'
+import { OfficeHoursScheduleEntity } from './entity/OfficeHoursScheduleEntity'
+import { PaginatedEntity } from './entity/PaginatedEntity'
+import { PhoneSwitchEntity } from './entity/PhoneSwitchEntity'
+import { ReportingDataEntity } from './entity/ReportingDataEntity'
+import { ReportingDataExportEntity } from './entity/ReportingDataExportEntity'
+import { SegmentEntity } from './entity/SegmentEntity'
+import { SideConversationEntity } from './entity/SideConversationEntity'
+import { SubscriptionEntity } from './entity/SubscriptionEntity'
+import { SubscriptionTypeEntity } from './entity/SubscriptionTypeEntity'
+import { TagEntity } from './entity/TagEntity'
+import { TeamEntity } from './entity/TeamEntity'
+import { TeamMetricListEntity } from './entity/TeamMetricListEntity'
+import { TicketEntity } from './entity/TicketEntity'
+import { TicketListEntity } from './entity/TicketListEntity'
+import { TicketReplyEntity } from './entity/TicketReplyEntity'
+import { TicketStateEntity } from './entity/TicketStateEntity'
+import { TicketTypeEntity } from './entity/TicketTypeEntity'
+import { TicketTypeAttributeEntity } from './entity/TicketTypeAttributeEntity'
+import { VisitorEntity } from './entity/VisitorEntity'
+import { WhatsappMessageStatusEntity } from './entity/WhatsappMessageStatusEntity'
+import { WhatsappMessageStatusListEntity } from './entity/WhatsappMessageStatusListEntity'
+import { WorkflowEntity } from './entity/WorkflowEntity'
 
 export type * from './IntercomTypes'
 
@@ -297,12 +385,804 @@ class IntercomSDK {
 
 
 
+  // Entity access: `client.ActivityLog().list()` / `client.ActivityLog().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ActivityLog(entopts?: Record<string, any>) {
+    const self = this
+    return new ActivityLogEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ActivityLogEventType().list()` / `client.ActivityLogEventType().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ActivityLogEventType(entopts?: Record<string, any>) {
+    const self = this
+    return new ActivityLogEventTypeEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ActivityLogList().list()` / `client.ActivityLogList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ActivityLogList(entopts?: Record<string, any>) {
+    const self = this
+    return new ActivityLogListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Admin().list()` / `client.Admin().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Admin(entopts?: Record<string, any>) {
+    const self = this
+    return new AdminEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.AdminWithApp().list()` / `client.AdminWithApp().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AdminWithApp(entopts?: Record<string, any>) {
+    const self = this
+    return new AdminWithAppEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.AiCall().list()` / `client.AiCall().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AiCall(entopts?: Record<string, any>) {
+    const self = this
+    return new AiCallEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.AiContent().list()` / `client.AiContent().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AiContent(entopts?: Record<string, any>) {
+    const self = this
+    return new AiContentEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Article().list()` / `client.Article().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Article(entopts?: Record<string, any>) {
+    const self = this
+    return new ArticleEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ArticleSearch().list()` / `client.ArticleSearch().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ArticleSearch(entopts?: Record<string, any>) {
+    const self = this
+    return new ArticleSearchEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ArticleVersion().list()` / `client.ArticleVersion().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ArticleVersion(entopts?: Record<string, any>) {
+    const self = this
+    return new ArticleVersionEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ArticleVersionList().list()` / `client.ArticleVersionList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ArticleVersionList(entopts?: Record<string, any>) {
+    const self = this
+    return new ArticleVersionListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Audience().list()` / `client.Audience().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Audience(entopts?: Record<string, any>) {
+    const self = this
+    return new AudienceEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.AwayStatusReason().list()` / `client.AwayStatusReason().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  AwayStatusReason(entopts?: Record<string, any>) {
+    const self = this
+    return new AwayStatusReasonEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Banner().list()` / `client.Banner().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Banner(entopts?: Record<string, any>) {
+    const self = this
+    return new BannerEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.BannerDismiss().list()` / `client.BannerDismiss().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BannerDismiss(entopts?: Record<string, any>) {
+    const self = this
+    return new BannerDismissEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Brand().list()` / `client.Brand().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Brand(entopts?: Record<string, any>) {
+    const self = this
+    return new BrandEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Call().list()` / `client.Call().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Call(entopts?: Record<string, any>) {
+    const self = this
+    return new CallEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Company().list()` / `client.Company().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Company(entopts?: Record<string, any>) {
+    const self = this
+    return new CompanyEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.CompanyAttachedContact().list()` / `client.CompanyAttachedContact().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CompanyAttachedContact(entopts?: Record<string, any>) {
+    const self = this
+    return new CompanyAttachedContactEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.CompanyAttachedSegment().list()` / `client.CompanyAttachedSegment().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CompanyAttachedSegment(entopts?: Record<string, any>) {
+    const self = this
+    return new CompanyAttachedSegmentEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.CompanyList().list()` / `client.CompanyList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CompanyList(entopts?: Record<string, any>) {
+    const self = this
+    return new CompanyListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.CompanyScroll().list()` / `client.CompanyScroll().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CompanyScroll(entopts?: Record<string, any>) {
+    const self = this
+    return new CompanyScrollEntity(self, entopts)
+  }
+
+
   // Entity access: `client.Contact().list()` / `client.Contact().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
   Contact(entopts?: Record<string, any>) {
     const self = this
     return new ContactEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ContactAttachedCompany().list()` / `client.ContactAttachedCompany().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ContactAttachedCompany(entopts?: Record<string, any>) {
+    const self = this
+    return new ContactAttachedCompanyEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ContactList().list()` / `client.ContactList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ContactList(entopts?: Record<string, any>) {
+    const self = this
+    return new ContactListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ContactSegment().list()` / `client.ContactSegment().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ContactSegment(entopts?: Record<string, any>) {
+    const self = this
+    return new ContactSegmentEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Content().list()` / `client.Content().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Content(entopts?: Record<string, any>) {
+    const self = this
+    return new ContentEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ContentImportSource().list()` / `client.ContentImportSource().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ContentImportSource(entopts?: Record<string, any>) {
+    const self = this
+    return new ContentImportSourceEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ContentSearch().list()` / `client.ContentSearch().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ContentSearch(entopts?: Record<string, any>) {
+    const self = this
+    return new ContentSearchEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ContentSnippet().list()` / `client.ContentSnippet().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ContentSnippet(entopts?: Record<string, any>) {
+    const self = this
+    return new ContentSnippetEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Conversation().list()` / `client.Conversation().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Conversation(entopts?: Record<string, any>) {
+    const self = this
+    return new ConversationEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ConversationAttribute().list()` / `client.ConversationAttribute().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ConversationAttribute(entopts?: Record<string, any>) {
+    const self = this
+    return new ConversationAttributeEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ConversationAttributeList().list()` / `client.ConversationAttributeList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ConversationAttributeList(entopts?: Record<string, any>) {
+    const self = this
+    return new ConversationAttributeListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ConversationList().list()` / `client.ConversationList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ConversationList(entopts?: Record<string, any>) {
+    const self = this
+    return new ConversationListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ConversationParticipant().list()` / `client.ConversationParticipant().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ConversationParticipant(entopts?: Record<string, any>) {
+    const self = this
+    return new ConversationParticipantEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.CustomObjectInstance().list()` / `client.CustomObjectInstance().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CustomObjectInstance(entopts?: Record<string, any>) {
+    const self = this
+    return new CustomObjectInstanceEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Data().list()` / `client.Data().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Data(entopts?: Record<string, any>) {
+    const self = this
+    return new DataEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DataAttribute().list()` / `client.DataAttribute().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DataAttribute(entopts?: Record<string, any>) {
+    const self = this
+    return new DataAttributeEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DataConnector().list()` / `client.DataConnector().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DataConnector(entopts?: Record<string, any>) {
+    const self = this
+    return new DataConnectorEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DataConnectorExecutionResult().list()` / `client.DataConnectorExecutionResult().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DataConnectorExecutionResult(entopts?: Record<string, any>) {
+    const self = this
+    return new DataConnectorExecutionResultEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DataConnectorExecutionResultList().list()` / `client.DataConnectorExecutionResultList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DataConnectorExecutionResultList(entopts?: Record<string, any>) {
+    const self = this
+    return new DataConnectorExecutionResultListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DataEvent().list()` / `client.DataEvent().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DataEvent(entopts?: Record<string, any>) {
+    const self = this
+    return new DataEventEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DataEventSummary().list()` / `client.DataEventSummary().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DataEventSummary(entopts?: Record<string, any>) {
+    const self = this
+    return new DataEventSummaryEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DataExport().list()` / `client.DataExport().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DataExport(entopts?: Record<string, any>) {
+    const self = this
+    return new DataExportEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Deleted().list()` / `client.Deleted().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Deleted(entopts?: Record<string, any>) {
+    const self = this
+    return new DeletedEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DeletedArticleObject().list()` / `client.DeletedArticleObject().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DeletedArticleObject(entopts?: Record<string, any>) {
+    const self = this
+    return new DeletedArticleObjectEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DeletedCompanyObject().list()` / `client.DeletedCompanyObject().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DeletedCompanyObject(entopts?: Record<string, any>) {
+    const self = this
+    return new DeletedCompanyObjectEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DeletedDataConnectorObject().list()` / `client.DeletedDataConnectorObject().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DeletedDataConnectorObject(entopts?: Record<string, any>) {
+    const self = this
+    return new DeletedDataConnectorObjectEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DeletedInternalArticleObject().list()` / `client.DeletedInternalArticleObject().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DeletedInternalArticleObject(entopts?: Record<string, any>) {
+    const self = this
+    return new DeletedInternalArticleObjectEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.DeletedObject().list()` / `client.DeletedObject().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DeletedObject(entopts?: Record<string, any>) {
+    const self = this
+    return new DeletedObjectEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Email().list()` / `client.Email().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Email(entopts?: Record<string, any>) {
+    const self = this
+    return new EmailEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ExternalPage().list()` / `client.ExternalPage().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ExternalPage(entopts?: Record<string, any>) {
+    const self = this
+    return new ExternalPageEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.FinAgent().list()` / `client.FinAgent().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  FinAgent(entopts?: Record<string, any>) {
+    const self = this
+    return new FinAgentEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.HandlingEvent().list()` / `client.HandlingEvent().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  HandlingEvent(entopts?: Record<string, any>) {
+    const self = this
+    return new HandlingEventEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.HelpCenter().list()` / `client.HelpCenter().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  HelpCenter(entopts?: Record<string, any>) {
+    const self = this
+    return new HelpCenterEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.InternalArticle().list()` / `client.InternalArticle().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  InternalArticle(entopts?: Record<string, any>) {
+    const self = this
+    return new InternalArticleEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.InternalArticleSearch().list()` / `client.InternalArticleSearch().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  InternalArticleSearch(entopts?: Record<string, any>) {
+    const self = this
+    return new InternalArticleSearchEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.IpAllowlist().list()` / `client.IpAllowlist().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  IpAllowlist(entopts?: Record<string, any>) {
+    const self = this
+    return new IpAllowlistEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Job().list()` / `client.Job().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Job(entopts?: Record<string, any>) {
+    const self = this
+    return new JobEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Macro().list()` / `client.Macro().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Macro(entopts?: Record<string, any>) {
+    const self = this
+    return new MacroEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.MergeHistory().list()` / `client.MergeHistory().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  MergeHistory(entopts?: Record<string, any>) {
+    const self = this
+    return new MergeHistoryEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Message().list()` / `client.Message().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Message(entopts?: Record<string, any>) {
+    const self = this
+    return new MessageEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.NewsItem().list()` / `client.NewsItem().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  NewsItem(entopts?: Record<string, any>) {
+    const self = this
+    return new NewsItemEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Newsfeed().list()` / `client.Newsfeed().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Newsfeed(entopts?: Record<string, any>) {
+    const self = this
+    return new NewsfeedEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Note().list()` / `client.Note().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Note(entopts?: Record<string, any>) {
+    const self = this
+    return new NoteEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.OfficeHour().list()` / `client.OfficeHour().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  OfficeHour(entopts?: Record<string, any>) {
+    const self = this
+    return new OfficeHourEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.OfficeHoursException().list()` / `client.OfficeHoursException().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  OfficeHoursException(entopts?: Record<string, any>) {
+    const self = this
+    return new OfficeHoursExceptionEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.OfficeHoursSchedule().list()` / `client.OfficeHoursSchedule().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  OfficeHoursSchedule(entopts?: Record<string, any>) {
+    const self = this
+    return new OfficeHoursScheduleEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Paginated().list()` / `client.Paginated().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Paginated(entopts?: Record<string, any>) {
+    const self = this
+    return new PaginatedEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.PhoneSwitch().list()` / `client.PhoneSwitch().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PhoneSwitch(entopts?: Record<string, any>) {
+    const self = this
+    return new PhoneSwitchEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ReportingData().list()` / `client.ReportingData().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ReportingData(entopts?: Record<string, any>) {
+    const self = this
+    return new ReportingDataEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.ReportingDataExport().list()` / `client.ReportingDataExport().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ReportingDataExport(entopts?: Record<string, any>) {
+    const self = this
+    return new ReportingDataExportEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Segment().list()` / `client.Segment().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Segment(entopts?: Record<string, any>) {
+    const self = this
+    return new SegmentEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.SideConversation().list()` / `client.SideConversation().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  SideConversation(entopts?: Record<string, any>) {
+    const self = this
+    return new SideConversationEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Subscription().list()` / `client.Subscription().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Subscription(entopts?: Record<string, any>) {
+    const self = this
+    return new SubscriptionEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.SubscriptionType().list()` / `client.SubscriptionType().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  SubscriptionType(entopts?: Record<string, any>) {
+    const self = this
+    return new SubscriptionTypeEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Tag().list()` / `client.Tag().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Tag(entopts?: Record<string, any>) {
+    const self = this
+    return new TagEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Team().list()` / `client.Team().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Team(entopts?: Record<string, any>) {
+    const self = this
+    return new TeamEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.TeamMetricList().list()` / `client.TeamMetricList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TeamMetricList(entopts?: Record<string, any>) {
+    const self = this
+    return new TeamMetricListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Ticket().list()` / `client.Ticket().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Ticket(entopts?: Record<string, any>) {
+    const self = this
+    return new TicketEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.TicketList().list()` / `client.TicketList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TicketList(entopts?: Record<string, any>) {
+    const self = this
+    return new TicketListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.TicketReply().list()` / `client.TicketReply().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TicketReply(entopts?: Record<string, any>) {
+    const self = this
+    return new TicketReplyEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.TicketState().list()` / `client.TicketState().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TicketState(entopts?: Record<string, any>) {
+    const self = this
+    return new TicketStateEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.TicketType().list()` / `client.TicketType().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TicketType(entopts?: Record<string, any>) {
+    const self = this
+    return new TicketTypeEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.TicketTypeAttribute().list()` / `client.TicketTypeAttribute().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TicketTypeAttribute(entopts?: Record<string, any>) {
+    const self = this
+    return new TicketTypeAttributeEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Visitor().list()` / `client.Visitor().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Visitor(entopts?: Record<string, any>) {
+    const self = this
+    return new VisitorEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.WhatsappMessageStatus().list()` / `client.WhatsappMessageStatus().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhatsappMessageStatus(entopts?: Record<string, any>) {
+    const self = this
+    return new WhatsappMessageStatusEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.WhatsappMessageStatusList().list()` / `client.WhatsappMessageStatusList().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WhatsappMessageStatusList(entopts?: Record<string, any>) {
+    const self = this
+    return new WhatsappMessageStatusListEntity(self, entopts)
+  }
+
+
+  // Entity access: `client.Workflow().list()` / `client.Workflow().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Workflow(entopts?: Record<string, any>) {
+    const self = this
+    return new WorkflowEntity(self, entopts)
   }
 
 
