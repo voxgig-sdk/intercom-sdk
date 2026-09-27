@@ -1,0 +1,342 @@
+# Entity: audience
+
+main: kit: entity: audience: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      ro: true
+      sh: "The time the audience was created as a Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      ro: true
+      sh: "The unique identifier representing the audience."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The name of the audience."
+      t: "`$STRING`"
+    }
+    predicates: {
+      h: "Predicates"
+      n: "predicates"
+      r: false
+      sh: "The predicates that define which contacts belong to the audience."
+      t: "`$ARRAY`"
+    }
+    role_predicates: {
+      h: "Role Predicates"
+      n: "role_predicates"
+      r: false
+      sh: "Role-based predicates that further filter audience membership by contact role."
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      ro: true
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      ro: true
+      sh: "The time the audience was last updated as a Unix timestamp."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "audience"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /audiences"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/audiences"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "audiences"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /audiences"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/audiences"
+          q: {
+            exist: [
+              "intercom_version"
+              "page"
+              "per_page"
+            ]
+          }
+          s: [
+            {
+              lit: "audiences"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /audiences/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/audiences/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "audiences"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /audiences/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/audiences/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "audiences"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /audiences/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/audiences/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "audiences"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

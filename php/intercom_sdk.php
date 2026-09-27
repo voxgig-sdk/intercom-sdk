@@ -647,6 +647,24 @@ class IntercomSDK
     }
 
 
+    private $_cancel = null;
+
+    // Canonical facade: $client->Cancel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cancel()
+    // resolves here too.
+    public function Cancel($data = null)
+    {
+        require_once __DIR__ . '/entity/cancel_entity.php';
+        if ($data === null) {
+            if ($this->_cancel === null) {
+                $this->_cancel = new CancelEntity($this, null);
+            }
+            return $this->_cancel;
+        }
+        return new CancelEntity($this, $data);
+    }
+
+
     private $_company = null;
 
     // Canonical facade: $client->Company()->list() / ->load(["id" => ...]).
@@ -1112,24 +1130,6 @@ class IntercomSDK
             return $this->_data_event_summary;
         }
         return new DataEventSummaryEntity($this, $data);
-    }
-
-
-    private $_data_export = null;
-
-    // Canonical facade: $client->DataExport()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->data_export()
-    // resolves here too.
-    public function DataExport($data = null)
-    {
-        require_once __DIR__ . '/entity/data_export_entity.php';
-        if ($data === null) {
-            if ($this->_data_export === null) {
-                $this->_data_export = new DataExportEntity($this, null);
-            }
-            return $this->_data_export;
-        }
-        return new DataExportEntity($this, $data);
     }
 
 

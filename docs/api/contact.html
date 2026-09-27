@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -59,7 +60,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -117,14 +117,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="contact">Contact</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="contact">Contact</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -205,6 +205,76 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">contacts, err := client.Contact(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(contacts)
+contact, err := client.Contact(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(contact)
+created, err := client.Contact(nil).Create(map[string]any{&quot;user&quot;: map[string]any{}, &quot;visitor&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.Contact(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;include_merge_history&quot;: true, &quot;android_app_name&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.Contact(nil).Remove(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const contacts = await client.Contact().list()
+const contact = await client.Contact().load({ id: &quot;example_id&quot; })
+const created = await client.Contact().create({ user: {}, visitor: {} })
+const updated = await client.Contact().update({ id: &quot;example_id&quot;, include_merge_history: true, android_app_name: &quot;example&quot; })
+await client.Contact().remove({ id: &quot;example_id&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local contacts, err = client:Contact():list()
+local contact, err = client:Contact():load({ id = &quot;example_id&quot; })
+local created, err = client:Contact():create({ user = {}, visitor = {} })
+local updated, err = client:Contact():update({ id = &quot;example_id&quot;, include_merge_history = true, android_app_name = &quot;example&quot; })
+local removed, err = client:Contact():remove({ id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$contacts = $client-&gt;Contact()-&gt;list();
+$contact = $client-&gt;Contact()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;Contact()-&gt;create([&quot;user&quot; =&gt; [], &quot;visitor&quot; =&gt; []]);
+$updated = $client-&gt;Contact()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;include_merge_history&quot; =&gt; true, &quot;android_app_name&quot; =&gt; &quot;example&quot;]);
+$client-&gt;Contact()-&gt;remove([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">contacts = client.Contact().list()
+contact = client.Contact().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.Contact().create({ &quot;user&quot;: {}, &quot;visitor&quot;: {} })
+updated = client.Contact().update({&quot;id&quot;: &quot;example_id&quot;, &quot;include_merge_history&quot;: True, &quot;android_app_name&quot;: &quot;example&quot;})
+client.Contact().remove({&quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const contacts = await client.Contact().list()
+const contact = await client.Contact().load({ id: &quot;example_id&quot; })
+const created = await client.Contact().create({ user: {}, visitor: {} })
+const updated = await client.Contact().update({ id: &quot;example_id&quot;, include_merge_history: true, android_app_name: &quot;example&quot; })
+await client.Contact().remove({ id: &quot;example_id&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -256,7 +326,7 @@
 <td><code>avatar</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Avatar</td>
 </tr>
 <tr>
 <td><code>browser</code></td>
@@ -520,7 +590,7 @@
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | <code>contact_id</code> |</p>
 <h4 id="responses">Responses</h4>
 <h5 id="200-successful" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
@@ -549,7 +619,7 @@
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | <code>contact_id</code> |</p>
 <h4 id="responses-1">Responses</h4>
 <h5 id="200-successful-1" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
@@ -695,10 +765,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -709,7 +809,7 @@
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | <code>contact_id</code> |</p>
 <h4 id="responses-3">Responses</h4>
 <h5 id="200-successful-3" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
@@ -859,7 +959,7 @@
 <td><code>user.user_id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>A unique identifier for the contact which is given to Intercom, which will be represented as external_id.</td>
+<td>A unique identifier for the contact which is given to Intercom, which will be represented as <code>external_id</code>.</td>
 </tr>
 <tr>
 <td><code>visitor</code></td>
@@ -1174,7 +1274,7 @@
 <td><code>merge_history</code></td>
 <td><code>array of object</code></td>
 <td>No</td>
-<td>A list of contacts that were merged into this contact. Only included in the response when <code>include_merge_history=true</code> is passed as a query parameter. Only available for contacts with a <code>user</code> role.</td>
+<td>A list of contacts that were merged into this contact. Only included in the response when ``include_merge_history<code>=true</code> is passed as a query parameter. Only available for contacts with a <code>user</code> role.</td>
 </tr>
 <tr>
 <td><code>merge_history[].merged_at</code></td>
@@ -1306,7 +1406,7 @@
 <td><code>social_profiles.data[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>value is &quot;social_profile&quot;</td>
+<td>value is &quot;<code>social_profile</code>&quot;</td>
 </tr>
 <tr>
 <td><code>social_profiles.data[].url</code></td>
@@ -1740,7 +1840,7 @@
 <td><code>data[].merge_history</code></td>
 <td><code>array of object</code></td>
 <td>No</td>
-<td>A list of contacts that were merged into this contact. Only included in the response when <code>include_merge_history=true</code> is passed as a query parameter. Only available for contacts with a <code>user</code> role.</td>
+<td>A list of contacts that were merged into this contact. Only included in the response when ``include_merge_history<code>=true</code> is passed as a query parameter. Only available for contacts with a <code>user</code> role.</td>
 </tr>
 <tr>
 <td><code>data[].merge_history[].merged_at</code></td>
@@ -1872,7 +1972,7 @@
 <td><code>data[].social_profiles.data[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>value is &quot;social_profile&quot;</td>
+<td>value is &quot;<code>social_profile</code>&quot;</td>
 </tr>
 <tr>
 <td><code>data[].social_profiles.data[].url</code></td>
@@ -2158,10 +2258,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -2172,7 +2302,7 @@
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | <code>contact_id</code> |
 | <code>include_merge_history</code> | <code>query</code> | <code>boolean</code> | No | Pass <code>true</code> to include the contact's merge history in the response. Only returned for contacts with a <code>user</code> role. |</p>
 <h4 id="responses-8">Responses</h4>
 <h5 id="200-successful-8" class="status" data-status="2xx">200: successful</h5>
@@ -2258,10 +2388,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -2273,7 +2433,7 @@
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | contact_id |</p>
+| <code>contact_id</code> | <code>path</code> | <code>string</code> | Yes | <code>contact_id</code> |</p>
 <h4 id="responses-9">Responses</h4>
 <h5 id="200-successful-9" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>

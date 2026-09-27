@@ -19,7 +19,6 @@ import type {
   CompanyAttachedSegmentListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class CompanyAttachedSegmentEntity extends IntercomEntityBase<CompanyAttachedSegment> {
 
   constructor(client: IntercomSDK, entopts: any) {

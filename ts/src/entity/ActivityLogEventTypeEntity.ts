@@ -19,7 +19,6 @@ import type {
   ActivityLogEventTypeListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class ActivityLogEventTypeEntity extends IntercomEntityBase<ActivityLogEventType> {
 
   constructor(client: IntercomSDK, entopts: any) {

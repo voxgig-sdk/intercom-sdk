@@ -1,0 +1,122 @@
+# Entity: contact_list
+
+main: kit: entity: contact_list: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "The list of contact objects"
+      t: "`$ARRAY`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data."
+      t: "`$OBJECT`"
+    }
+    pagination: {
+      h: "Pagination"
+      n: "pagination"
+      r: false
+      t: "`$OBJECT`"
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: true
+      t: "`$ANY`"
+      union: {
+        branches: 4
+        count: 4
+        depth: 7
+      }
+    }
+    sort: {
+      h: "Sort"
+      n: "sort"
+      r: false
+      sh: "An optional object to sort the results by."
+      t: "`$OBJECT`"
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "A count of the total number of objects."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Always list"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "contact_list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /contacts/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "include_merge_history"
+                or: "include_merge_history"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/contacts/search"
+          q: {
+            exist: [
+              "include_merge_history"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

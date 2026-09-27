@@ -1,0 +1,125 @@
+# Entity: article_search
+
+main: kit: entity: article_search: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "An object containing the results of the search."
+      t: "`$OBJECT`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data."
+      t: "`$OBJECT`"
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "The total number of Articles matching the search query"
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the object - `list`."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "article_search"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /articles/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 123
+                k: "query"
+                n: "help_center_id"
+                or: "help_center_id"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "highlight"
+                or: "highlight"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "Getting started"
+                k: "query"
+                n: "phrase"
+                or: "phrase"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "published"
+                k: "query"
+                n: "state"
+                or: "state"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/articles/search"
+          q: {
+            exist: [
+              "help_center_id"
+              "highlight"
+              "intercom_version"
+              "phrase"
+              "state"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

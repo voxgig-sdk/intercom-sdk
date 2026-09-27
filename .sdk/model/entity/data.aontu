@@ -1,0 +1,238 @@
+# Entity: data
+
+main: kit: entity: data: {
+
+  alias: field: {}
+
+  fields: {
+    created_at_after: {
+      h: "Created At After"
+      n: "created_at_after"
+      r: true
+      sh: "The start date that you request data for."
+      t: "`$INTEGER`"
+    }
+    created_at_before: {
+      h: "Created At Before"
+      n: "created_at_before"
+      r: true
+      sh: "The end date that you request data for."
+      t: "`$INTEGER`"
+    }
+    download_expires_at: {
+      h: "Download Expires At"
+      n: "download_expires_at"
+      r: false
+      sh: "The time after which you will not be able to access the data."
+      t: "`$STRING`"
+    }
+    download_url: {
+      h: "Download Url"
+      n: "download_url"
+      r: false
+      sh: "The location where you can download your data."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    job_identifier: {
+      h: "Job Identifier"
+      n: "job_identifier"
+      r: false
+      sh: "The identifier for your job."
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The current state of your job."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "data"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /export/content/data"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/export/content/data"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "export"
+            }
+            {
+              lit: "content"
+            }
+            {
+              lit: "data"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /download/content/data/{job_identifier}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "job_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/download/content/data/{job_identifier}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              job_identifier: "id"
+            }
+          }
+          s: [
+            {
+              lit: "download"
+            }
+            {
+              lit: "content"
+            }
+            {
+              lit: "data"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /export/content/data/{job_identifier}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "job_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/export/content/data/{job_identifier}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              job_identifier: "id"
+            }
+          }
+          s: [
+            {
+              lit: "export"
+            }
+            {
+              lit: "content"
+            }
+            {
+              lit: "data"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

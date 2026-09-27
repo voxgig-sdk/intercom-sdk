@@ -1,0 +1,378 @@
+# Entity: news_item
+
+main: kit: entity: news_item: {
+
+  alias: field: {}
+
+  fields: {
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The news item body, which may contain HTML."
+      t: "`$STRING`"
+    }
+    cover_image_url: {
+      fo: "uri"
+      h: "Cover Image Url"
+      n: "cover_image_url"
+      r: false
+      sh: "URL of the image used as cover."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "timestamp"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "Timestamp for when the news item was created."
+      t: "`$INTEGER`"
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "An array of Objects"
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    deliver_silently: {
+      h: "Deliver Silently"
+      n: "deliver_silently"
+      r: false
+      sh: "When set to true, the news item will appear in the messenger newsfeed without showing a notification badge."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the news item which is given by Intercom."
+      t: "`$STRING`"
+    }
+    labels: {
+      h: "Labels"
+      n: "labels"
+      r: false
+      sh: "Label names displayed to users to categorize the news item."
+      t: "`$ARRAY`"
+    }
+    newsfeed_assignments: {
+      h: "Newsfeed Assignments"
+      n: "newsfeed_assignments"
+      r: false
+      sh: "A list of newsfeed_assignments to assign to the specified newsfeed."
+      t: "`$ARRAY`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data."
+      t: "`$OBJECT`"
+    }
+    reactions: {
+      h: "Reactions"
+      n: "reactions"
+      r: false
+      sh: "Ordered list of emoji reactions to the news item."
+      t: "`$ARRAY`"
+    }
+    sender_id: {
+      h: "Sender Id"
+      n: "sender_id"
+      op: {
+        create: {
+          req: true
+          type: "`$INTEGER`"
+        }
+        update: {
+          req: true
+          type: "`$INTEGER`"
+        }
+      }
+      r: false
+      sh: "The id of the sender of the news item."
+      t: "`$INTEGER`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      sh: "News items will not be visible to your users in the assigned newsfeeds until they are set live."
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+        update: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The title of the news item."
+      t: "`$STRING`"
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "A count of the total number of objects."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "timestamp"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Timestamp for when the news item was last updated."
+      t: "`$INTEGER`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "The id of the workspace which the news item belongs to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "news_item"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /news/news_items"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/news/news_items"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "news_items"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /news/news_items"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/news/news_items"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "news_items"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /news/news_items/{news_item_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "news_item_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/news/news_items/{news_item_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              news_item_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "news_items"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /news/news_items/{news_item_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "news_item_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/news/news_items/{news_item_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              news_item_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "news_items"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

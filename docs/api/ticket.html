@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -49,7 +50,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -112,14 +112,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="ticket">Ticket</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="ticket">Ticket</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -170,6 +170,66 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">ticket, err := client.Ticket(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ticket)
+created, err := client.Ticket(nil).Create(map[string]any{&quot;ticket_type_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.Ticket(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;admin_assignee_id&quot;: 1, &quot;attributes&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.Ticket(nil).Remove(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const ticket = await client.Ticket().load({ id: &quot;example_id&quot; })
+const created = await client.Ticket().create({ ticket_type_id: &quot;example&quot; })
+const updated = await client.Ticket().update({ id: &quot;example_id&quot;, admin_assignee_id: 1, attributes: {} })
+await client.Ticket().remove({ id: &quot;example_id&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local ticket, err = client:Ticket():load({ id = &quot;example_id&quot; })
+local created, err = client:Ticket():create({ ticket_type_id = &quot;example&quot; })
+local updated, err = client:Ticket():update({ id = &quot;example_id&quot;, admin_assignee_id = 1, attributes = {} })
+local removed, err = client:Ticket():remove({ id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$ticket = $client-&gt;Ticket()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;Ticket()-&gt;create([&quot;ticket_type_id&quot; =&gt; &quot;example&quot;]);
+$updated = $client-&gt;Ticket()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;admin_assignee_id&quot; =&gt; 1, &quot;attributes&quot; =&gt; []]);
+$client-&gt;Ticket()-&gt;remove([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">ticket = client.Ticket().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.Ticket().create({ &quot;ticket_type_id&quot;: &quot;example&quot; })
+updated = client.Ticket().update({&quot;id&quot;: &quot;example_id&quot;, &quot;admin_assignee_id&quot;: 1, &quot;attributes&quot;: {}})
+client.Ticket().remove({&quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const ticket = await client.Ticket().load({ id: &quot;example_id&quot; })
+const created = await client.Ticket().create({ ticket_type_id: &quot;example&quot; })
+const updated = await client.Ticket().update({ id: &quot;example_id&quot;, admin_assignee_id: 1, attributes: {} })
+await client.Ticket().remove({ id: &quot;example_id&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -340,7 +400,7 @@
 <td><code>attributes</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>The attributes set on the ticket. When setting the default title and description attributes, the attribute keys that should be used are <code>_default_title_</code> and <code>_default_description_</code>. When setting ticket type attributes of the list attribute type, the key should be the attribute name and the value of the attribute should be the list item id, obtainable by <a href="ref:get_ticket-types">listing the ticket type</a>. For example, if the ticket type has an attribute called <code>priority</code> of type <code>list</code>, the key should be <code>priority</code> and the value of the attribute should be the guid of the list item (for example <code>de1825a0-0164-4070-8ca6-13e22462fa7e</code>).</td>
+<td>The attributes set on the ticket. When setting the default title and description attributes, the attribute keys that should be used are <code>_</code>default_title<code>_</code> and <code>_</code>default_description<code>_</code>. When setting ticket type attributes of the list attribute type, the key should be the attribute name and the value of the attribute should be the list item id, obtainable by <a href="ref:%60get_ticket%60-types">listing the ticket type</a>. For example, if the ticket type has an attribute called <code>priority</code> of type <code>list</code>, the key should be <code>priority</code> and the value of the attribute should be the guid of the list item (for example <code>de1825a0-0164-4070-8ca6-13e22462fa7e</code>).</td>
 </tr>
 <tr>
 <td><code>ticket_state_id</code></td>
@@ -511,13 +571,13 @@
 <td><code>ticket_attributes</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_default_title_</code> and <code>_default_description_</code>.</td>
+<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_</code>default_title<code>_</code> and <code>_</code>default_description<code>_</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use ticket_id for API queries.</td>
+<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use <code>ticket_id</code> for API queries.</td>
 </tr>
 <tr>
 <td><code>ticket_parts</code></td>
@@ -541,7 +601,7 @@
 <td><code>ticket_parts.ticket_parts[].assigned_to</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>The assignee this ticket_part assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
+<td>The assignee this <code>ticket_part</code> assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].assigned_to.id</code></td>
@@ -685,7 +745,7 @@
 <td><code>ticket_parts.ticket_parts[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Always ticket_part</td>
+<td>Always <code>ticket_part</code></td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].updated_at</code></td>
@@ -857,7 +917,7 @@
 </tr>
 <tr>
 <td><code>ticket_type.ticket_states.data[].category</code></td>
-<td><code>string</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
 <td>No</td>
 <td>The category of the ticket state</td>
 </tr>
@@ -1009,7 +1069,7 @@
 <td><code>ticket_type.ticket_type_attributes.type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>String representing the object's type. Always has the value <code>ticket_type_attributes.list</code>.</td>
+<td>String representing the object's type. Always has the value ``ticket_type_attributes<code>.list</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_type.type</code></td>
@@ -1288,13 +1348,13 @@
 <td><code>ticket_attributes</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_default_title_</code> and <code>_default_description_</code>.</td>
+<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_</code>default_title<code>_</code> and <code>_</code>default_description<code>_</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use ticket_id for API queries.</td>
+<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use <code>ticket_id</code> for API queries.</td>
 </tr>
 <tr>
 <td><code>ticket_parts</code></td>
@@ -1318,7 +1378,7 @@
 <td><code>ticket_parts.ticket_parts[].assigned_to</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>The assignee this ticket_part assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
+<td>The assignee this <code>ticket_part</code> assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].assigned_to.id</code></td>
@@ -1462,7 +1522,7 @@
 <td><code>ticket_parts.ticket_parts[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Always ticket_part</td>
+<td>Always <code>ticket_part</code></td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].updated_at</code></td>
@@ -1634,7 +1694,7 @@
 </tr>
 <tr>
 <td><code>ticket_type.ticket_states.data[].category</code></td>
-<td><code>string</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
 <td>No</td>
 <td>The category of the ticket state</td>
 </tr>
@@ -1786,7 +1846,7 @@
 <td><code>ticket_type.ticket_type_attributes.type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>String representing the object's type. Always has the value <code>ticket_type_attributes.list</code>.</td>
+<td>String representing the object's type. Always has the value ``ticket_type_attributes<code>.list</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_type.type</code></td>
@@ -1883,10 +1943,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -1903,10 +1993,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -2092,13 +2212,13 @@
 <td><code>ticket_attributes</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_default_title_</code> and <code>_default_description_</code>.</td>
+<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_</code>default_title<code>_</code> and <code>_</code>default_description<code>_</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use ticket_id for API queries.</td>
+<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use <code>ticket_id</code> for API queries.</td>
 </tr>
 <tr>
 <td><code>ticket_parts</code></td>
@@ -2122,7 +2242,7 @@
 <td><code>ticket_parts.ticket_parts[].assigned_to</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>The assignee this ticket_part assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
+<td>The assignee this <code>ticket_part</code> assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].assigned_to.id</code></td>
@@ -2266,7 +2386,7 @@
 <td><code>ticket_parts.ticket_parts[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Always ticket_part</td>
+<td>Always <code>ticket_part</code></td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].updated_at</code></td>
@@ -2438,7 +2558,7 @@
 </tr>
 <tr>
 <td><code>ticket_type.ticket_states.data[].category</code></td>
-<td><code>string</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
 <td>No</td>
 <td>The category of the ticket state</td>
 </tr>
@@ -2590,7 +2710,7 @@
 <td><code>ticket_type.ticket_type_attributes.type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>String representing the object's type. Always has the value <code>ticket_type_attributes.list</code>.</td>
+<td>String representing the object's type. Always has the value ``ticket_type_attributes<code>.list</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_type.type</code></td>
@@ -2838,13 +2958,13 @@
 <td><code>ticket_attributes</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_default_title_</code> and <code>_default_description_</code>.</td>
+<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_</code>default_title<code>_</code> and <code>_</code>default_description<code>_</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use ticket_id for API queries.</td>
+<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use <code>ticket_id</code> for API queries.</td>
 </tr>
 <tr>
 <td><code>ticket_parts</code></td>
@@ -2868,7 +2988,7 @@
 <td><code>ticket_parts.ticket_parts[].assigned_to</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>The assignee this ticket_part assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
+<td>The assignee this <code>ticket_part</code> assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].assigned_to.id</code></td>
@@ -3012,7 +3132,7 @@
 <td><code>ticket_parts.ticket_parts[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Always ticket_part</td>
+<td>Always <code>ticket_part</code></td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].updated_at</code></td>
@@ -3184,7 +3304,7 @@
 </tr>
 <tr>
 <td><code>ticket_type.ticket_states.data[].category</code></td>
-<td><code>string</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
 <td>No</td>
 <td>The category of the ticket state</td>
 </tr>
@@ -3336,7 +3456,7 @@
 <td><code>ticket_type.ticket_type_attributes.type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>String representing the object's type. Always has the value <code>ticket_type_attributes.list</code>.</td>
+<td>String representing the object's type. Always has the value ``ticket_type_attributes<code>.list</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_type.type</code></td>
@@ -3525,10 +3645,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -3545,10 +3695,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -3736,13 +3916,13 @@
 <td><code>ticket_attributes</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_default_title_</code> and <code>_default_description_</code>.</td>
+<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_</code>default_title<code>_</code> and <code>_</code>default_description<code>_</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use ticket_id for API queries.</td>
+<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use <code>ticket_id</code> for API queries.</td>
 </tr>
 <tr>
 <td><code>ticket_parts</code></td>
@@ -3766,7 +3946,7 @@
 <td><code>ticket_parts.ticket_parts[].assigned_to</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>The assignee this ticket_part assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
+<td>The assignee this <code>ticket_part</code> assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].assigned_to.id</code></td>
@@ -3910,7 +4090,7 @@
 <td><code>ticket_parts.ticket_parts[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Always ticket_part</td>
+<td>Always <code>ticket_part</code></td>
 </tr>
 <tr>
 <td><code>ticket_parts.ticket_parts[].updated_at</code></td>
@@ -4082,7 +4262,7 @@
 </tr>
 <tr>
 <td><code>ticket_type.ticket_states.data[].category</code></td>
-<td><code>string</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
 <td>No</td>
 <td>The category of the ticket state</td>
 </tr>
@@ -4234,7 +4414,7 @@
 <td><code>ticket_type.ticket_type_attributes.type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>String representing the object's type. Always has the value <code>ticket_type_attributes.list</code>.</td>
+<td>String representing the object's type. Always has the value ``ticket_type_attributes<code>.list</code>.</td>
 </tr>
 <tr>
 <td><code>ticket_type.type</code></td>

@@ -19,7 +19,6 @@ import type {
   BannerListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class BannerEntity extends IntercomEntityBase<Banner> {
 
   constructor(client: IntercomSDK, entopts: any) {

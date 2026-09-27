@@ -1,0 +1,28 @@
+# BasicReportingDataFlow
+
+main: kit: flow: BasicReportingDataFlow:
+{
+  entity: "reporting_data",
+  kind: "basic",
+  name: "BasicReportingDataFlow",
+  step: [
+    {
+      i: {
+        ref: "reporting_data_ref01",
+        srcdatavar: "reporting_data_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-reporting_data_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReportingDataFlow"
+}

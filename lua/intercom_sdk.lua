@@ -591,6 +591,20 @@ function IntercomSDK:Call(data)
 end
 
 
+-- Idiomatic facade: client:Cancel():list() / client:Cancel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function IntercomSDK:Cancel(data)
+  local EntityMod = require("entity.cancel_entity")
+  if data == nil then
+    if self._cancel == nil then
+      self._cancel = EntityMod.new(self, nil)
+    end
+    return self._cancel
+  end
+  return EntityMod.new(self, data)
+end
+
+
 -- Idiomatic facade: client:Company():list() / client:Company():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function IntercomSDK:Company(data)
@@ -950,20 +964,6 @@ function IntercomSDK:DataEventSummary(data)
       self._data_event_summary = EntityMod.new(self, nil)
     end
     return self._data_event_summary
-  end
-  return EntityMod.new(self, data)
-end
-
-
--- Idiomatic facade: client:DataExport():list() / client:DataExport():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function IntercomSDK:DataExport(data)
-  local EntityMod = require("entity.data_export_entity")
-  if data == nil then
-    if self._data_export == nil then
-      self._data_export = EntityMod.new(self, nil)
-    end
-    return self._data_export
   end
   return EntityMod.new(self, data)
 end

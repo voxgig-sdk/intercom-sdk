@@ -1,0 +1,22 @@
+# BasicTicketReplyFlow
+
+main: kit: flow: BasicTicketReplyFlow:
+{
+  entity: "ticket_reply",
+  kind: "basic",
+  name: "BasicTicketReplyFlow",
+  step: [
+    {
+      i: {
+        ref: "ticket_reply_ref01"
+      }
+
+      m: {
+        ticket_id: "ticket01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicTicketReplyFlow"
+}

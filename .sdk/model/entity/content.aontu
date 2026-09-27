@@ -1,0 +1,60 @@
+# Entity: content
+
+main: kit: entity: content: {
+
+  alias: field: {}
+
+  name: "content"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /content/bulk_actions"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/content/bulk_actions"
+          q: {
+            "$action": "bulk_action"
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "content"
+            }
+            {
+              lit: "bulk_actions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

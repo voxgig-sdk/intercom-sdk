@@ -19,7 +19,6 @@ import type {
   ContentSearchListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class ContentSearchEntity extends IntercomEntityBase<ContentSearch> {
 
   constructor(client: IntercomSDK, entopts: any) {

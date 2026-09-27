@@ -1,0 +1,58 @@
+# BasicCustomObjectInstanceFlow
+
+main: kit: flow: BasicCustomObjectInstanceFlow:
+{
+  entity: "custom_object_instance",
+  kind: "basic",
+  name: "BasicCustomObjectInstanceFlow",
+  step: [
+    {
+      i: {
+        ref: "custom_object_instance_ref01"
+      }
+
+      m: {
+        custom_object_type_identifier: "custom_object_typeentifier01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "custom_object_instance_ref01",
+        srcdatavar: "custom_object_instance_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        custom_object_type_identifier: "custom_object_typeentifier01",
+        id: "custom_object_instance01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-custom_object_instance_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "custom_object_instance_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "custom_object_instance01"
+      }
+
+      o: "remove"
+    }
+  ],
+  "key$": "BasicCustomObjectInstanceFlow"
+}

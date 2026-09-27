@@ -81,6 +81,7 @@ class HelpCenterEntityTest extends TestCase
         $help_center_ref01_ent = $client->HelpCenter(null);
         $help_center_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.help_center"), "help_center_ref01"));
+        $help_center_ref01_data["help_center_id"] = $setup["idmap"]["help_center01"];
 
         $help_center_ref01_data_result = $help_center_ref01_ent->create($help_center_ref01_data, null);
         $help_center_ref01_data = Helpers::to_map(is_object($help_center_ref01_data_result) && method_exists($help_center_ref01_data_result, 'data_get') ? $help_center_ref01_data_result->data_get() : $help_center_ref01_data_result);
@@ -157,7 +158,7 @@ function help_center_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["help_center01", "help_center02", "help_center03", "collection01", "collection02", "collection03"] as $k) {
+    foreach (["help_center01", "help_center02", "help_center03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

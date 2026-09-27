@@ -19,7 +19,6 @@ import type {
   ArticleVersionListListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class ArticleVersionListEntity extends IntercomEntityBase<ArticleVersionList> {
 
   constructor(client: IntercomSDK, entopts: any) {

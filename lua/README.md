@@ -45,7 +45,7 @@ local activitylogs, err = client:ActivityLog():list()
 if err then error(err) end
 
 for _, item in ipairs(activitylogs) do
-  print(item["id"], item["activity_description"])
+  print(item["id"])
 end
 ```
 
@@ -222,6 +222,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `BannerDismiss` | `(data) -> BannerDismissEntity` | Create a BannerDismiss entity instance. |
 | `Brand` | `(data) -> BrandEntity` | Create a Brand entity instance. |
 | `Call` | `(data) -> CallEntity` | Create a Call entity instance. |
+| `Cancel` | `(data) -> CancelEntity` | Create a Cancel entity instance. |
 | `Company` | `(data) -> CompanyEntity` | Create a Company entity instance. |
 | `CompanyAttachedContact` | `(data) -> CompanyAttachedContactEntity` | Create a CompanyAttachedContact entity instance. |
 | `CompanyAttachedSegment` | `(data) -> CompanyAttachedSegmentEntity` | Create a CompanyAttachedSegment entity instance. |
@@ -248,7 +249,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `DataConnectorExecutionResultList` | `(data) -> DataConnectorExecutionResultListEntity` | Create a DataConnectorExecutionResultList entity instance. |
 | `DataEvent` | `(data) -> DataEventEntity` | Create a DataEvent entity instance. |
 | `DataEventSummary` | `(data) -> DataEventSummaryEntity` | Create a DataEventSummary entity instance. |
-| `DataExport` | `(data) -> DataExportEntity` | Create a DataExport entity instance. |
 | `Deleted` | `(data) -> DeletedEntity` | Create a Deleted entity instance. |
 | `DeletedArticleObject` | `(data) -> DeletedArticleObjectEntity` | Create a DeletedArticleObject entity instance. |
 | `DeletedCompanyObject` | `(data) -> DeletedCompanyObjectEntity` | Create a DeletedCompanyObject entity instance. |
@@ -656,6 +656,20 @@ API path: `/brands`
 Operations: Create, List, Load.
 
 API path: `/calls/search`
+
+#### Cancel
+
+| Field | Description |
+| --- | --- |
+| `download_expires_at` | The time after which you will not be able to access the data. |
+| `download_url` | The location where you can download your data. |
+| `id` |  |
+| `job_identifier` | The identifier for your job. |
+| `status` | The current state of your job. |
+
+Operations: Create.
+
+API path: `/export/cancel/{job_identifier}`
 
 #### Company
 
@@ -1257,19 +1271,6 @@ Operations: List.
 
 API path: `/events`
 
-#### DataExport
-
-| Field | Description |
-| --- | --- |
-| `download_expires_at` | The time after which you will not be able to access the data. |
-| `download_url` | The location where you can download your data. |
-| `job_identifier` | The identifier for your job. |
-| `status` | The current state of your job. |
-
-Operations: Create.
-
-API path: `/export/cancel/{job_identifier}`
-
 #### Deleted
 
 | Field | Description |
@@ -1425,7 +1426,7 @@ API path: `/conversations/{id}/handling_events`
 | `bg` | The content of the group in Bulgarian |
 | `bs` | The content of the group in Bosnian |
 | `ca` | The content of the group in Catalan |
-| `created_at` | The time when the Help Center was created. |
+| `created_at` | The time the redirect was created as a UTC Unix timestamp. |
 | `cs` | The content of the group in Czech |
 | `custom_domain` | Custom domain configured for the help center |
 | `da` | The content of the group in Danish |
@@ -1444,7 +1445,7 @@ API path: `/conversations/{id}/handling_events`
 | `help_center_id` | The unique identifier for the help center the redirect belongs to. |
 | `hr` | The content of the group in Croatian |
 | `hu` | The content of the group in Hungarian |
-| `id` | The content of the group in Indonesian |
+| `id` | The unique identifier for the redirect. |
 | `identifier` | The identifier of the Help Center. |
 | `it` | The content of the group in Italian |
 | `ja` | The content of the group in Japanese |
@@ -1470,8 +1471,8 @@ API path: `/conversations/{id}/handling_events`
 | `target_type` | The type of the redirect target. |
 | `tr` | The content of the group in Turkish |
 | `translated_content` | The Translated Content of an Group. |
-| `type` | The type of object - group_translated_content. |
-| `updated_at` | The time when the Help Center was last updated. |
+| `type` | The type of the object - `help_center_redirect`. |
+| `updated_at` | The time the redirect was last updated as a UTC Unix timestamp. |
 | `url` | The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. |
 | `vi` | The content of the group in Vietnamese |
 | `website_turned_on` | Whether the Help Center is turned on or not. |
@@ -1609,19 +1610,22 @@ API path: `/messages`
 | `body` | The news item body, which may contain HTML. |
 | `cover_image_url` | URL of the image used as cover. |
 | `created_at` | Timestamp for when the news item was created. |
+| `data` | An array of Objects |
 | `deliver_silently` | When set to true, the news item will appear in the messenger newsfeed without showing a notification badge. |
 | `id` | The unique identifier for the news item which is given by Intercom. |
 | `labels` | Label names displayed to users to categorize the news item. |
 | `newsfeed_assignments` | A list of newsfeed_assignments to assign to the specified newsfeed. |
+| `pages` | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
 | `reactions` | Ordered list of emoji reactions to the news item. |
 | `sender_id` | The id of the sender of the news item. |
 | `state` | News items will not be visible to your users in the assigned newsfeeds until they are set live. |
 | `title` | The title of the news item. |
+| `total_count` | A count of the total number of objects. |
 | `type` | The type of object. |
 | `updated_at` | Timestamp for when the news item was last updated. |
 | `workspace_id` | The id of the workspace which the news item belongs to. |
 
-Operations: Create, Load, Update.
+Operations: Create, List, Load, Update.
 
 API path: `/news/news_items`
 
@@ -1630,14 +1634,17 @@ API path: `/news/news_items`
 | Field | Description |
 | --- | --- |
 | `created_at` | Timestamp for when the newsfeed was created. |
+| `data` | An array of Objects |
 | `id` | The unique identifier for the newsfeed which is given by Intercom. |
 | `name` | The name of the newsfeed. |
+| `pages` | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
+| `total_count` | A count of the total number of objects. |
 | `type` | The type of object. |
 | `updated_at` | Timestamp for when the newsfeed was last updated. |
 
-Operations: Load.
+Operations: List, Load.
 
-API path: `/news/newsfeeds/{newsfeed_id}`
+API path: `/news/newsfeeds`
 
 #### Note
 
@@ -2702,6 +2709,35 @@ local calls, err = client:Call():list()
 
 ```lua
 local call, err = client:Call():create({
+})
+```
+
+
+### Cancel
+
+Create an instance: `local cancel = client:Cancel(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `create(data)` | Create a new entity with the given data. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `download_expires_at` | `string` | The time after which you will not be able to access the data. |
+| `download_url` | `string` | The location where you can download your data. |
+| `id` | `string` |  |
+| `job_identifier` | `string` | The identifier for your job. |
+| `status` | `string` | The current state of your job. |
+
+#### Example: Create
+
+```lua
+local cancel, err = client:Cancel():create({
+  id = "example_id", -- string
 })
 ```
 
@@ -3803,34 +3839,6 @@ local data_event_summarys, err = client:DataEventSummary():list()
 ```
 
 
-### DataExport
-
-Create an instance: `local data_export = client:DataExport(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `download_expires_at` | `string` | The time after which you will not be able to access the data. |
-| `download_url` | `string` | The location where you can download your data. |
-| `job_identifier` | `string` | The identifier for your job. |
-| `status` | `string` | The current state of your job. |
-
-#### Example: Create
-
-```lua
-local data_export, err = client:DataExport():create({
-  job_identifier = "example_job_identifier", -- string
-})
-```
-
-
 ### Deleted
 
 Create an instance: `local deleted = client:Deleted(nil)`
@@ -4141,7 +4149,7 @@ Create an instance: `local help_center = client:HelpCenter(nil)`
 | `bg` | `table` | The content of the group in Bulgarian |
 | `bs` | `table` | The content of the group in Bosnian |
 | `ca` | `table` | The content of the group in Catalan |
-| `created_at` | `number` | The time when the Help Center was created. |
+| `created_at` | `number` | The time the redirect was created as a UTC Unix timestamp. |
 | `cs` | `table` | The content of the group in Czech |
 | `custom_domain` | `string` | Custom domain configured for the help center |
 | `da` | `table` | The content of the group in Danish |
@@ -4160,7 +4168,7 @@ Create an instance: `local help_center = client:HelpCenter(nil)`
 | `help_center_id` | `string` | The unique identifier for the help center the redirect belongs to. |
 | `hr` | `table` | The content of the group in Croatian |
 | `hu` | `table` | The content of the group in Hungarian |
-| `id` | `table` | The content of the group in Indonesian |
+| `id` | `string` | The unique identifier for the redirect. |
 | `identifier` | `string` | The identifier of the Help Center. |
 | `it` | `table` | The content of the group in Italian |
 | `ja` | `table` | The content of the group in Japanese |
@@ -4186,8 +4194,8 @@ Create an instance: `local help_center = client:HelpCenter(nil)`
 | `target_type` | `string` | The type of the redirect target. |
 | `tr` | `table` | The content of the group in Turkish |
 | `translated_content` | `table` | The Translated Content of an Group. |
-| `type` | `string` | The type of object - group_translated_content. |
-| `updated_at` | `number` | The time when the Help Center was last updated. |
+| `type` | `string` | The type of the object - `help_center_redirect`. |
+| `updated_at` | `number` | The time the redirect was last updated as a UTC Unix timestamp. |
 | `url` | `string` | The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. |
 | `vi` | `table` | The content of the group in Vietnamese |
 | `website_turned_on` | `boolean` | Whether the Help Center is turned on or not. |
@@ -4459,6 +4467,7 @@ Create an instance: `local news_item = client:NewsItem(nil)`
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
+| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `update(data)` | Update an existing entity. |
 
@@ -4469,14 +4478,17 @@ Create an instance: `local news_item = client:NewsItem(nil)`
 | `body` | `string` | The news item body, which may contain HTML. |
 | `cover_image_url` | `string` | URL of the image used as cover. |
 | `created_at` | `number` | Timestamp for when the news item was created. |
+| `data` | `table` | An array of Objects |
 | `deliver_silently` | `boolean` | When set to true, the news item will appear in the messenger newsfeed without showing a notification badge. |
 | `id` | `string` | The unique identifier for the news item which is given by Intercom. |
 | `labels` | `table` | Label names displayed to users to categorize the news item. |
 | `newsfeed_assignments` | `table` | A list of newsfeed_assignments to assign to the specified newsfeed. |
+| `pages` | `table` | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
 | `reactions` | `table` | Ordered list of emoji reactions to the news item. |
 | `sender_id` | `number` | The id of the sender of the news item. |
 | `state` | `string` | News items will not be visible to your users in the assigned newsfeeds until they are set live. |
 | `title` | `string` | The title of the news item. |
+| `total_count` | `number` | A count of the total number of objects. |
 | `type` | `string` | The type of object. |
 | `updated_at` | `number` | Timestamp for when the news item was last updated. |
 | `workspace_id` | `string` | The id of the workspace which the news item belongs to. |
@@ -4485,6 +4497,12 @@ Create an instance: `local news_item = client:NewsItem(nil)`
 
 ```lua
 local news_item, err = client:NewsItem():load({ id = 1 })
+```
+
+#### Example: List
+
+```lua
+local news_items, err = client:NewsItem():list()
 ```
 
 #### Example: Create
@@ -4503,6 +4521,7 @@ Create an instance: `local newsfeed = client:Newsfeed(nil)`
 
 | Method | Description |
 | --- | --- |
+| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
@@ -4510,8 +4529,11 @@ Create an instance: `local newsfeed = client:Newsfeed(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `created_at` | `number` | Timestamp for when the newsfeed was created. |
+| `data` | `table` | An array of Objects |
 | `id` | `string` | The unique identifier for the newsfeed which is given by Intercom. |
 | `name` | `string` | The name of the newsfeed. |
+| `pages` | `table` | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
+| `total_count` | `number` | A count of the total number of objects. |
 | `type` | `string` | The type of object. |
 | `updated_at` | `number` | Timestamp for when the newsfeed was last updated. |
 
@@ -4519,6 +4541,12 @@ Create an instance: `local newsfeed = client:Newsfeed(nil)`
 
 ```lua
 local newsfeed, err = client:Newsfeed():load({ id = "newsfeed_id" })
+```
+
+#### Example: List
+
+```lua
+local newsfeeds, err = client:Newsfeed():list()
 ```
 
 
@@ -5443,14 +5471,14 @@ above:
 
 | Feature | What it does |
 |---|---|
-| [`debug`](#debug) | Request/response capture ring buffer for debugging |
-| [`idempotency`](#idempotency) | Idempotency keys for safe retries of mutating operations |
-| [`metrics`](#metrics) | Statistics capture: per-operation counters and latency |
-| [`paging`](#paging) | Pagination signals for list operations |
-| [`ratelimit`](#ratelimit) | Client-side rate limiting via a token bucket |
-| [`retry`](#retry) | Automatic retry of transient failures with exponential backoff |
-| [`test`](#test) | In-memory mock transport for testing without a live server |
-| [`timeout`](#timeout) | Per-request timeout with transport abort |
+| [`debug`](#debug) | Debug capture |
+| [`idempotency`](#idempotency) | Idempotency |
+| [`metrics`](#metrics) | Metrics |
+| [`paging`](#paging) | Paging |
+| [`ratelimit`](#ratelimit) | Rate limiting |
+| [`retry`](#retry) | Retry |
+| [`test`](#test) | Test transport |
+| [`timeout`](#timeout) | Timeout |
 
 > **Order matters for `ratelimit`, `retry`, `timeout`.** These wrap the
 > transport, so each one wraps whatever is already installed: the order you
@@ -5459,7 +5487,7 @@ above:
 
 ### debug
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 | Option | Default |
 |---|---|
@@ -5471,7 +5499,7 @@ Set `feature.debug.active` to enable it, then override any of the options above.
 
 ### idempotency
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 | Option | Default |
 |---|---|
@@ -5484,7 +5512,7 @@ Set `feature.idempotency.active` to enable it, then override any of the options 
 
 ### metrics
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 | Option | Default |
 |---|---|
@@ -5494,7 +5522,7 @@ Set `feature.metrics.active` to enable it, then override any of the options abov
 
 ### paging
 
-Pagination signals for list operations.
+Paging.
 
 | Option | Default |
 |---|---|
@@ -5510,7 +5538,7 @@ Set `feature.paging.active` to enable it, then override any of the options above
 
 ### ratelimit
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 | Option | Default |
 |---|---|
@@ -5526,7 +5554,7 @@ activated earlier.
 
 ### retry
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 | Option | Default |
 |---|---|
@@ -5545,7 +5573,7 @@ activated earlier.
 
 ### test
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 | Option | Default |
 |---|---|
@@ -5555,7 +5583,7 @@ Set `feature.test.active` to enable it, then override any of the options above.
 
 ### timeout
 
-Per-request timeout with transport abort.
+Timeout.
 
 | Option | Default |
 |---|---|
@@ -5636,14 +5664,14 @@ with hook methods named after pipeline stages (e.g. `PrePoint`,
 
 The SDK ships with built-in features:
 
-- **DebugFeature**: Request/response capture ring buffer for debugging
-- **IdempotencyFeature**: Idempotency keys for safe retries of mutating operations
-- **MetricsFeature**: Statistics capture: per-operation counters and latency
-- **PagingFeature**: Pagination signals for list operations
-- **RatelimitFeature**: Client-side rate limiting via a token bucket
-- **RetryFeature**: Automatic retry of transient failures with exponential backoff
-- **TestFeature**: In-memory mock transport for testing without a live server
-- **TimeoutFeature**: Per-request timeout with transport abort
+- **DebugFeature**: Debug capture
+- **IdempotencyFeature**: Idempotency
+- **MetricsFeature**: Metrics
+- **PagingFeature**: Paging
+- **RatelimitFeature**: Rate limiting
+- **RetryFeature**: Retry
+- **TestFeature**: Test transport
+- **TimeoutFeature**: Timeout
 
 Features are initialized in order. Hooks fire in the order features
 were added, so later features can override earlier ones.

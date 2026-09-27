@@ -1,0 +1,149 @@
+# Entity: data_connector_execution_result_list
+
+main: kit: entity: data_connector_execution_result_list: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "data_connector_execution_result_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /data_connectors/{data_connector_id}/execution_results"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "12345"
+                k: "param"
+                n: "id"
+                or: "data_connector_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "end_t"
+                or: "end_t"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "error_type"
+                or: "error_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "include_body"
+                or: "include_body"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "start_t"
+                or: "start_t"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "starting_after"
+                or: "starting_after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "success"
+                or: "success"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/data_connectors/{data_connector_id}/execution_results"
+          q: {
+            "$action": "execution_results"
+            exist: [
+              "end_t"
+              "error_type"
+              "id"
+              "include_body"
+              "intercom_version"
+              "per_page"
+              "start_t"
+              "starting_after"
+              "success"
+            ]
+          }
+          r: {
+            param: {
+              data_connector_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "data_connectors"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "execution_results"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

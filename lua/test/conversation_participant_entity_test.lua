@@ -76,7 +76,7 @@ function conversation_participant_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "conversation_participant01", "conversation_participant02", "conversation_participant03", "conversation01", "conversation02", "conversation03", "customer01", "customer02", "customer03" },
+    { "conversation_participant01", "conversation_participant02", "conversation_participant03", "conversation01", "conversation02", "conversation03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

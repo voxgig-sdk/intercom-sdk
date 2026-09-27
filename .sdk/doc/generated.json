@@ -1,7 +1,18 @@
 {
+  "version": 2,
+  "roots": [
+    ".github/workflows/docgen.yml",
+    ".sdk/admin/setup-github-pages.sh",
+    ".sdk/doc/generated.json",
+    ".sdk/doc/qa",
+    ".sdk/doc/qa-manifest.json",
+    "SUMMARY.md",
+    "docs"
+  ],
   "files": [
     ".github/workflows/docgen.yml",
     ".sdk/admin/setup-github-pages.sh",
+    ".sdk/doc/generated.json",
     ".sdk/doc/qa-manifest.json",
     ".sdk/doc/qa/STYLE-GUIDE.md",
     ".sdk/doc/qa/pages-job.yml",
@@ -29,6 +40,7 @@
     "docs/api/banner_dismiss.html",
     "docs/api/brand.html",
     "docs/api/call.html",
+    "docs/api/cancel.html",
     "docs/api/company.html",
     "docs/api/company_attached_contact.html",
     "docs/api/company_attached_segment.html",
@@ -55,7 +67,6 @@
     "docs/api/data_connector_execution_result_list.html",
     "docs/api/data_event.html",
     "docs/api/data_event_summary.html",
-    "docs/api/data_export.html",
     "docs/api/deleted.html",
     "docs/api/deleted_article_object.html",
     "docs/api/deleted_company_object.html",

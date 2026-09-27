@@ -17,10 +17,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -32,9 +28,6 @@ describe('HelpCenterDirect', async () => {
 
   test('direct-exists', async () => {
     const sdk = new IntercomSDK({
-      // Concrete base: a live construction must satisfy any server
-      // variables a templated base URL declares; overriding base with a
-      // literal (as the direct flow tests do) sidesteps the requirement.
       base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
@@ -52,13 +45,15 @@ describe('HelpCenterDirect', async () => {
     const params: any = {}
     const query: any = {}
     if (setup.live) {
-      params.collection_id = 123
+      params.help_center_id = "123"
+      params.id = "26"
     } else {
-      params.collection_id = 'direct01'
+      params.help_center_id = 'direct01'
+      params.id = 'direct02'
     }
 
     const result: any = await client.direct({
-      path: 'help_center/collections/{collection_id}',
+      path: 'help_center/help_centers/{help_center_id}/redirects/{id}',
       method: 'GET',
       params,
       query,
@@ -85,6 +80,7 @@ describe('HelpCenterDirect', async () => {
       assert(calls.length === 1)
       assert(calls[0].init.method === 'GET')
       assert(calls[0].url.includes('direct01'))
+      assert(calls[0].url.includes('direct02'))
     }
   })
 

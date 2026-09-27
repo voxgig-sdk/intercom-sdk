@@ -1,0 +1,296 @@
+# Entity: office_hour
+
+main: kit: entity: office_hour: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the schedule was created as a Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the office hours schedule."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The name of the office hours schedule."
+      t: "`$STRING`"
+    }
+    time_intervals: {
+      h: "Time Intervals"
+      n: "time_intervals"
+      op: {
+        list: {
+          req: false
+          type: "`$ARRAY`"
+        }
+      }
+      r: true
+      sh: "The open intervals for the schedule."
+      t: "`$ARRAY`"
+    }
+    time_zone_name: {
+      h: "Time Zone Name"
+      n: "time_zone_name"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The IANA time zone the schedule's hours are evaluated in."
+      t: "`$STRING`"
+    }
+    twenty_four_seven: {
+      h: "Twenty Four Seven"
+      n: "twenty_four_seven"
+      r: false
+      sh: "Whether the schedule is open 24/7."
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the object - always `office_hours_schedule`."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the schedule was last updated as a Unix timestamp."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "office_hour"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /office_hours_schedules"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/office_hours_schedules"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "office_hours_schedules"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /office_hours_schedules"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/office_hours_schedules"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "office_hours_schedules"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "456"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "123"
+                k: "param"
+                n: "office_hours_schedule_id"
+                or: "office_hours_schedule_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/office_hours_schedules/{office_hours_schedule_id}/office_hours_exceptions/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+              "office_hours_schedule_id"
+            ]
+          }
+          s: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "office_hours_schedule_id"
+            }
+            {
+              lit: "office_hours_exceptions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /office_hours_schedules/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/office_hours_schedules/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.office_hours_schedule")]
+  ]
+
+}

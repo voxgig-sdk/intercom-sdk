@@ -120,13 +120,15 @@ func TestHelpCenterDirect(t *testing.T) {
 		params := map[string]any{}
 		query := map[string]any{}
 		if setup.live {
-			params["collection_id"] = 123
+			params["help_center_id"] = "123"
+			params["id"] = "26"
 		} else {
-			params["collection_id"] = "direct01"
+			params["help_center_id"] = "direct01"
+			params["id"] = "direct02"
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "help_center/collections/{collection_id}",
+			"path":   "help_center/help_centers/{help_center_id}/redirects/{id}",
 			"method": "GET",
 			"params": params,
 			"query":  query,
@@ -180,6 +182,9 @@ func TestHelpCenterDirect(t *testing.T) {
 			if url, ok := call["url"].(string); ok {
 				if !strings.Contains(url, "direct01") {
 					t.Fatalf("expected url to contain direct01, got %v", url)
+				}
+				if !strings.Contains(url, "direct02") {
+					t.Fatalf("expected url to contain direct02, got %v", url)
 				}
 			}
 		}

@@ -1,0 +1,313 @@
+# Entity: data_attribute
+
+main: kit: entity: data_attribute: {
+
+  alias: field: {}
+
+  fields: {
+    admin_id: {
+      h: "Admin Id"
+      n: "admin_id"
+      r: false
+      sh: "Teammate who created the attribute."
+      t: "`$STRING`"
+    }
+    api_writable: {
+      h: "Api Writable"
+      n: "api_writable"
+      r: false
+      sh: "Can this attribute be updated through API"
+      t: "`$BOOLEAN`"
+    }
+    archived: {
+      h: "Archived"
+      n: "archived"
+      r: false
+      sh: "Is this attribute archived."
+      t: "`$BOOLEAN`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the attribute was created as a UTC Unix timestamp"
+      t: "`$INTEGER`"
+    }
+    custom: {
+      h: "Custom"
+      n: "custom"
+      r: false
+      sh: "Set to true if this is a CDA"
+      t: "`$BOOLEAN`"
+    }
+    data_type: {
+      h: "Data Type"
+      n: "data_type"
+      r: false
+      sh: "The data type of the attribute."
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Readable description of the attribute."
+      t: "`$STRING`"
+    }
+    full_name: {
+      h: "Full Name"
+      n: "full_name"
+      r: false
+      sh: "Full name of the attribute."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the data attribute which is given by Intercom."
+      t: "`$INTEGER`"
+    }
+    label: {
+      h: "Label"
+      n: "label"
+      r: false
+      sh: "Readable name of the attribute (i.e."
+      t: "`$STRING`"
+    }
+    messenger_writable: {
+      h: "Messenger Writable"
+      n: "messenger_writable"
+      r: false
+      sh: "Can this attribute be updated by the Messenger"
+      t: "`$BOOLEAN`"
+    }
+    model: {
+      h: "Model"
+      n: "model"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Value is `contact` for user/lead attributes and `company` for company attributes."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Name of the attribute."
+      t: "`$STRING`"
+    }
+    options: {
+      h: "Options"
+      n: "options"
+      r: false
+      sh: "List of predefined options for attribute value."
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Value is `data_attribute`."
+      t: "`$STRING`"
+    }
+    ui_writable: {
+      h: "Ui Writable"
+      n: "ui_writable"
+      r: false
+      sh: "Can this attribute be updated in the UI"
+      t: "`$BOOLEAN`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the attribute was last updated as a UTC Unix timestamp"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "data_attribute"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /data_attributes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/data_attributes"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "data_attributes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /data_attributes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "include_archived"
+                or: "include_archived"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: "company"
+                k: "query"
+                n: "model"
+                or: "model"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/data_attributes"
+          q: {
+            exist: [
+              "include_archived"
+              "intercom_version"
+              "model"
+            ]
+          }
+          s: [
+            {
+              lit: "data_attributes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /data_attributes/{data_attribute_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 1
+                k: "param"
+                n: "id"
+                or: "data_attribute_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/data_attributes/{data_attribute_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              data_attribute_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "data_attributes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

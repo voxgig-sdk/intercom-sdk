@@ -1,7 +1,7 @@
 // Typed models for the Intercom SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
@@ -603,6 +603,22 @@ export interface CallCreateData {
   // The remaining keys are that action's own payload.
   $action?: string
   [action: string]: any
+}
+
+export interface Cancel {
+  download_expires_at?: string
+  download_url?: string
+  id?: string
+  job_identifier?: string
+  status?: string
+}
+
+export interface CancelCreateData {
+  id: string
+  download_expires_at?: string
+  download_url?: string
+  job_identifier?: string
+  status?: string
 }
 
 export interface Company {
@@ -1783,20 +1799,6 @@ export interface DataEventSummaryListMatch {
   type: string
 }
 
-export interface DataExport {
-  download_expires_at?: string
-  download_url?: string
-  job_identifier?: string
-  status?: string
-}
-
-export interface DataExportCreateData {
-  job_identifier: string
-  download_expires_at?: string
-  download_url?: string
-  status?: string
-}
-
 export interface Deleted {
   deleted_at?: number
   id?: string
@@ -2063,7 +2065,7 @@ export interface HelpCenter {
   help_center_id?: string
   hr?: Record<string, any>
   hu?: Record<string, any>
-  id?: Record<string, any>
+  id?: string
   identifier?: string
   it?: Record<string, any>
   ja?: Record<string, any>
@@ -2127,7 +2129,7 @@ export interface HelpCenterListMatch {
   help_center_id?: string
   hr?: Record<string, any>
   hu?: Record<string, any>
-  id?: Record<string, any>
+  id?: string
   identifier?: string
   it?: Record<string, any>
   ja?: Record<string, any>
@@ -2193,7 +2195,7 @@ export interface HelpCenterCreateData {
   help_center_id?: string
   hr?: Record<string, any>
   hu?: Record<string, any>
-  id?: Record<string, any>
+  id?: string
   identifier?: string
   it?: Record<string, any>
   ja?: Record<string, any>
@@ -2260,7 +2262,7 @@ export interface HelpCenterUpdateData {
   help_center_id?: string
   hr?: Record<string, any>
   hu?: Record<string, any>
-  id?: Record<string, any>
+  id?: string
   identifier?: string
   it?: Record<string, any>
   ja?: Record<string, any>
@@ -2466,14 +2468,17 @@ export interface NewsItem {
   body?: string
   cover_image_url?: string
   created_at?: number
+  data?: any[]
   deliver_silently?: boolean
   id?: string
   labels?: any[]
   newsfeed_assignments?: any[]
+  pages?: Record<string, any>
   reactions?: any[]
   sender_id?: number
   state?: string
   title?: string
+  total_count?: number
   type?: string
   updated_at?: number
   workspace_id?: string
@@ -2483,18 +2488,41 @@ export interface NewsItemLoadMatch {
   id: number
 }
 
-export interface NewsItemCreateData {
+export interface NewsItemListMatch {
   body?: string
   cover_image_url?: string
   created_at?: number
+  data?: any[]
   deliver_silently?: boolean
   id?: string
   labels?: any[]
   newsfeed_assignments?: any[]
+  pages?: Record<string, any>
   reactions?: any[]
   sender_id?: number
   state?: string
   title?: string
+  total_count?: number
+  type?: string
+  updated_at?: number
+  workspace_id?: string
+}
+
+export interface NewsItemCreateData {
+  body?: string
+  cover_image_url?: string
+  created_at?: number
+  data?: any[]
+  deliver_silently?: boolean
+  id?: string
+  labels?: any[]
+  newsfeed_assignments?: any[]
+  pages?: Record<string, any>
+  reactions?: any[]
+  sender_id?: number
+  state?: string
+  title?: string
+  total_count?: number
   type?: string
   updated_at?: number
   workspace_id?: string
@@ -2505,13 +2533,16 @@ export interface NewsItemUpdateData {
   body?: string
   cover_image_url?: string
   created_at?: number
+  data?: any[]
   deliver_silently?: boolean
   labels?: any[]
   newsfeed_assignments?: any[]
+  pages?: Record<string, any>
   reactions?: any[]
   sender_id?: number
   state?: string
   title?: string
+  total_count?: number
   type?: string
   updated_at?: number
   workspace_id?: string
@@ -2519,14 +2550,28 @@ export interface NewsItemUpdateData {
 
 export interface Newsfeed {
   created_at?: number
+  data?: any[]
   id?: string
   name?: string
+  pages?: Record<string, any>
+  total_count?: number
   type?: string
   updated_at?: number
 }
 
 export interface NewsfeedLoadMatch {
   id: string
+}
+
+export interface NewsfeedListMatch {
+  created_at?: number
+  data?: any[]
+  id?: string
+  name?: string
+  pages?: Record<string, any>
+  total_count?: number
+  type?: string
+  updated_at?: number
 }
 
 export interface Note {
@@ -2680,10 +2725,7 @@ export interface Paginated {
 }
 
 export interface PaginatedListMatch {
-  data?: any[]
-  pages?: Record<string, any>
-  total_count?: number
-  type?: string
+  newsfeed_id: string
 }
 
 export interface PhoneSwitch {

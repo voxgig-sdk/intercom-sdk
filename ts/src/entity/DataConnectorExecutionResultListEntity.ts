@@ -19,7 +19,6 @@ import type {
   DataConnectorExecutionResultListListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class DataConnectorExecutionResultListEntity extends IntercomEntityBase<DataConnectorExecutionResultList> {
 
   constructor(client: IntercomSDK, entopts: any) {

@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -49,7 +50,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -65,11 +65,11 @@
 <a class="nav-section" href="#get-help_centerhelp_centershelp_center_idredirects">GET /help_center/help_centers/{help_center_id}/redirects</a>
 <a class="nav-section" href="#get-help_centercollections">GET /help_center/collections</a>
 <a class="nav-section" href="#get-help_centerhelp_centers">GET /help_center/help_centers</a>
+<a class="nav-section" href="#get-help_centerhelp_centershelp_center_idredirectsid">GET /help_center/help_centers/{help_center_id}/redirects/{id}</a>
 <a class="nav-section" href="#get-help_centercollectionscollection_id">GET /help_center/collections/{collection_id}</a>
 <a class="nav-section" href="#get-help_centerhelp_centershelp_center_id">GET /help_center/help_centers/{help_center_id}</a>
-<a class="nav-section" href="#get-help_centerhelp_centershelp_center_idredirectsid">GET /help_center/help_centers/{help_center_id}/redirects/{id}</a>
-<a class="nav-section" href="#delete-help_centercollectionscollection_id">DELETE /help_center/collections/{collection_id}</a>
 <a class="nav-section" href="#delete-help_centerhelp_centershelp_center_idredirectsid">DELETE /help_center/help_centers/{help_center_id}/redirects/{id}</a>
+<a class="nav-section" href="#delete-help_centercollectionscollection_id">DELETE /help_center/collections/{collection_id}</a>
 <a class="nav-section" href="#put-help_centercollectionscollection_id">PUT /help_center/collections/{collection_id}</a></div>
 <a href="../api/internal_article.html">InternalArticle</a>
 <a href="../api/internal_article_search.html">InternalArticleSearch</a>
@@ -117,14 +117,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="helpcenter">HelpCenter</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="helpcenter">HelpCenter</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -169,6 +169,12 @@
 </tr>
 <tr>
 <td><code>GET</code></td>
+<td><a href="#get-help_centerhelp_centershelp_center_idredirectsid"><code>/help_center/help_centers/{help_center_id}/redirects/{id}</code></a></td>
+<td><code>load</code></td>
+<td>Successful</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
 <td><a href="#get-help_centercollectionscollection_id"><code>/help_center/collections/{collection_id}</code></a></td>
 <td><code>load</code></td>
 <td>Collection found</td>
@@ -180,22 +186,16 @@
 <td>Collection found</td>
 </tr>
 <tr>
-<td><code>GET</code></td>
-<td><a href="#get-help_centerhelp_centershelp_center_idredirectsid"><code>/help_center/help_centers/{help_center_id}/redirects/{id}</code></a></td>
-<td><code>load</code></td>
-<td>Successful</td>
+<td><code>DELETE</code></td>
+<td><a href="#delete-help_centerhelp_centershelp_center_idredirectsid"><code>/help_center/help_centers/{help_center_id}/redirects/{id}</code></a></td>
+<td><code>remove</code></td>
+<td>redirect deleted</td>
 </tr>
 <tr>
 <td><code>DELETE</code></td>
 <td><a href="#delete-help_centercollectionscollection_id"><code>/help_center/collections/{collection_id}</code></a></td>
 <td><code>remove</code></td>
 <td>successful</td>
-</tr>
-<tr>
-<td><code>DELETE</code></td>
-<td><a href="#delete-help_centerhelp_centershelp_center_idredirectsid"><code>/help_center/help_centers/{help_center_id}/redirects/{id}</code></a></td>
-<td><code>remove</code></td>
-<td>redirect deleted</td>
 </tr>
 <tr>
 <td><code>PUT</code></td>
@@ -205,6 +205,76 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">help_centers, err := client.HelpCenter(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(help_centers)
+help_center, err := client.HelpCenter(nil).Load(map[string]any{&quot;collection_id&quot;: 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(help_center)
+created, err := client.HelpCenter(nil).Create(map[string]any{&quot;ar&quot;: map[string]any{}, &quot;bg&quot;: map[string]any{}, &quot;bs&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.HelpCenter(nil).Update(map[string]any{&quot;collection_id&quot;: 1, &quot;ar&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.HelpCenter(nil).Remove(map[string]any{&quot;collection_id&quot;: 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const help_centers = await client.HelpCenter().list()
+const help_center = await client.HelpCenter().load({ collection_id: 1 })
+const created = await client.HelpCenter().create({ ar: {}, bg: {}, bs: {} })
+const updated = await client.HelpCenter().update({ collection_id: 1, ar: {} })
+await client.HelpCenter().remove({ collection_id: 1 })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local help_centers, err = client:HelpCenter():list()
+local help_center, err = client:HelpCenter():load({ collection_id = 1 })
+local created, err = client:HelpCenter():create({ ar = {}, bg = {}, bs = {} })
+local updated, err = client:HelpCenter():update({ collection_id = 1, ar = {} })
+local removed, err = client:HelpCenter():remove({ collection_id = 1 })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$help_centers = $client-&gt;HelpCenter()-&gt;list();
+$help_center = $client-&gt;HelpCenter()-&gt;load([&quot;collection_id&quot; =&gt; 1]);
+$created = $client-&gt;HelpCenter()-&gt;create([&quot;ar&quot; =&gt; [], &quot;bg&quot; =&gt; [], &quot;bs&quot; =&gt; []]);
+$updated = $client-&gt;HelpCenter()-&gt;update([&quot;collection_id&quot; =&gt; 1, &quot;ar&quot; =&gt; []]);
+$client-&gt;HelpCenter()-&gt;remove([&quot;collection_id&quot; =&gt; 1]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">help_centers = client.HelpCenter().list()
+help_center = client.HelpCenter().load({&quot;collection_id&quot;: 1})
+created = client.HelpCenter().create({ &quot;ar&quot;: {}, &quot;bg&quot;: {}, &quot;bs&quot;: {} })
+updated = client.HelpCenter().update({&quot;collection_id&quot;: 1, &quot;ar&quot;: {}})
+client.HelpCenter().remove({&quot;collection_id&quot;: 1})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const help_centers = await client.HelpCenter().list()
+const help_center = await client.HelpCenter().load({ collection_id: 1 })
+const created = await client.HelpCenter().create({ ar: {}, bg: {}, bs: {} })
+const updated = await client.HelpCenter().update({ collection_id: 1, ar: {} })
+await client.HelpCenter().remove({ collection_id: 1 })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -244,7 +314,7 @@
 <td><code>created_at</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The time when the Help Center was created.</td>
+<td>The time the redirect was created as a UTC Unix timestamp.</td>
 </tr>
 <tr>
 <td><code>cs</code></td>
@@ -356,9 +426,9 @@
 </tr>
 <tr>
 <td><code>id</code></td>
-<td><code>object</code></td>
+<td><code>string</code></td>
 <td>No</td>
-<td>The content of the group in Indonesian</td>
+<td>The unique identifier for the redirect.</td>
 </tr>
 <tr>
 <td><code>identifier</code></td>
@@ -514,13 +584,13 @@
 <td><code>type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The type of object - group_translated_content.</td>
+<td>The type of the object - <code>help_center_redirect</code>.</td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The time when the Help Center was last updated.</td>
+<td>The time the redirect was last updated as a UTC Unix timestamp.</td>
 </tr>
 <tr>
 <td><code>url</code></td>
@@ -739,10 +809,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -759,10 +859,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -779,10 +909,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -799,10 +959,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -1675,7 +1865,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: group_translated_content</code></td>
 <td>No</td>
-<td>The type of object - group_translated_content.</td>
+<td>The type of object - <code>group_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -1721,7 +1911,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-CN.type</code></td>
-<td><code>enum: [object Object]</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -1745,7 +1935,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-TW.type</code></td>
-<td><code>string</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -2644,7 +2834,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: group_translated_content</code></td>
 <td>No</td>
-<td>The type of object - group_translated_content.</td>
+<td>The type of object - <code>group_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -2690,7 +2880,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-CN.type</code></td>
-<td><code>enum: [object Object]</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -2714,7 +2904,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-TW.type</code></td>
-<td><code>string</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -2801,10 +2991,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -3017,10 +3237,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -3930,7 +4180,7 @@
 <td><code>data[].translated_content.type</code></td>
 <td><code>enum: group_translated_content</code></td>
 <td>No</td>
-<td>The type of object - group_translated_content.</td>
+<td>The type of object - <code>group_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>data[].translated_content.vi</code></td>
@@ -3976,7 +4226,7 @@
 </tr>
 <tr>
 <td><code>data[].translated_content.zh-CN.type</code></td>
-<td><code>enum: [object Object]</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -4000,7 +4250,7 @@
 </tr>
 <tr>
 <td><code>data[].translated_content.zh-TW.type</code></td>
-<td><code>string</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -4285,15 +4535,193 @@
 </tbody>
 </table>
 <h2 id="load">load</h2>
-<h3 id="get-help_centercollectionscollection_id" class="operation" data-method="get"><code>GET</code> /help_center/collections/{collection_id}</h3>
-<p>Operation ID: <code>retrieveCollection</code>.</p>
+<h3 id="get-help_centerhelp_centershelp_center_idredirectsid" class="operation" data-method="get"><code>GET</code> /help_center/help_centers/{help_center_id}/redirects/{id}</h3>
+<p>Operation ID: <code>retrieveHelpCenterRedirect</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
 <h4 id="parameters-5">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
+| <code>help_center_id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the help center. |
+| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the redirect. |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-successful-2" class="status" data-status="2xx">200: Successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The time the redirect was created as a UTC Unix timestamp.</td>
+</tr>
+<tr>
+<td><code>from_url</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The source URL that is redirected. An absolute URL within the help center's URL space.</td>
+</tr>
+<tr>
+<td><code>help_center_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the help center the redirect belongs to.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the redirect.</td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The locale of the redirect's target. For article targets this is the bound translation's locale, which may differ from the requested locale if no translation exists in that locale.</td>
+</tr>
+<tr>
+<td><code>target_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier of the target article or collection. For article targets this is the Article ID.</td>
+</tr>
+<tr>
+<td><code>target_type</code></td>
+<td><code>enum: article, collection</code></td>
+<td>No</td>
+<td>The type of the redirect target.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: help_center_redirect</code></td>
+<td>No</td>
+<td>The type of the object - <code>help_center_redirect</code>.</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The time the redirect was last updated as a UTC Unix timestamp.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-5" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-not-found" class="status" data-status="4xx">404: Not Found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-help_centercollectionscollection_id" class="operation" data-method="get"><code>GET</code> /help_center/collections/{collection_id}</h3>
+<p>Operation ID: <code>retrieveCollection</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
 | <code>collection_id</code> | <code>path</code> | <code>integer</code> | Yes | The unique identifier for the collection which is given by Intercom. |</p>
-<h4 id="responses-5">Responses</h4>
+<h4 id="responses-6">Responses</h4>
 <h5 id="200-collection-found" class="status" data-status="2xx">200: Collection found</h5>
 <p><code>application/json</code></p>
 <table>
@@ -5186,7 +5614,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: group_translated_content</code></td>
 <td>No</td>
-<td>The type of object - group_translated_content.</td>
+<td>The type of object - <code>group_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -5232,7 +5660,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-CN.type</code></td>
-<td><code>enum: [object Object]</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -5256,7 +5684,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-TW.type</code></td>
-<td><code>string</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -5280,7 +5708,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="401-unauthorized-5" class="status" data-status="4xx">401: Unauthorized</h5>
+<h5 id="401-unauthorized-6" class="status" data-status="4xx">401: Unauthorized</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -5343,22 +5771,52 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
 <h3 id="get-help_centerhelp_centershelp_center_id" class="operation" data-method="get"><code>GET</code> /help_center/help_centers/{help_center_id}</h3>
 <p>Operation ID: <code>retrieveHelpCenter</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-6">Parameters</h4>
+<h4 id="parameters-7">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
 | <code>help_center_id</code> | <code>path</code> | <code>integer</code> | Yes | The unique identifier for the collection which is given by Intercom. |</p>
-<h4 id="responses-6">Responses</h4>
+<h4 id="responses-7">Responses</h4>
 <h5 id="200-collection-found-1" class="status" data-status="2xx">200: Collection found</h5>
 <p><code>application/json</code></p>
 <table>
@@ -5439,7 +5897,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="401-unauthorized-6" class="status" data-status="4xx">401: Unauthorized</h5>
+<h5 id="401-unauthorized-7" class="status" data-status="4xx">401: Unauthorized</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -5502,104 +5960,6 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
-<td>No</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="get-help_centerhelp_centershelp_center_idredirectsid" class="operation" data-method="get"><code>GET</code> /help_center/help_centers/{help_center_id}/redirects/{id}</h3>
-<p>Operation ID: <code>retrieveHelpCenterRedirect</code>.</p>
-<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-7">Parameters</h4>
-<p>| Parameter | In | Type | Required | Description |
-| --- | --- | --- | --- |
-| <code>help_center_id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the help center. |
-| <code>id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the redirect. |
-| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
-<h4 id="responses-7">Responses</h4>
-<h5 id="200-successful-2" class="status" data-status="2xx">200: Successful</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>created_at</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td>The time the redirect was created as a UTC Unix timestamp.</td>
-</tr>
-<tr>
-<td><code>from_url</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The source URL that is redirected. An absolute URL within the help center's URL space.</td>
-</tr>
-<tr>
-<td><code>help_center_id</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The unique identifier for the help center the redirect belongs to.</td>
-</tr>
-<tr>
-<td><code>id</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The unique identifier for the redirect.</td>
-</tr>
-<tr>
-<td><code>locale</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The locale of the redirect's target. For article targets this is the bound translation's locale, which may differ from the requested locale if no translation exists in that locale.</td>
-</tr>
-<tr>
-<td><code>target_id</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The unique identifier of the target article or collection. For article targets this is the Article ID.</td>
-</tr>
-<tr>
-<td><code>target_type</code></td>
-<td><code>enum: article, collection</code></td>
-<td>No</td>
-<td>The type of the redirect target.</td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td><code>enum: help_center_redirect</code></td>
-<td>No</td>
-<td>The type of the object - <code>help_center_redirect</code>.</td>
-</tr>
-<tr>
-<td><code>updated_at</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td>The time the redirect was last updated as a UTC Unix timestamp.</td>
-</tr>
-</tbody>
-</table>
-<h5 id="401-unauthorized-7" class="status" data-status="4xx">401: Unauthorized</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
 <td><code>errors</code></td>
 <td><code>array of object</code></td>
 <td>Yes</td>
@@ -5634,151 +5994,20 @@
 <td><code>string</code></td>
 <td>Yes</td>
 <td>The type is error.list</td>
-</tr>
-</tbody>
-</table>
-<h5 id="404-not-found" class="status" data-status="4xx">404: Not Found</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
-<td>No</td>
-<td></td>
 </tr>
 </tbody>
 </table>
 <h2 id="remove">remove</h2>
-<h3 id="delete-help_centercollectionscollection_id" class="operation" data-method="delete"><code>DELETE</code> /help_center/collections/{collection_id}</h3>
-<p>Operation ID: <code>deleteCollection</code>.</p>
-<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-8">Parameters</h4>
-<p>| Parameter | In | Type | Required | Description |
-| --- | --- | --- | --- |
-| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>collection_id</code> | <code>path</code> | <code>integer</code> | Yes | The unique identifier for the collection which is given by Intercom. |</p>
-<h4 id="responses-8">Responses</h4>
-<h5 id="200-successful-3" class="status" data-status="2xx">200: successful</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>deleted</code></td>
-<td><code>boolean</code></td>
-<td>No</td>
-<td>Whether the collection was deleted successfully or not.</td>
-</tr>
-<tr>
-<td><code>id</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The unique identifier for the collection which you provided in the URL.</td>
-</tr>
-<tr>
-<td><code>object</code></td>
-<td><code>enum: collection</code></td>
-<td>No</td>
-<td>The type of object which was deleted. - <code>collection</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="401-unauthorized-8" class="status" data-status="4xx">401: Unauthorized</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>errors</code></td>
-<td><code>array of object</code></td>
-<td>Yes</td>
-<td>An array of one or more error objects</td>
-</tr>
-<tr>
-<td><code>errors[].code</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
-</tr>
-<tr>
-<td><code>errors[].field</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
-</tr>
-<tr>
-<td><code>errors[].message</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>Optional. Human readable description of the error.</td>
-</tr>
-<tr>
-<td><code>request_id</code></td>
-<td><code>string (uuid)</code></td>
-<td>No</td>
-<td></td>
-</tr>
-<tr>
-<td><code>type</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td>The type is error.list</td>
-</tr>
-</tbody>
-</table>
-<h5 id="404-collection-not-found-2" class="status" data-status="4xx">404: collection Not Found</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
-<td>No</td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h3 id="delete-help_centerhelp_centershelp_center_idredirectsid" class="operation" data-method="delete"><code>DELETE</code> /help_center/help_centers/{help_center_id}/redirects/{id}</h3>
 <p>Operation ID: <code>deleteHelpCenterRedirect</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
-<h4 id="parameters-9">Parameters</h4>
+<h4 id="parameters-8">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>help_center_id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the help center. |
 | <code>id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the redirect. |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
-<h4 id="responses-9">Responses</h4>
+<h4 id="responses-8">Responses</h4>
 <h5 id="200-redirect-deleted" class="status" data-status="2xx">200: redirect deleted</h5>
 <p><code>application/json</code></p>
 <table>
@@ -5811,7 +6040,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="401-unauthorized-9" class="status" data-status="4xx">401: Unauthorized</h5>
+<h5 id="401-unauthorized-8" class="status" data-status="4xx">401: Unauthorized</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -5874,10 +6103,181 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delete-help_centercollectionscollection_id" class="operation" data-method="delete"><code>DELETE</code> /help_center/collections/{collection_id}</h3>
+<p>Operation ID: <code>deleteCollection</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-9">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>collection_id</code> | <code>path</code> | <code>integer</code> | Yes | The unique identifier for the collection which is given by Intercom. |</p>
+<h4 id="responses-9">Responses</h4>
+<h5 id="200-successful-3" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deleted</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether the collection was deleted successfully or not.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the collection which you provided in the URL.</td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>enum: collection</code></td>
+<td>No</td>
+<td>The type of object which was deleted. - <code>collection</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-9" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h5 id="404-collection-not-found-2" class="status" data-status="4xx">404: collection Not Found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -6746,7 +7146,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: group_translated_content</code></td>
 <td>No</td>
-<td>The type of object - group_translated_content.</td>
+<td>The type of object - <code>group_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -6792,7 +7192,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-CN.type</code></td>
-<td><code>enum: [object Object]</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -6816,7 +7216,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-TW.type</code></td>
-<td><code>string</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -7715,7 +8115,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: group_translated_content</code></td>
 <td>No</td>
-<td>The type of object - group_translated_content.</td>
+<td>The type of object - <code>group_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -7761,7 +8161,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-CN.type</code></td>
-<td><code>enum: [object Object]</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -7785,7 +8185,7 @@
 </tr>
 <tr>
 <td><code>translated_content.zh-TW.type</code></td>
-<td><code>string</code></td>
+<td><code>enum: group_content</code></td>
 <td>No</td>
 <td>The type of object - <code>group_content</code> .</td>
 </tr>
@@ -7872,10 +8272,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>

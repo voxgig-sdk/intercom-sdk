@@ -1,0 +1,1057 @@
+# Entity: tag
+
+main: kit: entity: tag: {
+
+  alias: field: {}
+
+  fields: {
+    admin_id: {
+      h: "Admin Id"
+      n: "admin_id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Optional id of the teammate to attribute the tagging to."
+      t: "`$STRING`"
+    }
+    applied_at: {
+      fo: "date-time"
+      h: "Applied At"
+      n: "applied_at"
+      r: false
+      sh: "The time when the tag was applied to the object."
+      t: "`$INTEGER`"
+    }
+    applied_by: {
+      h: "Applied By"
+      n: "applied_by"
+      r: false
+      sh: "The admin who applied the tag."
+      t: "`$OBJECT`"
+    }
+    companies: {
+      h: "Companies"
+      n: "companies"
+      r: false
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The id of the tag"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the tag"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "value is \"tag\""
+      t: "`$STRING`"
+    }
+    users: {
+      h: "Users"
+      n: "users"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "tag"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /articles/{article_id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "article_id"
+                or: "article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/articles/{article_id}/tags"
+          q: {
+            exist: [
+              "article_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "article_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "POST /contacts/{contact_id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "63a07ddf05a32042dffac965"
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/contacts/{contact_id}/tags"
+          q: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "POST /content_snippets/{content_snippet_id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "content_snippet_id"
+                or: "content_snippet_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/content_snippets/{content_snippet_id}/tags"
+          q: {
+            exist: [
+              "content_snippet_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "content_snippets"
+            }
+            {
+              var: "content_snippet_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "POST /conversations/{conversation_id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "64619700005694"
+                k: "param"
+                n: "conversation_id"
+                or: "conversation_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/{conversation_id}/tags"
+          q: {
+            exist: [
+              "conversation_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "conversation_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "POST /internal_articles/{internal_article_id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "internal_article_id"
+                or: "internal_article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/internal_articles/{internal_article_id}/tags"
+          q: {
+            exist: [
+              "intercom_version"
+              "internal_article_id"
+            ]
+          }
+          s: [
+            {
+              lit: "internal_articles"
+            }
+            {
+              var: "internal_article_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "POST /tickets/{ticket_id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "64619700005694"
+                k: "param"
+                n: "ticket_id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tickets/{ticket_id}/tags"
+          q: {
+            exist: [
+              "intercom_version"
+              "ticket_id"
+            ]
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "ticket_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "POST /tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tags"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /contacts/{contact_id}/tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "63a07ddf05a32042dffac965"
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/contacts/{contact_id}/tags"
+          q: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /tags"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tags"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "tags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /tags/{tag_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "tag_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tags/{tag_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              tag_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /articles/{article_id}/tags/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "article_id"
+                or: "article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "7522907"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/articles/{article_id}/tags/{id}"
+          q: {
+            exist: [
+              "article_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "article_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /contacts/{contact_id}/tags/{tag_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "63a07ddf05a32042dffac965"
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "7522907"
+                k: "param"
+                n: "id"
+                or: "tag_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/contacts/{contact_id}/tags/{tag_id}"
+          q: {
+            exist: [
+              "contact_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              tag_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /content_snippets/{content_snippet_id}/tags/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "content_snippet_id"
+                or: "content_snippet_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "7522907"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/content_snippets/{content_snippet_id}/tags/{id}"
+          q: {
+            exist: [
+              "content_snippet_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "content_snippets"
+            }
+            {
+              var: "content_snippet_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /conversations/{conversation_id}/tags/{tag_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "64619700005694"
+                k: "param"
+                n: "conversation_id"
+                or: "conversation_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "7522907"
+                k: "param"
+                n: "id"
+                or: "tag_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/conversations/{conversation_id}/tags/{tag_id}"
+          q: {
+            exist: [
+              "conversation_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              tag_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "conversation_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /internal_articles/{internal_article_id}/tags/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "7522907"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: 123
+                k: "param"
+                n: "internal_article_id"
+                or: "internal_article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/internal_articles/{internal_article_id}/tags/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+              "internal_article_id"
+            ]
+          }
+          s: [
+            {
+              lit: "internal_articles"
+            }
+            {
+              var: "internal_article_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /tickets/{ticket_id}/tags/{tag_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "7522907"
+                k: "param"
+                n: "id"
+                or: "tag_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "64619700005694"
+                k: "param"
+                n: "ticket_id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/tickets/{ticket_id}/tags/{tag_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+              "ticket_id"
+            ]
+          }
+          r: {
+            param: {
+              tag_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "ticket_id"
+            }
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.applied_by`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /tags/{tag_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "tag_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/tags/{tag_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              tag_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tags"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.article")]
+    [path("$.main.kit.entity.contact")]
+    [path("$.main.kit.entity.content_snippet")]
+    [path("$.main.kit.entity.conversation")]
+    [path("$.main.kit.entity.internal_article")]
+    [path("$.main.kit.entity.ticket")]
+  ]
+
+}

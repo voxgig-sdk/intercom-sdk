@@ -1,0 +1,213 @@
+# Entity: data_connector_execution_result
+
+main: kit: entity: data_connector_execution_result: {
+
+  alias: field: {}
+
+  fields: {
+    conversation_id: {
+      h: "Conversation Id"
+      n: "conversation_id"
+      r: false
+      sh: "The conversation associated with this execution, if any."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the execution occurred."
+      t: "`$STRING`"
+    }
+    data_connector_id: {
+      h: "Data Connector Id"
+      n: "data_connector_id"
+      r: false
+      sh: "The unique identifier of the data connector that produced this result."
+      t: "`$STRING`"
+    }
+    error_message: {
+      h: "Error Message"
+      n: "error_message"
+      r: false
+      sh: "A human-readable error message."
+      t: "`$STRING`"
+    }
+    error_type: {
+      h: "Error Type"
+      n: "error_type"
+      r: false
+      sh: "The type of error that occurred, if any."
+      t: "`$STRING`"
+    }
+    execution_time_ms: {
+      h: "Execution Time Ms"
+      n: "execution_time_ms"
+      r: false
+      sh: "The execution time in milliseconds."
+      t: "`$INTEGER`"
+    }
+    http_method: {
+      h: "Http Method"
+      n: "http_method"
+      r: false
+      sh: "The HTTP method used for the request."
+      t: "`$STRING`"
+    }
+    http_status: {
+      h: "Http Status"
+      n: "http_status"
+      r: false
+      sh: "The HTTP status code returned by the external API."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the execution result."
+      t: "`$STRING`"
+    }
+    raw_response_body: {
+      h: "Raw Response Body"
+      n: "raw_response_body"
+      r: false
+      sh: "The raw (unmapped) response body."
+      t: "`$STRING`"
+    }
+    request_body: {
+      h: "Request Body"
+      n: "request_body"
+      r: false
+      sh: "The request body sent to the external API."
+      t: "`$STRING`"
+    }
+    request_url: {
+      h: "Request Url"
+      n: "request_url"
+      r: false
+      sh: "The request URL."
+      t: "`$STRING`"
+    }
+    response_body: {
+      h: "Response Body"
+      n: "response_body"
+      r: false
+      sh: "The response body from the external API."
+      t: "`$STRING`"
+    }
+    source_id: {
+      h: "Source Id"
+      n: "source_id"
+      r: false
+      sh: "The identifier of the source that triggered this execution."
+      t: "`$STRING`"
+    }
+    source_type: {
+      h: "Source Type"
+      n: "source_type"
+      r: false
+      sh: "The type of source that triggered this execution."
+      t: "`$STRING`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      sh: "Whether the execution was successful."
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object - `data_connector.execution`."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "data_connector_execution_result"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /data_connectors/{data_connector_id}/execution_results/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "12345"
+                k: "param"
+                n: "data_connector_id"
+                or: "data_connector_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "99001"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/data_connectors/{data_connector_id}/execution_results/{id}"
+          q: {
+            exist: [
+              "data_connector_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "data_connectors"
+            }
+            {
+              var: "data_connector_id"
+            }
+            {
+              lit: "execution_results"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.data_connector")]
+  ]
+
+}

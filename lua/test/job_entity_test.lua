@@ -78,7 +78,7 @@ function job_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "job01", "job02", "job03", "status01", "status02", "status03" },
+    { "job01", "job02", "job03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

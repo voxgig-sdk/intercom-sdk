@@ -1,0 +1,75 @@
+# Entity: ai_content
+
+main: kit: entity: ai_content: {
+
+  alias: field: {}
+
+  name: "ai_content"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /ai/content_import_sources/{source_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "source_id"
+                or: "source_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/ai/content_import_sources/{source_id}"
+          q: {
+            exist: [
+              "intercom_version"
+              "source_id"
+            ]
+          }
+          s: [
+            {
+              lit: "ai"
+            }
+            {
+              lit: "content_import_sources"
+            }
+            {
+              var: "source_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.content_import_source")]
+  ]
+
+}

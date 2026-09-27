@@ -1,0 +1,285 @@
+# Entity: admin
+
+main: kit: entity: admin: {
+
+  alias: field: {}
+
+  fields: {
+    avatar: {
+      fo: "uri"
+      h: "Avatar"
+      n: "avatar"
+      r: false
+      sh: "Image for the associated team or teammate"
+      t: "`$STRING`"
+    }
+    away_mode_enabled: {
+      h: "Away Mode Enabled"
+      n: "away_mode_enabled"
+      r: false
+      sh: "Identifies if this admin is currently set in away mode."
+      t: "`$BOOLEAN`"
+    }
+    away_mode_reassign: {
+      h: "Away Mode Reassign"
+      n: "away_mode_reassign"
+      r: false
+      sh: "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox."
+      t: "`$BOOLEAN`"
+    }
+    away_status_reason_id: {
+      h: "Away Status Reason Id"
+      n: "away_status_reason_id"
+      r: false
+      sh: "The unique identifier of the away status reason"
+      t: "`$INTEGER`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "The email of the admin."
+      t: "`$STRING`"
+    }
+    has_inbox_seat: {
+      h: "Has Inbox Seat"
+      n: "has_inbox_seat"
+      r: false
+      sh: "Identifies if this admin has a paid inbox seat to restrict/allow features that require them."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id representing the admin."
+      t: "`$STRING`"
+    }
+    job_title: {
+      h: "Job Title"
+      n: "job_title"
+      r: false
+      sh: "The job title of the admin."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the admin."
+      t: "`$STRING`"
+    }
+    role: {
+      h: "Role"
+      n: "role"
+      r: false
+      sh: "The role assigned to this admin."
+      t: "`$OBJECT`"
+    }
+    team_ids: {
+      h: "Team Ids"
+      n: "team_ids"
+      r: false
+      sh: "This object represents the avatar associated with the admin."
+      t: "`$ARRAY`"
+    }
+    team_priority_level: {
+      h: "Team Priority Level"
+      n: "team_priority_level"
+      r: false
+      sh: "Admin priority levels for teams"
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "admin"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /admins"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "display_avatar"
+                or: "display_avatar"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/admins"
+          q: {
+            exist: [
+              "display_avatar"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "admins"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.admins`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /admins/{admin_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "admin_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/admins/{admin_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              admin_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "admins"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /admins/{admin_id}/away"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "admin_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/admins/{admin_id}/away"
+          q: {
+            "$action": "away"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              admin_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "admins"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "away"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -19,7 +19,6 @@ import type {
   DeletedListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class DeletedEntity extends IntercomEntityBase<Deleted> {
 
   constructor(client: IntercomSDK, entopts: any) {

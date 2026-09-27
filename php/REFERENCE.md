@@ -110,6 +110,10 @@ Create a new `BrandEntity` instance. Pass `null` for no initial data.
 
 Create a new `CallEntity` instance. Pass `null` for no initial data.
 
+#### `Cancel($data = null)`
+
+Create a new `CancelEntity` instance. Pass `null` for no initial data.
+
 #### `Company($data = null)`
 
 Create a new `CompanyEntity` instance. Pass `null` for no initial data.
@@ -213,10 +217,6 @@ Create a new `DataEventEntity` instance. Pass `null` for no initial data.
 #### `DataEventSummary($data = null)`
 
 Create a new `DataEventSummaryEntity` instance. Pass `null` for no initial data.
-
-#### `DataExport($data = null)`
-
-Create a new `DataExportEntity` instance. Pass `null` for no initial data.
 
 #### `Deleted($data = null)`
 
@@ -1640,6 +1640,64 @@ Set the entity match criteria.
 #### `make(): CallEntity`
 
 Create a new `CallEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## CancelEntity
+
+```php
+$cancel = $client->Cancel();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `download_expires_at` | `string` | No | The time after which you will not be able to access the data. |
+| `download_url` | `string` | No | The location where you can download your data. |
+| `id` | `string` | No |  |
+| `job_identifier` | `string` | No | The identifier for your job. |
+| `status` | `string` | No | The current state of your job. |
+
+### Operations
+
+#### `create(array $reqdata, ?array $ctrl = null): mixed`
+
+Create a new entity with the given data. Throws on error.
+
+```php
+$result = $client->Cancel()->create([
+  "id" => null, // string
+]);
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): CancelEntity`
+
+Create a new `CancelEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -3815,63 +3873,6 @@ Return the entity name.
 
 ---
 
-## DataExportEntity
-
-```php
-$data_export = $client->DataExport();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `download_expires_at` | `string` | No | The time after which you will not be able to access the data. |
-| `download_url` | `string` | No | The location where you can download your data. |
-| `job_identifier` | `string` | No | The identifier for your job. |
-| `status` | `string` | No | The current state of your job. |
-
-### Operations
-
-#### `create(array $reqdata, ?array $ctrl = null): mixed`
-
-Create a new entity with the given data. Throws on error.
-
-```php
-$result = $client->DataExport()->create([
-  "job_identifier" => null, // string
-]);
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): DataExportEntity`
-
-Create a new `DataExportEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
 ## DeletedEntity
 
 ```php
@@ -4569,7 +4570,7 @@ $help_center = $client->HelpCenter();
 | `bg` | `array` | No | The content of the group in Bulgarian |
 | `bs` | `array` | No | The content of the group in Bosnian |
 | `ca` | `array` | No | The content of the group in Catalan |
-| `created_at` | `int` | No | The time when the Help Center was created. |
+| `created_at` | `int` | No | The time the redirect was created as a UTC Unix timestamp. |
 | `cs` | `array` | No | The content of the group in Czech |
 | `custom_domain` | `string` | No | Custom domain configured for the help center |
 | `da` | `array` | No | The content of the group in Danish |
@@ -4588,7 +4589,7 @@ $help_center = $client->HelpCenter();
 | `help_center_id` | `string` | No | The unique identifier for the help center the redirect belongs to. |
 | `hr` | `array` | No | The content of the group in Croatian |
 | `hu` | `array` | No | The content of the group in Hungarian |
-| `id` | `array` | No | The content of the group in Indonesian |
+| `id` | `string` | No | The unique identifier for the redirect. |
 | `identifier` | `string` | No | The identifier of the Help Center. |
 | `it` | `array` | No | The content of the group in Italian |
 | `ja` | `array` | No | The content of the group in Japanese |
@@ -4614,8 +4615,8 @@ $help_center = $client->HelpCenter();
 | `target_type` | `string` | No | The type of the redirect target. |
 | `tr` | `array` | No | The content of the group in Turkish |
 | `translated_content` | `array` | No | The Translated Content of an Group. |
-| `type` | `string` | No | The type of object - group_translated_content. |
-| `updated_at` | `int` | No | The time when the Help Center was last updated. |
+| `type` | `string` | No | The type of the object - `help_center_redirect`. |
+| `updated_at` | `int` | No | The time the redirect was last updated as a UTC Unix timestamp. |
 | `url` | `string` | No | The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. |
 | `vi` | `array` | No | The content of the group in Vietnamese |
 | `website_turned_on` | `bool` | No | Whether the Help Center is turned on or not. |
@@ -5189,36 +5190,42 @@ $news_item = $client->NewsItem();
 | `body` | `string` | No | The news item body, which may contain HTML. |
 | `cover_image_url` | `string` | No | URL of the image used as cover. |
 | `created_at` | `int` | No | Timestamp for when the news item was created. |
+| `data` | `array` | No | An array of Objects |
 | `deliver_silently` | `bool` | No | When set to true, the news item will appear in the messenger newsfeed without showing a notification badge. |
 | `id` | `string` | No | The unique identifier for the news item which is given by Intercom. |
 | `labels` | `array` | No | Label names displayed to users to categorize the news item. |
 | `newsfeed_assignments` | `array` | No | A list of newsfeed_assignments to assign to the specified newsfeed. |
+| `pages` | `array` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
 | `reactions` | `array` | No | Ordered list of emoji reactions to the news item. |
 | `sender_id` | `int` | No | The id of the sender of the news item. |
 | `state` | `string` | No | News items will not be visible to your users in the assigned newsfeeds until they are set live. |
 | `title` | `string` | No | The title of the news item. |
+| `total_count` | `int` | No | A count of the total number of objects. |
 | `type` | `string` | No | The type of object. |
 | `updated_at` | `int` | No | Timestamp for when the news item was last updated. |
 | `workspace_id` | `string` | No | The id of the workspace which the news item belongs to. |
 
 ### Field Usage by Operation
 
-| Field | load | create | update |
-| --- | --- | --- | --- |
-| `body` | - | - | - |
-| `cover_image_url` | - | - | - |
-| `created_at` | - | - | - |
-| `deliver_silently` | - | - | - |
-| `id` | - | - | - |
-| `labels` | - | - | - |
-| `newsfeed_assignments` | - | - | - |
-| `reactions` | - | - | - |
-| `sender_id` | - | Yes | Yes |
-| `state` | - | - | - |
-| `title` | - | Yes | Yes |
-| `type` | - | - | - |
-| `updated_at` | - | - | - |
-| `workspace_id` | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `body` | - | - | - | - |
+| `cover_image_url` | - | - | - | - |
+| `created_at` | - | - | - | - |
+| `data` | - | - | - | - |
+| `deliver_silently` | - | - | - | - |
+| `id` | - | - | - | - |
+| `labels` | - | - | - | - |
+| `newsfeed_assignments` | - | - | - | - |
+| `pages` | - | - | - | - |
+| `reactions` | - | - | - | - |
+| `sender_id` | - | - | Yes | Yes |
+| `state` | - | - | - | - |
+| `title` | - | - | Yes | Yes |
+| `total_count` | - | - | - | - |
+| `type` | - | - | - | - |
+| `updated_at` | - | - | - | - |
+| `workspace_id` | - | - | - | - |
 
 ### Operations
 
@@ -5229,6 +5236,14 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->NewsItem()->create([
 ]);
+```
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->NewsItem()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -5291,12 +5306,23 @@ $newsfeed = $client->Newsfeed();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `int` | No | Timestamp for when the newsfeed was created. |
+| `data` | `array` | No | An array of Objects |
 | `id` | `string` | No | The unique identifier for the newsfeed which is given by Intercom. |
 | `name` | `string` | No | The name of the newsfeed. |
+| `pages` | `array` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
+| `total_count` | `int` | No | A count of the total number of objects. |
 | `type` | `string` | No | The type of object. |
 | `updated_at` | `int` | No | Timestamp for when the newsfeed was last updated. |
 
 ### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->Newsfeed()->list();
+```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
@@ -7188,14 +7214,14 @@ Return the entity name.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -7241,7 +7267,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -7272,7 +7298,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -7303,7 +7329,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -7331,7 +7357,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -7366,7 +7392,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -7397,7 +7423,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -7431,7 +7457,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -7462,7 +7488,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

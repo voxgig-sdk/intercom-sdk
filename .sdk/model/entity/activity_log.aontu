@@ -1,0 +1,126 @@
+# Entity: activity_log
+
+main: kit: entity: activity_log: {
+
+  alias: field: {}
+
+  fields: {
+    activity_description: {
+      h: "Activity Description"
+      n: "activity_description"
+      r: false
+      sh: "A sentence or two describing the activity."
+      t: "`$STRING`"
+    }
+    activity_type: {
+      h: "Activity Type"
+      n: "activity_type"
+      r: false
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the activity was created."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id representing the activity."
+      t: "`$STRING`"
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: false
+      sh: "Additional data provided about Admin activity."
+      t: "`$OBJECT`"
+    }
+    performed_by: {
+      h: "Performed By"
+      n: "performed_by"
+      r: false
+      sh: "Details about the Admin involved in the activity."
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "activity_log"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /admins/activity_logs"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "1677253093"
+                k: "query"
+                n: "created_at_after"
+                or: "created_at_after"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "1677861493"
+                k: "query"
+                n: "created_at_before"
+                or: "created_at_before"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/admins/activity_logs"
+          q: {
+            exist: [
+              "created_at_after"
+              "created_at_before"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "admins"
+            }
+            {
+              lit: "activity_logs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

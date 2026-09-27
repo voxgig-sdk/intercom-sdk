@@ -226,7 +226,7 @@ func contactBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"contact01", "contact02", "contact03", "find_by_external_id01", "find_by_external_id02", "find_by_external_id03"},
+		[]any{"contact01", "contact02", "contact03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

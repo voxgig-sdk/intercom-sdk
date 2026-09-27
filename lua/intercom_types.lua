@@ -1,7 +1,7 @@
 -- Typed models for the Intercom SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
@@ -516,6 +516,20 @@
 ---@field transcription_url? string
 ---@field type? string
 ---@field updated_at? any
+
+---@class Cancel
+---@field download_expires_at? string
+---@field download_url? string
+---@field id? string
+---@field job_identifier? string
+---@field status? string
+
+---@class CancelCreateData
+---@field id string
+---@field download_expires_at? string
+---@field download_url? string
+---@field job_identifier? string
+---@field status? string
 
 ---@class Company
 ---@field app_id? string
@@ -1582,18 +1596,6 @@
 ---@field summary? boolean
 ---@field type string
 
----@class DataExport
----@field download_expires_at? string
----@field download_url? string
----@field job_identifier? string
----@field status? string
-
----@class DataExportCreateData
----@field job_identifier string
----@field download_expires_at? string
----@field download_url? string
----@field status? string
-
 ---@class Deleted
 ---@field deleted_at? number
 ---@field id? string
@@ -1833,7 +1835,7 @@
 ---@field help_center_id? string
 ---@field hr? table
 ---@field hu? table
----@field id? table
+---@field id? string
 ---@field identifier? string
 ---@field it? table
 ---@field ja? table
@@ -1895,7 +1897,7 @@
 ---@field help_center_id? string
 ---@field hr? table
 ---@field hu? table
----@field id? table
+---@field id? string
 ---@field identifier? string
 ---@field it? table
 ---@field ja? table
@@ -1954,7 +1956,7 @@
 ---@field help_center_id? string
 ---@field hr? table
 ---@field hu? table
----@field id? table
+---@field id? string
 ---@field identifier? string
 ---@field it? table
 ---@field ja? table
@@ -2014,7 +2016,7 @@
 ---@field help_center_id? string
 ---@field hr? table
 ---@field hu? table
----@field id? table
+---@field id? string
 ---@field identifier? string
 ---@field it? table
 ---@field ja? table
@@ -2200,14 +2202,17 @@
 ---@field body? string
 ---@field cover_image_url? string
 ---@field created_at? number
+---@field data? table
 ---@field deliver_silently? boolean
 ---@field id? string
 ---@field labels? table
 ---@field newsfeed_assignments? table
+---@field pages? table
 ---@field reactions? table
 ---@field sender_id? number
 ---@field state? string
 ---@field title? string
+---@field total_count? number
 ---@field type? string
 ---@field updated_at? number
 ---@field workspace_id? string
@@ -2215,18 +2220,40 @@
 ---@class NewsItemLoadMatch
 ---@field id number
 
----@class NewsItemCreateData
+---@class NewsItemListMatch
 ---@field body? string
 ---@field cover_image_url? string
 ---@field created_at? number
+---@field data? table
 ---@field deliver_silently? boolean
 ---@field id? string
 ---@field labels? table
 ---@field newsfeed_assignments? table
+---@field pages? table
 ---@field reactions? table
 ---@field sender_id? number
 ---@field state? string
 ---@field title? string
+---@field total_count? number
+---@field type? string
+---@field updated_at? number
+---@field workspace_id? string
+
+---@class NewsItemCreateData
+---@field body? string
+---@field cover_image_url? string
+---@field created_at? number
+---@field data? table
+---@field deliver_silently? boolean
+---@field id? string
+---@field labels? table
+---@field newsfeed_assignments? table
+---@field pages? table
+---@field reactions? table
+---@field sender_id? number
+---@field state? string
+---@field title? string
+---@field total_count? number
 ---@field type? string
 ---@field updated_at? number
 ---@field workspace_id? string
@@ -2236,26 +2263,42 @@
 ---@field body? string
 ---@field cover_image_url? string
 ---@field created_at? number
+---@field data? table
 ---@field deliver_silently? boolean
 ---@field labels? table
 ---@field newsfeed_assignments? table
+---@field pages? table
 ---@field reactions? table
 ---@field sender_id? number
 ---@field state? string
 ---@field title? string
+---@field total_count? number
 ---@field type? string
 ---@field updated_at? number
 ---@field workspace_id? string
 
 ---@class Newsfeed
 ---@field created_at? number
+---@field data? table
 ---@field id? string
 ---@field name? string
+---@field pages? table
+---@field total_count? number
 ---@field type? string
 ---@field updated_at? number
 
 ---@class NewsfeedLoadMatch
 ---@field id string
+
+---@class NewsfeedListMatch
+---@field created_at? number
+---@field data? table
+---@field id? string
+---@field name? string
+---@field pages? table
+---@field total_count? number
+---@field type? string
+---@field updated_at? number
 
 ---@class Note
 ---@field admin_id? string
@@ -2391,10 +2434,7 @@
 ---@field type? string
 
 ---@class PaginatedListMatch
----@field data? table
----@field pages? table
----@field total_count? number
----@field type? string
+---@field newsfeed_id string
 
 ---@class PhoneSwitch
 ---@field custom_attributes? table

@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -52,7 +53,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -110,14 +110,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="contentimportsource">ContentImportSource</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="contentimportsource">ContentImportSource</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -156,6 +156,66 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">content_import_sources, err := client.ContentImportSource(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(content_import_sources)
+content_import_source, err := client.ContentImportSource(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(content_import_source)
+created, err := client.ContentImportSource(nil).Create(map[string]any{&quot;created_at&quot;: 1, &quot;id&quot;: 1, &quot;last_synced_at&quot;: 1, &quot;status&quot;: &quot;example&quot;, &quot;sync_behavior&quot;: &quot;example&quot;, &quot;type&quot;: &quot;example&quot;, &quot;updated_at&quot;: 1, &quot;url&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.ContentImportSource(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;apply_audience_to_existing_content&quot;: true, &quot;audience_ids&quot;: []any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const content_import_sources = await client.ContentImportSource().list()
+const content_import_source = await client.ContentImportSource().load({ id: &quot;example_id&quot; })
+const created = await client.ContentImportSource().create({ created_at: 1, id: 1, last_synced_at: 1, status: &quot;example&quot;, sync_behavior: &quot;example&quot;, type: &quot;example&quot;, updated_at: 1, url: &quot;example&quot; })
+const updated = await client.ContentImportSource().update({ id: &quot;example_id&quot;, apply_audience_to_existing_content: true, audience_ids: [] })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local content_import_sources, err = client:ContentImportSource():list()
+local content_import_source, err = client:ContentImportSource():load({ id = &quot;example_id&quot; })
+local created, err = client:ContentImportSource():create({ created_at = 1, id = 1, last_synced_at = 1, status = &quot;example&quot;, sync_behavior = &quot;example&quot;, type = &quot;example&quot;, updated_at = 1, url = &quot;example&quot; })
+local updated, err = client:ContentImportSource():update({ id = &quot;example_id&quot;, apply_audience_to_existing_content = true, audience_ids = {} })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$content_import_sources = $client-&gt;ContentImportSource()-&gt;list();
+$content_import_source = $client-&gt;ContentImportSource()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;ContentImportSource()-&gt;create([&quot;created_at&quot; =&gt; 1, &quot;id&quot; =&gt; 1, &quot;last_synced_at&quot; =&gt; 1, &quot;status&quot; =&gt; &quot;example&quot;, &quot;sync_behavior&quot; =&gt; &quot;example&quot;, &quot;type&quot; =&gt; &quot;example&quot;, &quot;updated_at&quot; =&gt; 1, &quot;url&quot; =&gt; &quot;example&quot;]);
+$updated = $client-&gt;ContentImportSource()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;apply_audience_to_existing_content&quot; =&gt; true, &quot;audience_ids&quot; =&gt; []]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">content_import_sources = client.ContentImportSource().list()
+content_import_source = client.ContentImportSource().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.ContentImportSource().create({ &quot;created_at&quot;: 1, &quot;id&quot;: 1, &quot;last_synced_at&quot;: 1, &quot;status&quot;: &quot;example&quot;, &quot;sync_behavior&quot;: &quot;example&quot;, &quot;type&quot;: &quot;example&quot;, &quot;updated_at&quot;: 1, &quot;url&quot;: &quot;example&quot; })
+updated = client.ContentImportSource().update({&quot;id&quot;: &quot;example_id&quot;, &quot;apply_audience_to_existing_content&quot;: True, &quot;audience_ids&quot;: []})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const content_import_sources = await client.ContentImportSource().list()
+const content_import_source = await client.ContentImportSource().load({ id: &quot;example_id&quot; })
+const created = await client.ContentImportSource().create({ created_at: 1, id: 1, last_synced_at: 1, status: &quot;example&quot;, sync_behavior: &quot;example&quot;, type: &quot;example&quot;, updated_at: 1, url: &quot;example&quot; })
+const updated = await client.ContentImportSource().update({ id: &quot;example_id&quot;, apply_audience_to_existing_content: true, audience_ids: [] })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -213,7 +273,7 @@
 <td><code>type</code></td>
 <td><code>string</code></td>
 <td>Yes</td>
-<td>Always external_page</td>
+<td>Always <code>external_page</code></td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
@@ -328,7 +388,7 @@
 <td><code>type</code></td>
 <td><code>enum: content_import_source</code></td>
 <td>Yes</td>
-<td>Always external_page</td>
+<td>Always <code>external_page</code></td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
@@ -461,7 +521,7 @@
 <td><code>data[].type</code></td>
 <td><code>enum: content_import_source</code></td>
 <td>Yes</td>
-<td>Always external_page</td>
+<td>Always <code>external_page</code></td>
 </tr>
 <tr>
 <td><code>data[].updated_at</code></td>
@@ -637,7 +697,7 @@
 <td><code>type</code></td>
 <td><code>enum: content_import_source</code></td>
 <td>Yes</td>
-<td>Always external_page</td>
+<td>Always <code>external_page</code></td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>
@@ -809,7 +869,7 @@
 <td><code>type</code></td>
 <td><code>enum: content_import_source</code></td>
 <td>Yes</td>
-<td>Always external_page</td>
+<td>Always <code>external_page</code></td>
 </tr>
 <tr>
 <td><code>updated_at</code></td>

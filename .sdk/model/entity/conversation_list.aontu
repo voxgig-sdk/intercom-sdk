@@ -1,0 +1,129 @@
+# Entity: conversation_list
+
+main: kit: entity: conversation_list: {
+
+  alias: field: {}
+
+  fields: {
+    conversations: {
+      h: "Conversations"
+      n: "conversations"
+      r: false
+      sh: "The list of conversation objects"
+      t: "`$ARRAY`"
+      union: {
+        branches: 4
+        count: 2
+        depth: 6
+      }
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data."
+      t: "`$OBJECT`"
+    }
+    pagination: {
+      h: "Pagination"
+      n: "pagination"
+      r: false
+      t: "`$OBJECT`"
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: true
+      t: "`$ANY`"
+      union: {
+        branches: 4
+        count: 4
+        depth: 7
+      }
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "A count of the total number of objects."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Always conversation.list"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "conversation_list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /conversations/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "include_monitor"
+                or: "include_monitor"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "include_scorecard"
+                or: "include_scorecard"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/search"
+          q: {
+            exist: [
+              "include_monitor"
+              "include_scorecard"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

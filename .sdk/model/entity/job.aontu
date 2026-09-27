@@ -1,0 +1,176 @@
+# Entity: job
+
+main: kit: entity: job: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "The id of the job that's currently being processed or has completed."
+      t: "`$STRING`"
+    }
+    resource_id: {
+      h: "Resource Id"
+      n: "resource_id"
+      r: false
+      sh: "The id of the resource created during job execution (e.g."
+      t: "`$STRING`"
+    }
+    resource_type: {
+      h: "Resource Type"
+      n: "resource_type"
+      r: false
+      sh: "The type of resource created during job execution."
+      t: "`$STRING`"
+    }
+    resource_url: {
+      h: "Resource Url"
+      n: "resource_url"
+      r: false
+      sh: "The url of the resource created during job exeuction."
+      t: "`$STRING`"
+    }
+    skip_notifications: {
+      h: "Skip Notifications"
+      n: "skip_notifications"
+      r: false
+      sh: "Option to disable notifications when a Ticket is created."
+      t: "`$BOOLEAN`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The status of the job execution."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the object"
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "API endpoint URL to check the job status."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "job"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /tickets/enqueue"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tickets/enqueue"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              lit: "enqueue"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /jobs/status/{job_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "job_id"
+                or: "job_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/jobs/status/{job_id}"
+          q: {
+            exist: [
+              "intercom_version"
+              "job_id"
+            ]
+          }
+          s: [
+            {
+              lit: "jobs"
+            }
+            {
+              lit: "status"
+            }
+            {
+              var: "job_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,101 @@
+# Entity: team_metric_list
+
+main: kit: entity: team_metric_list: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "team_metric_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /teams/{team_id}/metrics"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "42"
+                k: "param"
+                n: "id"
+                or: "team_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1800
+                k: "query"
+                n: "idle_threshold"
+                or: "idle_threshold"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/teams/{team_id}/metrics"
+          q: {
+            "$action": "metrics"
+            exist: [
+              "id"
+              "idle_threshold"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              team_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "teams"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "metrics"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

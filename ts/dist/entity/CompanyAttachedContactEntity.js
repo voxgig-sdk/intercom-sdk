@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompanyAttachedContactEntity = void 0;
 const IntercomEntityBase_1 = require("../IntercomEntityBase");
-// TODO: needs Entity superclass
 class CompanyAttachedContactEntity extends IntercomEntityBase_1.IntercomEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

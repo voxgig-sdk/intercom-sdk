@@ -1,0 +1,556 @@
+# Entity: company
+
+main: kit: entity: company: {
+
+  alias: field: {}
+
+  fields: {
+    app_id: {
+      h: "App Id"
+      n: "app_id"
+      r: false
+      sh: "The Intercom defined code of the workspace the company is associated to."
+      t: "`$STRING`"
+    }
+    company_id: {
+      h: "Company Id"
+      n: "company_id"
+      r: false
+      sh: "The company id you have defined for the company."
+      t: "`$STRING`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the company was added in Intercom."
+      t: "`$INTEGER`"
+    }
+    custom_attributes: {
+      h: "Custom Attributes"
+      n: "custom_attributes"
+      r: false
+      sh: "The custom attributes you have set on the company."
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The Intercom defined id representing the company."
+      t: "`$STRING`"
+    }
+    industry: {
+      h: "Industry"
+      n: "industry"
+      r: false
+      sh: "The industry that the company operates in."
+      t: "`$STRING`"
+    }
+    last_request_at: {
+      h: "Last Request At"
+      n: "last_request_at"
+      r: false
+      sh: "The time the company last recorded making a request."
+      t: "`$INTEGER`"
+    }
+    monthly_spend: {
+      h: "Monthly Spend"
+      n: "monthly_spend"
+      r: false
+      sh: "How much revenue the company generates for your business."
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the company."
+      t: "`$STRING`"
+    }
+    notes: {
+      h: "Notes"
+      n: "notes"
+      r: false
+      sh: "The list of notes associated with the company"
+      t: "`$OBJECT`"
+    }
+    plan: {
+      h: "Plan"
+      n: "plan"
+      r: false
+      sh: "The name of the plan you have associated with the company."
+      t: "`$OBJECT`"
+    }
+    remote_created_at: {
+      h: "Remote Created At"
+      n: "remote_created_at"
+      r: false
+      sh: "The time the company was created by you."
+      t: "`$INTEGER`"
+    }
+    segments: {
+      h: "Segments"
+      n: "segments"
+      r: false
+      sh: "The list of segments associated with the company"
+      t: "`$OBJECT`"
+    }
+    session_count: {
+      h: "Session Count"
+      n: "session_count"
+      r: false
+      sh: "How many sessions the company has recorded."
+      t: "`$INTEGER`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: false
+      sh: "The number of employees in the company."
+      t: "`$INTEGER`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      sh: "The list of tags associated with the company"
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Value is `company`"
+      t: "`$STRING`"
+    }
+    update_last_request_at: {
+      h: "Update Last Request At"
+      n: "update_last_request_at"
+      r: false
+      sh: "Set to true to update the company's last seen time to now."
+      t: "`$BOOLEAN`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The last time the company was updated."
+      t: "`$INTEGER`"
+    }
+    user_count: {
+      h: "User Count"
+      n: "user_count"
+      r: false
+      sh: "The number of users in the company."
+      t: "`$INTEGER`"
+    }
+    website: {
+      h: "Website"
+      n: "website"
+      r: false
+      sh: "The URL for the company website."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "company"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /contacts/{contact_id}/companies"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/contacts/{contact_id}/companies"
+          q: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "companies"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /companies"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/companies"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /companies"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "12345"
+                k: "query"
+                n: "company_id"
+                or: "company_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "my company"
+                k: "query"
+                n: "name"
+                or: "name"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 15
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "98765"
+                k: "query"
+                n: "segment_id"
+                or: "segment_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "678910"
+                k: "query"
+                n: "tag_id"
+                or: "tag_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/companies"
+          q: {
+            exist: [
+              "company_id"
+              "intercom_version"
+              "name"
+              "page"
+              "per_page"
+              "segment_id"
+              "tag_id"
+            ]
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /companies/{company_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632"
+                k: "param"
+                n: "id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/companies/{company_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              company_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /contacts/{contact_id}/companies/{company_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "58a430d35458202d41b1e65b"
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "58a430d35458202d41b1e65b"
+                k: "param"
+                n: "id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/contacts/{contact_id}/companies/{company_id}"
+          q: {
+            exist: [
+              "contact_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              company_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "companies"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /companies/{company_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632"
+                k: "param"
+                n: "id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/companies/{company_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              company_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.contact")]
+  ]
+
+}

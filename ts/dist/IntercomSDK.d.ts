@@ -15,6 +15,7 @@ import { BannerEntity } from './entity/BannerEntity';
 import { BannerDismissEntity } from './entity/BannerDismissEntity';
 import { BrandEntity } from './entity/BrandEntity';
 import { CallEntity } from './entity/CallEntity';
+import { CancelEntity } from './entity/CancelEntity';
 import { CompanyEntity } from './entity/CompanyEntity';
 import { CompanyAttachedContactEntity } from './entity/CompanyAttachedContactEntity';
 import { CompanyAttachedSegmentEntity } from './entity/CompanyAttachedSegmentEntity';
@@ -41,7 +42,6 @@ import { DataConnectorExecutionResultEntity } from './entity/DataConnectorExecut
 import { DataConnectorExecutionResultListEntity } from './entity/DataConnectorExecutionResultListEntity';
 import { DataEventEntity } from './entity/DataEventEntity';
 import { DataEventSummaryEntity } from './entity/DataEventSummaryEntity';
-import { DataExportEntity } from './entity/DataExportEntity';
 import { DeletedEntity } from './entity/DeletedEntity';
 import { DeletedArticleObjectEntity } from './entity/DeletedArticleObjectEntity';
 import { DeletedCompanyObjectEntity } from './entity/DeletedCompanyObjectEntity';
@@ -149,6 +149,7 @@ declare class IntercomSDK {
     BannerDismiss(entopts?: Record<string, any>): BannerDismissEntity;
     Brand(entopts?: Record<string, any>): BrandEntity;
     Call(entopts?: Record<string, any>): CallEntity;
+    Cancel(entopts?: Record<string, any>): CancelEntity;
     Company(entopts?: Record<string, any>): CompanyEntity;
     CompanyAttachedContact(entopts?: Record<string, any>): CompanyAttachedContactEntity;
     CompanyAttachedSegment(entopts?: Record<string, any>): CompanyAttachedSegmentEntity;
@@ -175,7 +176,6 @@ declare class IntercomSDK {
     DataConnectorExecutionResultList(entopts?: Record<string, any>): DataConnectorExecutionResultListEntity;
     DataEvent(entopts?: Record<string, any>): DataEventEntity;
     DataEventSummary(entopts?: Record<string, any>): DataEventSummaryEntity;
-    DataExport(entopts?: Record<string, any>): DataExportEntity;
     Deleted(entopts?: Record<string, any>): DeletedEntity;
     DeletedArticleObject(entopts?: Record<string, any>): DeletedArticleObjectEntity;
     DeletedCompanyObject(entopts?: Record<string, any>): DeletedCompanyObjectEntity;

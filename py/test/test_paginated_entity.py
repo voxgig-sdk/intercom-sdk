@@ -82,7 +82,9 @@ class TestPaginatedEntity:
 
         # LIST
         paginated_ref01_ent = client.Paginated(None)
-        paginated_ref01_match = {}
+        paginated_ref01_match = {
+            "newsfeed_id": setup["idmap"]["newsfeed01"],
+        }
 
         paginated_ref01_list_result = paginated_ref01_ent.list(paginated_ref01_match, None)
         assert isinstance(paginated_ref01_list_result, list)

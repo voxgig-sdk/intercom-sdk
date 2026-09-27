@@ -19,7 +19,6 @@ import type {
   TicketStateListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class TicketStateEntity extends IntercomEntityBase<TicketState> {
 
   constructor(client: IntercomSDK, entopts: any) {

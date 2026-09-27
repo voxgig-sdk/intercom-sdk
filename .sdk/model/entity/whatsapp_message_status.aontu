@@ -1,0 +1,86 @@
+# Entity: whatsapp_message_status
+
+main: kit: entity: whatsapp_message_status: {
+
+  alias: field: {}
+
+  fields: {
+    details: {
+      h: "Details"
+      n: "details"
+      r: false
+      sh: "Detailed error information"
+      t: "`$STRING`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: false
+      sh: "Error message"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "whatsapp_message_status"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /messages/whatsapp/status"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "message_id"
+                or: "message_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/messages/whatsapp/status"
+          q: {
+            exist: [
+              "intercom_version"
+              "message_id"
+            ]
+          }
+          s: [
+            {
+              lit: "messages"
+            }
+            {
+              lit: "whatsapp"
+            }
+            {
+              lit: "status"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.error`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

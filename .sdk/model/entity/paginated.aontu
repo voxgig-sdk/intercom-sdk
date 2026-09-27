@@ -1,0 +1,112 @@
+# Entity: paginated
+
+main: kit: entity: paginated: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "An array of Objects"
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 1
+      }
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data."
+      t: "`$OBJECT`"
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "A count of the total number of objects."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "paginated"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /news/newsfeeds/{newsfeed_id}/items"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "newsfeed_id"
+                or: "newsfeed_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/news/newsfeeds/{newsfeed_id}/items"
+          q: {
+            exist: [
+              "intercom_version"
+              "newsfeed_id"
+            ]
+          }
+          s: [
+            {
+              lit: "news"
+            }
+            {
+              lit: "newsfeeds"
+            }
+            {
+              var: "newsfeed_id"
+            }
+            {
+              lit: "items"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.newsfeed")]
+  ]
+
+}

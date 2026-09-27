@@ -78,13 +78,15 @@ describe("HelpCenterDirect", function()
     local params = {}
     local query = {}
     if setup.live then
-      params["collection_id"] = 123
+      params["help_center_id"] = "123"
+      params["id"] = "26"
     else
-      params["collection_id"] = "direct01"
+      params["help_center_id"] = "direct01"
+      params["id"] = "direct02"
     end
 
     local result, err = client:direct({
-      path = "help_center/collections/{collection_id}",
+      path = "help_center/help_centers/{help_center_id}/redirects/{id}",
       method = "GET",
       params = params,
       query = query,

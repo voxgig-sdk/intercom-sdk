@@ -29,6 +29,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -55,7 +56,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -113,14 +113,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="article">Article</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="article">Article</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -177,6 +177,66 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">articles, err := client.Article(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(articles)
+article, err := client.Article(nil).Load(map[string]any{&quot;id&quot;: 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(article)
+created, err := client.Article(nil).Create(map[string]any{&quot;author_id&quot;: 1, &quot;title&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.Article(nil).Update(map[string]any{&quot;id&quot;: 1, &quot;ai_chatbot_availability&quot;: true, &quot;ai_copilot_availability&quot;: true}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const articles = await client.Article().list()
+const article = await client.Article().load({ id: 1 })
+const created = await client.Article().create({ author_id: 1, title: &quot;example&quot; })
+const updated = await client.Article().update({ id: 1, ai_chatbot_availability: true, ai_copilot_availability: true })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local articles, err = client:Article():list()
+local article, err = client:Article():load({ id = 1 })
+local created, err = client:Article():create({ author_id = 1, title = &quot;example&quot; })
+local updated, err = client:Article():update({ id = 1, ai_chatbot_availability = true, ai_copilot_availability = true })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$articles = $client-&gt;Article()-&gt;list();
+$article = $client-&gt;Article()-&gt;load([&quot;id&quot; =&gt; 1]);
+$created = $client-&gt;Article()-&gt;create([&quot;author_id&quot; =&gt; 1, &quot;title&quot; =&gt; &quot;example&quot;]);
+$updated = $client-&gt;Article()-&gt;update([&quot;id&quot; =&gt; 1, &quot;ai_chatbot_availability&quot; =&gt; true, &quot;ai_copilot_availability&quot; =&gt; true]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">articles = client.Article().list()
+article = client.Article().load({&quot;id&quot;: 1})
+created = client.Article().create({ &quot;author_id&quot;: 1, &quot;title&quot;: &quot;example&quot; })
+updated = client.Article().update({&quot;id&quot;: 1, &quot;ai_chatbot_availability&quot;: True, &quot;ai_copilot_availability&quot;: True})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const articles = await client.Article().list()
+const article = await client.Article().load({ id: 1 })
+const created = await client.Article().create({ author_id: 1, title: &quot;example&quot; })
+const updated = await client.Article().update({ id: 1, ai_chatbot_availability: true, ai_copilot_availability: true })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -282,7 +342,7 @@
 <td><code>fin_resolution_rate</code></td>
 <td><code>number</code></td>
 <td>No</td>
-<td>The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100).</td>
+<td>The percentage of Fin AI Agent involvements that resulted in a resolution (<code>fin_resolutions</code> / <code>fin_involvements</code> * 100).</td>
 </tr>
 <tr>
 <td><code>fin_resolutions</code></td>
@@ -488,7 +548,7 @@
 <td><code>statistics.fin_resolution_rate</code></td>
 <td><code>number (float)</code></td>
 <td>No</td>
-<td>The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100).</td>
+<td>The percentage of Fin AI Agent involvements that resulted in a resolution (<code>fin_resolutions</code> / <code>fin_involvements</code> * 100).</td>
 </tr>
 <tr>
 <td><code>statistics.fin_resolutions</code></td>
@@ -597,10 +657,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -617,10 +707,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -665,7 +785,7 @@
 <td><code>audience_ids</code></td>
 <td><code>array of integer</code></td>
 <td>No</td>
-<td>The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level <code>audience_ids</code> broadcasts the same set to every locale. For per-locale targeting, use <code>translated_content.&amp;lt;locale&amp;gt;.audience_ids</code> instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs.</td>
+<td>The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level <code>audience_ids</code> broadcasts the same set to every locale. For per-locale targeting, use <code>translated_content`.&amp;lt;locale&amp;gt;.`audience_ids</code> instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs.</td>
 </tr>
 <tr>
 <td><code>author_id</code></td>
@@ -4613,7 +4733,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: article_translated_content</code></td>
 <td>No</td>
-<td>The type of object - article_translated_content.</td>
+<td>The type of object - <code>article_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -4994,7 +5114,7 @@
 <td><code>statistics.fin_resolution_rate</code></td>
 <td><code>number (float)</code></td>
 <td>No</td>
-<td>The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100).</td>
+<td>The percentage of Fin AI Agent involvements that resulted in a resolution (<code>fin_resolutions</code> / <code>fin_involvements</code> * 100).</td>
 </tr>
 <tr>
 <td><code>statistics.fin_resolutions</code></td>
@@ -5103,10 +5223,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -5154,7 +5304,7 @@
 <td><code>statistics.fin_resolution_rate</code></td>
 <td><code>number (float)</code></td>
 <td>No</td>
-<td>The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100).</td>
+<td>The percentage of Fin AI Agent involvements that resulted in a resolution (<code>fin_resolutions</code> / <code>fin_involvements</code> * 100).</td>
 </tr>
 <tr>
 <td><code>statistics.fin_resolutions</code></td>
@@ -5263,10 +5413,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -9350,7 +9530,7 @@
 <td><code>data[].translated_content.type</code></td>
 <td><code>enum: article_translated_content</code></td>
 <td>No</td>
-<td>The type of object - article_translated_content.</td>
+<td>The type of object - <code>article_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>data[].translated_content.vi</code></td>
@@ -9880,7 +10060,7 @@
 <td><code>statistics.fin_resolution_rate</code></td>
 <td><code>number (float)</code></td>
 <td>No</td>
-<td>The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100).</td>
+<td>The percentage of Fin AI Agent involvements that resulted in a resolution (<code>fin_resolutions</code> / <code>fin_involvements</code> * 100).</td>
 </tr>
 <tr>
 <td><code>statistics.fin_resolutions</code></td>
@@ -9989,10 +10169,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -10039,7 +10249,7 @@
 <td><code>audience_ids</code></td>
 <td><code>array of integer</code></td>
 <td>No</td>
-<td>The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level <code>audience_ids</code> broadcasts the same set to every locale. Sending <code>audience_ids: []</code> clears all audience memberships from every locale. For per-locale targeting, use <code>translated_content.&amp;lt;locale&amp;gt;.audience_ids</code> instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs.</td>
+<td>The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level <code>audience_ids</code> broadcasts the same set to every locale. Sending <code>audience_ids`: []` clears all audience memberships from every locale. For per-locale targeting, use </code>translated_content<code>.&amp;lt;locale&amp;gt;.</code>audience_ids`` instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs.</td>
 </tr>
 <tr>
 <td><code>author_id</code></td>
@@ -13987,7 +14197,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: article_translated_content</code></td>
 <td>No</td>
-<td>The type of object - article_translated_content.</td>
+<td>The type of object - <code>article_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -14368,7 +14578,7 @@
 <td><code>statistics.fin_resolution_rate</code></td>
 <td><code>number (float)</code></td>
 <td>No</td>
-<td>The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100).</td>
+<td>The percentage of Fin AI Agent involvements that resulted in a resolution (<code>fin_resolutions</code> / <code>fin_involvements</code> * 100).</td>
 </tr>
 <tr>
 <td><code>statistics.fin_resolutions</code></td>
@@ -14477,10 +14687,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -14526,7 +14766,7 @@
 <td><code>audience_ids</code></td>
 <td><code>array of integer</code></td>
 <td>No</td>
-<td>The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level <code>audience_ids</code> broadcasts the same set to every locale. Sending <code>audience_ids: []</code> clears all audience memberships from every locale. For per-locale targeting, use <code>translated_content.&amp;lt;locale&amp;gt;.audience_ids</code> instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs.</td>
+<td>The list of audience IDs to assign to this article for Fin AI Agent targeting. Sending a top-level <code>audience_ids</code> broadcasts the same set to every locale. Sending <code>audience_ids`: []` clears all audience memberships from every locale. For per-locale targeting, use </code>translated_content<code>.&amp;lt;locale&amp;gt;.</code>audience_ids`` instead. Sending both top-level and per-locale in the same request causes top-level to win. Unknown audience IDs return a 404 error. No partial commit occurs.</td>
 </tr>
 <tr>
 <td><code>author_id</code></td>
@@ -18474,7 +18714,7 @@
 <td><code>translated_content.type</code></td>
 <td><code>enum: article_translated_content</code></td>
 <td>No</td>
-<td>The type of object - article_translated_content.</td>
+<td>The type of object - <code>article_translated_content</code>.</td>
 </tr>
 <tr>
 <td><code>translated_content.vi</code></td>
@@ -18855,7 +19095,7 @@
 <td><code>statistics.fin_resolution_rate</code></td>
 <td><code>number (float)</code></td>
 <td>No</td>
-<td>The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100).</td>
+<td>The percentage of Fin AI Agent involvements that resulted in a resolution (<code>fin_resolutions</code> / <code>fin_involvements</code> * 100).</td>
 </tr>
 <tr>
 <td><code>statistics.fin_resolutions</code></td>
@@ -18964,10 +19204,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -18984,10 +19254,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>

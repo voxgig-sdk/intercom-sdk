@@ -19,7 +19,6 @@ import type {
   ContactAttachedCompanyListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class ContactAttachedCompanyEntity extends IntercomEntityBase<ContactAttachedCompany> {
 
   constructor(client: IntercomSDK, entopts: any) {

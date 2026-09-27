@@ -75,7 +75,7 @@ def _ai_call_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["ai_call01", "ai_call02", "ai_call03", "conversation01", "conversation02", "conversation03", "external_id01", "external_id02", "external_id03"],
+        ["ai_call01", "ai_call02", "ai_call03", "conversation01", "conversation02", "conversation03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

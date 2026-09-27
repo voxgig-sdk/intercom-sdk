@@ -104,6 +104,9 @@ func init() {
 	core.NewCallEntityFunc = func(client *core.IntercomSDK, entopts map[string]any) core.IntercomEntity {
 		return entity.NewCallEntity(client, entopts)
 	}
+	core.NewCancelEntityFunc = func(client *core.IntercomSDK, entopts map[string]any) core.IntercomEntity {
+		return entity.NewCancelEntity(client, entopts)
+	}
 	core.NewCompanyEntityFunc = func(client *core.IntercomSDK, entopts map[string]any) core.IntercomEntity {
 		return entity.NewCompanyEntity(client, entopts)
 	}
@@ -181,9 +184,6 @@ func init() {
 	}
 	core.NewDataEventSummaryEntityFunc = func(client *core.IntercomSDK, entopts map[string]any) core.IntercomEntity {
 		return entity.NewDataEventSummaryEntity(client, entopts)
-	}
-	core.NewDataExportEntityFunc = func(client *core.IntercomSDK, entopts map[string]any) core.IntercomEntity {
-		return entity.NewDataExportEntity(client, entopts)
 	}
 	core.NewDeletedEntityFunc = func(client *core.IntercomSDK, entopts map[string]any) core.IntercomEntity {
 		return entity.NewDeletedEntity(client, entopts)

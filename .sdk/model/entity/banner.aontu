@@ -1,0 +1,163 @@
+# Entity: banner
+
+main: kit: entity: banner: {
+
+  alias: field: {}
+
+  fields: {
+    action: {
+      h: "Action"
+      n: "action"
+      r: false
+      sh: "The action a contact can take on the banner, or `null` when the banner has no action."
+      t: "`$OBJECT`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The banner's body content as HTML."
+      t: "`$STRING`"
+    }
+    client_targeting: {
+      h: "Client Targeting"
+      n: "client_targeting"
+      r: false
+      sh: "Reserved for future use."
+      t: "`$ARRAY`"
+    }
+    created_at: {
+      fo: "timestamp"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the contact's view of this banner was created."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id of the banner."
+      t: "`$STRING`"
+    }
+    position: {
+      h: "Position"
+      n: "position"
+      r: false
+      sh: "Where the banner is positioned."
+      t: "`$STRING`"
+    }
+    show_dismiss_button: {
+      h: "Show Dismiss Button"
+      n: "show_dismiss_button"
+      r: false
+      sh: "Whether the banner should display a dismiss control."
+      t: "`$BOOLEAN`"
+    }
+    style: {
+      h: "Style"
+      n: "style"
+      r: false
+      sh: "How the banner is displayed."
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The banner's title."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+    view_id: {
+      h: "View Id"
+      n: "view_id"
+      r: false
+      sh: "The id of the contact's view of this banner."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "banner"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /contacts/{id}/banners"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "contact_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/contacts/{id}/banners"
+          q: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              id: "contact_id"
+            }
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "banners"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.contact")]
+  ]
+
+}

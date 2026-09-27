@@ -1,0 +1,26 @@
+# BasicSideConversationFlow
+
+main: kit: flow: BasicSideConversationFlow:
+{
+  entity: "side_conversation",
+  kind: "basic",
+  name: "BasicSideConversationFlow",
+  step: [
+    {
+      m: {
+        conversation_id: "conversation01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "side_conversation_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSideConversationFlow"
+}

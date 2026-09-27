@@ -1,0 +1,84 @@
+# BasicOfficeHoursExceptionFlow
+
+main: kit: flow: BasicOfficeHoursExceptionFlow:
+{
+  entity: "office_hours_exception",
+  kind: "basic",
+  name: "BasicOfficeHoursExceptionFlow",
+  step: [
+    {
+      i: {
+        ref: "office_hours_exception_ref01"
+      }
+
+      m: {
+        office_hours_schedule_id: "office_hours_schedule01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        office_hours_schedule_id: "office_hours_schedule01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "office_hours_exception_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        office_hours_schedule_id: "office_hours_schedule01"
+      }
+
+      i: {
+        ref: "office_hours_exception_ref01",
+        srcdatavar: "office_hours_exception_ref01_data",
+        suffix: "_up0",
+        textfield: "exception_date"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-office_hours_exception_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "office_hours_exception_ref01",
+        srcdatavar: "office_hours_exception_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "office_hours_exception01",
+        office_hours_schedule_id: "office_hours_schedule01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-office_hours_exception_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOfficeHoursExceptionFlow"
+}

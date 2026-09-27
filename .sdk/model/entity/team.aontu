@@ -1,0 +1,169 @@
+# Entity: team
+
+main: kit: entity: team: {
+
+  alias: field: {}
+
+  fields: {
+    admin_ids: {
+      h: "Admin Ids"
+      n: "admin_ids"
+      r: false
+      sh: "The list of admin IDs that are a part of the team."
+      t: "`$ARRAY`"
+    }
+    admin_priority_level: {
+      h: "Admin Priority Level"
+      n: "admin_priority_level"
+      r: false
+      sh: "Admin priority levels for the team"
+      t: "`$OBJECT`"
+    }
+    assignment_limit: {
+      h: "Assignment Limit"
+      n: "assignment_limit"
+      r: false
+      sh: "The assignment limit for the team."
+      t: "`$INTEGER`"
+    }
+    distribution_method: {
+      h: "Distribution Method"
+      n: "distribution_method"
+      r: false
+      sh: "Describes how assignments are distributed among the team members"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id of the team"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the team"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Value is always \"team\""
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "team"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /teams"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/teams"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "teams"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.teams`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /teams/{team_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "team_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/teams/{team_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              team_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "teams"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

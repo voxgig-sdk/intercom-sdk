@@ -1,0 +1,26 @@
+# BasicPaginatedFlow
+
+main: kit: flow: BasicPaginatedFlow:
+{
+  entity: "paginated",
+  kind: "basic",
+  name: "BasicPaginatedFlow",
+  step: [
+    {
+      m: {
+        newsfeed_id: "newsfeed01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "paginated_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPaginatedFlow"
+}

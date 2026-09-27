@@ -1,0 +1,73 @@
+# Entity: deleted_company_object
+
+main: kit: entity: deleted_company_object: {
+
+  alias: field: {}
+
+  name: "deleted_company_object"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /companies/{company_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632"
+                k: "param"
+                n: "company_id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/companies/{company_id}"
+          q: {
+            exist: [
+              "company_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "company_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.company")]
+  ]
+
+}

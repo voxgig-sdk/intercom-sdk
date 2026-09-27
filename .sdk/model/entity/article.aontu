@@ -1,0 +1,692 @@
+# Entity: article
+
+main: kit: entity: article: {
+
+  alias: field: {}
+
+  fields: {
+    ai_chatbot_availability: {
+      h: "Ai Chatbot Availability"
+      n: "ai_chatbot_availability"
+      r: false
+      sh: "Whether the article should be available for AI Chatbot (Fin)."
+      t: "`$BOOLEAN`"
+    }
+    ai_copilot_availability: {
+      h: "Ai Copilot Availability"
+      n: "ai_copilot_availability"
+      r: false
+      sh: "Whether the article should be available for AI Copilot."
+      t: "`$BOOLEAN`"
+    }
+    ai_sales_agent_availability: {
+      h: "Ai Sales Agent Availability"
+      n: "ai_sales_agent_availability"
+      r: false
+      sh: "Whether the article should be available for AI Sales Agent."
+      t: "`$BOOLEAN`"
+    }
+    audience_ids: {
+      h: "Audience Ids"
+      n: "audience_ids"
+      r: false
+      sh: "The list of audience IDs to assign to this article for Fin AI Agent targeting."
+      t: "`$ARRAY`"
+    }
+    author_id: {
+      h: "Author Id"
+      n: "author_id"
+      op: {
+        list: {
+          req: false
+          type: "`$INTEGER`"
+        }
+        update: {
+          req: false
+          type: "`$INTEGER`"
+        }
+      }
+      r: true
+      sh: "The id of the author of the article."
+      t: "`$INTEGER`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The content of the article in HTML."
+      t: "`$STRING`"
+    }
+    body_markdown: {
+      h: "Body Markdown"
+      n: "body_markdown"
+      r: false
+      sh: "The content of the article in markdown."
+      t: "`$STRING`"
+    }
+    conversions: {
+      h: "Conversions"
+      n: "conversions"
+      r: false
+      sh: "The number of conversations started from the article."
+      t: "`$INTEGER`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time when the article was created."
+      t: "`$INTEGER`"
+    }
+    created_by_id: {
+      h: "Created By Id"
+      n: "created_by_id"
+      r: false
+      ro: true
+      sh: "The ID of the teammate who created the article."
+      t: "`$INTEGER`"
+    }
+    default_locale: {
+      h: "Default Locale"
+      n: "default_locale"
+      r: false
+      sh: "The default locale of the help center."
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the article."
+      t: "`$STRING`"
+    }
+    draft_updated_at: {
+      fo: "date-time"
+      h: "Draft Updated At"
+      n: "draft_updated_at"
+      r: false
+      sh: "The time, in seconds, when the staged draft was last edited, or `null` when there is no staged draft."
+      t: "`$INTEGER`"
+    }
+    exclude_from_article_suggestions: {
+      h: "Exclude From Article Suggestions"
+      n: "exclude_from_article_suggestions"
+      r: false
+      ro: true
+      sh: "Whether the article is excluded from Fin AI Agent article suggestions."
+      t: "`$BOOLEAN`"
+    }
+    fin_involvements: {
+      h: "Fin Involvements"
+      n: "fin_involvements"
+      r: false
+      ro: true
+      sh: "The number of conversations in which Fin AI Agent used this article, summed across all of the article's locales."
+      t: "`$INTEGER`"
+    }
+    fin_resolution_rate: {
+      fo: "float"
+      h: "Fin Resolution Rate"
+      n: "fin_resolution_rate"
+      r: false
+      ro: true
+      sh: "The percentage of Fin AI Agent involvements that resulted in a resolution (fin_resolutions / fin_involvements * 100)."
+      t: "`$NUMBER`"
+    }
+    fin_resolutions: {
+      h: "Fin Resolutions"
+      n: "fin_resolutions"
+      r: false
+      ro: true
+      sh: "The number of conversations Fin AI Agent resolved using this article, summed across all of the article's locales."
+      t: "`$INTEGER`"
+    }
+    happy_reaction_percentage: {
+      fo: "float"
+      h: "Happy Reaction Percentage"
+      n: "happy_reaction_percentage"
+      r: false
+      sh: "The percentage of happy reactions the article has received against other types of reaction."
+      t: "`$NUMBER`"
+    }
+    has_unpublished_changes: {
+      h: "Has Unpublished Changes"
+      n: "has_unpublished_changes"
+      r: false
+      sh: "Whether the published article has unpublished changes staged as a draft on top of its live content."
+      t: "`$BOOLEAN`"
+    }
+    help_center_audience: {
+      h: "Help Center Audience"
+      n: "help_center_audience"
+      r: false
+      ro: true
+      sh: "The audience that can view this article in the Help Center."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the article which is given by Intercom."
+      t: "`$STRING`"
+    }
+    neutral_reaction_percentage: {
+      fo: "float"
+      h: "Neutral Reaction Percentage"
+      n: "neutral_reaction_percentage"
+      r: false
+      sh: "The percentage of neutral reactions the article has received against other types of reaction."
+      t: "`$NUMBER`"
+    }
+    parent_id: {
+      h: "Parent Id"
+      n: "parent_id"
+      r: false
+      sh: "The id of the article's parent collection or section."
+      t: "`$INTEGER`"
+    }
+    parent_ids: {
+      h: "Parent Ids"
+      n: "parent_ids"
+      r: false
+      sh: "The ids of the article's parent collections or sections."
+      t: "`$ARRAY`"
+    }
+    parent_type: {
+      h: "Parent Type"
+      n: "parent_type"
+      r: false
+      sh: "The type of parent, which can either be a `collection` or `section`."
+      t: "`$STRING`"
+    }
+    reactions: {
+      h: "Reactions"
+      n: "reactions"
+      r: false
+      sh: "The number of total reactions the article has received."
+      t: "`$INTEGER`"
+    }
+    sad_reaction_percentage: {
+      fo: "float"
+      h: "Sad Reaction Percentage"
+      n: "sad_reaction_percentage"
+      r: false
+      sh: "The percentage of sad reactions the article has received against"
+      t: "`$NUMBER`"
+    }
+    scheduled_publish_at: {
+      fo: "date-time"
+      h: "Scheduled Publish At"
+      n: "scheduled_publish_at"
+      r: false
+      ro: true
+      sh: "ISO 8601 timestamp at which to schedule a future publish of the article."
+      t: "`$STRING`"
+    }
+    scheduled_unpublish_at: {
+      fo: "date-time"
+      h: "Scheduled Unpublish At"
+      n: "scheduled_unpublish_at"
+      r: false
+      ro: true
+      sh: "ISO 8601 timestamp at which to schedule a future unpublish of the article."
+      t: "`$STRING`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      sh: "Whether the article will be `published` or will be a `draft`."
+      t: "`$STRING`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      sh: "A list of tags objects associated with a conversation"
+      t: "`$OBJECT`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The title of the article.For multilingual articles, this will be the title of the default language's content."
+      t: "`$STRING`"
+    }
+    translated_content: {
+      h: "Translated Content"
+      n: "translated_content"
+      r: false
+      sh: "The Translated Content of an Article."
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object - `article_statistics`."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time when the article was last updated."
+      t: "`$INTEGER`"
+    }
+    updated_by_id: {
+      h: "Updated By Id"
+      n: "updated_by_id"
+      r: false
+      ro: true
+      sh: "The ID of the teammate who last updated the article."
+      t: "`$INTEGER`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "The URL of the article."
+      t: "`$STRING`"
+    }
+    views: {
+      h: "Views"
+      n: "views"
+      r: false
+      sh: "The number of total views the article has received."
+      t: "`$INTEGER`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "The id of the workspace which the article belongs to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "article"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /articles/{id}/draft/publish"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/articles/{id}/draft/publish"
+          q: {
+            "$action": "draft_publish"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "draft"
+            }
+            {
+              lit: "publish"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.statistics`"
+          }
+        }
+        {
+          co: {
+            id: "POST /articles"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/articles"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.statistics`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /articles/{id}/draft"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/articles/{id}/draft"
+          q: {
+            "$action": "draft"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "draft"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /articles"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/articles"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /articles/{article_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/articles/{article_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              article_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.statistics`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /articles/{article_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/articles/{article_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              article_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.statistics`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /articles/{id}/draft"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/articles/{id}/draft"
+          q: {
+            "$action": "draft"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "draft"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.statistics`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

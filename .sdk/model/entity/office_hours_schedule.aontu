@@ -1,0 +1,185 @@
+# Entity: office_hours_schedule
+
+main: kit: entity: office_hours_schedule: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the schedule was created as a Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the office hours schedule."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the office hours schedule."
+      t: "`$STRING`"
+    }
+    time_intervals: {
+      h: "Time Intervals"
+      n: "time_intervals"
+      r: false
+      sh: "The open intervals that make up the weekly schedule."
+      t: "`$ARRAY`"
+    }
+    time_zone_name: {
+      h: "Time Zone Name"
+      n: "time_zone_name"
+      r: false
+      sh: "The IANA time zone the schedule's hours are evaluated in."
+      t: "`$STRING`"
+    }
+    twenty_four_seven: {
+      h: "Twenty Four Seven"
+      n: "twenty_four_seven"
+      r: false
+      sh: "Whether the schedule is open 24/7."
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the object - always `office_hours_schedule`."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the schedule was last updated as a Unix timestamp."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "office_hours_schedule"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /office_hours_schedules/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/office_hours_schedules/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /office_hours_schedules/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/office_hours_schedules/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "office_hours_schedules"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

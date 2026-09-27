@@ -1,0 +1,36 @@
+# BasicConversationParticipantFlow
+
+main: kit: flow: BasicConversationParticipantFlow:
+{
+  entity: "conversation_participant",
+  kind: "basic",
+  name: "BasicConversationParticipantFlow",
+  step: [
+    {
+      i: {
+        ref: "conversation_participant_ref01"
+      }
+
+      m: {
+        conversation_id: "conversation01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "conversation_participant_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        conversation_id: "conversation01",
+        id: "conversation_participant01"
+      }
+
+      o: "remove"
+    }
+  ],
+  "key$": "BasicConversationParticipantFlow"
+}

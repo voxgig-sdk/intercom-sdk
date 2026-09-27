@@ -1,0 +1,316 @@
+# Entity: ticket_type
+
+main: kit: entity: ticket_type: {
+
+  alias: field: {}
+
+  fields: {
+    archived: {
+      h: "Archived"
+      n: "archived"
+      r: false
+      sh: "Whether the ticket type is archived or not."
+      t: "`$BOOLEAN`"
+    }
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      sh: "Category of the Ticket Type."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "timestamp"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The date and time the ticket type was created."
+      t: "`$INTEGER`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the ticket type"
+      t: "`$STRING`"
+    }
+    icon: {
+      h: "Icon"
+      n: "icon"
+      r: false
+      sh: "The icon of the ticket type"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id representing the ticket type."
+      t: "`$STRING`"
+    }
+    is_internal: {
+      h: "Is Internal"
+      n: "is_internal"
+      r: false
+      sh: "Whether the tickets associated with this ticket type are intended for internal use only or will be shared with customers."
+      t: "`$BOOLEAN`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The name of the ticket type"
+      t: "`$STRING`"
+    }
+    ticket_states: {
+      h: "Ticket States"
+      n: "ticket_states"
+      r: false
+      sh: "A list of ticket states associated with a given ticket type."
+      t: "`$OBJECT`"
+    }
+    ticket_type_attributes: {
+      h: "Ticket Type Attributes"
+      n: "ticket_type_attributes"
+      r: false
+      sh: "A list of attributes associated with a given ticket type."
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "timestamp"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The date and time the ticket type was last updated."
+      t: "`$INTEGER`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "The id of the workspace that the ticket type belongs to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ticket_type"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /ticket_types"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/ticket_types"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "ticket_types"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /ticket_types"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ticket_types"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "ticket_types"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /ticket_types/{ticket_type_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "ticket_type_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ticket_types/{ticket_type_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              ticket_type_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "ticket_types"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /ticket_types/{ticket_type_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "ticket_type_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/ticket_types/{ticket_type_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              ticket_type_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "ticket_types"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

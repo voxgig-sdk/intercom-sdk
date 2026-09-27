@@ -1,0 +1,364 @@
+# Entity: note
+
+main: kit: entity: note: {
+
+  alias: field: {}
+
+  fields: {
+    admin_id: {
+      h: "Admin Id"
+      n: "admin_id"
+      r: false
+      sh: "The unique identifier of the admin creating the note."
+      t: "`$STRING`"
+    }
+    author: {
+      h: "Author"
+      n: "author"
+      r: false
+      sh: "Optional."
+      t: "`$OBJECT`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The body text of the note."
+      t: "`$STRING`"
+    }
+    company: {
+      h: "Company"
+      n: "company"
+      r: false
+      sh: "Represents the company that the note was created about."
+      t: "`$OBJECT`"
+    }
+    contact: {
+      h: "Contact"
+      n: "contact"
+      r: false
+      sh: "Represents the contact that the note was created about."
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      fo: "timestamp"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the note was created."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id of the note."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "note"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /companies/{company_id}/notes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632"
+                k: "param"
+                n: "company_id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/companies/{company_id}/notes"
+          q: {
+            exist: [
+              "company_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "company_id"
+            }
+            {
+              lit: "notes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /contacts/{contact_id}/notes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/contacts/{contact_id}/notes"
+          q: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "notes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /companies/{company_id}/notes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632"
+                k: "param"
+                n: "company_id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/companies/{company_id}/notes"
+          q: {
+            exist: [
+              "company_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "company_id"
+            }
+            {
+              lit: "notes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /contacts/{contact_id}/notes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/contacts/{contact_id}/notes"
+          q: {
+            exist: [
+              "contact_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "notes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /notes/{note_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 1
+                k: "param"
+                n: "id"
+                or: "note_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/notes/{note_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              note_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "notes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.company")]
+    [path("$.main.kit.entity.contact")]
+  ]
+
+}

@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -49,7 +50,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -109,14 +109,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="finagent">FinAgent</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="finagent">FinAgent</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -149,6 +149,36 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">created, err := client.FinAgent(nil).Create(map[string]any{&quot;message&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const created = await client.FinAgent().create({ message: {} })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local created, err = client:FinAgent():create({ message = {} })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$created = $client-&gt;FinAgent()-&gt;create([&quot;message&quot; =&gt; []]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">created = client.FinAgent().create({ &quot;message&quot;: {} })
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const created = await client.FinAgent().create({ message: {} })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -448,7 +478,7 @@
 <td><code>message.timestamp_ms</code></td>
 <td><code>string (date-time)</code></td>
 <td>No</td>
-<td>The timestamp when the message was created, with millisecond precision. Only present in webhook event responses (fin_replied).</td>
+<td>The timestamp when the message was created, with millisecond precision. Only present in webhook event responses (<code>fin_replied</code>).</td>
 </tr>
 <tr>
 <td><code>user</code></td>
@@ -472,7 +502,7 @@
 <td><code>user.id</code></td>
 <td><code>string</code></td>
 <td>Yes</td>
-<td>The ID of the user. This value will be used to uniquely identify the user during a conversation with Fin. Maps to the user_id field on the Intercom User object.</td>
+<td>The ID of the user. This value will be used to uniquely identify the user during a conversation with Fin. Maps to the <code>user_id</code> field on the Intercom User object.</td>
 </tr>
 <tr>
 <td><code>user.name</code></td>
@@ -541,7 +571,7 @@
 <td><code>sse_subscription_url</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Optional. A URL to subscribe to Server-Sent Events (SSE) for this conversation, if SSE is enabled. The access token is a JWT with a 3-minute TTL. The token is revoked when Fin sets the conversation to awaiting_user_reply or complete status. When CSAT is enabled and a survey will follow the resolution, <code>complete</code> revocation is deferred until the <code>csat_requested</code> event is delivered or the token expires.</td>
+<td>Optional. A URL to subscribe to Server-Sent Events (SSE) for this conversation, if SSE is enabled. The access token is a JWT with a 3-minute TTL. The token is revoked when Fin sets the conversation to <code>awaiting_user_reply</code> or complete status. When CSAT is enabled and a survey will follow the resolution, <code>complete</code> revocation is deferred until the <code>csat_requested</code> event is delivered or the token expires.</td>
 </tr>
 <tr>
 <td><code>status</code></td>
@@ -620,10 +650,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -728,7 +788,7 @@
 <td><code>conversation_metadata.history[].timestamp_ms</code></td>
 <td><code>string (date-time)</code></td>
 <td>No</td>
-<td>The timestamp when the message was created, with millisecond precision. Only present in webhook event responses (fin_replied).</td>
+<td>The timestamp when the message was created, with millisecond precision. Only present in webhook event responses (<code>fin_replied</code>).</td>
 </tr>
 <tr>
 <td><code>message</code></td>
@@ -737,10 +797,28 @@
 <td>A message exchanged within a Fin Agent conversation.</td>
 </tr>
 <tr>
-<td><code>message.$ref</code></td>
-<td><code>any</code></td>
+<td><code>message.author</code></td>
+<td><code>enum: user, agent, fin</code></td>
+<td>Yes</td>
+<td>The author that created the message.</td>
+</tr>
+<tr>
+<td><code>message.body</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The body of the message. Accepts both plain text and HTML format. When sending a message to Fin, this should contain the user's message. Fin's response will be returned as HTML.</td>
+</tr>
+<tr>
+<td><code>message.timestamp</code></td>
+<td><code>string (date-time)</code></td>
+<td>Yes</td>
+<td>The timestamp when the message was created. Used to deduplicate messages sent within a 5 minute window. Ideally should include milliseconds for higher precision.</td>
+</tr>
+<tr>
+<td><code>message.timestamp_ms</code></td>
+<td><code>string (date-time)</code></td>
 <td>No</td>
-<td></td>
+<td>The timestamp when the message was created, with millisecond precision. Only present in webhook event responses (<code>fin_replied</code>).</td>
 </tr>
 <tr>
 <td><code>user</code></td>
@@ -764,7 +842,7 @@
 <td><code>user.id</code></td>
 <td><code>string</code></td>
 <td>Yes</td>
-<td>The ID of the user. This value will be used to uniquely identify the user during a conversation with Fin. Maps to the user_id field on the Intercom User object.</td>
+<td>The ID of the user. This value will be used to uniquely identify the user during a conversation with Fin. Maps to the <code>user_id</code> field on the Intercom User object.</td>
 </tr>
 <tr>
 <td><code>user.name</code></td>
@@ -833,7 +911,7 @@
 <td><code>sse_subscription_url</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Optional. A URL to subscribe to Server-Sent Events (SSE) for this conversation, if SSE is enabled. The access token is a JWT with a 3-minute TTL. The token is revoked when Fin sets the conversation to awaiting_user_reply or complete status. When CSAT is enabled and a survey will follow the resolution, <code>complete</code> revocation is deferred until the <code>csat_requested</code> event is delivered or the token expires.</td>
+<td>Optional. A URL to subscribe to Server-Sent Events (SSE) for this conversation, if SSE is enabled. The access token is a JWT with a 3-minute TTL. The token is revoked when Fin sets the conversation to <code>awaiting_user_reply</code> or complete status. When CSAT is enabled and a survey will follow the resolution, <code>complete</code> revocation is deferred until the <code>csat_requested</code> event is delivered or the token expires.</td>
 </tr>
 <tr>
 <td><code>status</code></td>
@@ -912,10 +990,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>

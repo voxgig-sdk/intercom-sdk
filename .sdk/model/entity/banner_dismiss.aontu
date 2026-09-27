@@ -1,0 +1,127 @@
+# Entity: banner_dismiss
+
+main: kit: entity: banner_dismiss: {
+
+  alias: field: {}
+
+  fields: {
+    dismissed: {
+      h: "Dismissed"
+      n: "dismissed"
+      r: false
+      sh: "Whether the banner view is dismissed."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+    view_id: {
+      h: "View Id"
+      n: "view_id"
+      r: false
+      sh: "The id of the dismissed banner view."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "banner_dismiss"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /contacts/{id}/banners/{view_id}/dismiss"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "contact_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "view_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/contacts/{id}/banners/{view_id}/dismiss"
+          q: {
+            exist: [
+              "contact_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              id: "contact_id"
+              view_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "banners"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "dismiss"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.contact")]
+  ]
+
+}

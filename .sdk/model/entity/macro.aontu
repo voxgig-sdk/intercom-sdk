@@ -1,0 +1,216 @@
+# Entity: macro
+
+main: kit: entity: macro: {
+
+  alias: field: {}
+
+  fields: {
+    available_on: {
+      h: "Available On"
+      n: "available_on"
+      r: false
+      sh: "Where the macro is available for use."
+      t: "`$ARRAY`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The body of the macro in HTML format with placeholders transformed to XML-like format."
+      t: "`$STRING`"
+    }
+    body_text: {
+      h: "Body Text"
+      n: "body_text"
+      r: false
+      sh: "The plain text version of the macro body with original Intercom placeholder format."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the macro was created in ISO 8601 format."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the macro."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the macro."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the macro was last updated in ISO 8601 format."
+      t: "`$STRING`"
+    }
+    visible_to: {
+      h: "Visible To"
+      n: "visible_to"
+      r: false
+      sh: "Who can view this macro."
+      t: "`$STRING`"
+    }
+    visible_to_team_ids: {
+      h: "Visible To Team Ids"
+      n: "visible_to_team_ids"
+      r: false
+      sh: "The team IDs that can view this macro when visible_to is set to specific_teams."
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "macro"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /macros"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "WzE3MTk0OTM3NTcuMCwgIjEyMyJd"
+                k: "query"
+                n: "starting_after"
+                or: "starting_after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1719474966
+                k: "query"
+                n: "updated_since"
+                or: "updated_since"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/macros"
+          q: {
+            exist: [
+              "intercom_version"
+              "per_page"
+              "starting_after"
+              "updated_since"
+            ]
+          }
+          s: [
+            {
+              lit: "macros"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /macros/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/macros/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "macros"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

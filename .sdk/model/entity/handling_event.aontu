@@ -1,0 +1,110 @@
+# Entity: handling_event
+
+main: kit: entity: handling_event: {
+
+  alias: field: {}
+
+  fields: {
+    reason: {
+      h: "Reason"
+      n: "reason"
+      r: false
+      sh: "Optional reason for the event (e.g., \"Paused\", \"Away\")"
+      t: "`$STRING`"
+    }
+    teammate: {
+      h: "Teammate"
+      n: "teammate"
+      r: true
+      sh: "A reference to a teammate"
+      t: "`$OBJECT`"
+    }
+    timestamp: {
+      fo: "date-time"
+      h: "Timestamp"
+      n: "timestamp"
+      r: true
+      sh: "ISO8601 timestamp when the event occurred"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "The type of handling event"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "handling_event"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /conversations/{id}/handling_events"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "conversation_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/conversations/{id}/handling_events"
+          q: {
+            exist: [
+              "conversation_id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              id: "conversation_id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "conversation_id"
+            }
+            {
+              lit: "handling_events"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.handling_events`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.conversation")]
+  ]
+
+}

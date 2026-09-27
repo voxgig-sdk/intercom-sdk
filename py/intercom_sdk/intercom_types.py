@@ -1,7 +1,7 @@
 # Typed models for the Intercom SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -612,6 +612,25 @@ class CallCreateData(TypedDict, total=False):
     transcription_url: str
     type: str
     updated_at: Any
+
+
+class Cancel(TypedDict, total=False):
+    download_expires_at: str
+    download_url: str
+    id: str
+    job_identifier: str
+    status: str
+
+
+class CancelCreateDataRequired(TypedDict):
+    id: str
+
+
+class CancelCreateData(CancelCreateDataRequired, total=False):
+    download_expires_at: str
+    download_url: str
+    job_identifier: str
+    status: str
 
 
 class Company(TypedDict, total=False):
@@ -1851,23 +1870,6 @@ class DataEventSummaryListMatch(DataEventSummaryListMatchRequired, total=False):
     summary: bool
 
 
-class DataExport(TypedDict, total=False):
-    download_expires_at: str
-    download_url: str
-    job_identifier: str
-    status: str
-
-
-class DataExportCreateDataRequired(TypedDict):
-    job_identifier: str
-
-
-class DataExportCreateData(DataExportCreateDataRequired, total=False):
-    download_expires_at: str
-    download_url: str
-    status: str
-
-
 class Deleted(TypedDict, total=False):
     deleted_at: int
     id: str
@@ -2161,7 +2163,7 @@ class HelpCenter(TypedDict, total=False):
     help_center_id: str
     hr: dict
     hu: dict
-    id: dict
+    id: str
     identifier: str
     it: dict
     ja: dict
@@ -2225,7 +2227,7 @@ class HelpCenterListMatch(TypedDict, total=False):
     help_center_id: str
     hr: dict
     hu: dict
-    id: dict
+    id: str
     identifier: str
     it: dict
     ja: dict
@@ -2285,7 +2287,7 @@ class HelpCenterCreateData(TypedDict, total=False):
     help_center_id: str
     hr: dict
     hu: dict
-    id: dict
+    id: str
     identifier: str
     it: dict
     ja: dict
@@ -2349,7 +2351,7 @@ class HelpCenterUpdateData(HelpCenterUpdateDataRequired, total=False):
     help_center_id: str
     hr: dict
     hu: dict
-    id: dict
+    id: str
     identifier: str
     it: dict
     ja: dict
@@ -2571,14 +2573,17 @@ class NewsItem(TypedDict, total=False):
     body: str
     cover_image_url: str
     created_at: int
+    data: list
     deliver_silently: bool
     id: str
     labels: list
     newsfeed_assignments: list
+    pages: dict
     reactions: list
     sender_id: int
     state: str
     title: str
+    total_count: int
     type: str
     updated_at: int
     workspace_id: str
@@ -2588,18 +2593,41 @@ class NewsItemLoadMatch(TypedDict):
     id: int
 
 
-class NewsItemCreateData(TypedDict, total=False):
+class NewsItemListMatch(TypedDict, total=False):
     body: str
     cover_image_url: str
     created_at: int
+    data: list
     deliver_silently: bool
     id: str
     labels: list
     newsfeed_assignments: list
+    pages: dict
     reactions: list
     sender_id: int
     state: str
     title: str
+    total_count: int
+    type: str
+    updated_at: int
+    workspace_id: str
+
+
+class NewsItemCreateData(TypedDict, total=False):
+    body: str
+    cover_image_url: str
+    created_at: int
+    data: list
+    deliver_silently: bool
+    id: str
+    labels: list
+    newsfeed_assignments: list
+    pages: dict
+    reactions: list
+    sender_id: int
+    state: str
+    title: str
+    total_count: int
     type: str
     updated_at: int
     workspace_id: str
@@ -2613,13 +2641,16 @@ class NewsItemUpdateData(NewsItemUpdateDataRequired, total=False):
     body: str
     cover_image_url: str
     created_at: int
+    data: list
     deliver_silently: bool
     labels: list
     newsfeed_assignments: list
+    pages: dict
     reactions: list
     sender_id: int
     state: str
     title: str
+    total_count: int
     type: str
     updated_at: int
     workspace_id: str
@@ -2627,14 +2658,28 @@ class NewsItemUpdateData(NewsItemUpdateDataRequired, total=False):
 
 class Newsfeed(TypedDict, total=False):
     created_at: int
+    data: list
     id: str
     name: str
+    pages: dict
+    total_count: int
     type: str
     updated_at: int
 
 
 class NewsfeedLoadMatch(TypedDict):
     id: str
+
+
+class NewsfeedListMatch(TypedDict, total=False):
+    created_at: int
+    data: list
+    id: str
+    name: str
+    pages: dict
+    total_count: int
+    type: str
+    updated_at: int
 
 
 class Note(TypedDict, total=False):
@@ -2808,11 +2853,8 @@ class Paginated(TypedDict, total=False):
     type: str
 
 
-class PaginatedListMatch(TypedDict, total=False):
-    data: list
-    pages: dict
-    total_count: int
-    type: str
+class PaginatedListMatch(TypedDict):
+    newsfeed_id: str
 
 
 class PhoneSwitch(TypedDict, total=False):

@@ -19,7 +19,6 @@ import type {
   TeamMetricListListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class TeamMetricListEntity extends IntercomEntityBase<TeamMetricList> {
 
   constructor(client: IntercomSDK, entopts: any) {

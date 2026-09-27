@@ -19,7 +19,6 @@ import type {
   MergeHistoryListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class MergeHistoryEntity extends IntercomEntityBase<MergeHistory> {
 
   constructor(client: IntercomSDK, entopts: any) {

@@ -109,7 +109,9 @@ func TestPaginatedEntity(t *testing.T) {
 
 		// LIST
 		paginatedRef01Ent := client.Paginated(nil)
-		paginatedRef01Match := map[string]any{}
+		paginatedRef01Match := map[string]any{
+			"newsfeed_id": setup.idmap["newsfeed01"],
+		}
 
 		paginatedRef01ListResult, err := paginatedRef01Ent.List(paginatedRef01Match, nil)
 		if err != nil {

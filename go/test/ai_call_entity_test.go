@@ -110,7 +110,7 @@ func ai_callBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"ai_call01", "ai_call02", "ai_call03", "conversation01", "conversation02", "conversation03", "external_id01", "external_id02", "external_id03"},
+		[]any{"ai_call01", "ai_call02", "ai_call03", "conversation01", "conversation02", "conversation03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

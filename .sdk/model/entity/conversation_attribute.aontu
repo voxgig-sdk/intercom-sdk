@@ -1,0 +1,530 @@
+# Entity: conversation_attribute
+
+main: kit: entity: conversation_attribute: {
+
+  alias: field: {}
+
+  fields: {
+    admin_id: {
+      h: "Admin Id"
+      n: "admin_id"
+      r: false
+      t: "`$STRING`"
+    }
+    archived: {
+      h: "Archived"
+      n: "archived"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      t: "`$INTEGER`"
+    }
+    data_type: {
+      h: "Data Type"
+      n: "data_type"
+      r: false
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Readable description of the attribute."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$INTEGER`"
+    }
+    label: {
+      h: "Label"
+      n: "label"
+      r: true
+      sh: "The label for the new option."
+      t: "`$STRING`"
+    }
+    multiline: {
+      h: "Multiline"
+      n: "multiline"
+      r: false
+      sh: "(String data type only) Whether this string attribute is multiline."
+      t: "`$BOOLEAN`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the attribute."
+      t: "`$STRING`"
+    }
+    reference: {
+      h: "Reference"
+      n: "reference"
+      r: true
+      sh: "(Relationship data type only) Reference configuration for related objects."
+      t: "`$OBJECT`"
+    }
+    required: {
+      h: "Required"
+      n: "required"
+      r: false
+      sh: "Whether this attribute is required."
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      t: "`$INTEGER`"
+    }
+    visible_to_team_ids: {
+      h: "Visible To Team Ids"
+      n: "visible_to_team_ids"
+      r: false
+      sh: "Team IDs that can see this attribute."
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "conversation_attribute"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /conversations/attributes/{id}/options"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 2
+                k: "param"
+                n: "attribute_id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/attributes/{id}/options"
+          q: {
+            exist: [
+              "attribute_id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              id: "attribute_id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+            {
+              var: "attribute_id"
+            }
+            {
+              lit: "options"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /conversations/attributes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/attributes"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /conversations/attributes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 3
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/conversations/attributes/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /conversations/attributes/{id}/options/{option_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 2
+                k: "param"
+                n: "attribute_id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                k: "param"
+                n: "option_id"
+                or: "option_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/conversations/attributes/{id}/options/{option_id}"
+          q: {
+            exist: [
+              "attribute_id"
+              "intercom_version"
+              "option_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "attribute_id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+            {
+              var: "attribute_id"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "option_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /conversations/attributes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 8
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/conversations/attributes/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /conversations/attributes/{id}/options/{option_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 2
+                k: "param"
+                n: "attribute_id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                k: "param"
+                n: "option_id"
+                or: "option_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/conversations/attributes/{id}/options/{option_id}"
+          q: {
+            exist: [
+              "attribute_id"
+              "intercom_version"
+              "option_id"
+            ]
+          }
+          r: {
+            param: {
+              id: "attribute_id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+            {
+              var: "attribute_id"
+            }
+            {
+              lit: "options"
+            }
+            {
+              var: "option_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "PUT /conversations/attributes/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 8
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/conversations/attributes/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

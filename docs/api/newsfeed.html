@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -49,7 +50,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -69,7 +69,8 @@
 <a href="../api/merge_history.html">MergeHistory</a>
 <a href="../api/message.html">Message</a>
 <a href="../api/news_item.html">NewsItem</a>
-<a aria-current="page" href="../api/newsfeed.html">Newsfeed</a><div class="nav-sections"><a class="nav-section" href="#get-newsnewsfeedsnewsfeed_id">GET /news/newsfeeds/{newsfeed_id}</a></div>
+<a aria-current="page" href="../api/newsfeed.html">Newsfeed</a><div class="nav-sections"><a class="nav-section" href="#get-newsnewsfeeds">GET /news/newsfeeds</a>
+<a class="nav-section" href="#get-newsnewsfeedsnewsfeed_id">GET /news/newsfeeds/{newsfeed_id}</a></div>
 <a href="../api/note.html">Note</a>
 <a href="../api/office_hour.html">OfficeHour</a>
 <a href="../api/office_hours_exception.html">OfficeHoursException</a>
@@ -107,14 +108,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="newsfeed">Newsfeed</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="newsfeed">Newsfeed</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -129,12 +130,58 @@
 <tbody>
 <tr>
 <td><code>GET</code></td>
+<td><a href="#get-newsnewsfeeds"><code>/news/newsfeeds</code></a></td>
+<td><code>list</code></td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
 <td><a href="#get-newsnewsfeedsnewsfeed_id"><code>/news/newsfeeds/{newsfeed_id}</code></a></td>
 <td><code>load</code></td>
 <td>successful</td>
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">newsfeeds, err := client.Newsfeed(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(newsfeeds)
+newsfeed, err := client.Newsfeed(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(newsfeed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const newsfeeds = await client.Newsfeed().list()
+const newsfeed = await client.Newsfeed().load({ id: &quot;example_id&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local newsfeeds, err = client:Newsfeed():list()
+local newsfeed, err = client:Newsfeed():load({ id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$newsfeeds = $client-&gt;Newsfeed()-&gt;list();
+$newsfeed = $client-&gt;Newsfeed()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">newsfeeds = client.Newsfeed().list()
+newsfeed = client.Newsfeed().load({&quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const newsfeeds = await client.Newsfeed().list()
+const newsfeed = await client.Newsfeed().load({ id: &quot;example_id&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -153,6 +200,12 @@
 <td>Timestamp for when the newsfeed was created.</td>
 </tr>
 <tr>
+<td><code>data</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An array of Objects</td>
+</tr>
+<tr>
 <td><code>id</code></td>
 <td><code>string</code></td>
 <td>No</td>
@@ -163,6 +216,18 @@
 <td><code>string</code></td>
 <td>No</td>
 <td>The name of the newsfeed.</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
 </tr>
 <tr>
 <td><code>type</code></td>
@@ -178,17 +243,156 @@
 </tr>
 </tbody>
 </table>
-<h2 id="load">load</h2>
-<h3 id="get-newsnewsfeedsnewsfeed_id" class="operation" data-method="get"><code>GET</code> /news/newsfeeds/{newsfeed_id}</h3>
-<p>Operation ID: <code>retrieveNewsfeed</code>.</p>
+<h2 id="list">list</h2>
+<h3 id="get-newsnewsfeeds" class="operation" data-method="get"><code>GET</code> /news/newsfeeds</h3>
+<p>Operation ID: <code>listNewsfeeds</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
 <h4 id="parameters">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
-| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>newsfeed_id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the news feed item which is given by Intercom. |</p>
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
 <h4 id="responses">Responses</h4>
 <h5 id="200-successful" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>array of object or object</code></td>
+<td>No</td>
+<td>An array of Objects</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A &quot;cursor&quot; or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or &quot;pages&quot; as needed.</td>
+</tr>
+<tr>
+<td><code>pages.next</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Pagination: Starting After</td>
+</tr>
+<tr>
+<td><code>pages.next.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The number of results to fetch per page.</td>
+</tr>
+<tr>
+<td><code>pages.next.starting_after</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>pages.page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The current page</td>
+</tr>
+<tr>
+<td><code>pages.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of results per page</td>
+</tr>
+<tr>
+<td><code>pages.total_pages</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Total number of pages</td>
+</tr>
+<tr>
+<td><code>pages.type</code></td>
+<td><code>enum: pages</code></td>
+<td>No</td>
+<td>the type of object <code>pages</code>.</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: list, conversation.list</code></td>
+<td>No</td>
+<td>The type of object</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-newsnewsfeedsnewsfeed_id" class="operation" data-method="get"><code>GET</code> /news/newsfeeds/{newsfeed_id}</h3>
+<p>Operation ID: <code>retrieveNewsfeed</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>newsfeed_id</code> | <code>path</code> | <code>string</code> | Yes | The unique identifier for the news feed item which is given by Intercom. |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-successful-1" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>
@@ -232,7 +436,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="401-unauthorized" class="status" data-status="4xx">401: Unauthorized</h5>
+<h5 id="401-unauthorized-1" class="status" data-status="4xx">401: Unauthorized</h5>
 <p><code>application/json</code></p>
 <table>
 <thead>

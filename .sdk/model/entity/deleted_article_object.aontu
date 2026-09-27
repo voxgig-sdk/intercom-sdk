@@ -1,0 +1,73 @@
+# Entity: deleted_article_object
+
+main: kit: entity: deleted_article_object: {
+
+  alias: field: {}
+
+  name: "deleted_article_object"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /articles/{article_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "article_id"
+                or: "article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/articles/{article_id}"
+          q: {
+            exist: [
+              "article_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "article_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.article")]
+  ]
+
+}

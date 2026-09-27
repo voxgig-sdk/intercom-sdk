@@ -1,0 +1,51 @@
+# BasicInternalArticleFlow
+
+main: kit: flow: BasicInternalArticleFlow:
+{
+  entity: "internal_article",
+  kind: "basic",
+  name: "BasicInternalArticleFlow",
+  step: [
+    {
+      i: {
+        ref: "internal_article_ref01",
+        srcdatavar: "internal_article_ref01_data",
+        suffix: "_up0",
+        textfield: "body"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-internal_article_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "internal_article_ref01",
+        srcdatavar: "internal_article_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "internal_article01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-internal_article_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicInternalArticleFlow"
+}

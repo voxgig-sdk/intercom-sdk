@@ -409,6 +409,12 @@ class IntercomSDK:
         return CallEntity(self, data)
 
 
+    def Cancel(self, data=None) -> "CancelEntity":
+        """Entity factory: client.Cancel().list() / client.Cancel().load({"id": ...})."""
+        from intercom_sdk.entity.cancel_entity import CancelEntity
+        return CancelEntity(self, data)
+
+
     def Company(self, data=None) -> "CompanyEntity":
         """Entity factory: client.Company().list() / client.Company().load({"id": ...})."""
         from intercom_sdk.entity.company_entity import CompanyEntity
@@ -563,12 +569,6 @@ class IntercomSDK:
         """Entity factory: client.DataEventSummary().list() / client.DataEventSummary().load({"id": ...})."""
         from intercom_sdk.entity.data_event_summary_entity import DataEventSummaryEntity
         return DataEventSummaryEntity(self, data)
-
-
-    def DataExport(self, data=None) -> "DataExportEntity":
-        """Entity factory: client.DataExport().list() / client.DataExport().load({"id": ...})."""
-        from intercom_sdk.entity.data_export_entity import DataExportEntity
-        return DataExportEntity(self, data)
 
 
     def Deleted(self, data=None) -> "DeletedEntity":
@@ -885,6 +885,7 @@ if TYPE_CHECKING:
     from intercom_sdk.entity.banner_dismiss_entity import BannerDismissEntity
     from intercom_sdk.entity.brand_entity import BrandEntity
     from intercom_sdk.entity.call_entity import CallEntity
+    from intercom_sdk.entity.cancel_entity import CancelEntity
     from intercom_sdk.entity.company_entity import CompanyEntity
     from intercom_sdk.entity.company_attached_contact_entity import CompanyAttachedContactEntity
     from intercom_sdk.entity.company_attached_segment_entity import CompanyAttachedSegmentEntity
@@ -911,7 +912,6 @@ if TYPE_CHECKING:
     from intercom_sdk.entity.data_connector_execution_result_list_entity import DataConnectorExecutionResultListEntity
     from intercom_sdk.entity.data_event_entity import DataEventEntity
     from intercom_sdk.entity.data_event_summary_entity import DataEventSummaryEntity
-    from intercom_sdk.entity.data_export_entity import DataExportEntity
     from intercom_sdk.entity.deleted_entity import DeletedEntity
     from intercom_sdk.entity.deleted_article_object_entity import DeletedArticleObjectEntity
     from intercom_sdk.entity.deleted_company_object_entity import DeletedCompanyObjectEntity

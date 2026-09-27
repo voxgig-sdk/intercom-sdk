@@ -17,6 +17,7 @@ const { BannerEntity } = require('./entity/BannerEntity')
 const { BannerDismissEntity } = require('./entity/BannerDismissEntity')
 const { BrandEntity } = require('./entity/BrandEntity')
 const { CallEntity } = require('./entity/CallEntity')
+const { CancelEntity } = require('./entity/CancelEntity')
 const { CompanyEntity } = require('./entity/CompanyEntity')
 const { CompanyAttachedContactEntity } = require('./entity/CompanyAttachedContactEntity')
 const { CompanyAttachedSegmentEntity } = require('./entity/CompanyAttachedSegmentEntity')
@@ -43,7 +44,6 @@ const { DataConnectorExecutionResultEntity } = require('./entity/DataConnectorEx
 const { DataConnectorExecutionResultListEntity } = require('./entity/DataConnectorExecutionResultListEntity')
 const { DataEventEntity } = require('./entity/DataEventEntity')
 const { DataEventSummaryEntity } = require('./entity/DataEventSummaryEntity')
-const { DataExportEntity } = require('./entity/DataExportEntity')
 const { DeletedEntity } = require('./entity/DeletedEntity')
 const { DeletedArticleObjectEntity } = require('./entity/DeletedArticleObjectEntity')
 const { DeletedCompanyObjectEntity } = require('./entity/DeletedCompanyObjectEntity')
@@ -534,6 +534,15 @@ class IntercomSDK {
   }
 
 
+  // Entity access: `client.Cancel().list()` / `client.Cancel().load({ id })`.
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Cancel(entopts) {
+    const self = this
+    return new CancelEntity(self, entopts)
+  }
+
+
   // Entity access: `client.Company().list()` / `client.Company().load({ id })`.
   // The argument is the entity OPTIONS object (passed to the entity
   // constructor as entopts), not initial entity data.
@@ -765,15 +774,6 @@ class IntercomSDK {
   DataEventSummary(entopts) {
     const self = this
     return new DataEventSummaryEntity(self, entopts)
-  }
-
-
-  // Entity access: `client.DataExport().list()` / `client.DataExport().load({ id })`.
-  // The argument is the entity OPTIONS object (passed to the entity
-  // constructor as entopts), not initial entity data.
-  DataExport(entopts) {
-    const self = this
-    return new DataExportEntity(self, entopts)
   }
 
 

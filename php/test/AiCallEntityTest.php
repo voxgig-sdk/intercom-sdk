@@ -75,7 +75,7 @@ function ai_call_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["ai_call01", "ai_call02", "ai_call03", "conversation01", "conversation02", "conversation03", "external_id01", "external_id02", "external_id03"] as $k) {
+    foreach (["ai_call01", "ai_call02", "ai_call03", "conversation01", "conversation02", "conversation03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

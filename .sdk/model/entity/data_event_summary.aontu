@@ -1,0 +1,117 @@
+# Entity: data_event_summary
+
+main: kit: entity: data_event_summary: {
+
+  alias: field: {}
+
+  fields: {
+    count: {
+      h: "Count"
+      n: "count"
+      r: false
+      sh: "The number of times the event was sent"
+      t: "`$INTEGER`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the event"
+      t: "`$STRING`"
+    }
+    first: {
+      h: "First"
+      n: "first"
+      r: false
+      sh: "The first time the event was sent"
+      t: "`$STRING`"
+    }
+    last: {
+      h: "Last"
+      n: "last"
+      r: false
+      sh: "The last time the event was sent"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the event"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "data_event_summary"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /events"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "filter"
+                or: "filter"
+                r: true
+                t: "`$OBJECT`"
+              }
+              {
+                k: "query"
+                n: "summary"
+                or: "summary"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/events"
+          q: {
+            exist: [
+              "filter"
+              "intercom_version"
+              "summary"
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "events"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.events`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

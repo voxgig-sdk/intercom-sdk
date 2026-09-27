@@ -1,0 +1,204 @@
+# Entity: article_version
+
+main: kit: entity: article_version: {
+
+  alias: field: {}
+
+  fields: {
+    article_id: {
+      h: "Article Id"
+      n: "article_id"
+      r: false
+      sh: "The unique identifier of the article this version belongs to."
+      t: "`$STRING`"
+    }
+    author_id: {
+      h: "Author Id"
+      n: "author_id"
+      r: false
+      sh: "The id of the teammate listed as the article's author at this version."
+      t: "`$STRING`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The HTML body of the article at this version."
+      t: "`$STRING`"
+    }
+    body_markdown: {
+      h: "Body Markdown"
+      n: "body_markdown"
+      r: false
+      sh: "The Markdown body of the article at this version."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the version was created, as a UTC Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    created_by_id: {
+      h: "Created By Id"
+      n: "created_by_id"
+      r: false
+      sh: "The id of the teammate who created this version."
+      t: "`$STRING`"
+    }
+    created_via: {
+      h: "Created Via"
+      n: "created_via"
+      r: false
+      sh: "How this version was created (for example `web`, `api`)."
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the article at this version."
+      t: "`$STRING`"
+    }
+    from_version_id: {
+      h: "From Version Id"
+      n: "from_version_id"
+      r: false
+      sh: "The id of the version this version was created from, or `null` if this is the first version."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the version."
+      t: "`$STRING`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      sh: "Whether this version is the currently published version of the article (`published`) or an earlier non-live version (`draft`)."
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The title of the article at this version."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the version was last updated, as a UTC Unix timestamp."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "article_version"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /articles/{article_id}/versions/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "article_id"
+                or: "article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "301"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "en"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/articles/{article_id}/versions/{id}"
+          q: {
+            exist: [
+              "article_id"
+              "id"
+              "intercom_version"
+              "locale"
+            ]
+          }
+          s: [
+            {
+              lit: "articles"
+            }
+            {
+              var: "article_id"
+            }
+            {
+              lit: "versions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.article")]
+  ]
+
+}

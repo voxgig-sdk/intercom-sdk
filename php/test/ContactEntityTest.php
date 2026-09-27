@@ -157,7 +157,7 @@ function contact_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["contact01", "contact02", "contact03", "find_by_external_id01", "find_by_external_id02", "find_by_external_id03"] as $k) {
+    foreach (["contact01", "contact02", "contact03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

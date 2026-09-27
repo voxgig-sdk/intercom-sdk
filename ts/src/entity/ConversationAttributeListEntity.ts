@@ -19,7 +19,6 @@ import type {
   ConversationAttributeListListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class ConversationAttributeListEntity extends IntercomEntityBase<ConversationAttributeList> {
 
   constructor(client: IntercomSDK, entopts: any) {

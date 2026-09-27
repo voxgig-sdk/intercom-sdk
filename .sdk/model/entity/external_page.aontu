@@ -1,0 +1,422 @@
+# Entity: external_page
+
+main: kit: entity: external_page: {
+
+  alias: field: {}
+
+  fields: {
+    ai_agent_availability: {
+      h: "Ai Agent Availability"
+      n: "ai_agent_availability"
+      op: {
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      sh: "Whether the external page should be used to answer questions by AI Agent."
+      t: "`$BOOLEAN`"
+    }
+    ai_copilot_availability: {
+      h: "Ai Copilot Availability"
+      n: "ai_copilot_availability"
+      op: {
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      sh: "Whether the external page should be used to answer questions by AI Copilot."
+      t: "`$BOOLEAN`"
+    }
+    ai_sales_agent_availability: {
+      h: "Ai Sales Agent Availability"
+      n: "ai_sales_agent_availability"
+      r: false
+      sh: "Whether the external page should be used to answer questions by AI Sales Agent."
+      t: "`$BOOLEAN`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "The time when the external page was created."
+      t: "`$INTEGER`"
+    }
+    external_id: {
+      h: "External Id"
+      n: "external_id"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The identifier for the external page which was given by the source."
+      t: "`$STRING`"
+    }
+    fin_availability: {
+      h: "Fin Availability"
+      n: "fin_availability"
+      r: false
+      sh: "Deprecated."
+      t: "`$BOOLEAN`"
+    }
+    html: {
+      h: "Html"
+      n: "html"
+      r: true
+      sh: "The body of the external page in HTML."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "The unique identifier for the external page which is given by Intercom."
+      t: "`$STRING`"
+    }
+    last_ingested_at: {
+      fo: "date-time"
+      h: "Last Ingested At"
+      n: "last_ingested_at"
+      r: true
+      sh: "The time when the external page was last ingested."
+      t: "`$INTEGER`"
+    }
+    locale: {
+      h: "Locale"
+      n: "locale"
+      r: true
+      sh: "Always en"
+      t: "`$STRING`"
+    }
+    source_id: {
+      h: "Source Id"
+      n: "source_id"
+      r: true
+      sh: "The unique identifier for the source of the external page which was given by Intercom."
+      t: "`$INTEGER`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: true
+      sh: "The title of the external page."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "Always external_page"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      sh: "The time when the external page was last updated."
+      t: "`$INTEGER`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      op: {
+        update: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The URL of the external page."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "external_page"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /ai/external_pages"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/ai/external_pages"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "ai"
+            }
+            {
+              lit: "external_pages"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /ai/external_pages"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ai/external_pages"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "ai"
+            }
+            {
+              lit: "external_pages"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /ai/external_pages/{page_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "page_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ai/external_pages/{page_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              page_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "ai"
+            }
+            {
+              lit: "external_pages"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /ai/external_pages/{page_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "page_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/ai/external_pages/{page_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              page_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "ai"
+            }
+            {
+              lit: "external_pages"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /ai/external_pages/{page_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "page_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/ai/external_pages/{page_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              page_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "ai"
+            }
+            {
+              lit: "external_pages"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

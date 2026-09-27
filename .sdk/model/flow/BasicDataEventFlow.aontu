@@ -1,0 +1,18 @@
+# BasicDataEventFlow
+
+main: kit: flow: BasicDataEventFlow:
+{
+  entity: "data_event",
+  kind: "basic",
+  name: "BasicDataEventFlow",
+  step: [
+    {
+      i: {
+        ref: "data_event_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicDataEventFlow"
+}

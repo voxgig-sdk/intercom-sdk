@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "cancel": {
+      "CANCEL00": {
+        "download_expires_at": "s32",
+        "download_url": "s33",
+        "id": "CANCEL00",
+        "job_identifier": "s35",
+        "status": "s36"
+      },
+      "CANCEL01": {
+        "download_expires_at": "s64",
+        "download_url": "s65",
+        "id": "CANCEL01",
+        "job_identifier": "s67",
+        "status": "s68"
+      },
+      "CANCEL02": {
+        "download_expires_at": "s96",
+        "download_url": "s97",
+        "id": "CANCEL02",
+        "job_identifier": "s99",
+        "status": "s9a"
+      }
+    }
+  },
+  "new": {
+    "cancel": {
+      "cancel_ref01": {
+        "download_expires_at": "sc8",
+        "download_url": "sc9",
+        "job_identifier": "scb",
+        "status": "scc"
+      }
+    }
+  },
+  "requests": {
+    "POST /export/cancel/{job_identifier}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

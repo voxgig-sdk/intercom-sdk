@@ -125,7 +125,7 @@ function call_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["call01", "call02", "call03", "phone_number01", "phone_number02", "phone_number03"] as $k) {
+    foreach (["call01", "call02", "call03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

@@ -19,7 +19,6 @@ import type {
   AdminWithAppListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class AdminWithAppEntity extends IntercomEntityBase<AdminWithApp> {
 
   constructor(client: IntercomSDK, entopts: any) {

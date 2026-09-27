@@ -19,7 +19,6 @@ import type {
   PaginatedListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class PaginatedEntity extends IntercomEntityBase<Paginated> {
 
   constructor(client: IntercomSDK, entopts: any) {

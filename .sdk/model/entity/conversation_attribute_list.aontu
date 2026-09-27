@@ -1,0 +1,84 @@
+# Entity: conversation_attribute_list
+
+main: kit: entity: conversation_attribute_list: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "A list of conversation attributes."
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the object."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "conversation_attribute_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /conversations/attributes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "include_archived"
+                or: "include_archived"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/conversations/attributes"
+          q: {
+            exist: [
+              "include_archived"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "attributes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

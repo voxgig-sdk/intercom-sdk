@@ -54,6 +54,8 @@ var NewBrandEntityFunc func(client *IntercomSDK, entopts map[string]any) Interco
 
 var NewCallEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
 
+var NewCancelEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
+
 var NewCompanyEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
 
 var NewCompanyAttachedContactEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
@@ -105,8 +107,6 @@ var NewDataConnectorExecutionResultListEntityFunc func(client *IntercomSDK, ento
 var NewDataEventEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
 
 var NewDataEventSummaryEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
-
-var NewDataExportEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
 
 var NewDeletedEntityFunc func(client *IntercomSDK, entopts map[string]any) IntercomEntity
 

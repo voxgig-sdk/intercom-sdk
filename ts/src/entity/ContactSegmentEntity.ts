@@ -19,7 +19,6 @@ import type {
   ContactSegmentListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class ContactSegmentEntity extends IntercomEntityBase<ContactSegment> {
 
   constructor(client: IntercomSDK, entopts: any) {

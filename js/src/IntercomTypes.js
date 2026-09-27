@@ -1,7 +1,7 @@
 // Typed models for the Intercom SDK (JSDoc typedefs).
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 // edit by hand.
@@ -609,6 +609,24 @@
  * @property {string} [transcription_url]
  * @property {string} [type]
  * @property {*} [updated_at]
+ */
+
+/**
+ * @typedef {Object} Cancel
+ * @property {string} [download_expires_at]
+ * @property {string} [download_url]
+ * @property {string} [id]
+ * @property {string} [job_identifier]
+ * @property {string} [status]
+ */
+
+/**
+ * @typedef {Object} CancelCreateData
+ * @property {string} id
+ * @property {string} [download_expires_at]
+ * @property {string} [download_url]
+ * @property {string} [job_identifier]
+ * @property {string} [status]
  */
 
 /**
@@ -1843,22 +1861,6 @@
  */
 
 /**
- * @typedef {Object} DataExport
- * @property {string} [download_expires_at]
- * @property {string} [download_url]
- * @property {string} [job_identifier]
- * @property {string} [status]
- */
-
-/**
- * @typedef {Object} DataExportCreateData
- * @property {string} job_identifier
- * @property {string} [download_expires_at]
- * @property {string} [download_url]
- * @property {string} [status]
- */
-
-/**
  * @typedef {Object} Deleted
  * @property {number} [deleted_at]
  * @property {string} [id]
@@ -2152,7 +2154,7 @@
  * @property {string} [help_center_id]
  * @property {Object} [hr]
  * @property {Object} [hu]
- * @property {Object} [id]
+ * @property {string} [id]
  * @property {string} [identifier]
  * @property {Object} [it]
  * @property {Object} [ja]
@@ -2218,7 +2220,7 @@
  * @property {string} [help_center_id]
  * @property {Object} [hr]
  * @property {Object} [hu]
- * @property {Object} [id]
+ * @property {string} [id]
  * @property {string} [identifier]
  * @property {Object} [it]
  * @property {Object} [ja]
@@ -2279,7 +2281,7 @@
  * @property {string} [help_center_id]
  * @property {Object} [hr]
  * @property {Object} [hu]
- * @property {Object} [id]
+ * @property {string} [id]
  * @property {string} [identifier]
  * @property {Object} [it]
  * @property {Object} [ja]
@@ -2341,7 +2343,7 @@
  * @property {string} [help_center_id]
  * @property {Object} [hr]
  * @property {Object} [hu]
- * @property {Object} [id]
+ * @property {string} [id]
  * @property {string} [identifier]
  * @property {Object} [it]
  * @property {Object} [ja]
@@ -2567,14 +2569,17 @@
  * @property {string} [body]
  * @property {string} [cover_image_url]
  * @property {number} [created_at]
+ * @property {Array} [data]
  * @property {boolean} [deliver_silently]
  * @property {string} [id]
  * @property {Array} [labels]
  * @property {Array} [newsfeed_assignments]
+ * @property {Object} [pages]
  * @property {Array} [reactions]
  * @property {number} [sender_id]
  * @property {string} [state]
  * @property {string} [title]
+ * @property {number} [total_count]
  * @property {string} [type]
  * @property {number} [updated_at]
  * @property {string} [workspace_id]
@@ -2586,18 +2591,42 @@
  */
 
 /**
- * @typedef {Object} NewsItemCreateData
+ * @typedef {Object} NewsItemListMatch
  * @property {string} [body]
  * @property {string} [cover_image_url]
  * @property {number} [created_at]
+ * @property {Array} [data]
  * @property {boolean} [deliver_silently]
  * @property {string} [id]
  * @property {Array} [labels]
  * @property {Array} [newsfeed_assignments]
+ * @property {Object} [pages]
  * @property {Array} [reactions]
  * @property {number} [sender_id]
  * @property {string} [state]
  * @property {string} [title]
+ * @property {number} [total_count]
+ * @property {string} [type]
+ * @property {number} [updated_at]
+ * @property {string} [workspace_id]
+ */
+
+/**
+ * @typedef {Object} NewsItemCreateData
+ * @property {string} [body]
+ * @property {string} [cover_image_url]
+ * @property {number} [created_at]
+ * @property {Array} [data]
+ * @property {boolean} [deliver_silently]
+ * @property {string} [id]
+ * @property {Array} [labels]
+ * @property {Array} [newsfeed_assignments]
+ * @property {Object} [pages]
+ * @property {Array} [reactions]
+ * @property {number} [sender_id]
+ * @property {string} [state]
+ * @property {string} [title]
+ * @property {number} [total_count]
  * @property {string} [type]
  * @property {number} [updated_at]
  * @property {string} [workspace_id]
@@ -2609,13 +2638,16 @@
  * @property {string} [body]
  * @property {string} [cover_image_url]
  * @property {number} [created_at]
+ * @property {Array} [data]
  * @property {boolean} [deliver_silently]
  * @property {Array} [labels]
  * @property {Array} [newsfeed_assignments]
+ * @property {Object} [pages]
  * @property {Array} [reactions]
  * @property {number} [sender_id]
  * @property {string} [state]
  * @property {string} [title]
+ * @property {number} [total_count]
  * @property {string} [type]
  * @property {number} [updated_at]
  * @property {string} [workspace_id]
@@ -2624,8 +2656,11 @@
 /**
  * @typedef {Object} Newsfeed
  * @property {number} [created_at]
+ * @property {Array} [data]
  * @property {string} [id]
  * @property {string} [name]
+ * @property {Object} [pages]
+ * @property {number} [total_count]
  * @property {string} [type]
  * @property {number} [updated_at]
  */
@@ -2633,6 +2668,18 @@
 /**
  * @typedef {Object} NewsfeedLoadMatch
  * @property {string} id
+ */
+
+/**
+ * @typedef {Object} NewsfeedListMatch
+ * @property {number} [created_at]
+ * @property {Array} [data]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {Object} [pages]
+ * @property {number} [total_count]
+ * @property {string} [type]
+ * @property {number} [updated_at]
  */
 
 /**
@@ -2804,10 +2851,7 @@
 
 /**
  * @typedef {Object} PaginatedListMatch
- * @property {Array} [data]
- * @property {Object} [pages]
- * @property {number} [total_count]
- * @property {string} [type]
+ * @property {string} newsfeed_id
  */
 
 /**

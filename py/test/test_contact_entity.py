@@ -151,7 +151,7 @@ def _contact_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["contact01", "contact02", "contact03", "find_by_external_id01", "find_by_external_id02", "find_by_external_id03"],
+        ["contact01", "contact02", "contact03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

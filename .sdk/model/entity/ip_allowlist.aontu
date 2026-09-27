@@ -1,0 +1,119 @@
+# Entity: ip_allowlist
+
+main: kit: entity: ip_allowlist: {
+
+  alias: field: {}
+
+  fields: {
+    enabled: {
+      h: "Enabled"
+      n: "enabled"
+      r: false
+      sh: "Whether the IP allowlist is enabled for the workspace."
+      t: "`$BOOLEAN`"
+    }
+    ip_allowlist: {
+      h: "Ip Allowlist"
+      n: "ip_allowlist"
+      r: false
+      sh: "List of allowed IP addresses and/or IP ranges in CIDR notation."
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "ip_allowlist"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /ip_allowlist"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ip_allowlist"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "ip_allowlist"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.ip_allowlist`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /ip_allowlist"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/ip_allowlist"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "ip_allowlist"
+            }
+          ]
+          t: {
+            req: {
+              ip_allowlist: "`reqdata`"
+            }
+            res: "`body.ip_allowlist`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

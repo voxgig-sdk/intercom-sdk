@@ -1,0 +1,73 @@
+# Entity: activity_log_event_type
+
+main: kit: entity: activity_log_event_type: {
+
+  alias: field: {}
+
+  fields: {
+    event_types: {
+      h: "Event Types"
+      n: "event_types"
+      r: false
+      sh: "An array of activity log event type strings."
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "activity_log_event_type"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /admins/activity_log_event_types"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/admins/activity_log_event_types"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "admins"
+            }
+            {
+              lit: "activity_log_event_types"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.event_types`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

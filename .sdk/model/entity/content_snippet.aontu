@@ -1,0 +1,389 @@
+# Entity: content_snippet
+
+main: kit: entity: content_snippet: {
+
+  alias: field: {}
+
+  fields: {
+    ai_chatbot_availability: {
+      h: "Ai Chatbot Availability"
+      n: "ai_chatbot_availability"
+      r: false
+      sh: "Whether the content snippet is available for AI Chatbot (Fin)."
+      t: "`$BOOLEAN`"
+    }
+    ai_copilot_availability: {
+      h: "Ai Copilot Availability"
+      n: "ai_copilot_availability"
+      r: false
+      sh: "Whether the content snippet is available for AI Copilot."
+      t: "`$BOOLEAN`"
+    }
+    ai_sales_agent_availability: {
+      h: "Ai Sales Agent Availability"
+      n: "ai_sales_agent_availability"
+      r: false
+      sh: "Whether the content snippet is available for AI Sales Agent."
+      t: "`$BOOLEAN`"
+    }
+    audience_ids: {
+      h: "Audience Ids"
+      n: "audience_ids"
+      r: false
+      sh: "The list of audience IDs this content snippet is targeted to for Fin AI Agent."
+      t: "`$ARRAY`"
+    }
+    body_markdown: {
+      h: "Body Markdown"
+      n: "body_markdown"
+      r: false
+      sh: "The body of the content snippet in markdown."
+      t: "`$STRING`"
+    }
+    chatbot_availability: {
+      de: true
+      h: "Chatbot Availability"
+      n: "chatbot_availability"
+      r: false
+      sh: "Deprecated."
+      t: "`$INTEGER`"
+    }
+    copilot_availability: {
+      de: true
+      h: "Copilot Availability"
+      n: "copilot_availability"
+      r: false
+      sh: "Deprecated."
+      t: "`$INTEGER`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the snippet was created as a UNIX timestamp."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the content snippet."
+      t: "`$STRING`"
+    }
+    json_blocks: {
+      h: "Json Blocks"
+      n: "json_blocks"
+      r: false
+      sh: "The content blocks that make up the body of the snippet."
+      t: "`$ARRAY`"
+    }
+    locale: {
+      h: "Locale"
+      n: "locale"
+      r: false
+      sh: "The locale of the content snippet."
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The title of the content snippet."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the snippet was last updated as a UNIX timestamp."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "content_snippet"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /content_snippets"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/content_snippets"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "content_snippets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /content_snippets"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/content_snippets"
+          q: {
+            exist: [
+              "intercom_version"
+              "page"
+              "per_page"
+            ]
+          }
+          s: [
+            {
+              lit: "content_snippets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /content_snippets/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/content_snippets/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "content_snippets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /content_snippets/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/content_snippets/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "content_snippets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /content_snippets/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/content_snippets/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "content_snippets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

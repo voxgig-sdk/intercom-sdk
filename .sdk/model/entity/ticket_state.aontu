@@ -1,0 +1,110 @@
+# Entity: ticket_state
+
+main: kit: entity: ticket_state: {
+
+  alias: field: {}
+
+  fields: {
+    archived: {
+      h: "Archived"
+      n: "archived"
+      r: false
+      sh: "Whether the ticket state is archived"
+      t: "`$BOOLEAN`"
+    }
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      sh: "The category of the ticket state"
+      t: "`$STRING`"
+    }
+    external_label: {
+      h: "External Label"
+      n: "external_label"
+      r: false
+      sh: "The state the ticket is currently in, in a human readable form - visible to customers, in the messenger, email and tickets portal."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id of the ticket state"
+      t: "`$STRING`"
+    }
+    internal_label: {
+      h: "Internal Label"
+      n: "internal_label"
+      r: false
+      sh: "The state the ticket is currently in, in a human readable form - visible in Intercom"
+      t: "`$STRING`"
+    }
+    ticket_types: {
+      h: "Ticket Types"
+      n: "ticket_types"
+      r: false
+      sh: "A list of ticket types associated with a given ticket state."
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ticket_state"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /ticket_states"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ticket_states"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "ticket_states"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

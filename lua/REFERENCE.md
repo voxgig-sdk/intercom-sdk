@@ -109,6 +109,10 @@ Create a new `Brand` entity instance. Pass `nil` for no initial data.
 
 Create a new `Call` entity instance. Pass `nil` for no initial data.
 
+#### `Cancel(data)`
+
+Create a new `Cancel` entity instance. Pass `nil` for no initial data.
+
 #### `Company(data)`
 
 Create a new `Company` entity instance. Pass `nil` for no initial data.
@@ -212,10 +216,6 @@ Create a new `DataEvent` entity instance. Pass `nil` for no initial data.
 #### `DataEventSummary(data)`
 
 Create a new `DataEventSummary` entity instance. Pass `nil` for no initial data.
-
-#### `DataExport(data)`
-
-Create a new `DataExport` entity instance. Pass `nil` for no initial data.
 
 #### `Deleted(data)`
 
@@ -1638,6 +1638,64 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `CallEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## CancelEntity
+
+```lua
+local cancel = client:Cancel(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `download_expires_at` | `string` | No | The time after which you will not be able to access the data. |
+| `download_url` | `string` | No | The location where you can download your data. |
+| `id` | `string` | No |  |
+| `job_identifier` | `string` | No | The identifier for your job. |
+| `status` | `string` | No | The current state of your job. |
+
+### Operations
+
+#### `create(reqdata, ctrl) -> any, err`
+
+Create a new entity with the given data.
+
+```lua
+local result, err = client:Cancel():create({
+  id = --[[ string ]],
+})
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `CancelEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -3813,63 +3871,6 @@ Return the entity name.
 
 ---
 
-## DataExportEntity
-
-```lua
-local data_export = client:DataExport(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `download_expires_at` | `string` | No | The time after which you will not be able to access the data. |
-| `download_url` | `string` | No | The location where you can download your data. |
-| `job_identifier` | `string` | No | The identifier for your job. |
-| `status` | `string` | No | The current state of your job. |
-
-### Operations
-
-#### `create(reqdata, ctrl) -> any, err`
-
-Create a new entity with the given data.
-
-```lua
-local result, err = client:DataExport():create({
-  job_identifier = --[[ string ]],
-})
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `DataExportEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
 ## DeletedEntity
 
 ```lua
@@ -4567,7 +4568,7 @@ local help_center = client:HelpCenter(nil)
 | `bg` | `table` | No | The content of the group in Bulgarian |
 | `bs` | `table` | No | The content of the group in Bosnian |
 | `ca` | `table` | No | The content of the group in Catalan |
-| `created_at` | `number` | No | The time when the Help Center was created. |
+| `created_at` | `number` | No | The time the redirect was created as a UTC Unix timestamp. |
 | `cs` | `table` | No | The content of the group in Czech |
 | `custom_domain` | `string` | No | Custom domain configured for the help center |
 | `da` | `table` | No | The content of the group in Danish |
@@ -4586,7 +4587,7 @@ local help_center = client:HelpCenter(nil)
 | `help_center_id` | `string` | No | The unique identifier for the help center the redirect belongs to. |
 | `hr` | `table` | No | The content of the group in Croatian |
 | `hu` | `table` | No | The content of the group in Hungarian |
-| `id` | `table` | No | The content of the group in Indonesian |
+| `id` | `string` | No | The unique identifier for the redirect. |
 | `identifier` | `string` | No | The identifier of the Help Center. |
 | `it` | `table` | No | The content of the group in Italian |
 | `ja` | `table` | No | The content of the group in Japanese |
@@ -4612,8 +4613,8 @@ local help_center = client:HelpCenter(nil)
 | `target_type` | `string` | No | The type of the redirect target. |
 | `tr` | `table` | No | The content of the group in Turkish |
 | `translated_content` | `table` | No | The Translated Content of an Group. |
-| `type` | `string` | No | The type of object - group_translated_content. |
-| `updated_at` | `number` | No | The time when the Help Center was last updated. |
+| `type` | `string` | No | The type of the object - `help_center_redirect`. |
+| `updated_at` | `number` | No | The time the redirect was last updated as a UTC Unix timestamp. |
 | `url` | `string` | No | The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. |
 | `vi` | `table` | No | The content of the group in Vietnamese |
 | `website_turned_on` | `boolean` | No | Whether the Help Center is turned on or not. |
@@ -5187,36 +5188,42 @@ local news_item = client:NewsItem(nil)
 | `body` | `string` | No | The news item body, which may contain HTML. |
 | `cover_image_url` | `string` | No | URL of the image used as cover. |
 | `created_at` | `number` | No | Timestamp for when the news item was created. |
+| `data` | `table` | No | An array of Objects |
 | `deliver_silently` | `boolean` | No | When set to true, the news item will appear in the messenger newsfeed without showing a notification badge. |
 | `id` | `string` | No | The unique identifier for the news item which is given by Intercom. |
 | `labels` | `table` | No | Label names displayed to users to categorize the news item. |
 | `newsfeed_assignments` | `table` | No | A list of newsfeed_assignments to assign to the specified newsfeed. |
+| `pages` | `table` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
 | `reactions` | `table` | No | Ordered list of emoji reactions to the news item. |
 | `sender_id` | `number` | No | The id of the sender of the news item. |
 | `state` | `string` | No | News items will not be visible to your users in the assigned newsfeeds until they are set live. |
 | `title` | `string` | No | The title of the news item. |
+| `total_count` | `number` | No | A count of the total number of objects. |
 | `type` | `string` | No | The type of object. |
 | `updated_at` | `number` | No | Timestamp for when the news item was last updated. |
 | `workspace_id` | `string` | No | The id of the workspace which the news item belongs to. |
 
 ### Field Usage by Operation
 
-| Field | load | create | update |
-| --- | --- | --- | --- |
-| `body` | - | - | - |
-| `cover_image_url` | - | - | - |
-| `created_at` | - | - | - |
-| `deliver_silently` | - | - | - |
-| `id` | - | - | - |
-| `labels` | - | - | - |
-| `newsfeed_assignments` | - | - | - |
-| `reactions` | - | - | - |
-| `sender_id` | - | Yes | Yes |
-| `state` | - | - | - |
-| `title` | - | Yes | Yes |
-| `type` | - | - | - |
-| `updated_at` | - | - | - |
-| `workspace_id` | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `body` | - | - | - | - |
+| `cover_image_url` | - | - | - | - |
+| `created_at` | - | - | - | - |
+| `data` | - | - | - | - |
+| `deliver_silently` | - | - | - | - |
+| `id` | - | - | - | - |
+| `labels` | - | - | - | - |
+| `newsfeed_assignments` | - | - | - | - |
+| `pages` | - | - | - | - |
+| `reactions` | - | - | - | - |
+| `sender_id` | - | - | Yes | Yes |
+| `state` | - | - | - | - |
+| `title` | - | - | Yes | Yes |
+| `total_count` | - | - | - | - |
+| `type` | - | - | - | - |
+| `updated_at` | - | - | - | - |
+| `workspace_id` | - | - | - | - |
 
 ### Operations
 
@@ -5227,6 +5234,14 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:NewsItem():create({
 })
+```
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:NewsItem():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -5289,12 +5304,23 @@ local newsfeed = client:Newsfeed(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `number` | No | Timestamp for when the newsfeed was created. |
+| `data` | `table` | No | An array of Objects |
 | `id` | `string` | No | The unique identifier for the newsfeed which is given by Intercom. |
 | `name` | `string` | No | The name of the newsfeed. |
+| `pages` | `table` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
+| `total_count` | `number` | No | A count of the total number of objects. |
 | `type` | `string` | No | The type of object. |
 | `updated_at` | `number` | No | Timestamp for when the newsfeed was last updated. |
 
 ### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:Newsfeed():list()
+```
 
 #### `load(reqmatch, ctrl) -> any, err`
 
@@ -7186,14 +7212,14 @@ Return the entity name.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -7239,7 +7265,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -7270,7 +7296,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -7301,7 +7327,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -7329,7 +7355,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -7364,7 +7390,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -7395,7 +7421,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -7429,7 +7455,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -7460,7 +7486,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

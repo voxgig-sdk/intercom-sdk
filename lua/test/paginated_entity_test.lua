@@ -85,7 +85,9 @@ describe("PaginatedEntity", function()
 
     -- LIST
     local paginated_ref01_ent = client:Paginated(nil)
-    local paginated_ref01_match = {}
+    local paginated_ref01_match = {
+      ["newsfeed_id"] = setup.idmap["newsfeed01"],
+    }
 
     local paginated_ref01_list_result, err = paginated_ref01_ent:list(paginated_ref01_match, nil)
     assert.is_nil(err)

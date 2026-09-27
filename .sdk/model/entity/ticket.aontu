@@ -1,0 +1,519 @@
+# Entity: ticket
+
+main: kit: entity: ticket: {
+
+  alias: field: {}
+
+  fields: {
+    admin_assignee_id: {
+      h: "Admin Assignee Id"
+      n: "admin_assignee_id"
+      r: false
+      sh: "The id representing the admin assigned to the ticket."
+      t: "`$INTEGER`"
+    }
+    attributes: {
+      h: "Attributes"
+      n: "attributes"
+      r: false
+      sh: "The attributes set on the ticket."
+      t: "`$OBJECT`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 1
+      }
+    }
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      sh: "Category of the Ticket."
+      t: "`$STRING`"
+    }
+    contacts: {
+      h: "Contacts"
+      n: "contacts"
+      r: false
+      sh: "The list of contacts affected by a ticket."
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the ticket was created as a UTC Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the ticket which is given by Intercom."
+      t: "`$STRING`"
+    }
+    is_shared: {
+      h: "Is Shared"
+      n: "is_shared"
+      r: false
+      sh: "Whether or not the ticket is shared with the customer."
+      t: "`$BOOLEAN`"
+    }
+    linked_objects: {
+      h: "Linked Objects"
+      n: "linked_objects"
+      r: false
+      sh: "An object containing metadata about linked conversations and linked tickets."
+      t: "`$OBJECT`"
+    }
+    open: {
+      h: "Open"
+      n: "open"
+      r: false
+      sh: "Whether or not the ticket is open."
+      t: "`$BOOLEAN`"
+    }
+    previous_ticket_state_id: {
+      h: "Previous Ticket State Id"
+      n: "previous_ticket_state_id"
+      r: false
+      sh: "The ID of the previous ticket state from the most recent state change."
+      t: "`$STRING`"
+    }
+    skip_notifications: {
+      h: "Skip Notifications"
+      n: "skip_notifications"
+      r: false
+      sh: "Option to disable notifications when a Ticket is created."
+      t: "`$BOOLEAN`"
+    }
+    snoozed_until: {
+      fo: "date-time"
+      h: "Snoozed Until"
+      n: "snoozed_until"
+      r: false
+      sh: "The time the ticket will be snoozed until as a UTC Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    team_assignee_id: {
+      h: "Team Assignee Id"
+      n: "team_assignee_id"
+      r: false
+      sh: "The id representing the team assigned to the ticket."
+      t: "`$INTEGER`"
+    }
+    ticket_attributes: {
+      h: "Ticket Attributes"
+      n: "ticket_attributes"
+      r: false
+      sh: "An object containing the different attributes associated to the ticket as key-value pairs."
+      t: "`$OBJECT`"
+      union: {
+        branches: 5
+        count: 1
+        depth: 1
+      }
+    }
+    ticket_id: {
+      h: "Ticket Id"
+      n: "ticket_id"
+      r: false
+      sh: "The ID of the Ticket used in the Intercom Inbox and Messenger."
+      t: "`$STRING`"
+    }
+    ticket_parts: {
+      h: "Ticket Parts"
+      n: "ticket_parts"
+      r: false
+      sh: "A list of Ticket Part objects for each note and event in the ticket."
+      t: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 2
+        depth: 9
+      }
+    }
+    ticket_state: {
+      h: "Ticket State"
+      n: "ticket_state"
+      r: false
+      sh: "A ticket state, used to define the state of a ticket."
+      t: "`$OBJECT`"
+    }
+    ticket_state_id: {
+      h: "Ticket State Id"
+      n: "ticket_state_id"
+      r: false
+      sh: "The ID of the ticket state associated with the ticket type."
+      t: "`$STRING`"
+    }
+    ticket_type: {
+      h: "Ticket Type"
+      n: "ticket_type"
+      r: false
+      sh: "A ticket type, used to define the data fields to be captured in a ticket."
+      t: "`$OBJECT`"
+    }
+    ticket_type_id: {
+      h: "Ticket Type Id"
+      n: "ticket_type_id"
+      r: true
+      sh: "The ID of the type of ticket you want to convert the conversation to"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Always ticket"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The last time the ticket was updated as a UTC Unix timestamp."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ticket"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /conversations/{conversation_id}/convert"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "conversation_id"
+                or: "conversation_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/{conversation_id}/convert"
+          q: {
+            exist: [
+              "conversation_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "conversation_id"
+            }
+            {
+              lit: "convert"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /tickets/{ticket_id}/change_type"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tickets/{ticket_id}/change_type"
+          q: {
+            "$action": "change_type"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              ticket_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "change_type"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /tickets"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tickets"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /tickets/{ticket_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tickets/{ticket_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              ticket_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /tickets/{ticket_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/tickets/{ticket_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              ticket_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /tickets/{ticket_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/tickets/{ticket_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              ticket_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.conversation")]
+  ]
+
+}

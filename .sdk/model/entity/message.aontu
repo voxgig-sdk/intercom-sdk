@@ -1,0 +1,183 @@
+# Entity: message
+
+main: kit: entity: message: {
+
+  alias: field: {}
+
+  fields: {
+    bcc: {
+      h: "Bcc"
+      n: "bcc"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The message body, which may contain HTML."
+      t: "`$STRING`"
+    }
+    cc: {
+      h: "Cc"
+      n: "cc"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    conversation_id: {
+      h: "Conversation Id"
+      n: "conversation_id"
+      r: false
+      sh: "The associated conversation_id"
+      t: "`$STRING`"
+    }
+    create_conversation_without_contact_reply: {
+      h: "Create Conversation Without Contact Reply"
+      n: "create_conversation_without_contact_reply"
+      r: false
+      sh: "Whether a conversation should be opened in the inbox for the message without the contact replying."
+      t: "`$BOOLEAN`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      op: {
+        create: {
+          req: false
+          type: "`$INTEGER`"
+        }
+      }
+      r: true
+      sh: "The time the conversation was created."
+      t: "`$INTEGER`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      r: true
+      sh: "The sender of the message."
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "The id representing the message."
+      t: "`$STRING`"
+    }
+    message_type: {
+      h: "Message Type"
+      n: "message_type"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The type of message that was sent."
+      t: "`$STRING`"
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      r: false
+      sh: "The subject of the message."
+      t: "`$STRING`"
+    }
+    template: {
+      h: "Template"
+      n: "template"
+      r: false
+      sh: "The style of the outgoing message."
+      t: "`$STRING`"
+    }
+    to: {
+      h: "To"
+      n: "to"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "The type of the message"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "message"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /messages"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/messages"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "messages"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

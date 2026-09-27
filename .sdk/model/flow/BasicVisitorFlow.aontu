@@ -1,0 +1,47 @@
+# BasicVisitorFlow
+
+main: kit: flow: BasicVisitorFlow:
+{
+  entity: "visitor",
+  kind: "basic",
+  name: "BasicVisitorFlow",
+  step: [
+    {
+      i: {
+        ref: "visitor_ref01",
+        srcdatavar: "visitor_ref01_data",
+        suffix: "_up0",
+        textfield: "app_id"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-visitor_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "visitor_ref01",
+        srcdatavar: "visitor_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-visitor_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicVisitorFlow"
+}

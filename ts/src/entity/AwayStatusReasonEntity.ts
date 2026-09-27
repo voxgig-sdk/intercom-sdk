@@ -19,7 +19,6 @@ import type {
   AwayStatusReasonListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class AwayStatusReasonEntity extends IntercomEntityBase<AwayStatusReason> {
 
   constructor(client: IntercomSDK, entopts: any) {

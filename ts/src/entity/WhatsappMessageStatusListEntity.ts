@@ -19,7 +19,6 @@ import type {
   WhatsappMessageStatusListListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class WhatsappMessageStatusListEntity extends IntercomEntityBase<WhatsappMessageStatusList> {
 
   constructor(client: IntercomSDK, entopts: any) {

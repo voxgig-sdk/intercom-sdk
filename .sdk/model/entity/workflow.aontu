@@ -1,0 +1,171 @@
+# Entity: workflow
+
+main: kit: entity: workflow: {
+
+  alias: field: {}
+
+  fields: {
+    attributes: {
+      h: "Attributes"
+      n: "attributes"
+      r: false
+      sh: "Custom attributes defined for this workflow."
+      t: "`$ARRAY`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "When the workflow was created."
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the workflow."
+      t: "`$STRING`"
+    }
+    embedded_rules: {
+      h: "Embedded Rules"
+      n: "embedded_rules"
+      r: false
+      sh: "Rules embedded within the workflow steps."
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the workflow."
+      t: "`$STRING`"
+    }
+    preferred_devices: {
+      h: "Preferred Devices"
+      n: "preferred_devices"
+      r: false
+      sh: "The preferred devices for this workflow."
+      t: "`$ARRAY`"
+    }
+    snapshot: {
+      h: "Snapshot"
+      n: "snapshot"
+      r: false
+      sh: "The current snapshot of workflow steps and configuration."
+      t: "`$OBJECT`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      sh: "The current state of the workflow."
+      t: "`$STRING`"
+    }
+    target_channels: {
+      h: "Target Channels"
+      n: "target_channels"
+      r: false
+      sh: "The channels this workflow targets."
+      t: "`$ARRAY`"
+    }
+    targeting: {
+      h: "Targeting"
+      n: "targeting"
+      r: false
+      sh: "The targeting rules for this workflow."
+      t: "`$OBJECT`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The title of the workflow."
+      t: "`$STRING`"
+    }
+    trigger_type: {
+      h: "Trigger Type"
+      n: "trigger_type"
+      r: false
+      sh: "The type of trigger that starts this workflow."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "When the workflow was last updated."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "workflow"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /export/workflows/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "12345"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/export/workflows/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "export"
+            }
+            {
+              lit: "workflows"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.workflow`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

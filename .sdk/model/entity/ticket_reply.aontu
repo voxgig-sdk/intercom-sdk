@@ -1,0 +1,155 @@
+# Entity: ticket_reply
+
+main: kit: entity: ticket_reply: {
+
+  alias: field: {}
+
+  fields: {
+    attachments: {
+      h: "Attachments"
+      n: "attachments"
+      r: false
+      sh: "A list of attachments for the part."
+      t: "`$ARRAY`"
+    }
+    author: {
+      h: "Author"
+      n: "author"
+      r: false
+      sh: "The author that wrote or triggered the part."
+      t: "`$OBJECT`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The message body, which may contain HTML."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the note was created."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id representing the part."
+      t: "`$STRING`"
+    }
+    part_type: {
+      h: "Part Type"
+      n: "part_type"
+      r: false
+      sh: "Type of the part"
+      t: "`$STRING`"
+    }
+    redacted: {
+      h: "Redacted"
+      n: "redacted"
+      r: false
+      sh: "Whether or not the ticket part has been redacted."
+      t: "`$BOOLEAN`"
+    }
+    skip_notifications: {
+      h: "Skip Notifications"
+      n: "skip_notifications"
+      r: false
+      sh: "Option to disable notifications when replying to a Ticket."
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Always ticket_part"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The last time the note was updated."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ticket_reply"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /tickets/{ticket_id}/reply"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tickets/{ticket_id}/reply"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              ticket_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "reply"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

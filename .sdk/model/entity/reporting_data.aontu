@@ -1,0 +1,190 @@
+# Entity: reporting_data
+
+main: kit: entity: reporting_data: {
+
+  alias: field: {}
+
+  fields: {
+    download_expires_at: {
+      h: "Download Expires At"
+      n: "download_expires_at"
+      r: false
+      t: "`$STRING`"
+    }
+    download_url: {
+      h: "Download Url"
+      n: "download_url"
+      r: false
+      t: "`$STRING`"
+    }
+    job_identifier: {
+      h: "Job Identifier"
+      n: "job_identifier"
+      r: false
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "reporting_data"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /download/reporting_data/{job_identifier}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "application/octet-stream"
+                k: "header"
+                n: "accept"
+                or: "accept"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "app_id"
+                or: "app_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "job_identifier"
+                or: "job_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/download/reporting_data/{job_identifier}"
+          q: {
+            exist: [
+              "accept"
+              "app_id"
+              "intercom_version"
+              "job_identifier"
+            ]
+          }
+          r: {
+            param: {
+              job_identifier: "id"
+            }
+          }
+          s: [
+            {
+              lit: "download"
+            }
+            {
+              lit: "reporting_data"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /export/reporting_data/{job_identifier}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "app_id"
+                or: "app_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "client_id"
+                or: "client_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "job_identifier"
+                or: "job_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/export/reporting_data/{job_identifier}"
+          q: {
+            exist: [
+              "app_id"
+              "client_id"
+              "intercom_version"
+              "job_identifier"
+            ]
+          }
+          r: {
+            param: {
+              job_identifier: "id"
+            }
+          }
+          s: [
+            {
+              lit: "export"
+            }
+            {
+              lit: "reporting_data"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -116,6 +116,10 @@ Create a new `Brand` entity instance. Pass `nil` for no initial data.
 
 Create a new `Call` entity instance. Pass `nil` for no initial data.
 
+#### `Cancel(data map[string]any) IntercomEntity`
+
+Create a new `Cancel` entity instance. Pass `nil` for no initial data.
+
 #### `Company(data map[string]any) IntercomEntity`
 
 Create a new `Company` entity instance. Pass `nil` for no initial data.
@@ -219,10 +223,6 @@ Create a new `DataEvent` entity instance. Pass `nil` for no initial data.
 #### `DataEventSummary(data map[string]any) IntercomEntity`
 
 Create a new `DataEventSummary` entity instance. Pass `nil` for no initial data.
-
-#### `DataExport(data map[string]any) IntercomEntity`
-
-Create a new `DataExport` entity instance. Pass `nil` for no initial data.
 
 #### `Deleted(data map[string]any) IntercomEntity`
 
@@ -1680,6 +1680,63 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `CallEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## CancelEntity
+
+```go
+cancel := client.Cancel(nil)
+fmt.Println(cancel.GetName()) // "cancel"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `download_expires_at` | `string` | No | The time after which you will not be able to access the data. |
+| `download_url` | `string` | No | The location where you can download your data. |
+| `id` | `string` | No |  |
+| `job_identifier` | `string` | No | The identifier for your job. |
+| `status` | `string` | No | The current state of your job. |
+
+### Operations
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Cancel(nil).Create(map[string]any{
+    "id": "example_id",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `CancelEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -3953,62 +4010,6 @@ Return the entity name.
 
 ---
 
-## DataExportEntity
-
-```go
-dataExport := client.DataExport(nil)
-fmt.Println(dataExport.GetName()) // "data_export"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `download_expires_at` | `string` | No | The time after which you will not be able to access the data. |
-| `download_url` | `string` | No | The location where you can download your data. |
-| `job_identifier` | `string` | No | The identifier for your job. |
-| `status` | `string` | No | The current state of your job. |
-
-### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.DataExport(nil).Create(map[string]any{
-    "job_identifier": "example_job_identifier",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `DataExportEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## DeletedEntity
 
 ```go
@@ -4725,7 +4726,7 @@ fmt.Println(helpCenter.GetName()) // "help_center"
 | `bg` | `map[string]any` | No | The content of the group in Bulgarian |
 | `bs` | `map[string]any` | No | The content of the group in Bosnian |
 | `ca` | `map[string]any` | No | The content of the group in Catalan |
-| `created_at` | `int` | No | The time when the Help Center was created. |
+| `created_at` | `int` | No | The time the redirect was created as a UTC Unix timestamp. |
 | `cs` | `map[string]any` | No | The content of the group in Czech |
 | `custom_domain` | `string` | No | Custom domain configured for the help center |
 | `da` | `map[string]any` | No | The content of the group in Danish |
@@ -4744,7 +4745,7 @@ fmt.Println(helpCenter.GetName()) // "help_center"
 | `help_center_id` | `string` | No | The unique identifier for the help center the redirect belongs to. |
 | `hr` | `map[string]any` | No | The content of the group in Croatian |
 | `hu` | `map[string]any` | No | The content of the group in Hungarian |
-| `id` | `map[string]any` | No | The content of the group in Indonesian |
+| `id` | `string` | No | The unique identifier for the redirect. |
 | `identifier` | `string` | No | The identifier of the Help Center. |
 | `it` | `map[string]any` | No | The content of the group in Italian |
 | `ja` | `map[string]any` | No | The content of the group in Japanese |
@@ -4770,8 +4771,8 @@ fmt.Println(helpCenter.GetName()) // "help_center"
 | `target_type` | `string` | No | The type of the redirect target. |
 | `tr` | `map[string]any` | No | The content of the group in Turkish |
 | `translated_content` | `map[string]any` | No | The Translated Content of an Group. |
-| `type` | `string` | No | The type of object - group_translated_content. |
-| `updated_at` | `int` | No | The time when the Help Center was last updated. |
+| `type` | `string` | No | The type of the object - `help_center_redirect`. |
+| `updated_at` | `int` | No | The time the redirect was last updated as a UTC Unix timestamp. |
 | `url` | `string` | No | The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. |
 | `vi` | `map[string]any` | No | The content of the group in Vietnamese |
 | `website_turned_on` | `bool` | No | Whether the Help Center is turned on or not. |
@@ -5369,38 +5370,56 @@ fmt.Println(newsItem.GetName()) // "news_item"
 | `body` | `string` | No | The news item body, which may contain HTML. |
 | `cover_image_url` | `string` | No | URL of the image used as cover. |
 | `created_at` | `int` | No | Timestamp for when the news item was created. |
+| `data` | `[]any` | No | An array of Objects |
 | `deliver_silently` | `bool` | No | When set to true, the news item will appear in the messenger newsfeed without showing a notification badge. |
 | `id` | `string` | No | The unique identifier for the news item which is given by Intercom. |
 | `labels` | `[]any` | No | Label names displayed to users to categorize the news item. |
 | `newsfeed_assignments` | `[]any` | No | A list of newsfeed_assignments to assign to the specified newsfeed. |
+| `pages` | `map[string]any` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
 | `reactions` | `[]any` | No | Ordered list of emoji reactions to the news item. |
 | `sender_id` | `int` | No | The id of the sender of the news item. |
 | `state` | `string` | No | News items will not be visible to your users in the assigned newsfeeds until they are set live. |
 | `title` | `string` | No | The title of the news item. |
+| `total_count` | `int` | No | A count of the total number of objects. |
 | `type` | `string` | No | The type of object. |
 | `updated_at` | `int` | No | Timestamp for when the news item was last updated. |
 | `workspace_id` | `string` | No | The id of the workspace which the news item belongs to. |
 
 ### Field Usage by Operation
 
-| Field | load | create | update |
-| --- | --- | --- | --- |
-| `body` | - | - | - |
-| `cover_image_url` | - | - | - |
-| `created_at` | - | - | - |
-| `deliver_silently` | - | - | - |
-| `id` | - | - | - |
-| `labels` | - | - | - |
-| `newsfeed_assignments` | - | - | - |
-| `reactions` | - | - | - |
-| `sender_id` | - | Yes | Yes |
-| `state` | - | - | - |
-| `title` | - | Yes | Yes |
-| `type` | - | - | - |
-| `updated_at` | - | - | - |
-| `workspace_id` | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `body` | - | - | - | - |
+| `cover_image_url` | - | - | - | - |
+| `created_at` | - | - | - | - |
+| `data` | - | - | - | - |
+| `deliver_silently` | - | - | - | - |
+| `id` | - | - | - | - |
+| `labels` | - | - | - | - |
+| `newsfeed_assignments` | - | - | - | - |
+| `pages` | - | - | - | - |
+| `reactions` | - | - | - | - |
+| `sender_id` | - | - | Yes | Yes |
+| `state` | - | - | - | - |
+| `title` | - | - | Yes | Yes |
+| `total_count` | - | - | - | - |
+| `type` | - | - | - | - |
+| `updated_at` | - | - | - | - |
+| `workspace_id` | - | - | - | - |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.NewsItem(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -5478,12 +5497,27 @@ fmt.Println(newsfeed.GetName()) // "newsfeed"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `int` | No | Timestamp for when the newsfeed was created. |
+| `data` | `[]any` | No | An array of Objects |
 | `id` | `string` | No | The unique identifier for the newsfeed which is given by Intercom. |
 | `name` | `string` | No | The name of the newsfeed. |
+| `pages` | `map[string]any` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
+| `total_count` | `int` | No | A count of the total number of objects. |
 | `type` | `string` | No | The type of object. |
 | `updated_at` | `int` | No | Timestamp for when the newsfeed was last updated. |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.Newsfeed(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -7444,14 +7478,14 @@ Return the entity name.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -7497,7 +7531,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -7528,7 +7562,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -7559,7 +7593,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -7587,7 +7621,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -7622,7 +7656,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -7653,7 +7687,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -7687,7 +7721,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -7718,7 +7752,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

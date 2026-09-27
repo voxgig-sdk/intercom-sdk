@@ -19,6 +19,7 @@ const BannerEntity_1 = require("./entity/BannerEntity");
 const BannerDismissEntity_1 = require("./entity/BannerDismissEntity");
 const BrandEntity_1 = require("./entity/BrandEntity");
 const CallEntity_1 = require("./entity/CallEntity");
+const CancelEntity_1 = require("./entity/CancelEntity");
 const CompanyEntity_1 = require("./entity/CompanyEntity");
 const CompanyAttachedContactEntity_1 = require("./entity/CompanyAttachedContactEntity");
 const CompanyAttachedSegmentEntity_1 = require("./entity/CompanyAttachedSegmentEntity");
@@ -45,7 +46,6 @@ const DataConnectorExecutionResultEntity_1 = require("./entity/DataConnectorExec
 const DataConnectorExecutionResultListEntity_1 = require("./entity/DataConnectorExecutionResultListEntity");
 const DataEventEntity_1 = require("./entity/DataEventEntity");
 const DataEventSummaryEntity_1 = require("./entity/DataEventSummaryEntity");
-const DataExportEntity_1 = require("./entity/DataExportEntity");
 const DeletedEntity_1 = require("./entity/DeletedEntity");
 const DeletedArticleObjectEntity_1 = require("./entity/DeletedArticleObjectEntity");
 const DeletedCompanyObjectEntity_1 = require("./entity/DeletedCompanyObjectEntity");
@@ -172,7 +172,6 @@ class IntercomSDK {
             ctrl: fetchargs.ctrl || {},
         }, this._rootctx);
         const options = this._options;
-        // Build spec directly from SDK options + user-provided fetch args.
         const spec = {
             base: options.base,
             prefix: options.prefix,
@@ -186,14 +185,12 @@ class IntercomSDK {
             step: 'start',
         };
         ctx.spec = spec;
-        // Merge user-provided headers over SDK defaults.
         if (fetchargs.headers) {
             const uheaders = fetchargs.headers;
             for (let key in uheaders) {
                 spec.headers[key] = uheaders[key];
             }
         }
-        // Apply SDK auth (apikey, auth prefix, etc.)
         const authResult = prepareAuth(ctx);
         if (authResult instanceof Error) {
             return authResult;
@@ -268,18 +265,6 @@ class IntercomSDK {
             return { ok: false, err };
         }
     }
-    // Raw GraphQL access: the pressure valve that makes the generated
-    // surface's deliberate omissions (per-call selection sets, typed filter
-    // builders, batching, subscriptions) livable — the whole schema stays
-    // reachable.
-    //
-    // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-    // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-    // HTTP 200 as a top-level `errors` array, so status alone would report a
-    // failed query as ok.
-    //
-    // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-    // ratelimit or paging features apply.
     async graphql(query, variables, ctrl) {
         const options = this._options;
         if (!options.allow.op.includes('graphql')) {
@@ -431,6 +416,13 @@ class IntercomSDK {
     Call(entopts) {
         const self = this;
         return new CallEntity_1.CallEntity(self, entopts);
+    }
+    // Entity access: `client.Cancel().list()` / `client.Cancel().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    Cancel(entopts) {
+        const self = this;
+        return new CancelEntity_1.CancelEntity(self, entopts);
     }
     // Entity access: `client.Company().list()` / `client.Company().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -613,13 +605,6 @@ class IntercomSDK {
     DataEventSummary(entopts) {
         const self = this;
         return new DataEventSummaryEntity_1.DataEventSummaryEntity(self, entopts);
-    }
-    // Entity access: `client.DataExport().list()` / `client.DataExport().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    DataExport(entopts) {
-        const self = this;
-        return new DataExportEntity_1.DataExportEntity(self, entopts);
     }
     // Entity access: `client.Deleted().list()` / `client.Deleted().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

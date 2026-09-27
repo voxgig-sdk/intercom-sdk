@@ -54,13 +54,14 @@ describe('HelpCenterDirect', async () => {
         throw new Error('Live load blocked: discovery returned no usable entities')
       }
       params.id = listData[0].id
-      params.collection_id = setup.idmap['collection01']
+      params.help_center_id = setup.idmap['help_center01']
     } else {
-      params.collection_id = 'direct01'
+      params.help_center_id = 'direct01'
+      params.id = 'direct02'
     }
 
     const result = await client.direct({
-      path: 'help_center/collections/{collection_id}',
+      path: 'help_center/help_centers/{help_center_id}/redirects/{id}',
       method: 'GET',
       params,
     })
@@ -74,6 +75,7 @@ describe('HelpCenterDirect', async () => {
       assert(calls.length === 1)
       assert(calls[0].init.method === 'GET')
       assert(calls[0].url.includes('direct01'))
+      assert(calls[0].url.includes('direct02'))
     }
   })
 

@@ -1,0 +1,1052 @@
+# Entity: help_center
+
+main: kit: entity: help_center: {
+
+  alias: field: {}
+
+  fields: {
+    ar: {
+      h: "Ar"
+      n: "ar"
+      r: false
+      sh: "The content of the group in Arabic"
+      t: "`$OBJECT`"
+    }
+    bg: {
+      h: "Bg"
+      n: "bg"
+      r: false
+      sh: "The content of the group in Bulgarian"
+      t: "`$OBJECT`"
+    }
+    bs: {
+      h: "Bs"
+      n: "bs"
+      r: false
+      sh: "The content of the group in Bosnian"
+      t: "`$OBJECT`"
+    }
+    ca: {
+      h: "Ca"
+      n: "ca"
+      r: false
+      sh: "The content of the group in Catalan"
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the redirect was created as a UTC Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    cs: {
+      h: "Cs"
+      n: "cs"
+      r: false
+      sh: "The content of the group in Czech"
+      t: "`$OBJECT`"
+    }
+    custom_domain: {
+      h: "Custom Domain"
+      n: "custom_domain"
+      r: false
+      sh: "Custom domain configured for the help center"
+      t: "`$STRING`"
+    }
+    da: {
+      h: "Da"
+      n: "da"
+      r: false
+      sh: "The content of the group in Danish"
+      t: "`$OBJECT`"
+    }
+    de: {
+      h: "De"
+      n: "de"
+      r: false
+      sh: "The content of the group in German"
+      t: "`$OBJECT`"
+    }
+    default: {
+      h: "Default"
+      n: "default"
+      r: false
+      sh: "Whether this help center is the default for the workspace."
+      t: "`$BOOLEAN`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the collection."
+      t: "`$STRING`"
+    }
+    display_name: {
+      h: "Display Name"
+      n: "display_name"
+      r: false
+      sh: "The display name of the Help Center only seen by teammates."
+      t: "`$STRING`"
+    }
+    el: {
+      h: "El"
+      n: "el"
+      r: false
+      sh: "The content of the group in Greek"
+      t: "`$OBJECT`"
+    }
+    en: {
+      h: "En"
+      n: "en"
+      r: false
+      sh: "The content of the group in English"
+      t: "`$OBJECT`"
+    }
+    es: {
+      h: "Es"
+      n: "es"
+      r: false
+      sh: "The content of the group in Spanish"
+      t: "`$OBJECT`"
+    }
+    et: {
+      h: "Et"
+      n: "et"
+      r: false
+      sh: "The content of the group in Estonian"
+      t: "`$OBJECT`"
+    }
+    fi: {
+      h: "Fi"
+      n: "fi"
+      r: false
+      sh: "The content of the group in Finnish"
+      t: "`$OBJECT`"
+    }
+    fr: {
+      h: "Fr"
+      n: "fr"
+      r: false
+      sh: "The content of the group in French"
+      t: "`$OBJECT`"
+    }
+    from_url: {
+      h: "From Url"
+      n: "from_url"
+      r: false
+      sh: "The source URL that is redirected."
+      t: "`$STRING`"
+    }
+    he: {
+      h: "He"
+      n: "he"
+      r: false
+      sh: "The content of the group in Hebrew"
+      t: "`$OBJECT`"
+    }
+    help_center_id: {
+      h: "Help Center Id"
+      n: "help_center_id"
+      r: false
+      sh: "The unique identifier for the help center the redirect belongs to."
+      t: "`$STRING`"
+    }
+    hr: {
+      h: "Hr"
+      n: "hr"
+      r: false
+      sh: "The content of the group in Croatian"
+      t: "`$OBJECT`"
+    }
+    hu: {
+      h: "Hu"
+      n: "hu"
+      r: false
+      sh: "The content of the group in Hungarian"
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the redirect."
+      t: "`$STRING`"
+    }
+    identifier: {
+      h: "Identifier"
+      n: "identifier"
+      r: false
+      sh: "The identifier of the Help Center."
+      t: "`$STRING`"
+    }
+    it: {
+      h: "It"
+      n: "it"
+      r: false
+      sh: "The content of the group in Italian"
+      t: "`$OBJECT`"
+    }
+    ja: {
+      h: "Ja"
+      n: "ja"
+      r: false
+      sh: "The content of the group in Japanese"
+      t: "`$OBJECT`"
+    }
+    ko: {
+      h: "Ko"
+      n: "ko"
+      r: false
+      sh: "The content of the group in Korean"
+      t: "`$OBJECT`"
+    }
+    locale: {
+      h: "Locale"
+      n: "locale"
+      r: false
+      sh: "The locale of the redirect's target."
+      t: "`$STRING`"
+    }
+    locales: {
+      h: "Locales"
+      n: "locales"
+      r: false
+      sh: "The locales in which the help center is available."
+      t: "`$ARRAY`"
+    }
+    lt: {
+      h: "Lt"
+      n: "lt"
+      r: false
+      sh: "The content of the group in Lithuanian"
+      t: "`$OBJECT`"
+    }
+    lv: {
+      h: "Lv"
+      n: "lv"
+      r: false
+      sh: "The content of the group in Latvian"
+      t: "`$OBJECT`"
+    }
+    mn: {
+      h: "Mn"
+      n: "mn"
+      r: false
+      sh: "The content of the group in Mongolian"
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the collection."
+      t: "`$STRING`"
+    }
+    nb: {
+      h: "Nb"
+      n: "nb"
+      r: false
+      sh: "The content of the group in Norwegian"
+      t: "`$OBJECT`"
+    }
+    nl: {
+      h: "Nl"
+      n: "nl"
+      r: false
+      sh: "The content of the group in Dutch"
+      t: "`$OBJECT`"
+    }
+    parent_id: {
+      h: "Parent Id"
+      n: "parent_id"
+      r: false
+      sh: "The id of the parent collection."
+      t: "`$STRING`"
+    }
+    pl: {
+      h: "Pl"
+      n: "pl"
+      r: false
+      sh: "The content of the group in Polish"
+      t: "`$OBJECT`"
+    }
+    pt: {
+      h: "Pt"
+      n: "pt"
+      r: false
+      sh: "The content of the group in Portuguese (Portugal)"
+      t: "`$OBJECT`"
+    }
+    ptBR: {
+      h: "Pt Br"
+      n: "ptBR"
+      r: false
+      sh: "The content of the group in Portuguese (Brazil)"
+      t: "`$OBJECT`"
+    }
+    ro: {
+      h: "Ro"
+      n: "ro"
+      r: false
+      sh: "The content of the group in Romanian"
+      t: "`$OBJECT`"
+    }
+    ru: {
+      h: "Ru"
+      n: "ru"
+      r: false
+      sh: "The content of the group in Russian"
+      t: "`$OBJECT`"
+    }
+    sl: {
+      h: "Sl"
+      n: "sl"
+      r: false
+      sh: "The content of the group in Slovenian"
+      t: "`$OBJECT`"
+    }
+    sr: {
+      h: "Sr"
+      n: "sr"
+      r: false
+      sh: "The content of the group in Serbian"
+      t: "`$OBJECT`"
+    }
+    sv: {
+      h: "Sv"
+      n: "sv"
+      r: false
+      sh: "The content of the group in Swedish"
+      t: "`$OBJECT`"
+    }
+    target_id: {
+      h: "Target Id"
+      n: "target_id"
+      r: false
+      sh: "The unique identifier of the target article or collection."
+      t: "`$STRING`"
+    }
+    target_type: {
+      h: "Target Type"
+      n: "target_type"
+      r: false
+      sh: "The type of the redirect target."
+      t: "`$STRING`"
+    }
+    tr: {
+      h: "Tr"
+      n: "tr"
+      r: false
+      sh: "The content of the group in Turkish"
+      t: "`$OBJECT`"
+    }
+    translated_content: {
+      h: "Translated Content"
+      n: "translated_content"
+      r: false
+      sh: "The Translated Content of an Group."
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the object - `help_center_redirect`."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the redirect was last updated as a UTC Unix timestamp."
+      t: "`$INTEGER`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "The URL for the help center, if you have a custom domain then this will show the URL using the custom domain."
+      t: "`$STRING`"
+    }
+    vi: {
+      h: "Vi"
+      n: "vi"
+      r: false
+      sh: "The content of the group in Vietnamese"
+      t: "`$OBJECT`"
+    }
+    website_turned_on: {
+      h: "Website Turned On"
+      n: "website_turned_on"
+      r: false
+      sh: "Whether the Help Center is turned on or not."
+      t: "`$BOOLEAN`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "The id of the workspace which the Help Center belongs to."
+      t: "`$STRING`"
+    }
+    zhCN: {
+      h: "Zh Cn"
+      n: "zhCN"
+      r: false
+      sh: "The content of the group in Chinese (China)"
+      t: "`$OBJECT`"
+    }
+    zhTW: {
+      h: "Zh Tw"
+      n: "zhTW"
+      r: false
+      sh: "The content of the group in Chinese (Taiwan)"
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "help_center"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /help_center/help_centers/{help_center_id}/redirects"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "help_center_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/help_center/help_centers/{help_center_id}/redirects"
+          q: {
+            "$action": "redirect"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              help_center_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "help_centers"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "redirects"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /help_center/collections"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/help_center/collections"
+          q: {
+            "$action": "collection"
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "collections"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.translated_content`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /help_center/help_centers/{help_center_id}/redirects"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "help_center_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/help_center/help_centers/{help_center_id}/redirects"
+          q: {
+            "$action": "redirect"
+            exist: [
+              "id"
+              "intercom_version"
+              "page"
+              "per_page"
+            ]
+          }
+          r: {
+            param: {
+              help_center_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "help_centers"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "redirects"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /help_center/collections"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/help_center/collections"
+          q: {
+            "$action": "collection"
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "collections"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /help_center/help_centers"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/help_center/help_centers"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "help_centers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /help_center/help_centers/{help_center_id}/redirects/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "help_center_id"
+                or: "help_center_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "26"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/help_center/help_centers/{help_center_id}/redirects/{id}"
+          q: {
+            exist: [
+              "help_center_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "help_centers"
+            }
+            {
+              var: "help_center_id"
+            }
+            {
+              lit: "redirects"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /help_center/collections/{collection_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "collection_id"
+                or: "collection_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/help_center/collections/{collection_id}"
+          q: {
+            exist: [
+              "collection_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "collections"
+            }
+            {
+              var: "collection_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.translated_content`"
+          }
+        }
+        {
+          co: {
+            id: "GET /help_center/help_centers/{help_center_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "help_center_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/help_center/help_centers/{help_center_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              help_center_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "help_centers"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /help_center/help_centers/{help_center_id}/redirects/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "help_center_id"
+                or: "help_center_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "26"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/help_center/help_centers/{help_center_id}/redirects/{id}"
+          q: {
+            exist: [
+              "help_center_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "help_centers"
+            }
+            {
+              var: "help_center_id"
+            }
+            {
+              lit: "redirects"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /help_center/collections/{collection_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "collection_id"
+                or: "collection_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/help_center/collections/{collection_id}"
+          q: {
+            exist: [
+              "collection_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "collections"
+            }
+            {
+              var: "collection_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /help_center/collections/{collection_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "collection_id"
+                or: "collection_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/help_center/collections/{collection_id}"
+          q: {
+            exist: [
+              "collection_id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "help_center"
+            }
+            {
+              lit: "collections"
+            }
+            {
+              var: "collection_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.translated_content`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -19,7 +19,6 @@ import type {
   SideConversationListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class SideConversationEntity extends IntercomEntityBase<SideConversation> {
 
   constructor(client: IntercomSDK, entopts: any) {

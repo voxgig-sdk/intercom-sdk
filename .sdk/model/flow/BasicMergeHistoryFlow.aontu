@@ -1,0 +1,26 @@
+# BasicMergeHistoryFlow
+
+main: kit: flow: BasicMergeHistoryFlow:
+{
+  entity: "merge_history",
+  kind: "basic",
+  name: "BasicMergeHistoryFlow",
+  step: [
+    {
+      m: {
+        contact_id: "contact01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "merge_history_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMergeHistoryFlow"
+}

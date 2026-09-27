@@ -110,6 +110,10 @@ Create a new `BrandEntity` instance. Pass `None` for no initial data.
 
 Create a new `CallEntity` instance. Pass `None` for no initial data.
 
+#### `Cancel(data=None)`
+
+Create a new `CancelEntity` instance. Pass `None` for no initial data.
+
 #### `Company(data=None)`
 
 Create a new `CompanyEntity` instance. Pass `None` for no initial data.
@@ -213,10 +217,6 @@ Create a new `DataEventEntity` instance. Pass `None` for no initial data.
 #### `DataEventSummary(data=None)`
 
 Create a new `DataEventSummaryEntity` instance. Pass `None` for no initial data.
-
-#### `DataExport(data=None)`
-
-Create a new `DataExportEntity` instance. Pass `None` for no initial data.
 
 #### `Deleted(data=None)`
 
@@ -1641,6 +1641,63 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `CallEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## CancelEntity
+
+```python
+cancel = client.Cancel()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `download_expires_at` | `str` | No | The time after which you will not be able to access the data. |
+| `download_url` | `str` | No | The location where you can download your data. |
+| `id` | `str` | No |  |
+| `job_identifier` | `str` | No | The identifier for your job. |
+| `status` | `str` | No | The current state of your job. |
+
+### Operations
+
+#### `create(reqdata, ctrl=None) -> dict`
+
+Create a new entity with the given data. Returns the created entity data and raises on error.
+
+```python
+result = client.Cancel().create({
+    "id": "example_id",  # str
+})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `CancelEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -3821,62 +3878,6 @@ Return the entity name.
 
 ---
 
-## DataExportEntity
-
-```python
-data_export = client.DataExport()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `download_expires_at` | `str` | No | The time after which you will not be able to access the data. |
-| `download_url` | `str` | No | The location where you can download your data. |
-| `job_identifier` | `str` | No | The identifier for your job. |
-| `status` | `str` | No | The current state of your job. |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> dict`
-
-Create a new entity with the given data. Returns the created entity data and raises on error.
-
-```python
-result = client.DataExport().create({
-    "job_identifier": "example_job_identifier",  # str
-})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `DataExportEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## DeletedEntity
 
 ```python
@@ -4574,7 +4575,7 @@ help_center = client.HelpCenter()
 | `bg` | `dict` | No | The content of the group in Bulgarian |
 | `bs` | `dict` | No | The content of the group in Bosnian |
 | `ca` | `dict` | No | The content of the group in Catalan |
-| `created_at` | `int` | No | The time when the Help Center was created. |
+| `created_at` | `int` | No | The time the redirect was created as a UTC Unix timestamp. |
 | `cs` | `dict` | No | The content of the group in Czech |
 | `custom_domain` | `str` | No | Custom domain configured for the help center |
 | `da` | `dict` | No | The content of the group in Danish |
@@ -4593,7 +4594,7 @@ help_center = client.HelpCenter()
 | `help_center_id` | `str` | No | The unique identifier for the help center the redirect belongs to. |
 | `hr` | `dict` | No | The content of the group in Croatian |
 | `hu` | `dict` | No | The content of the group in Hungarian |
-| `id` | `dict` | No | The content of the group in Indonesian |
+| `id` | `str` | No | The unique identifier for the redirect. |
 | `identifier` | `str` | No | The identifier of the Help Center. |
 | `it` | `dict` | No | The content of the group in Italian |
 | `ja` | `dict` | No | The content of the group in Japanese |
@@ -4619,8 +4620,8 @@ help_center = client.HelpCenter()
 | `target_type` | `str` | No | The type of the redirect target. |
 | `tr` | `dict` | No | The content of the group in Turkish |
 | `translated_content` | `dict` | No | The Translated Content of an Group. |
-| `type` | `str` | No | The type of object - group_translated_content. |
-| `updated_at` | `int` | No | The time when the Help Center was last updated. |
+| `type` | `str` | No | The type of the object - `help_center_redirect`. |
+| `updated_at` | `int` | No | The time the redirect was last updated as a UTC Unix timestamp. |
 | `url` | `str` | No | The URL for the help center, if you have a custom domain then this will show the URL using the custom domain. |
 | `vi` | `dict` | No | The content of the group in Vietnamese |
 | `website_turned_on` | `bool` | No | Whether the Help Center is turned on or not. |
@@ -5194,36 +5195,42 @@ news_item = client.NewsItem()
 | `body` | `str` | No | The news item body, which may contain HTML. |
 | `cover_image_url` | `str` | No | URL of the image used as cover. |
 | `created_at` | `int` | No | Timestamp for when the news item was created. |
+| `data` | `list` | No | An array of Objects |
 | `deliver_silently` | `bool` | No | When set to true, the news item will appear in the messenger newsfeed without showing a notification badge. |
 | `id` | `str` | No | The unique identifier for the news item which is given by Intercom. |
 | `labels` | `list` | No | Label names displayed to users to categorize the news item. |
 | `newsfeed_assignments` | `list` | No | A list of newsfeed_assignments to assign to the specified newsfeed. |
+| `pages` | `dict` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
 | `reactions` | `list` | No | Ordered list of emoji reactions to the news item. |
 | `sender_id` | `int` | No | The id of the sender of the news item. |
 | `state` | `str` | No | News items will not be visible to your users in the assigned newsfeeds until they are set live. |
 | `title` | `str` | No | The title of the news item. |
+| `total_count` | `int` | No | A count of the total number of objects. |
 | `type` | `str` | No | The type of object. |
 | `updated_at` | `int` | No | Timestamp for when the news item was last updated. |
 | `workspace_id` | `str` | No | The id of the workspace which the news item belongs to. |
 
 ### Field Usage by Operation
 
-| Field | load | create | update |
-| --- | --- | --- | --- |
-| `body` | - | - | - |
-| `cover_image_url` | - | - | - |
-| `created_at` | - | - | - |
-| `deliver_silently` | - | - | - |
-| `id` | - | - | - |
-| `labels` | - | - | - |
-| `newsfeed_assignments` | - | - | - |
-| `reactions` | - | - | - |
-| `sender_id` | - | Yes | Yes |
-| `state` | - | - | - |
-| `title` | - | Yes | Yes |
-| `type` | - | - | - |
-| `updated_at` | - | - | - |
-| `workspace_id` | - | - | - |
+| Field | load | list | create | update |
+| --- | --- | --- | --- | --- |
+| `body` | - | - | - | - |
+| `cover_image_url` | - | - | - | - |
+| `created_at` | - | - | - | - |
+| `data` | - | - | - | - |
+| `deliver_silently` | - | - | - | - |
+| `id` | - | - | - | - |
+| `labels` | - | - | - | - |
+| `newsfeed_assignments` | - | - | - | - |
+| `pages` | - | - | - | - |
+| `reactions` | - | - | - | - |
+| `sender_id` | - | - | Yes | Yes |
+| `state` | - | - | - | - |
+| `title` | - | - | Yes | Yes |
+| `total_count` | - | - | - | - |
+| `type` | - | - | - | - |
+| `updated_at` | - | - | - | - |
+| `workspace_id` | - | - | - | - |
 
 ### Operations
 
@@ -5234,6 +5241,16 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.NewsItem().create({
 })
+```
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.NewsItem().list()
+for news_item in results:
+    print(news_item)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -5295,12 +5312,25 @@ newsfeed = client.Newsfeed()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `created_at` | `int` | No | Timestamp for when the newsfeed was created. |
+| `data` | `list` | No | An array of Objects |
 | `id` | `str` | No | The unique identifier for the newsfeed which is given by Intercom. |
 | `name` | `str` | No | The name of the newsfeed. |
+| `pages` | `dict` | No | Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. |
+| `total_count` | `int` | No | A count of the total number of objects. |
 | `type` | `str` | No | The type of object. |
 | `updated_at` | `int` | No | Timestamp for when the newsfeed was last updated. |
 
 ### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.Newsfeed().list()
+for newsfeed in results:
+    print(newsfeed)
+```
 
 #### `load(reqmatch, ctrl=None) -> dict`
 
@@ -5721,7 +5751,7 @@ paginated = client.Paginated()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Paginated().list()
+results = client.Paginated().list({"newsfeed_id": "example"})
 for paginated in results:
     print(paginated)
 ```
@@ -7196,14 +7226,14 @@ Return the entity name.
 
 | Feature | Version | Description |
 | --- | --- | --- |
-| `debug` | 0.0.1 | Request/response capture ring buffer for debugging |
-| `idempotency` | 0.0.1 | Idempotency keys for safe retries of mutating operations |
-| `metrics` | 0.0.1 | Statistics capture: per-operation counters and latency |
-| `paging` | 0.0.1 | Pagination signals for list operations |
-| `ratelimit` | 0.0.1 | Client-side rate limiting via a token bucket |
-| `retry` | 0.0.1 | Automatic retry of transient failures with exponential backoff |
-| `test` | 0.0.1 | In-memory mock transport for testing without a live server |
-| `timeout` | 0.0.1 | Per-request timeout with transport abort |
+| `debug` | 0.0.1 | Debug capture |
+| `idempotency` | 0.0.1 | Idempotency |
+| `metrics` | 0.0.1 | Metrics |
+| `paging` | 0.0.1 | Paging |
+| `ratelimit` | 0.0.1 | Rate limiting |
+| `retry` | 0.0.1 | Retry |
+| `test` | 0.0.1 | Test transport |
+| `timeout` | 0.0.1 | Timeout |
 
 
 Features are activated via the `feature` option:
@@ -7249,7 +7279,7 @@ rather than the transport, so their order does not affect what they observe.
 
 #### `debug`
 
-Request/response capture ring buffer for debugging.
+Debug capture.
 
 **Configuration**
 
@@ -7280,7 +7310,7 @@ its default unless you name it.
 
 #### `idempotency`
 
-Idempotency keys for safe retries of mutating operations.
+Idempotency.
 
 **Configuration**
 
@@ -7311,7 +7341,7 @@ its default unless you name it.
 
 #### `metrics`
 
-Statistics capture: per-operation counters and latency.
+Metrics.
 
 **Configuration**
 
@@ -7339,7 +7369,7 @@ its default unless you name it.
 
 #### `paging`
 
-Pagination signals for list operations.
+Paging.
 
 **Configuration**
 
@@ -7374,7 +7404,7 @@ its default unless you name it.
 
 #### `ratelimit`
 
-Client-side rate limiting via a token bucket.
+Rate limiting.
 
 **Configuration**
 
@@ -7405,7 +7435,7 @@ its default unless you name it.
 
 #### `retry`
 
-Automatic retry of transient failures with exponential backoff.
+Retry.
 
 **Configuration**
 
@@ -7439,7 +7469,7 @@ its default unless you name it.
 
 #### `test`
 
-In-memory mock transport for testing without a live server.
+Test transport.
 
 **Configuration**
 
@@ -7470,7 +7500,7 @@ its default unless you name it.
 
 #### `timeout`
 
-Per-request timeout with transport abort.
+Timeout.
 
 **Configuration**
 

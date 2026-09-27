@@ -1,0 +1,26 @@
+# BasicCompanyAttachedContactFlow
+
+main: kit: flow: BasicCompanyAttachedContactFlow:
+{
+  entity: "company_attached_contact",
+  kind: "basic",
+  name: "BasicCompanyAttachedContactFlow",
+  step: [
+    {
+      m: {
+        company_id: "company01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "company_attached_contact_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompanyAttachedContactFlow"
+}

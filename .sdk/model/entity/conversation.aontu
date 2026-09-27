@@ -1,0 +1,958 @@
+# Entity: conversation
+
+main: kit: entity: conversation: {
+
+  alias: field: {}
+
+  fields: {
+    admin_assignee_id: {
+      h: "Admin Assignee Id"
+      n: "admin_assignee_id"
+      r: false
+      sh: "The id of the admin assigned to the conversation."
+      t: "`$INTEGER`"
+    }
+    ai_agent: {
+      h: "Ai Agent"
+      n: "ai_agent"
+      r: false
+      sh: "Data related to AI Agent involvement in the conversation."
+      t: "`$OBJECT`"
+    }
+    ai_agent_participated: {
+      h: "Ai Agent Participated"
+      n: "ai_agent_participated"
+      r: false
+      sh: "Indicates whether the AI Agent participated in the conversation."
+      t: "`$BOOLEAN`"
+    }
+    attachment_urls: {
+      h: "Attachment Urls"
+      n: "attachment_urls"
+      r: false
+      sh: "A list of image URLs that will be added as attachments."
+      t: "`$ARRAY`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: true
+      sh: "The content of the message."
+      t: "`$STRING`"
+    }
+    brand_id: {
+      h: "Brand Id"
+      n: "brand_id"
+      r: false
+      sh: "The unique identifier of the brand to associate with this conversation."
+      t: "`$STRING`"
+    }
+    channel: {
+      h: "Channel"
+      n: "channel"
+      r: false
+      sh: "The channel through which the conversation was initiated and its current channel."
+      t: "`$OBJECT`"
+    }
+    company: {
+      h: "Company"
+      n: "company"
+      r: false
+      sh: "The company associated with the conversation."
+      t: "`$OBJECT`"
+    }
+    company_id: {
+      h: "Company Id"
+      n: "company_id"
+      r: false
+      sh: "The ID of the company that the conversation is associated with."
+      t: "`$STRING`"
+    }
+    contacts: {
+      h: "Contacts"
+      n: "contacts"
+      r: false
+      sh: "The list of contacts (users or leads) involved in this conversation."
+      t: "`$OBJECT`"
+    }
+    conversation_id: {
+      h: "Conversation Id"
+      n: "conversation_id"
+      r: true
+      sh: "The unique identifier (given by Intercom) for the conversation or customer ticket to link to the tracker ticket."
+      t: "`$STRING`"
+    }
+    conversation_parts: {
+      h: "Conversation Parts"
+      n: "conversation_parts"
+      r: false
+      sh: "A list of Conversation Part objects for each part message in the conversation."
+      t: "`$OBJECT`"
+      union: {
+        branches: 6
+        count: 1
+        depth: 5
+      }
+    }
+    conversation_rating: {
+      h: "Conversation Rating"
+      n: "conversation_rating"
+      r: false
+      sh: "The Conversation Rating object which contains information on the rating and/or remark added by a Contact and the Admin assigned to the conversation."
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the conversation was created."
+      t: "`$INTEGER`"
+    }
+    custom_attributes: {
+      h: "Custom Attributes"
+      n: "custom_attributes"
+      r: false
+      sh: "An object containing the different custom attributes associated to the conversation as key-value pairs."
+      t: "`$OBJECT`"
+      union: {
+        branches: 4
+        count: 2
+        depth: 3
+      }
+    }
+    external_references: {
+      h: "External References"
+      n: "external_references"
+      r: false
+      sh: "References linking this conversation to records in an external helpdesk or CRM system."
+      t: "`$ARRAY`"
+    }
+    first_contact_reply: {
+      h: "First Contact Reply"
+      n: "first_contact_reply"
+      r: false
+      sh: "An object containing information on the first users message."
+      t: "`$OBJECT`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      r: true
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id representing the conversation."
+      t: "`$STRING`"
+    }
+    linked_objects: {
+      h: "Linked Objects"
+      n: "linked_objects"
+      r: false
+      sh: "An object containing metadata about linked conversations and linked tickets."
+      t: "`$OBJECT`"
+    }
+    monitor_evaluations: {
+      h: "Monitor Evaluations"
+      n: "monitor_evaluations"
+      r: false
+      sh: "QA monitor evaluations that flagged this conversation."
+      t: "`$ARRAY`"
+    }
+    open: {
+      h: "Open"
+      n: "open"
+      r: false
+      sh: "Indicates whether a conversation is open (true) or closed (false)."
+      t: "`$BOOLEAN`"
+    }
+    priority: {
+      h: "Priority"
+      n: "priority"
+      r: false
+      sh: "The priority level of the conversation."
+      t: "`$STRING`"
+    }
+    read: {
+      h: "Read"
+      n: "read"
+      r: false
+      sh: "Indicates whether a conversation has been read."
+      t: "`$BOOLEAN`"
+    }
+    sales_agent: {
+      h: "Sales Agent"
+      n: "sales_agent"
+      r: false
+      sh: "Data related to Sales Agent involvement in the conversation."
+      t: "`$OBJECT`"
+    }
+    sales_agent_participated: {
+      h: "Sales Agent Participated"
+      n: "sales_agent_participated"
+      r: false
+      sh: "Indicates whether the Sales Agent participated in the conversation."
+      t: "`$BOOLEAN`"
+    }
+    scorecards: {
+      h: "Scorecards"
+      n: "scorecards"
+      r: false
+      sh: "QA scorecard results for this conversation."
+      t: "`$ARRAY`"
+    }
+    sla_applied: {
+      h: "Sla Applied"
+      n: "sla_applied"
+      r: false
+      sh: "The SLA Applied object contains the details for which SLA has been applied to this conversation."
+      t: "`$OBJECT`"
+    }
+    snoozed_until: {
+      fo: "date-time"
+      h: "Snoozed Until"
+      n: "snoozed_until"
+      r: false
+      sh: "If set this is the time in the future when this conversation will be marked as open."
+      t: "`$INTEGER`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: false
+      sh: "The type of the conversation part that started this conversation."
+      t: "`$OBJECT`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      sh: "Can be set to \"open\", \"closed\" or \"snoozed\"."
+      t: "`$STRING`"
+    }
+    statistics: {
+      h: "Statistics"
+      n: "statistics"
+      r: false
+      sh: "A Statistics object containing all information required for reporting, with timestamps and calculated metrics."
+      t: "`$OBJECT`"
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      r: false
+      sh: "The title of the email."
+      t: "`$STRING`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      sh: "A list of tags objects associated with a conversation"
+      t: "`$OBJECT`"
+    }
+    team_assignee_id: {
+      h: "Team Assignee Id"
+      n: "team_assignee_id"
+      r: false
+      sh: "The id of the team assigned to the conversation."
+      t: "`$INTEGER`"
+    }
+    teammates: {
+      h: "Teammates"
+      n: "teammates"
+      r: false
+      sh: "The list of teammates who participated in the conversation (wrote at least one conversation part)."
+      t: "`$OBJECT`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The title given to the conversation."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Always conversation."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The last time the conversation was updated."
+      t: "`$INTEGER`"
+    }
+    waiting_since: {
+      fo: "date-time"
+      h: "Waiting Since"
+      n: "waiting_since"
+      r: false
+      sh: "The last time a Contact responded to an Admin."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "conversation"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /conversations/{id}/merge"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/{id}/merge"
+          q: {
+            "$action": "merge"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "merge"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /conversations/{conversation_id}/parts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "id"
+                or: "conversation_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/{conversation_id}/parts"
+          q: {
+            "$action": "part"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              conversation_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "parts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /conversations/{conversation_id}/reply"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123 or \"last\""
+                k: "param"
+                n: "id"
+                or: "conversation_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/{conversation_id}/reply"
+          q: {
+            "$action": "reply"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              conversation_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "reply"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /tickets/{ticket_id}/linked_conversations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "64619700005694"
+                k: "param"
+                n: "ticket_id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tickets/{ticket_id}/linked_conversations"
+          q: {
+            exist: [
+              "intercom_version"
+              "ticket_id"
+            ]
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "ticket_id"
+            }
+            {
+              lit: "linked_conversations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /conversations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /conversations/redact"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/conversations/redact"
+          q: {
+            "$action": "redact"
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "redact"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /conversations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 20
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "starting_after"
+                or: "starting_after"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/conversations"
+          q: {
+            exist: [
+              "intercom_version"
+              "per_page"
+              "starting_after"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /conversations/{conversation_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "conversation_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                ex: "plaintext"
+                k: "query"
+                n: "display_a"
+                or: "display_a"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "include_translation"
+                or: "include_translation"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/conversations/{conversation_id}"
+          q: {
+            exist: [
+              "display_a"
+              "id"
+              "include_translation"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              conversation_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /conversations/{conversation_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "conversation_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                ex: true
+                k: "query"
+                n: "retain_metric"
+                or: "retain_metric"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/conversations/{conversation_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+              "retain_metric"
+            ]
+          }
+          r: {
+            param: {
+              conversation_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /tickets/{ticket_id}/linked_conversations/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "204"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "64619700005694"
+                k: "param"
+                n: "ticket_id"
+                or: "ticket_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/tickets/{ticket_id}/linked_conversations/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+              "ticket_id"
+            ]
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              var: "ticket_id"
+            }
+            {
+              lit: "linked_conversations"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /conversations/{conversation_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "id"
+                or: "conversation_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                ex: "plaintext"
+                k: "query"
+                n: "display_a"
+                or: "display_a"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/conversations/{conversation_id}"
+          q: {
+            exist: [
+              "display_a"
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              conversation_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.ticket")]
+  ]
+
+}

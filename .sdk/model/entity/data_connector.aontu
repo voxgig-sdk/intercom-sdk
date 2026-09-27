@@ -1,0 +1,450 @@
+# Entity: data_connector
+
+main: kit: entity: data_connector: {
+
+  alias: field: {}
+
+  fields: {
+    audiences: {
+      h: "Audiences"
+      n: "audiences"
+      r: false
+      sh: "The audience types this connector targets."
+      t: "`$ARRAY`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The request body template."
+      t: "`$STRING`"
+    }
+    bypass_authentication: {
+      h: "Bypass Authentication"
+      n: "bypass_authentication"
+      r: false
+      sh: "Whether authentication is bypassed for this connector."
+      t: "`$BOOLEAN`"
+    }
+    client_function_name: {
+      h: "Client Function Name"
+      n: "client_function_name"
+      r: false
+      sh: "The name of the client-side function, if applicable."
+      t: "`$STRING`"
+    }
+    client_function_timeout_ms: {
+      h: "Client Function Timeout Ms"
+      n: "client_function_timeout_ms"
+      r: false
+      sh: "Timeout in milliseconds for the client function, if applicable."
+      t: "`$INTEGER`"
+    }
+    configuration_response_type: {
+      h: "Configuration Response Type"
+      n: "configuration_response_type"
+      r: false
+      sh: "The expected response format from the connector."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the data connector was created."
+      t: "`$STRING`"
+    }
+    created_by_admin_id: {
+      h: "Created By Admin Id"
+      n: "created_by_admin_id"
+      r: false
+      sh: "The ID of the admin who created this connector."
+      t: "`$STRING`"
+    }
+    customer_authentication: {
+      h: "Customer Authentication"
+      n: "customer_authentication"
+      r: false
+      sh: "Whether OTP authentication is enabled for this connector."
+      t: "`$BOOLEAN`"
+    }
+    data_inputs: {
+      h: "Data Inputs"
+      n: "data_inputs"
+      r: false
+      sh: "The input parameters accepted by this data connector."
+      t: "`$ARRAY`"
+    }
+    data_transformation_type: {
+      h: "Data Transformation Type"
+      n: "data_transformation_type"
+      r: false
+      sh: "The type of data transformation applied to the response."
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "A description of what this data connector does."
+      t: "`$STRING`"
+    }
+    direct_fin_usage: {
+      h: "Direct Fin Usage"
+      n: "direct_fin_usage"
+      r: false
+      sh: "Whether this connector is used directly by Fin."
+      t: "`$BOOLEAN`"
+    }
+    execution_results_url: {
+      h: "Execution Results Url"
+      n: "execution_results_url"
+      r: false
+      sh: "The URL path to fetch execution results for this connector."
+      t: "`$STRING`"
+    }
+    execution_type: {
+      h: "Execution Type"
+      n: "execution_type"
+      r: false
+      sh: "How the connector executes."
+      t: "`$STRING`"
+    }
+    headers: {
+      h: "Headers"
+      n: "headers"
+      r: false
+      sh: "HTTP headers for the request."
+      t: "`$ARRAY`"
+    }
+    http_method: {
+      h: "Http Method"
+      n: "http_method"
+      r: false
+      sh: "The HTTP method used by the data connector."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the data connector."
+      t: "`$STRING`"
+    }
+    mock_response: {
+      h: "Mock Response"
+      n: "mock_response"
+      r: false
+      sh: "A sample JSON response from the external API."
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The name of the data connector."
+      t: "`$STRING`"
+    }
+    object_mappings: {
+      h: "Object Mappings"
+      n: "object_mappings"
+      r: false
+      sh: "Mappings from connector response objects to Intercom objects."
+      t: "`$ARRAY`"
+    }
+    response_fields: {
+      h: "Response Fields"
+      n: "response_fields"
+      r: false
+      sh: "The fields returned in the connector response."
+      t: "`$ARRAY`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      sh: "The current state of the data connector."
+      t: "`$STRING`"
+    }
+    token_ids: {
+      h: "Token Ids"
+      n: "token_ids"
+      r: false
+      sh: "IDs of authentication tokens associated with this connector."
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object - `data_connector`."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time the data connector was last updated."
+      t: "`$STRING`"
+    }
+    updated_by_admin_id: {
+      h: "Updated By Admin Id"
+      n: "updated_by_admin_id"
+      r: false
+      sh: "The ID of the admin who last updated this connector."
+      t: "`$STRING`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "The URL of the external API endpoint."
+      t: "`$STRING`"
+    }
+    validate_missing_attributes: {
+      h: "Validate Missing Attributes"
+      n: "validate_missing_attributes"
+      r: false
+      sh: "Whether to validate missing attributes before execution."
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "data_connector"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /data_connectors"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/data_connectors"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "data_connectors"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /data_connectors"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 20
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "starting_after"
+                or: "starting_after"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/data_connectors"
+          q: {
+            exist: [
+              "intercom_version"
+              "per_page"
+              "starting_after"
+            ]
+          }
+          s: [
+            {
+              lit: "data_connectors"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /data_connectors/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "12345"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "live"
+                k: "query"
+                n: "state_version"
+                or: "state_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/data_connectors/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+              "state_version"
+            ]
+          }
+          s: [
+            {
+              lit: "data_connectors"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /data_connectors/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "12345"
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/data_connectors/{id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "data_connectors"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

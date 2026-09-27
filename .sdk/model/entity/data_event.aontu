@@ -1,0 +1,149 @@
+# Entity: data_event
+
+main: kit: entity: data_event: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the event occurred as a UTC Unix timestamp"
+      t: "`$INTEGER`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "An email address for your user."
+      t: "`$STRING`"
+    }
+    event_name: {
+      h: "Event Name"
+      n: "event_name"
+      r: false
+      sh: "The name of the event that occurred."
+      t: "`$STRING`"
+    }
+    event_summaries: {
+      h: "Event Summaries"
+      n: "event_summaries"
+      r: false
+      sh: "A list of event summaries for the user."
+      t: "`$OBJECT`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the contact (lead or user) which is given by Intercom."
+      t: "`$STRING`"
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: false
+      sh: "Optional metadata about the event."
+      t: "`$OBJECT`"
+    }
+    user_id: {
+      h: "User Id"
+      n: "user_id"
+      r: false
+      sh: "Your identifier for the user."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "data_event"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /events"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/events"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "events"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /events/summaries"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/events/summaries"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "events"
+            }
+            {
+              lit: "summaries"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -19,7 +19,6 @@ import type {
   SubscriptionTypeListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class SubscriptionTypeEntity extends IntercomEntityBase<SubscriptionType> {
 
   constructor(client: IntercomSDK, entopts: any) {

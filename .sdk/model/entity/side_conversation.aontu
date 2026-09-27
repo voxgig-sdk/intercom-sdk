@@ -1,0 +1,127 @@
+# Entity: side_conversation
+
+main: kit: entity: side_conversation: {
+
+  alias: field: {}
+
+  fields: {
+    conversation_parts: {
+      h: "Conversation Parts"
+      n: "conversation_parts"
+      r: false
+      sh: "The conversation parts (messages) in this side conversation."
+      t: "`$ARRAY`"
+      union: {
+        branches: 6
+        count: 1
+        depth: 3
+      }
+    }
+    side_conversation_id: {
+      h: "Side Conversation Id"
+      n: "side_conversation_id"
+      r: false
+      sh: "The unique identifier for the side conversation."
+      t: "`$STRING`"
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "The total number of conversation parts in this side conversation."
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "side_conversation"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /conversations/{id}/side_conversations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "123"
+                k: "param"
+                n: "conversation_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/conversations/{id}/side_conversations"
+          q: {
+            exist: [
+              "conversation_id"
+              "intercom_version"
+              "page"
+              "per_page"
+            ]
+          }
+          r: {
+            param: {
+              id: "conversation_id"
+            }
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              var: "conversation_id"
+            }
+            {
+              lit: "side_conversations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.conversation")]
+  ]
+
+}

@@ -19,7 +19,6 @@ import type {
   CompanyScrollListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class CompanyScrollEntity extends IntercomEntityBase<CompanyScroll> {
 
   constructor(client: IntercomSDK, entopts: any) {

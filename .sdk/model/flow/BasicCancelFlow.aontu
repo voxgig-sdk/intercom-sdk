@@ -1,0 +1,22 @@
+# BasicCancelFlow
+
+main: kit: flow: BasicCancelFlow:
+{
+  entity: "cancel",
+  kind: "basic",
+  name: "BasicCancelFlow",
+  step: [
+    {
+      i: {
+        ref: "cancel_ref01"
+      }
+
+      m: {
+        job_identifier: "jobentifier01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicCancelFlow"
+}

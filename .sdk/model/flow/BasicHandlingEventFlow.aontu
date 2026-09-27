@@ -1,0 +1,26 @@
+# BasicHandlingEventFlow
+
+main: kit: flow: BasicHandlingEventFlow:
+{
+  entity: "handling_event",
+  kind: "basic",
+  name: "BasicHandlingEventFlow",
+  step: [
+    {
+      m: {
+        conversation_id: "conversation01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "handling_event_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicHandlingEventFlow"
+}

@@ -75,7 +75,7 @@ function job_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["job01", "job02", "job03", "status01", "status02", "status03"] as $k) {
+    foreach (["job01", "job02", "job03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

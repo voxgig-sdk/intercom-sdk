@@ -1,0 +1,26 @@
+# BasicBannerFlow
+
+main: kit: flow: BasicBannerFlow:
+{
+  entity: "banner",
+  kind: "basic",
+  name: "BasicBannerFlow",
+  step: [
+    {
+      m: {
+        contact_id: "contact01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "banner_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBannerFlow"
+}

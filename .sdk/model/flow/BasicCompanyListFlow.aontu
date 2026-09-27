@@ -1,0 +1,18 @@
+# BasicCompanyListFlow
+
+main: kit: flow: BasicCompanyListFlow:
+{
+  entity: "company_list",
+  kind: "basic",
+  name: "BasicCompanyListFlow",
+  step: [
+    {
+      i: {
+        ref: "company_list_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicCompanyListFlow"
+}

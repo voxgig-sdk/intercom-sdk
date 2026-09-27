@@ -1,0 +1,451 @@
+# Entity: custom_object_instance
+
+main: kit: entity: custom_object_instance: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      t: "`$INTEGER`"
+    }
+    custom_attributes: {
+      h: "Custom Attributes"
+      n: "custom_attributes"
+      r: false
+      sh: "The custom attributes which are set for the Custom Object instance."
+      t: "`$OBJECT`"
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "An array of Custom Object Instance objects."
+      t: "`$ARRAY`"
+    }
+    external_created_at: {
+      fo: "date-time"
+      h: "External Created At"
+      n: "external_created_at"
+      r: false
+      sh: "The time when the Custom Object instance was created in the external system it originated from."
+      t: "`$STRING`"
+    }
+    external_id: {
+      h: "External Id"
+      n: "external_id"
+      r: false
+      sh: "A unique identifier for the Custom Object instance in the external system it originated from."
+      t: "`$STRING`"
+    }
+    external_updated_at: {
+      fo: "date-time"
+      h: "External Updated At"
+      n: "external_updated_at"
+      r: false
+      sh: "The time when the Custom Object instance was last updated in the external system it originated from."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "The majority of list resources in the API are paginated to allow clients to traverse data over multiple requests."
+      t: "`$OBJECT`"
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "A count of the total number of custom object instances."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the object - `list`."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "custom_object_type_identifier"
+      "custom_object_instance_id"
+    ]
+    sep: "/"
+  }
+
+  name: "custom_object_instance"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /custom_object_instances/{custom_object_type_identifier}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "Order"
+                k: "param"
+                n: "id"
+                or: "custom_object_type_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/custom_object_instances/{custom_object_type_identifier}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              custom_object_type_identifier: "id"
+            }
+          }
+          s: [
+            {
+              lit: "custom_object_instances"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.custom_attributes`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /custom_object_instances/{custom_object_type_identifier}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "Order"
+                k: "param"
+                n: "id"
+                or: "custom_object_type_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "external_id"
+                or: "external_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "references_contact_id"
+                or: "references_contact_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "references_conversation_id"
+                or: "references_conversation_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/custom_object_instances/{custom_object_type_identifier}"
+          q: {
+            exist: [
+              "external_id"
+              "id"
+              "intercom_version"
+              "page"
+              "per_page"
+              "references_contact_id"
+              "references_conversation_id"
+            ]
+          }
+          r: {
+            param: {
+              custom_object_type_identifier: "id"
+            }
+          }
+          s: [
+            {
+              lit: "custom_object_instances"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /custom_object_instances/{custom_object_type_identifier}/{custom_object_instance_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "custom_object_instance_id"
+                or: "custom_object_instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "Order"
+                k: "param"
+                n: "custom_object_type_identifier"
+                or: "custom_object_type_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/custom_object_instances/{custom_object_type_identifier}/{custom_object_instance_id}"
+          q: {
+            exist: [
+              "custom_object_instance_id"
+              "custom_object_type_identifier"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "custom_object_instances"
+            }
+            {
+              var: "custom_object_type_identifier"
+            }
+            {
+              var: "custom_object_instance_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.custom_attributes`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /custom_object_instances/{custom_object_type_identifier}/{custom_object_instance_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "custom_object_instance_id"
+                or: "custom_object_instance_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "Order"
+                k: "param"
+                n: "custom_object_type_identifier"
+                or: "custom_object_type_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/custom_object_instances/{custom_object_type_identifier}/{custom_object_instance_id}"
+          q: {
+            exist: [
+              "custom_object_instance_id"
+              "custom_object_type_identifier"
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "custom_object_instances"
+            }
+            {
+              var: "custom_object_type_identifier"
+            }
+            {
+              var: "custom_object_instance_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "DELETE /custom_object_instances/{custom_object_type_identifier}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "Order"
+                k: "param"
+                n: "id"
+                or: "custom_object_type_identifier"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "external_id"
+                or: "external_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/custom_object_instances/{custom_object_type_identifier}"
+          q: {
+            exist: [
+              "external_id"
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              custom_object_type_identifier: "id"
+            }
+          }
+          s: [
+            {
+              lit: "custom_object_instances"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

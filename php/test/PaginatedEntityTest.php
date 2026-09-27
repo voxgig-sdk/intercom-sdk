@@ -87,7 +87,9 @@ class PaginatedEntityTest extends TestCase
 
         // LIST
         $paginated_ref01_ent = $client->Paginated(null);
-        $paginated_ref01_match = [];
+        $paginated_ref01_match = [
+            "newsfeed_id" => $setup["idmap"]["newsfeed01"],
+        ];
 
         $paginated_ref01_list_result = $paginated_ref01_ent->list($paginated_ref01_match, null);
         $this->assertIsArray($paginated_ref01_list_result);

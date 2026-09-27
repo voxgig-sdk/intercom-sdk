@@ -1,0 +1,122 @@
+# Entity: deleted
+
+main: kit: entity: deleted: {
+
+  alias: field: {}
+
+  fields: {
+    deleted_at: {
+      fo: "date-time"
+      h: "Deleted At"
+      n: "deleted_at"
+      r: false
+      sh: "The time when the conversation was deleted."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the deleted conversation."
+      t: "`$STRING`"
+    }
+    metrics_retained: {
+      h: "Metrics Retained"
+      n: "metrics_retained"
+      r: false
+      sh: "Whether reporting metrics are retained for this conversation ID"
+      t: "`$BOOLEAN`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "deleted"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /conversations/deleted"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "desc"
+                k: "query"
+                n: "order"
+                or: "order"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/conversations/deleted"
+          q: {
+            exist: [
+              "intercom_version"
+              "order"
+              "page"
+              "per_page"
+            ]
+          }
+          s: [
+            {
+              lit: "conversations"
+            }
+            {
+              lit: "deleted"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

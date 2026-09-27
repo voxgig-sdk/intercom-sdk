@@ -145,7 +145,7 @@ func conversation_attributeBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"conversation_attribute01", "conversation_attribute02", "conversation_attribute03", "attribute01", "attribute02", "attribute03", "option01", "option02", "option03"},
+		[]any{"conversation_attribute01", "conversation_attribute02", "conversation_attribute03", "attribute01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

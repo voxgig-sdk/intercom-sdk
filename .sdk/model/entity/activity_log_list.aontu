@@ -1,0 +1,120 @@
+# Entity: activity_log_list
+
+main: kit: entity: activity_log_list: {
+
+  alias: field: {}
+
+  fields: {
+    activity_logs: {
+      h: "Activity Logs"
+      n: "activity_logs"
+      r: false
+      sh: "An array of activity logs"
+      t: "`$ARRAY`"
+    }
+    created_at_after: {
+      fo: "date-time"
+      h: "Created At After"
+      n: "created_at_after"
+      r: true
+      sh: "The start date that you request data for."
+      t: "`$INTEGER`"
+    }
+    created_at_before: {
+      fo: "date-time"
+      h: "Created At Before"
+      n: "created_at_before"
+      r: false
+      sh: "The end date that you request data for."
+      t: "`$INTEGER`"
+    }
+    event_types: {
+      h: "Event Types"
+      n: "event_types"
+      r: false
+      sh: "An optional list of event types to filter activity logs by."
+      t: "`$ARRAY`"
+    }
+    page: {
+      h: "Page"
+      n: "page"
+      r: false
+      sh: "The page number of results to return."
+      t: "`$INTEGER`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data."
+      t: "`$OBJECT`"
+    }
+    per_page: {
+      h: "Per Page"
+      n: "per_page"
+      r: false
+      sh: "The number of results per page."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "activity_log_list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /admins/activity_logs/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/admins/activity_logs/search"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "admins"
+            }
+            {
+              lit: "activity_logs"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -73,7 +73,7 @@ function conversation_participant_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["conversation_participant01", "conversation_participant02", "conversation_participant03", "conversation01", "conversation02", "conversation03", "customer01", "customer02", "customer03"] as $k) {
+    foreach (["conversation_participant01", "conversation_participant02", "conversation_participant03", "conversation01", "conversation02", "conversation03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

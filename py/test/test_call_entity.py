@@ -120,7 +120,7 @@ def _call_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["call01", "call02", "call03", "phone_number01", "phone_number02", "phone_number03"],
+        ["call01", "call02", "call03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

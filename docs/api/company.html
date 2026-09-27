@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a aria-current="page" href="../api/company.html">Company</a><div class="nav-sections"><a class="nav-section" href="#post-contactscontact_idcompanies">POST /contacts/{contact_id}/companies</a>
 <a class="nav-section" href="#post-companies">POST /companies</a>
 <a class="nav-section" href="#get-companies">GET /companies</a>
@@ -54,7 +55,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -112,14 +112,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="company">Company</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="company">Company</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -170,6 +170,76 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">companys, err := client.Company(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(companys)
+company, err := client.Company(nil).Load(map[string]any{&quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(company)
+created, err := client.Company(nil).Create(map[string]any{&quot;app_id&quot;: &quot;example&quot;, &quot;company_id&quot;: &quot;example&quot;, &quot;created_at&quot;: 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.Company(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;app_id&quot;: &quot;example&quot;, &quot;company_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.Company(nil).Remove(map[string]any{&quot;contact_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const companys = await client.Company().list()
+const company = await client.Company().load({ id: &quot;example_id&quot; })
+const created = await client.Company().create({ app_id: &quot;example&quot;, company_id: &quot;example&quot;, created_at: 1 })
+const updated = await client.Company().update({ id: &quot;example_id&quot;, app_id: &quot;example&quot;, company_id: &quot;example&quot; })
+await client.Company().remove({ contact_id: &quot;example&quot;, id: &quot;example_id&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local companys, err = client:Company():list()
+local company, err = client:Company():load({ id = &quot;example_id&quot; })
+local created, err = client:Company():create({ app_id = &quot;example&quot;, company_id = &quot;example&quot;, created_at = 1 })
+local updated, err = client:Company():update({ id = &quot;example_id&quot;, app_id = &quot;example&quot;, company_id = &quot;example&quot; })
+local removed, err = client:Company():remove({ contact_id = &quot;example&quot;, id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$companys = $client-&gt;Company()-&gt;list();
+$company = $client-&gt;Company()-&gt;load([&quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;Company()-&gt;create([&quot;app_id&quot; =&gt; &quot;example&quot;, &quot;company_id&quot; =&gt; &quot;example&quot;, &quot;created_at&quot; =&gt; 1]);
+$updated = $client-&gt;Company()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;app_id&quot; =&gt; &quot;example&quot;, &quot;company_id&quot; =&gt; &quot;example&quot;]);
+$client-&gt;Company()-&gt;remove([&quot;contact_id&quot; =&gt; &quot;example&quot;, &quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">companys = client.Company().list()
+company = client.Company().load({&quot;id&quot;: &quot;example_id&quot;})
+created = client.Company().create({ &quot;app_id&quot;: &quot;example&quot;, &quot;company_id&quot;: &quot;example&quot;, &quot;created_at&quot;: 1 })
+updated = client.Company().update({&quot;id&quot;: &quot;example_id&quot;, &quot;app_id&quot;: &quot;example&quot;, &quot;company_id&quot;: &quot;example&quot;})
+client.Company().remove({&quot;contact_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const companys = await client.Company().list()
+const company = await client.Company().load({ id: &quot;example_id&quot; })
+const created = await client.Company().create({ app_id: &quot;example&quot;, company_id: &quot;example&quot;, created_at: 1 })
+const updated = await client.Company().update({ id: &quot;example_id&quot;, app_id: &quot;example&quot;, company_id: &quot;example&quot; })
+await client.Company().remove({ contact_id: &quot;example&quot;, id: &quot;example_id&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -625,7 +695,7 @@
 <td><code>segments.segments[].count</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The number of items in the user segment. It's returned when <code>include_count=true</code> is included in the request.</td>
+<td>The number of items in the user segment. It's returned when ``include_count<code>=true</code> is included in the request.</td>
 </tr>
 <tr>
 <td><code>segments.segments[].created_at</code></td>
@@ -806,10 +876,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -826,10 +926,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -1201,7 +1331,7 @@
 <td><code>segments.segments[].count</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The number of items in the user segment. It's returned when <code>include_count=true</code> is included in the request.</td>
+<td>The number of items in the user segment. It's returned when ``include_count<code>=true</code> is included in the request.</td>
 </tr>
 <tr>
 <td><code>segments.segments[].created_at</code></td>
@@ -1382,10 +1512,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -1666,7 +1826,7 @@
 <td><code>data[].segments.segments[].count</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The number of items in the user segment. It's returned when <code>include_count=true</code> is included in the request.</td>
+<td>The number of items in the user segment. It's returned when ``include_count<code>=true</code> is included in the request.</td>
 </tr>
 <tr>
 <td><code>data[].segments.segments[].created_at</code></td>
@@ -1907,10 +2067,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -2210,7 +2400,7 @@
 <td><code>segments.segments[].count</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The number of items in the user segment. It's returned when <code>include_count=true</code> is included in the request.</td>
+<td>The number of items in the user segment. It's returned when ``include_count<code>=true</code> is included in the request.</td>
 </tr>
 <tr>
 <td><code>segments.segments[].created_at</code></td>
@@ -2391,10 +2581,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -2695,7 +2915,7 @@
 <td><code>segments.segments[].count</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The number of items in the user segment. It's returned when <code>include_count=true</code> is included in the request.</td>
+<td>The number of items in the user segment. It's returned when ``include_count<code>=true</code> is included in the request.</td>
 </tr>
 <tr>
 <td><code>segments.segments[].created_at</code></td>
@@ -2876,10 +3096,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>
@@ -3235,7 +3485,7 @@
 <td><code>segments.segments[].count</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The number of items in the user segment. It's returned when <code>include_count=true</code> is included in the request.</td>
+<td>The number of items in the user segment. It's returned when ``include_count<code>=true</code> is included in the request.</td>
 </tr>
 <tr>
 <td><code>segments.segments[].created_at</code></td>
@@ -3416,10 +3666,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>

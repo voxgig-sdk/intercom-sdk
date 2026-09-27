@@ -1,0 +1,193 @@
+# Entity: reporting_data_export
+
+main: kit: entity: reporting_data_export: {
+
+  alias: field: {}
+
+  fields: {
+    attribute_ids: {
+      h: "Attribute Ids"
+      n: "attribute_ids"
+      r: true
+      t: "`$ARRAY`"
+    }
+    attributes: {
+      h: "Attributes"
+      n: "attributes"
+      r: false
+      t: "`$ARRAY`"
+    }
+    dataset_id: {
+      h: "Dataset Id"
+      n: "dataset_id"
+      r: true
+      t: "`$STRING`"
+    }
+    default_time_attribute_id: {
+      h: "Default Time Attribute Id"
+      n: "default_time_attribute_id"
+      r: false
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      t: "`$STRING`"
+    }
+    download_expires_at: {
+      h: "Download Expires At"
+      n: "download_expires_at"
+      r: false
+      t: "`$STRING`"
+    }
+    download_url: {
+      h: "Download Url"
+      n: "download_url"
+      r: false
+      t: "`$STRING`"
+    }
+    end_time: {
+      fo: "int64"
+      h: "End Time"
+      n: "end_time"
+      r: true
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    job_identifier: {
+      h: "Job Identifier"
+      n: "job_identifier"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    start_time: {
+      fo: "int64"
+      h: "Start Time"
+      n: "start_time"
+      r: true
+      t: "`$INTEGER`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "reporting_data_export"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /export/reporting_data/enqueue"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/export/reporting_data/enqueue"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "export"
+            }
+            {
+              lit: "reporting_data"
+            }
+            {
+              lit: "enqueue"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /export/reporting_data/get_datasets"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/export/reporting_data/get_datasets"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "export"
+            }
+            {
+              lit: "reporting_data"
+            }
+            {
+              lit: "get_datasets"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

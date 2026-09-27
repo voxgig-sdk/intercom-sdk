@@ -1,0 +1,145 @@
+# Entity: admin_with_app
+
+main: kit: entity: admin_with_app: {
+
+  alias: field: {}
+
+  fields: {
+    app: {
+      h: "App"
+      n: "app"
+      r: false
+      sh: "App that the admin belongs to."
+      t: "`$OBJECT`"
+    }
+    avatar: {
+      h: "Avatar"
+      n: "avatar"
+      r: false
+      sh: "This object represents the avatar associated with the admin."
+      t: "`$OBJECT`"
+    }
+    away_mode_enabled: {
+      h: "Away Mode Enabled"
+      n: "away_mode_enabled"
+      r: false
+      sh: "Identifies if this admin is currently set in away mode."
+      t: "`$BOOLEAN`"
+    }
+    away_mode_reassign: {
+      h: "Away Mode Reassign"
+      n: "away_mode_reassign"
+      r: false
+      sh: "Identifies if this admin is set to automatically reassign new conversations to the apps default inbox."
+      t: "`$BOOLEAN`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "The email of the admin."
+      t: "`$STRING`"
+    }
+    email_verified: {
+      h: "Email Verified"
+      n: "email_verified"
+      r: false
+      sh: "Identifies if this admin's email is verified."
+      t: "`$BOOLEAN`"
+    }
+    has_inbox_seat: {
+      h: "Has Inbox Seat"
+      n: "has_inbox_seat"
+      r: false
+      sh: "Identifies if this admin has a paid inbox seat to restrict/allow features that require them."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id representing the admin."
+      t: "`$STRING`"
+    }
+    job_title: {
+      h: "Job Title"
+      n: "job_title"
+      r: false
+      sh: "The job title of the admin."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the admin."
+      t: "`$STRING`"
+    }
+    team_ids: {
+      h: "Team Ids"
+      n: "team_ids"
+      r: false
+      sh: "This is a list of ids of the teams that this admin is part of."
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "admin_with_app"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /me"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/me"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "me"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

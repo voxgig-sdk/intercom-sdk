@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -49,7 +50,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -69,6 +69,7 @@
 <a href="../api/merge_history.html">MergeHistory</a>
 <a href="../api/message.html">Message</a>
 <a aria-current="page" href="../api/news_item.html">NewsItem</a><div class="nav-sections"><a class="nav-section" href="#post-newsnews_items">POST /news/news_items</a>
+<a class="nav-section" href="#get-newsnews_items">GET /news/news_items</a>
 <a class="nav-section" href="#get-newsnews_itemsnews_item_id">GET /news/news_items/{news_item_id}</a>
 <a class="nav-section" href="#put-newsnews_itemsnews_item_id">PUT /news/news_items/{news_item_id}</a></div>
 <a href="../api/newsfeed.html">Newsfeed</a>
@@ -109,14 +110,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="newsitem">NewsItem</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="newsitem">NewsItem</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -137,6 +138,12 @@
 </tr>
 <tr>
 <td><code>GET</code></td>
+<td><a href="#get-newsnews_items"><code>/news/news_items</code></a></td>
+<td><code>list</code></td>
+<td>successful</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
 <td><a href="#get-newsnews_itemsnews_item_id"><code>/news/news_items/{news_item_id}</code></a></td>
 <td><code>load</code></td>
 <td>successful</td>
@@ -149,6 +156,66 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">news_items, err := client.NewsItem(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(news_items)
+news_item, err := client.NewsItem(nil).Load(map[string]any{&quot;id&quot;: 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(news_item)
+created, err := client.NewsItem(nil).Create(map[string]any{&quot;body&quot;: &quot;example&quot;, &quot;cover_image_url&quot;: &quot;example&quot;, &quot;created_at&quot;: 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.NewsItem(nil).Update(map[string]any{&quot;id&quot;: 1, &quot;body&quot;: &quot;example&quot;, &quot;cover_image_url&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const news_items = await client.NewsItem().list()
+const news_item = await client.NewsItem().load({ id: 1 })
+const created = await client.NewsItem().create({ body: &quot;example&quot;, cover_image_url: &quot;example&quot;, created_at: 1 })
+const updated = await client.NewsItem().update({ id: 1, body: &quot;example&quot;, cover_image_url: &quot;example&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local news_items, err = client:NewsItem():list()
+local news_item, err = client:NewsItem():load({ id = 1 })
+local created, err = client:NewsItem():create({ body = &quot;example&quot;, cover_image_url = &quot;example&quot;, created_at = 1 })
+local updated, err = client:NewsItem():update({ id = 1, body = &quot;example&quot;, cover_image_url = &quot;example&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$news_items = $client-&gt;NewsItem()-&gt;list();
+$news_item = $client-&gt;NewsItem()-&gt;load([&quot;id&quot; =&gt; 1]);
+$created = $client-&gt;NewsItem()-&gt;create([&quot;body&quot; =&gt; &quot;example&quot;, &quot;cover_image_url&quot; =&gt; &quot;example&quot;, &quot;created_at&quot; =&gt; 1]);
+$updated = $client-&gt;NewsItem()-&gt;update([&quot;id&quot; =&gt; 1, &quot;body&quot; =&gt; &quot;example&quot;, &quot;cover_image_url&quot; =&gt; &quot;example&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">news_items = client.NewsItem().list()
+news_item = client.NewsItem().load({&quot;id&quot;: 1})
+created = client.NewsItem().create({ &quot;body&quot;: &quot;example&quot;, &quot;cover_image_url&quot;: &quot;example&quot;, &quot;created_at&quot;: 1 })
+updated = client.NewsItem().update({&quot;id&quot;: 1, &quot;body&quot;: &quot;example&quot;, &quot;cover_image_url&quot;: &quot;example&quot;})
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const news_items = await client.NewsItem().list()
+const news_item = await client.NewsItem().load({ id: 1 })
+const created = await client.NewsItem().create({ body: &quot;example&quot;, cover_image_url: &quot;example&quot;, created_at: 1 })
+const updated = await client.NewsItem().update({ id: 1, body: &quot;example&quot;, cover_image_url: &quot;example&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -179,6 +246,12 @@
 <td>Timestamp for when the news item was created.</td>
 </tr>
 <tr>
+<td><code>data</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>An array of Objects</td>
+</tr>
+<tr>
 <td><code>deliver_silently</code></td>
 <td><code>boolean</code></td>
 <td>No</td>
@@ -200,7 +273,13 @@
 <td><code>newsfeed_assignments</code></td>
 <td><code>array</code></td>
 <td>No</td>
-<td>A list of newsfeed_assignments to assign to the specified newsfeed.</td>
+<td>A list of <code>newsfeed_assignments</code> to assign to the specified newsfeed.</td>
+</tr>
+<tr>
+<td><code>pages</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data.</td>
 </tr>
 <tr>
 <td><code>reactions</code></td>
@@ -225,6 +304,12 @@
 <td><code>string</code></td>
 <td>No</td>
 <td>The title of the news item.</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
 </tr>
 <tr>
 <td><code>type</code></td>
@@ -288,7 +373,7 @@
 <td><code>newsfeed_assignments</code></td>
 <td><code>array of object</code></td>
 <td>No</td>
-<td>A list of newsfeed_assignments to assign to the specified newsfeed.</td>
+<td>A list of <code>newsfeed_assignments</code> to assign to the specified newsfeed.</td>
 </tr>
 <tr>
 <td><code>newsfeed_assignments[].newsfeed_id</code></td>
@@ -381,7 +466,7 @@
 <td><code>newsfeed_assignments</code></td>
 <td><code>array of object</code></td>
 <td>No</td>
-<td>A list of newsfeed_assignments to assign to the specified newsfeed.</td>
+<td>A list of <code>newsfeed_assignments</code> to assign to the specified newsfeed.</td>
 </tr>
 <tr>
 <td><code>newsfeed_assignments[].newsfeed_id</code></td>
@@ -489,15 +574,14 @@
 </tr>
 </tbody>
 </table>
-<h2 id="load">load</h2>
-<h3 id="get-newsnews_itemsnews_item_id" class="operation" data-method="get"><code>GET</code> /news/news_items/{news_item_id}</h3>
-<p>Operation ID: <code>retrieveNewsItem</code>.</p>
+<h2 id="list">list</h2>
+<h3 id="get-newsnews_items" class="operation" data-method="get"><code>GET</code> /news/news_items</h3>
+<p>Operation ID: <code>listNewsItems</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
 <h4 id="parameters-1">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
-| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
-| <code>news_item_id</code> | <code>path</code> | <code>integer</code> | Yes | The unique identifier for the news item which is given by Intercom. |</p>
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |</p>
 <h4 id="responses-1">Responses</h4>
 <h5 id="200-successful-1" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
@@ -512,100 +596,70 @@
 </thead>
 <tbody>
 <tr>
-<td><code>body</code></td>
-<td><code>string</code></td>
+<td><code>data</code></td>
+<td><code>array of object or object</code></td>
 <td>No</td>
-<td>The news item body, which may contain HTML.</td>
+<td>An array of Objects</td>
 </tr>
 <tr>
-<td><code>cover_image_url</code></td>
-<td><code>string (uri)</code></td>
+<td><code>pages</code></td>
+<td><code>object</code></td>
 <td>No</td>
-<td>URL of the image used as cover. Must have .jpg or .png extension.</td>
+<td>Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A &quot;cursor&quot; or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or &quot;pages&quot; as needed.</td>
 </tr>
 <tr>
-<td><code>created_at</code></td>
-<td><code>integer (timestamp)</code></td>
+<td><code>pages.next</code></td>
+<td><code>object</code></td>
 <td>No</td>
-<td>Timestamp for when the news item was created.</td>
+<td>Pagination: Starting After</td>
 </tr>
 <tr>
-<td><code>deliver_silently</code></td>
-<td><code>boolean</code></td>
-<td>No</td>
-<td>When set to true, the news item will appear in the messenger newsfeed without showing a notification badge.</td>
-</tr>
-<tr>
-<td><code>id</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The unique identifier for the news item which is given by Intercom.</td>
-</tr>
-<tr>
-<td><code>labels</code></td>
-<td><code>array of string</code></td>
-<td>No</td>
-<td>Label names displayed to users to categorize the news item.</td>
-</tr>
-<tr>
-<td><code>newsfeed_assignments</code></td>
-<td><code>array of object</code></td>
-<td>No</td>
-<td>A list of newsfeed_assignments to assign to the specified newsfeed.</td>
-</tr>
-<tr>
-<td><code>newsfeed_assignments[].newsfeed_id</code></td>
+<td><code>pages.next.per_page</code></td>
 <td><code>integer</code></td>
 <td>No</td>
-<td>The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).</td>
+<td>The number of results to fetch per page.</td>
 </tr>
 <tr>
-<td><code>newsfeed_assignments[].published_at</code></td>
-<td><code>integer (timestamp)</code></td>
-<td>No</td>
-<td>Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (for example when importing existing news items). On write, this field will be ignored if the news item state is &quot;draft&quot;.</td>
-</tr>
-<tr>
-<td><code>reactions</code></td>
-<td><code>array of string</code></td>
-<td>No</td>
-<td>Ordered list of emoji reactions to the news item. When empty, reactions are disabled.</td>
-</tr>
-<tr>
-<td><code>sender_id</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td>The id of the sender of the news item. Must be a teammate on the workspace.</td>
-</tr>
-<tr>
-<td><code>state</code></td>
-<td><code>enum: draft, live</code></td>
-<td>No</td>
-<td>News items will not be visible to your users in the assigned newsfeeds until they are set live.</td>
-</tr>
-<tr>
-<td><code>title</code></td>
+<td><code>pages.next.starting_after</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The title of the news item.</td>
+<td>The cursor to use in the next request to get the next page of results.</td>
+</tr>
+<tr>
+<td><code>pages.page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The current page</td>
+</tr>
+<tr>
+<td><code>pages.per_page</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Number of results per page</td>
+</tr>
+<tr>
+<td><code>pages.total_pages</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>Total number of pages</td>
+</tr>
+<tr>
+<td><code>pages.type</code></td>
+<td><code>enum: pages</code></td>
+<td>No</td>
+<td>the type of object <code>pages</code>.</td>
+</tr>
+<tr>
+<td><code>total_count</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>A count of the total number of objects.</td>
 </tr>
 <tr>
 <td><code>type</code></td>
-<td><code>enum: news-item</code></td>
+<td><code>enum: list, conversation.list</code></td>
 <td>No</td>
-<td>The type of object.</td>
-</tr>
-<tr>
-<td><code>updated_at</code></td>
-<td><code>integer (timestamp)</code></td>
-<td>No</td>
-<td>Timestamp for when the news item was last updated.</td>
-</tr>
-<tr>
-<td><code>workspace_id</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The id of the workspace which the news item belongs to.</td>
+<td>The type of object</td>
 </tr>
 </tbody>
 </table>
@@ -659,109 +713,15 @@
 </tr>
 </tbody>
 </table>
-<h5 id="404-news-item-not-found" class="status" data-status="4xx">404: News Item Not Found</h5>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
-<td>No</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="update">update</h2>
-<h3 id="put-newsnews_itemsnews_item_id" class="operation" data-method="put"><code>PUT</code> /news/news_items/{news_item_id}</h3>
-<p>Operation ID: <code>updateNewsItem</code>.</p>
+<h2 id="load">load</h2>
+<h3 id="get-newsnews_itemsnews_item_id" class="operation" data-method="get"><code>GET</code> /news/news_items/{news_item_id}</h3>
+<p>Operation ID: <code>retrieveNewsItem</code>.</p>
 <p>Authentication: bearer token (<code>bearerAuth</code>).</p>
 <h4 id="parameters-2">Parameters</h4>
 <p>| Parameter | In | Type | Required | Description |
 | --- | --- | --- | --- |
 | <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
 | <code>news_item_id</code> | <code>path</code> | <code>integer</code> | Yes | The unique identifier for the news item which is given by Intercom. |</p>
-<h4 id="request-body-1">Request body</h4>
-<p><code>application/json</code></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>body</code></td>
-<td><code>string</code></td>
-<td>No</td>
-<td>The news item body, which may contain HTML.</td>
-</tr>
-<tr>
-<td><code>deliver_silently</code></td>
-<td><code>boolean</code></td>
-<td>No</td>
-<td>When set to <code>true</code>, the news item will appear in the messenger newsfeed without showing a notification badge.</td>
-</tr>
-<tr>
-<td><code>labels</code></td>
-<td><code>array of string</code></td>
-<td>No</td>
-<td>Label names displayed to users to categorize the news item.</td>
-</tr>
-<tr>
-<td><code>newsfeed_assignments</code></td>
-<td><code>array of object</code></td>
-<td>No</td>
-<td>A list of newsfeed_assignments to assign to the specified newsfeed.</td>
-</tr>
-<tr>
-<td><code>newsfeed_assignments[].newsfeed_id</code></td>
-<td><code>integer</code></td>
-<td>No</td>
-<td>The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).</td>
-</tr>
-<tr>
-<td><code>newsfeed_assignments[].published_at</code></td>
-<td><code>integer (timestamp)</code></td>
-<td>No</td>
-<td>Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (for example when importing existing news items). On write, this field will be ignored if the news item state is &quot;draft&quot;.</td>
-</tr>
-<tr>
-<td><code>reactions</code></td>
-<td><code>array of string</code></td>
-<td>No</td>
-<td>Ordered list of emoji reactions to the news item. When empty, reactions are disabled.</td>
-</tr>
-<tr>
-<td><code>sender_id</code></td>
-<td><code>integer</code></td>
-<td>Yes</td>
-<td>The id of the sender of the news item. Must be a teammate on the workspace.</td>
-</tr>
-<tr>
-<td><code>state</code></td>
-<td><code>enum: draft, live</code></td>
-<td>No</td>
-<td>News items will not be visible to your users in the assigned newsfeeds until they are set live.</td>
-</tr>
-<tr>
-<td><code>title</code></td>
-<td><code>string</code></td>
-<td>Yes</td>
-<td>The title of the news item.</td>
-</tr>
-</tbody>
-</table>
 <h4 id="responses-2">Responses</h4>
 <h5 id="200-successful-2" class="status" data-status="2xx">200: successful</h5>
 <p><code>application/json</code></p>
@@ -815,7 +775,7 @@
 <td><code>newsfeed_assignments</code></td>
 <td><code>array of object</code></td>
 <td>No</td>
-<td>A list of newsfeed_assignments to assign to the specified newsfeed.</td>
+<td>A list of <code>newsfeed_assignments</code> to assign to the specified newsfeed.</td>
 </tr>
 <tr>
 <td><code>newsfeed_assignments[].newsfeed_id</code></td>
@@ -923,6 +883,300 @@
 </tr>
 </tbody>
 </table>
+<h5 id="404-news-item-not-found" class="status" data-status="4xx">404: News Item Not Found</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
+<h2 id="update">update</h2>
+<h3 id="put-newsnews_itemsnews_item_id" class="operation" data-method="put"><code>PUT</code> /news/news_items/{news_item_id}</h3>
+<p>Operation ID: <code>updateNewsItem</code>.</p>
+<p>Authentication: bearer token (<code>bearerAuth</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>Intercom-Version</code> | <code>header</code> | <code>enum: 1.0, 1.1, 1.2, 1.3, 1.4, 2.0, ...</code> | No |  |
+| <code>news_item_id</code> | <code>path</code> | <code>integer</code> | Yes | The unique identifier for the news item which is given by Intercom. |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The news item body, which may contain HTML.</td>
+</tr>
+<tr>
+<td><code>deliver_silently</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When set to <code>true</code>, the news item will appear in the messenger newsfeed without showing a notification badge.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Label names displayed to users to categorize the news item.</td>
+</tr>
+<tr>
+<td><code>newsfeed_assignments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of <code>newsfeed_assignments</code> to assign to the specified newsfeed.</td>
+</tr>
+<tr>
+<td><code>newsfeed_assignments[].newsfeed_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).</td>
+</tr>
+<tr>
+<td><code>newsfeed_assignments[].published_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (for example when importing existing news items). On write, this field will be ignored if the news item state is &quot;draft&quot;.</td>
+</tr>
+<tr>
+<td><code>reactions</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ordered list of emoji reactions to the news item. When empty, reactions are disabled.</td>
+</tr>
+<tr>
+<td><code>sender_id</code></td>
+<td><code>integer</code></td>
+<td>Yes</td>
+<td>The id of the sender of the news item. Must be a teammate on the workspace.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: draft, live</code></td>
+<td>No</td>
+<td>News items will not be visible to your users in the assigned newsfeeds until they are set live.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The title of the news item.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-successful-3" class="status" data-status="2xx">200: successful</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>body</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The news item body, which may contain HTML.</td>
+</tr>
+<tr>
+<td><code>cover_image_url</code></td>
+<td><code>string (uri)</code></td>
+<td>No</td>
+<td>URL of the image used as cover. Must have .jpg or .png extension.</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>Timestamp for when the news item was created.</td>
+</tr>
+<tr>
+<td><code>deliver_silently</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>When set to true, the news item will appear in the messenger newsfeed without showing a notification badge.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The unique identifier for the news item which is given by Intercom.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Label names displayed to users to categorize the news item.</td>
+</tr>
+<tr>
+<td><code>newsfeed_assignments</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>A list of <code>newsfeed_assignments</code> to assign to the specified newsfeed.</td>
+</tr>
+<tr>
+<td><code>newsfeed_assignments[].newsfeed_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The unique identifier for the newsfeed which is given by Intercom. Publish dates cannot be in the future, to schedule news items use the dedicated feature in app (see this article).</td>
+</tr>
+<tr>
+<td><code>newsfeed_assignments[].published_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>Publish date of the news item on the newsfeed, use this field if you want to set a publish date in the past (for example when importing existing news items). On write, this field will be ignored if the news item state is &quot;draft&quot;.</td>
+</tr>
+<tr>
+<td><code>reactions</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>Ordered list of emoji reactions to the news item. When empty, reactions are disabled.</td>
+</tr>
+<tr>
+<td><code>sender_id</code></td>
+<td><code>integer</code></td>
+<td>No</td>
+<td>The id of the sender of the news item. Must be a teammate on the workspace.</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>enum: draft, live</code></td>
+<td>No</td>
+<td>News items will not be visible to your users in the assigned newsfeeds until they are set live.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The title of the news item.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: news-item</code></td>
+<td>No</td>
+<td>The type of object.</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td><code>integer (timestamp)</code></td>
+<td>No</td>
+<td>Timestamp for when the news item was last updated.</td>
+</tr>
+<tr>
+<td><code>workspace_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The id of the workspace which the news item belongs to.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="401-unauthorized-3" class="status" data-status="4xx">401: Unauthorized</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
+</tr>
+</tbody>
+</table>
 <h5 id="404-news-item-not-found-1" class="status" data-status="4xx">404: News Item Not Found</h5>
 <p><code>application/json</code></p>
 <table>
@@ -936,10 +1190,40 @@
 </thead>
 <tbody>
 <tr>
-<td><code>$ref</code></td>
-<td><code>any</code></td>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td>An array of one or more error objects</td>
+</tr>
+<tr>
+<td><code>errors[].code</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>A string indicating the kind of error, used to further qualify the HTTP response code</td>
+</tr>
+<tr>
+<td><code>errors[].field</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Used to identify a particular field or query parameter that was in error.</td>
+</tr>
+<tr>
+<td><code>errors[].message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Optional. Human readable description of the error.</td>
+</tr>
+<tr>
+<td><code>request_id</code></td>
+<td><code>string (uuid)</code></td>
 <td>No</td>
 <td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>The type is error.list</td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,109 @@
+# Entity: ticket_list
+
+main: kit: entity: ticket_list: {
+
+  alias: field: {}
+
+  fields: {
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data."
+      t: "`$OBJECT`"
+    }
+    pagination: {
+      h: "Pagination"
+      n: "pagination"
+      r: false
+      t: "`$OBJECT`"
+    }
+    query: {
+      h: "Query"
+      n: "query"
+      r: true
+      t: "`$ANY`"
+      union: {
+        branches: 4
+        count: 4
+        depth: 7
+      }
+    }
+    tickets: {
+      h: "Tickets"
+      n: "tickets"
+      r: false
+      sh: "The list of ticket objects"
+      t: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 3
+        depth: 12
+      }
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "A count of the total number of objects."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Always ticket.list"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "ticket_list"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /tickets/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/tickets/search"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "tickets"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

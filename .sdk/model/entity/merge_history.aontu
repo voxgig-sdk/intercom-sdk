@@ -1,0 +1,137 @@
+# Entity: merge_history
+
+main: kit: entity: merge_history: {
+
+  alias: field: {}
+
+  fields: {
+    merged_at: {
+      fo: "date-time"
+      h: "Merged At"
+      n: "merged_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the merge occurred."
+      t: "`$INTEGER`"
+    }
+    source_contact_id: {
+      h: "Source Contact Id"
+      n: "source_contact_id"
+      r: false
+      sh: "The Intercom ID of the contact that was merged into this contact."
+      t: "`$STRING`"
+    }
+    source_contact_role: {
+      h: "Source Contact Role"
+      n: "source_contact_role"
+      r: false
+      sh: "The role of the contact that was merged in."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "merge_history"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /contacts/{id}/merge_history"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "63a07ddf05a32042dffac965"
+                k: "param"
+                n: "contact_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "order"
+                or: "order"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/contacts/{id}/merge_history"
+          q: {
+            exist: [
+              "contact_id"
+              "cursor"
+              "intercom_version"
+              "order"
+              "per_page"
+            ]
+          }
+          r: {
+            param: {
+              id: "contact_id"
+            }
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "merge_history"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.contact")]
+  ]
+
+}

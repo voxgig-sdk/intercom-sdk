@@ -96,7 +96,7 @@ def _conversation_attribute_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["conversation_attribute01", "conversation_attribute02", "conversation_attribute03", "attribute01", "attribute02", "attribute03", "option01", "option02", "option03"],
+        ["conversation_attribute01", "conversation_attribute02", "conversation_attribute03", "attribute01"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

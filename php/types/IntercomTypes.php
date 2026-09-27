@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the Intercom SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -662,6 +662,26 @@ class CallCreateData
     public ?string $transcription_url = null;
     public ?string $type = null;
     public mixed $updated_at = null;
+}
+
+/** Cancel entity data model. */
+class Cancel
+{
+    public ?string $download_expires_at = null;
+    public ?string $download_url = null;
+    public ?string $id = null;
+    public ?string $job_identifier = null;
+    public ?string $status = null;
+}
+
+/** Request payload for Cancel#create. */
+class CancelCreateData
+{
+    public string $id;
+    public ?string $download_expires_at = null;
+    public ?string $download_url = null;
+    public ?string $job_identifier = null;
+    public ?string $status = null;
 }
 
 /** Company entity data model. */
@@ -1978,24 +1998,6 @@ class DataEventSummaryListMatch
     public string $type;
 }
 
-/** DataExport entity data model. */
-class DataExport
-{
-    public ?string $download_expires_at = null;
-    public ?string $download_url = null;
-    public ?string $job_identifier = null;
-    public ?string $status = null;
-}
-
-/** Request payload for DataExport#create. */
-class DataExportCreateData
-{
-    public string $job_identifier;
-    public ?string $download_expires_at = null;
-    public ?string $download_url = null;
-    public ?string $status = null;
-}
-
 /** Deleted entity data model. */
 class Deleted
 {
@@ -2318,7 +2320,7 @@ class HelpCenter
     public ?string $help_center_id = null;
     public ?array $hr = null;
     public ?array $hu = null;
-    public ?array $id = null;
+    public ?string $id = null;
     public ?string $identifier = null;
     public ?array $it = null;
     public ?array $ja = null;
@@ -2386,7 +2388,7 @@ class HelpCenterListMatch
     public ?string $help_center_id = null;
     public ?array $hr = null;
     public ?array $hu = null;
-    public ?array $id = null;
+    public ?string $id = null;
     public ?string $identifier = null;
     public ?array $it = null;
     public ?array $ja = null;
@@ -2448,7 +2450,7 @@ class HelpCenterCreateData
     public ?string $help_center_id = null;
     public ?array $hr = null;
     public ?array $hu = null;
-    public ?array $id = null;
+    public ?string $id = null;
     public ?string $identifier = null;
     public ?array $it = null;
     public ?array $ja = null;
@@ -2511,7 +2513,7 @@ class HelpCenterUpdateData
     public ?string $help_center_id = null;
     public ?array $hr = null;
     public ?array $hu = null;
-    public ?array $id = null;
+    public ?string $id = null;
     public ?string $identifier = null;
     public ?array $it = null;
     public ?array $ja = null;
@@ -2757,14 +2759,17 @@ class NewsItem
     public ?string $body = null;
     public ?string $cover_image_url = null;
     public ?int $created_at = null;
+    public ?array $data = null;
     public ?bool $deliver_silently = null;
     public ?string $id = null;
     public ?array $labels = null;
     public ?array $newsfeed_assignments = null;
+    public ?array $pages = null;
     public ?array $reactions = null;
     public ?int $sender_id = null;
     public ?string $state = null;
     public ?string $title = null;
+    public ?int $total_count = null;
     public ?string $type = null;
     public ?int $updated_at = null;
     public ?string $workspace_id = null;
@@ -2776,20 +2781,45 @@ class NewsItemLoadMatch
     public int $id;
 }
 
+/** Request payload for NewsItem#list. */
+class NewsItemListMatch
+{
+    public ?string $body = null;
+    public ?string $cover_image_url = null;
+    public ?int $created_at = null;
+    public ?array $data = null;
+    public ?bool $deliver_silently = null;
+    public ?string $id = null;
+    public ?array $labels = null;
+    public ?array $newsfeed_assignments = null;
+    public ?array $pages = null;
+    public ?array $reactions = null;
+    public ?int $sender_id = null;
+    public ?string $state = null;
+    public ?string $title = null;
+    public ?int $total_count = null;
+    public ?string $type = null;
+    public ?int $updated_at = null;
+    public ?string $workspace_id = null;
+}
+
 /** Request payload for NewsItem#create. */
 class NewsItemCreateData
 {
     public ?string $body = null;
     public ?string $cover_image_url = null;
     public ?int $created_at = null;
+    public ?array $data = null;
     public ?bool $deliver_silently = null;
     public ?string $id = null;
     public ?array $labels = null;
     public ?array $newsfeed_assignments = null;
+    public ?array $pages = null;
     public ?array $reactions = null;
     public ?int $sender_id = null;
     public ?string $state = null;
     public ?string $title = null;
+    public ?int $total_count = null;
     public ?string $type = null;
     public ?int $updated_at = null;
     public ?string $workspace_id = null;
@@ -2802,13 +2832,16 @@ class NewsItemUpdateData
     public ?string $body = null;
     public ?string $cover_image_url = null;
     public ?int $created_at = null;
+    public ?array $data = null;
     public ?bool $deliver_silently = null;
     public ?array $labels = null;
     public ?array $newsfeed_assignments = null;
+    public ?array $pages = null;
     public ?array $reactions = null;
     public ?int $sender_id = null;
     public ?string $state = null;
     public ?string $title = null;
+    public ?int $total_count = null;
     public ?string $type = null;
     public ?int $updated_at = null;
     public ?string $workspace_id = null;
@@ -2818,8 +2851,11 @@ class NewsItemUpdateData
 class Newsfeed
 {
     public ?int $created_at = null;
+    public ?array $data = null;
     public ?string $id = null;
     public ?string $name = null;
+    public ?array $pages = null;
+    public ?int $total_count = null;
     public ?string $type = null;
     public ?int $updated_at = null;
 }
@@ -2828,6 +2864,19 @@ class Newsfeed
 class NewsfeedLoadMatch
 {
     public string $id;
+}
+
+/** Request payload for Newsfeed#list. */
+class NewsfeedListMatch
+{
+    public ?int $created_at = null;
+    public ?array $data = null;
+    public ?string $id = null;
+    public ?string $name = null;
+    public ?array $pages = null;
+    public ?int $total_count = null;
+    public ?string $type = null;
+    public ?int $updated_at = null;
 }
 
 /** Note entity data model. */
@@ -3017,10 +3066,7 @@ class Paginated
 /** Request payload for Paginated#list. */
 class PaginatedListMatch
 {
-    public ?array $data = null;
-    public ?array $pages = null;
-    public ?int $total_count = null;
-    public ?string $type = null;
+    public string $newsfeed_id;
 }
 
 /** PhoneSwitch entity data model. */

@@ -1,0 +1,273 @@
+# Entity: ai_call
+
+main: kit: entity: ai_call: {
+
+  alias: field: {}
+
+  fields: {
+    app_id: {
+      h: "App Id"
+      n: "app_id"
+      r: false
+      sh: "The workspace identifier"
+      t: "`$INTEGER`"
+    }
+    call_id: {
+      h: "Call Id"
+      n: "call_id"
+      r: true
+      sh: "External call identifier from the call provider"
+      t: "`$STRING`"
+    }
+    call_summary: {
+      h: "Call Summary"
+      n: "call_summary"
+      r: false
+      sh: "Summary of the call conversation, truncated to 256 characters."
+      t: "`$STRING`"
+    }
+    call_transcript: {
+      h: "Call Transcript"
+      n: "call_transcript"
+      r: false
+      sh: "Array of transcript entries for the call"
+      t: "`$ARRAY`"
+    }
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "Additional metadata about the call"
+      t: "`$OBJECT`"
+    }
+    external_call_id: {
+      h: "External Call Id"
+      n: "external_call_id"
+      r: false
+      sh: "The external call identifier from the call provider"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the external reference"
+      t: "`$INTEGER`"
+    }
+    intent: {
+      h: "Intent"
+      n: "intent"
+      r: false
+      sh: "Array of intent classifications for the call"
+      t: "`$ARRAY`"
+    }
+    intercom_call_id: {
+      h: "Intercom Call Id"
+      n: "intercom_call_id"
+      r: false
+      sh: "The Intercom call identifier, if the call has been matched"
+      t: "`$STRING`"
+    }
+    intercom_conversation_id: {
+      h: "Intercom Conversation Id"
+      n: "intercom_conversation_id"
+      r: false
+      sh: "The Intercom conversation identifier, if a conversation has been created"
+      t: "`$STRING`"
+    }
+    phone_number: {
+      h: "Phone Number"
+      n: "phone_number"
+      r: true
+      sh: "Phone number in E.164 format for the call"
+      t: "`$STRING`"
+    }
+    source: {
+      h: "Source"
+      n: "source"
+      r: false
+      sh: "Source of the call."
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Status of the call."
+      t: "`$STRING`"
+    }
+    user_phone_number: {
+      h: "User Phone Number"
+      n: "user_phone_number"
+      r: false
+      sh: "Phone number in E.164 format for the call"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "ai_call"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /fin_voice/register"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/fin_voice/register"
+          s: [
+            {
+              lit: "fin_voice"
+            }
+            {
+              lit: "register"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /fin_voice/conversation/{conversation_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "conversation_id"
+                or: "conversation_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/fin_voice/conversation/{conversation_id}"
+          q: {
+            exist: [
+              "conversation_id"
+            ]
+          }
+          s: [
+            {
+              lit: "fin_voice"
+            }
+            {
+              lit: "conversation"
+            }
+            {
+              var: "conversation_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /fin_voice/external_id/{external_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "external_id"
+                or: "external_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/fin_voice/external_id/{external_id}"
+          q: {
+            exist: [
+              "external_id"
+            ]
+          }
+          s: [
+            {
+              lit: "fin_voice"
+            }
+            {
+              lit: "external_id"
+            }
+            {
+              var: "external_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /fin_voice/collect/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/fin_voice/collect/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "fin_voice"
+            }
+            {
+              lit: "collect"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.conversation")]
+  ]
+
+}

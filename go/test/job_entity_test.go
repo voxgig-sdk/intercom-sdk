@@ -110,7 +110,7 @@ func jobBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"job01", "job02", "job03", "status01", "status02", "status03"},
+		[]any{"job01", "job02", "job03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

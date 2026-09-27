@@ -77,6 +77,7 @@ class TestHelpCenterEntity:
         help_center_ref01_ent = client.HelpCenter(None)
         help_center_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.help_center"), "help_center_ref01"))
+        help_center_ref01_data["help_center_id"] = setup["idmap"]["help_center01"]
 
         help_center_ref01_data = helpers.to_map(runner.entity_data(help_center_ref01_ent.create(help_center_ref01_data, None)))
         assert help_center_ref01_data is not None
@@ -151,7 +152,7 @@ def _help_center_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["help_center01", "help_center02", "help_center03", "collection01", "collection02", "collection03"],
+        ["help_center01", "help_center02", "help_center03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",

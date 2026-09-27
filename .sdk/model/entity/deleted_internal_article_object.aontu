@@ -1,0 +1,276 @@
+# Entity: deleted_internal_article_object
+
+main: kit: entity: deleted_internal_article_object: {
+
+  alias: field: {}
+
+  fields: {
+    ai_chatbot_availability: {
+      h: "Ai Chatbot Availability"
+      n: "ai_chatbot_availability"
+      r: false
+      sh: "Whether the internal article should be available for AI Chatbot (Fin)."
+      t: "`$BOOLEAN`"
+    }
+    ai_copilot_availability: {
+      h: "Ai Copilot Availability"
+      n: "ai_copilot_availability"
+      r: false
+      sh: "Whether the internal article should be available for AI Copilot."
+      t: "`$BOOLEAN`"
+    }
+    ai_sales_agent_availability: {
+      h: "Ai Sales Agent Availability"
+      n: "ai_sales_agent_availability"
+      r: false
+      sh: "Whether the internal article should be available for AI Sales Agent."
+      t: "`$BOOLEAN`"
+    }
+    audience_ids: {
+      h: "Audience Ids"
+      n: "audience_ids"
+      r: false
+      sh: "The list of audience IDs to target this internal article to for Fin AI Agent."
+      t: "`$ARRAY`"
+    }
+    author_id: {
+      h: "Author Id"
+      n: "author_id"
+      op: {
+        list: {
+          req: false
+          type: "`$INTEGER`"
+        }
+      }
+      r: true
+      sh: "The id of the author of the article."
+      t: "`$INTEGER`"
+    }
+    body: {
+      h: "Body"
+      n: "body"
+      r: false
+      sh: "The content of the article in HTML."
+      t: "`$STRING`"
+    }
+    body_markdown: {
+      h: "Body Markdown"
+      n: "body_markdown"
+      r: false
+      sh: "The content of the article in markdown."
+      t: "`$STRING`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time when the article was created."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the article which is given by Intercom."
+      t: "`$STRING`"
+    }
+    locale: {
+      h: "Locale"
+      n: "locale"
+      r: false
+      sh: "The default locale of the article."
+      t: "`$STRING`"
+    }
+    owner_id: {
+      h: "Owner Id"
+      n: "owner_id"
+      op: {
+        list: {
+          req: false
+          type: "`$INTEGER`"
+        }
+      }
+      r: true
+      sh: "The id of the owner of the article."
+      t: "`$INTEGER`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The title of the article."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object - `internal_article`."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The time when the article was last updated."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "deleted_internal_article_object"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /internal_articles"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/internal_articles"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "internal_articles"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /internal_articles"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/internal_articles"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "internal_articles"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /internal_articles/{internal_article_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: 123
+                k: "param"
+                n: "internal_article_id"
+                or: "internal_article_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/internal_articles/{internal_article_id}"
+          q: {
+            exist: [
+              "intercom_version"
+              "internal_article_id"
+            ]
+          }
+          s: [
+            {
+              lit: "internal_articles"
+            }
+            {
+              var: "internal_article_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.internal_article")]
+  ]
+
+}

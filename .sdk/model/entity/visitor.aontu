@@ -1,0 +1,337 @@
+# Entity: visitor
+
+main: kit: entity: visitor: {
+
+  alias: field: {}
+
+  fields: {
+    anonymous: {
+      h: "Anonymous"
+      n: "anonymous"
+      r: false
+      sh: "Identifies if this visitor is anonymous."
+      t: "`$BOOLEAN`"
+    }
+    app_id: {
+      h: "App Id"
+      n: "app_id"
+      r: false
+      sh: "The id of the app the visitor is associated with."
+      t: "`$STRING`"
+    }
+    avatar: {
+      h: "Avatar"
+      n: "avatar"
+      r: false
+      t: "`$OBJECT`"
+    }
+    companies: {
+      h: "Companies"
+      n: "companies"
+      r: false
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The time the Visitor was added to Intercom."
+      t: "`$INTEGER`"
+    }
+    custom_attributes: {
+      h: "Custom Attributes"
+      n: "custom_attributes"
+      r: false
+      sh: "The custom attributes you have set on the Visitor."
+      t: "`$OBJECT`"
+    }
+    do_not_track: {
+      h: "Do Not Track"
+      n: "do_not_track"
+      r: false
+      sh: "Identifies if this visitor has do not track enabled."
+      t: "`$BOOLEAN`"
+    }
+    email: {
+      fo: "email"
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "The email of the visitor."
+      t: "`$STRING`"
+    }
+    has_hard_bounced: {
+      h: "Has Hard Bounced"
+      n: "has_hard_bounced"
+      r: false
+      sh: "Identifies if this visitor has had a hard bounce."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The Intercom defined id representing the Visitor."
+      t: "`$STRING`"
+    }
+    las_request_at: {
+      h: "Las Request At"
+      n: "las_request_at"
+      r: false
+      sh: "The time the Lead last recorded making a request."
+      t: "`$INTEGER`"
+    }
+    location_data: {
+      h: "Location Data"
+      n: "location_data"
+      r: false
+      t: "`$OBJECT`"
+    }
+    marked_email_as_spam: {
+      h: "Marked Email As Spam"
+      n: "marked_email_as_spam"
+      r: false
+      sh: "Identifies if this visitor has marked an email as spam."
+      t: "`$BOOLEAN`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the visitor."
+      t: "`$STRING`"
+    }
+    owner_id: {
+      h: "Owner Id"
+      n: "owner_id"
+      r: false
+      sh: "The id of the admin that owns the Visitor."
+      t: "`$STRING`"
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      sh: "The phone number of the visitor."
+      t: "`$STRING`"
+    }
+    pseudonym: {
+      h: "Pseudonym"
+      n: "pseudonym"
+      r: false
+      sh: "The pseudonym of the visitor."
+      t: "`$STRING`"
+    }
+    referrer: {
+      h: "Referrer"
+      n: "referrer"
+      r: false
+      sh: "The referer of the visitor."
+      t: "`$STRING`"
+    }
+    remote_created_at: {
+      h: "Remote Created At"
+      n: "remote_created_at"
+      r: false
+      sh: "The time the Visitor was added to Intercom."
+      t: "`$INTEGER`"
+    }
+    segments: {
+      h: "Segments"
+      n: "segments"
+      r: false
+      t: "`$OBJECT`"
+    }
+    session_count: {
+      h: "Session Count"
+      n: "session_count"
+      r: false
+      sh: "The number of sessions the Visitor has had."
+      t: "`$INTEGER`"
+    }
+    signed_up_at: {
+      h: "Signed Up At"
+      n: "signed_up_at"
+      r: false
+      sh: "The time the Visitor signed up for your product."
+      t: "`$INTEGER`"
+    }
+    social_profiles: {
+      h: "Social Profiles"
+      n: "social_profiles"
+      r: false
+      t: "`$OBJECT`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Value is 'visitor'"
+      t: "`$STRING`"
+    }
+    unsubscribed_from_emails: {
+      h: "Unsubscribed From Emails"
+      n: "unsubscribed_from_emails"
+      r: false
+      sh: "Whether the Visitor is unsubscribed from emails."
+      t: "`$BOOLEAN`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "The last time the Visitor was updated."
+      t: "`$INTEGER`"
+    }
+    user_id: {
+      h: "User Id"
+      n: "user_id"
+      r: false
+      sh: "Automatically generated identifier for the Visitor."
+      t: "`$STRING`"
+    }
+    utm_campaign: {
+      h: "Utm Campaign"
+      n: "utm_campaign"
+      r: false
+      sh: "The utm_campaign of the visitor."
+      t: "`$STRING`"
+    }
+    utm_content: {
+      h: "Utm Content"
+      n: "utm_content"
+      r: false
+      sh: "The utm_content of the visitor."
+      t: "`$STRING`"
+    }
+    utm_medium: {
+      h: "Utm Medium"
+      n: "utm_medium"
+      r: false
+      sh: "The utm_medium of the visitor."
+      t: "`$STRING`"
+    }
+    utm_source: {
+      h: "Utm Source"
+      n: "utm_source"
+      r: false
+      sh: "The utm_source of the visitor."
+      t: "`$STRING`"
+    }
+    utm_term: {
+      h: "Utm Term"
+      n: "utm_term"
+      r: false
+      sh: "The utm_term of the visitor."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "visitor"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /visitors"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "user_id"
+                or: "user_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/visitors"
+          q: {
+            exist: [
+              "intercom_version"
+              "user_id"
+            ]
+          }
+          s: [
+            {
+              lit: "visitors"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PUT /visitors"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PUT"
+          o: "/visitors"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "visitors"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

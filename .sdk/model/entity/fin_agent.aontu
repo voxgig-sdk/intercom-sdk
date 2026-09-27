@@ -1,0 +1,216 @@
+# Entity: fin_agent
+
+main: kit: entity: fin_agent: {
+
+  alias: field: {}
+
+  fields: {
+    attachments: {
+      h: "Attachments"
+      n: "attachments"
+      r: false
+      sh: "An array of attachments to include with the message."
+      t: "`$ARRAY`"
+    }
+    conversation: {
+      h: "Conversation"
+      n: "conversation"
+      r: false
+      sh: "Conversation-related attribute errors."
+      t: "`$OBJECT`"
+    }
+    conversation_id: {
+      h: "Conversation Id"
+      n: "conversation_id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The external ID of the rated conversation."
+      t: "`$STRING`"
+    }
+    conversation_metadata: {
+      h: "Conversation Metadata"
+      n: "conversation_metadata"
+      r: false
+      sh: "Metadata about the conversation, including history and attributes."
+      t: "`$OBJECT`"
+    }
+    message: {
+      h: "Message"
+      n: "message"
+      r: true
+      sh: "A message exchanged within a Fin Agent conversation."
+      t: "`$OBJECT`"
+    }
+    rating: {
+      h: "Rating"
+      n: "rating"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The rating now recorded on the conversation."
+      t: "`$STRING`"
+    }
+    remark: {
+      h: "Remark"
+      n: "remark"
+      r: false
+      sh: "Optional free-text comment the user left alongside the rating."
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The result of the submission."
+      t: "`$STRING`"
+    }
+    user: {
+      h: "User"
+      n: "user"
+      op: {
+        create: {
+          req: true
+          type: "`$OBJECT`"
+        }
+      }
+      r: false
+      sh: "User-related attribute errors."
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "fin_agent"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /fin/csat"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/fin/csat"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "fin"
+            }
+            {
+              lit: "csat"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /fin/reply"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/fin/reply"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "fin"
+            }
+            {
+              lit: "reply"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.errors`"
+          }
+        }
+        {
+          co: {
+            id: "POST /fin/start"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/fin/start"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "fin"
+            }
+            {
+              lit: "start"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.errors`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

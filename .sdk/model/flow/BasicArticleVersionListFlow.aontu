@@ -1,0 +1,26 @@
+# BasicArticleVersionListFlow
+
+main: kit: flow: BasicArticleVersionListFlow:
+{
+  entity: "article_version_list",
+  kind: "basic",
+  name: "BasicArticleVersionListFlow",
+  step: [
+    {
+      m: {
+        article_id: "article01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "article_version_list_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArticleVersionListFlow"
+}

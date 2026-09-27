@@ -1,0 +1,87 @@
+# Entity: phone_switch
+
+main: kit: entity: phone_switch: {
+
+  alias: field: {}
+
+  fields: {
+    custom_attributes: {
+      h: "Custom Attributes"
+      n: "custom_attributes"
+      r: false
+      sh: "An object containing the different custom attributes associated to the conversation as key-value pairs."
+      t: "`$OBJECT`"
+      union: {
+        branches: 4
+        count: 2
+        depth: 3
+      }
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Phone number in E.164 format, that has received the SMS to continue the conversation in the Messenger."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "phone_switch"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /phone_call_redirects"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/phone_call_redirects"
+          q: {
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "phone_call_redirects"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

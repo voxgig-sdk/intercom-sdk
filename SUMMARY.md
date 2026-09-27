@@ -146,6 +146,10 @@ Results: Versions found.
 
 SDK operations: `list`.
 
+Key fields to recognise:
+
+- `id`: The unique identifier for the version.
+
 ### [Audience](docs/api/audience.html)
 
 Results: Audience created; Successful response; Audience found; Audience deleted; Audience updated.
@@ -227,6 +231,19 @@ Key fields to recognise:
 - `contact_id`: The id of the contact associated with the call, if any.
 - `conversation_id`: The id of the conversation associated with the call, if any.
 - `direction`: The direction of the call.
+
+### [Cancel](docs/api/cancel.html)
+
+Results: successful.
+
+SDK operations: `create`.
+
+Key fields to recognise:
+
+- `download_expires_at`: The time after which you will not be able to access the data.
+- `download_url`: The location where you can download your data.
+- `job_identifier`: The identifier for your job.
+- `status`: The current state of your job.
 
 ### [Company](docs/api/company.html)
 
@@ -422,11 +439,11 @@ SDK operations: `create`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
+- `admin_id`: ID of the admin who created the attribute.
+- `archived`: Whether this attribute is archived.
+- `created_at`: The time the attribute was created as a UTC Unix timestamp.
+- `data_type`: The data type of the attribute. Allowed types: string, integer, list, decimal, boolean, datetime, relationship, files.
 - `description`: Readable description of the attribute.
-- `label`: The display label for the option.
-- `multiline`: Whether this string attribute is multiline.
-- `name`: Name of the attribute.
-- `reference`: Reference configuration for related objects.
 
 ### [ConversationAttributeList](docs/api/conversation_attribute_list.html)
 
@@ -458,6 +475,10 @@ Results: Attach a contact to a conversation; Detach a contact from a group conve
 
 SDK operations: `create`, `remove`.
 
+Key fields to recognise:
+
+- `id`: The unique identifier for the participant
+
 ### [CustomObjectInstance](docs/api/custom_object_instance.html)
 
 Results: successful.
@@ -466,11 +487,11 @@ SDK operations: `create`, `load`, `remove`.
 
 Key fields to recognise:
 
+- `created_at`: The time the attribute was created as a UTC Unix timestamp
 - `custom_attributes`: The custom attributes you have set on the custom object instance.
 - `data`: An array of Custom Object Instance objects.
 - `external_created_at`: The time when the Custom Object instance was created in the external system it originated from.
 - `external_id`: The id you have defined for the custom object instance.
-- `external_updated_at`: The time when the Custom Object instance was last updated in the external system it originated from.
 
 ### [Data](docs/api/data.html)
 
@@ -534,6 +555,10 @@ Results: successful.
 
 SDK operations: `list`.
 
+Key fields to recognise:
+
+- `id`: The unique identifier for the execution result.
+
 ### [DataEvent](docs/api/data_event.html)
 
 Results: successful.
@@ -561,19 +586,6 @@ Key fields to recognise:
 - `first`: The first time the event was sent
 - `last`: The last time the event was sent
 - `name`: The name of the event
-
-### [DataExport](docs/api/data_export.html)
-
-Results: successful.
-
-SDK operations: `create`.
-
-Key fields to recognise:
-
-- `download_expires_at`: The time after which you will not be able to access the data.
-- `download_url`: The location where you can download your data.
-- `job_identifier`: The identifier for your job.
-- `status`: The current state of your job.
 
 ### [Deleted](docs/api/deleted.html)
 
@@ -605,6 +617,10 @@ SDK operations: `remove`.
 Results: Data connector deleted.
 
 SDK operations: `remove`.
+
+Key fields to recognise:
+
+- `id`: The unique identifier for the data connector.
 
 ### [DeletedInternalArticleObject](docs/api/deleted_internal_article_object.html)
 
@@ -683,7 +699,7 @@ Key fields to recognise:
 
 ### [HelpCenter](docs/api/help_center.html)
 
-Results: redirect created; collection created; Successful; Help Centers found; Collection found; successful; redirect deleted.
+Results: redirect created; collection created; Successful; Help Centers found; Collection found; redirect deleted; successful.
 
 SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
@@ -793,29 +809,29 @@ Key fields to recognise:
 
 Results: successful.
 
-SDK operations: `create`, `load`, `update`.
+SDK operations: `create`, `list`, `load`, `update`.
 
 Key fields to recognise:
 
 - `body`: The news item body, which may contain HTML.
 - `cover_image_url`: URL of the image used as cover. Must have .jpg or .png extension.
 - `created_at`: Timestamp for when the news item was created.
+- `data`: An array of Objects
 - `deliver_silently`: When set to true, the news item will appear in the messenger newsfeed without showing a notification badge.
-- `id`: The unique identifier for the news item which is given by Intercom.
 
 ### [Newsfeed](docs/api/newsfeed.html)
 
 Results: successful.
 
-SDK operations: `load`.
+SDK operations: `list`, `load`.
 
 Key fields to recognise:
 
-- `created_at`: Timestamp for when the newsfeed was created.
-- `id`: The unique identifier for the newsfeed which is given by Intercom.
+- `created_at`: Timestamp for when the news item was created.
+- `data`: An array of Objects
+- `id`: The unique identifier for the news item which is given by Intercom.
 - `name`: The name of the newsfeed. This name will never be visible to your users.
-- `type`: The type of object.
-- `updated_at`: Timestamp for when the newsfeed was last updated.
+- `pages`: Cursor-based pagination is a technique used in the Intercom API to navigate through large amounts of data. A &quot;cursor&quot; or pointer is used to keep track of the current position in the result set, allowing the API to return the data in small chunks or &quot;pages&quot; as needed.
 
 ### [Note](docs/api/note.html)
 
@@ -896,6 +912,7 @@ Key fields to recognise:
 
 - `custom_attributes`: An object containing the different custom attributes associated to the conversation as key-value pairs.
 - `phone`: Phone number in E.164 format, that has received the SMS to continue the conversation in the Messenger.
+- `type`: The type is error.list
 
 ### [ReportingData](docs/api/reporting_data.html)
 
@@ -908,6 +925,10 @@ SDK operations: `load`.
 Results: Job enqueued successfully; List of datasets.
 
 SDK operations: `create`, `list`.
+
+Key fields to recognise:
+
+- `id`: The simple attribute identifier. Note that this may be ambiguous if the same name exists across different attribute types. Use qualified_id when calling the enqueue endpoint.
 
 ### [Segment](docs/api/segment.html)
 
@@ -974,8 +995,8 @@ Key fields to recognise:
 - `admin_id`: Optional id of the teammate to attribute the tagging to.
 - `applied_at`: The time when the tag was applied to the object. Only present when the tag is returned as part of a tagging operation on a contact, conversation, or ticket.
 - `applied_by`: The admin who applied the tag. Only present when the tag is returned as part of a tagging operation on a contact, conversation, or ticket.
+- `companies`: The companies that were tagged or untagged.
 - `id`: The id of the tag
-- `name`: The name of the tag
 
 ### [Team](docs/api/team.html)
 
@@ -1078,7 +1099,7 @@ Key fields to recognise:
 - `archived`: Whether the ticket type attribute is archived or not.
 - `data_type`: The type of the data attribute (allowed values: &quot;string list integer decimal boolean datetime files&quot;)
 - `description`: The description of the ticket type attribute
-- `list_items`: A comma delimited list of items for the attribute value (only applicable to list attributes)
+- `id`: The id representing the ticket type attribute.
 
 ### [Visitor](docs/api/visitor.html)
 
@@ -1090,9 +1111,9 @@ Key fields to recognise:
 
 - `anonymous`: Identifies if this visitor is anonymous.
 - `app_id`: The id of the app the visitor is associated with.
+- `avatar`: Image for the associated team or teammate
 - `created_at`: The time the Visitor was added to Intercom.
 - `custom_attributes`: The custom attributes you have set on the Visitor.
-- `do_not_track`: Identifies if this visitor has do not track enabled.
 
 ### [WhatsappMessageStatus](docs/api/whatsapp_message_status.html)
 
@@ -1177,6 +1198,7 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [Call](docs/api/call.html) | `load` | `GET /calls/{call_id}/recording` | Required |
 | [Call](docs/api/call.html) | `load` | `GET /calls/{call_id}/transcript` | Required |
 | [Call](docs/api/call.html) | `load` | `GET /fin_voice/phone_number/{phone_number}` | Required |
+| [Cancel](docs/api/cancel.html) | `create` | `POST /export/cancel/{job_identifier}` | Required |
 | [Company](docs/api/company.html) | `create` | `POST /contacts/{contact_id}/companies` | Required |
 | [Company](docs/api/company.html) | `create` | `POST /companies` | Required |
 | [Company](docs/api/company.html) | `list` | `GET /companies` | Required |
@@ -1254,7 +1276,6 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [DataEvent](docs/api/data_event.html) | `create` | `POST /events` | Required |
 | [DataEvent](docs/api/data_event.html) | `create` | `POST /events/summaries` | Required |
 | [DataEventSummary](docs/api/data_event_summary.html) | `list` | `GET /events` | Required |
-| [DataExport](docs/api/data_export.html) | `create` | `POST /export/cancel/{job_identifier}` | Required |
 | [Deleted](docs/api/deleted.html) | `list` | `GET /conversations/deleted` | Required |
 | [DeletedArticleObject](docs/api/deleted_article_object.html) | `remove` | `DELETE /articles/{article_id}` | Required |
 | [DeletedCompanyObject](docs/api/deleted_company_object.html) | `remove` | `DELETE /companies/{company_id}` | Required |
@@ -1279,11 +1300,11 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [HelpCenter](docs/api/help_center.html) | `list` | `GET /help_center/help_centers/{help_center_id}/redirects` | Required |
 | [HelpCenter](docs/api/help_center.html) | `list` | `GET /help_center/collections` | Required |
 | [HelpCenter](docs/api/help_center.html) | `list` | `GET /help_center/help_centers` | Required |
+| [HelpCenter](docs/api/help_center.html) | `load` | `GET /help_center/help_centers/{help_center_id}/redirects/{id}` | Required |
 | [HelpCenter](docs/api/help_center.html) | `load` | `GET /help_center/collections/{collection_id}` | Required |
 | [HelpCenter](docs/api/help_center.html) | `load` | `GET /help_center/help_centers/{help_center_id}` | Required |
-| [HelpCenter](docs/api/help_center.html) | `load` | `GET /help_center/help_centers/{help_center_id}/redirects/{id}` | Required |
-| [HelpCenter](docs/api/help_center.html) | `remove` | `DELETE /help_center/collections/{collection_id}` | Required |
 | [HelpCenter](docs/api/help_center.html) | `remove` | `DELETE /help_center/help_centers/{help_center_id}/redirects/{id}` | Required |
+| [HelpCenter](docs/api/help_center.html) | `remove` | `DELETE /help_center/collections/{collection_id}` | Required |
 | [HelpCenter](docs/api/help_center.html) | `update` | `PUT /help_center/collections/{collection_id}` | Required |
 | [InternalArticle](docs/api/internal_article.html) | `load` | `GET /internal_articles/{internal_article_id}` | Required |
 | [InternalArticle](docs/api/internal_article.html) | `update` | `PUT /internal_articles/{internal_article_id}` | Required |
@@ -1297,8 +1318,10 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [MergeHistory](docs/api/merge_history.html) | `list` | `GET /contacts/{id}/merge_history` | Required |
 | [Message](docs/api/message.html) | `create` | `POST /messages` | Required |
 | [NewsItem](docs/api/news_item.html) | `create` | `POST /news/news_items` | Required |
+| [NewsItem](docs/api/news_item.html) | `list` | `GET /news/news_items` | Required |
 | [NewsItem](docs/api/news_item.html) | `load` | `GET /news/news_items/{news_item_id}` | Required |
 | [NewsItem](docs/api/news_item.html) | `update` | `PUT /news/news_items/{news_item_id}` | Required |
+| [Newsfeed](docs/api/newsfeed.html) | `list` | `GET /news/newsfeeds` | Required |
 | [Newsfeed](docs/api/newsfeed.html) | `load` | `GET /news/newsfeeds/{newsfeed_id}` | Required |
 | [Note](docs/api/note.html) | `create` | `POST /companies/{company_id}/notes` | Required |
 | [Note](docs/api/note.html) | `create` | `POST /contacts/{contact_id}/notes` | Required |
@@ -1316,8 +1339,6 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | [OfficeHoursSchedule](docs/api/office_hours_schedule.html) | `load` | `GET /office_hours_schedules/{id}` | Required |
 | [OfficeHoursSchedule](docs/api/office_hours_schedule.html) | `update` | `PUT /office_hours_schedules/{id}` | Required |
 | [Paginated](docs/api/paginated.html) | `list` | `GET /news/newsfeeds/{newsfeed_id}/items` | Required |
-| [Paginated](docs/api/paginated.html) | `list` | `GET /news/news_items` | Required |
-| [Paginated](docs/api/paginated.html) | `list` | `GET /news/newsfeeds` | Required |
 | [PhoneSwitch](docs/api/phone_switch.html) | `create` | `POST /phone_call_redirects` | Required |
 | [ReportingData](docs/api/reporting_data.html) | `load` | `GET /download/reporting_data/{job_identifier}` | Required |
 | [ReportingData](docs/api/reporting_data.html) | `load` | `GET /export/reporting_data/{job_identifier}` | Required |
@@ -1421,7 +1442,7 @@ Use the MCP server to expose supported API operations to an MCP client.
 
 Repository directory: `go-mcp/`. Not published. Build from the go-mcp directory.
 
-- `intercom_list`: List records for an entity. Supported entities: `activity_log`, `activity_log_event_type`, `admin`, `admin_with_app`, `article`, `article_version_list`, `audience`, `away_status_reason`, `banner`, `brand`, `call`, `company`, `company_attached_contact`, `company_attached_segment`, `company_scroll`, `contact`, `contact_attached_company`, `contact_segment`, `content_import_source`, `content_search`, `content_snippet`, `conversation`, `conversation_attribute_list`, `data_attribute`, `data_connector`, `data_connector_execution_result_list`, `data_event_summary`, `deleted`, `deleted_internal_article_object`, `email`, `external_page`, `handling_event`, `help_center`, `ip_allowlist`, `macro`, `merge_history`, `note`, `office_hour`, `office_hours_exception`, `paginated`, `reporting_data_export`, `segment`, `side_conversation`, `subscription`, `subscription_type`, `tag`, `team`, `team_metric_list`, `ticket_state`, `ticket_type`, `whatsapp_message_status_list`.
+- `intercom_list`: List records for an entity. Supported entities: `activity_log`, `activity_log_event_type`, `admin`, `admin_with_app`, `article`, `article_version_list`, `audience`, `away_status_reason`, `banner`, `brand`, `call`, `company`, `company_attached_contact`, `company_attached_segment`, `company_scroll`, `contact`, `contact_attached_company`, `contact_segment`, `content_import_source`, `content_search`, `content_snippet`, `conversation`, `conversation_attribute_list`, `data_attribute`, `data_connector`, `data_connector_execution_result_list`, `data_event_summary`, `deleted`, `deleted_internal_article_object`, `email`, `external_page`, `handling_event`, `help_center`, `ip_allowlist`, `macro`, `merge_history`, `news_item`, `newsfeed`, `note`, `office_hour`, `office_hours_exception`, `paginated`, `reporting_data_export`, `segment`, `side_conversation`, `subscription`, `subscription_type`, `tag`, `team`, `team_metric_list`, `ticket_state`, `ticket_type`, `whatsapp_message_status_list`.
 - `intercom_load`: Load one record for an entity. Supported entities: `admin`, `ai_call`, `article`, `article_search`, `article_version`, `audience`, `brand`, `call`, `company`, `contact`, `content_import_source`, `content_snippet`, `conversation`, `conversation_attribute`, `custom_object_instance`, `data`, `data_connector`, `data_connector_execution_result`, `email`, `external_page`, `help_center`, `internal_article`, `internal_article_search`, `job`, `macro`, `news_item`, `newsfeed`, `note`, `office_hours_exception`, `office_hours_schedule`, `reporting_data`, `segment`, `tag`, `team`, `ticket`, `ticket_type`, `visitor`, `whatsapp_message_status`, `workflow`.
 
 ## Operational features

@@ -1,0 +1,414 @@
+# Entity: company_attached_contact
+
+main: kit: entity: company_attached_contact: {
+
+  alias: field: {}
+
+  fields: {
+    android_app_name: {
+      h: "Android App Name"
+      n: "android_app_name"
+      r: false
+      sh: "The name of the Android app which the contact is using."
+      t: "`$STRING`"
+    }
+    android_app_version: {
+      h: "Android App Version"
+      n: "android_app_version"
+      r: false
+      sh: "The version of the Android app which the contact is using."
+      t: "`$STRING`"
+    }
+    android_device: {
+      h: "Android Device"
+      n: "android_device"
+      r: false
+      sh: "The Android device which the contact is using."
+      t: "`$STRING`"
+    }
+    android_last_seen_at: {
+      fo: "date-time"
+      h: "Android Last Seen At"
+      n: "android_last_seen_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact was last seen on an Android device."
+      t: "`$INTEGER`"
+    }
+    android_os_version: {
+      h: "Android Os Version"
+      n: "android_os_version"
+      r: false
+      sh: "The version of the Android OS which the contact is using."
+      t: "`$STRING`"
+    }
+    android_sdk_version: {
+      h: "Android Sdk Version"
+      n: "android_sdk_version"
+      r: false
+      sh: "The version of the Android SDK which the contact is using."
+      t: "`$STRING`"
+    }
+    avatar: {
+      h: "Avatar"
+      n: "avatar"
+      r: false
+      t: "`$OBJECT`"
+    }
+    browser: {
+      h: "Browser"
+      n: "browser"
+      r: false
+      sh: "The name of the browser which the contact is using."
+      t: "`$STRING`"
+    }
+    browser_language: {
+      h: "Browser Language"
+      n: "browser_language"
+      r: false
+      sh: "The language set by the browser which the contact is using."
+      t: "`$STRING`"
+    }
+    browser_version: {
+      h: "Browser Version"
+      n: "browser_version"
+      r: false
+      sh: "The version of the browser which the contact is using."
+      t: "`$STRING`"
+    }
+    companies: {
+      h: "Companies"
+      n: "companies"
+      r: false
+      sh: "An object with metadata about companies attached to a contact ."
+      t: "`$OBJECT`"
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact was created."
+      t: "`$INTEGER`"
+    }
+    custom_attributes: {
+      h: "Custom Attributes"
+      n: "custom_attributes"
+      r: false
+      sh: "The custom attributes which are set for the contact."
+      t: "`$OBJECT`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "The contact's email."
+      t: "`$STRING`"
+    }
+    email_domain: {
+      h: "Email Domain"
+      n: "email_domain"
+      r: false
+      sh: "The contact's email domain."
+      t: "`$STRING`"
+    }
+    external_id: {
+      h: "External Id"
+      n: "external_id"
+      r: false
+      sh: "The unique identifier for the contact which is provided by the Client."
+      t: "`$STRING`"
+    }
+    has_hard_bounced: {
+      h: "Has Hard Bounced"
+      n: "has_hard_bounced"
+      r: false
+      sh: "Whether the contact has had an email sent to them hard bounce."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The unique identifier for the contact which is given by Intercom."
+      t: "`$STRING`"
+    }
+    ios_app_name: {
+      h: "Ios App Name"
+      n: "ios_app_name"
+      r: false
+      sh: "The name of the iOS app which the contact is using."
+      t: "`$STRING`"
+    }
+    ios_app_version: {
+      h: "Ios App Version"
+      n: "ios_app_version"
+      r: false
+      sh: "The version of the iOS app which the contact is using."
+      t: "`$STRING`"
+    }
+    ios_device: {
+      h: "Ios Device"
+      n: "ios_device"
+      r: false
+      sh: "The iOS device which the contact is using."
+      t: "`$STRING`"
+    }
+    ios_last_seen_at: {
+      fo: "date-time"
+      h: "Ios Last Seen At"
+      n: "ios_last_seen_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The last time the contact used the iOS app."
+      t: "`$INTEGER`"
+    }
+    ios_os_version: {
+      h: "Ios Os Version"
+      n: "ios_os_version"
+      r: false
+      sh: "The version of iOS which the contact is using."
+      t: "`$STRING`"
+    }
+    ios_sdk_version: {
+      h: "Ios Sdk Version"
+      n: "ios_sdk_version"
+      r: false
+      sh: "The version of the iOS SDK which the contact is using."
+      t: "`$STRING`"
+    }
+    language_override: {
+      h: "Language Override"
+      n: "language_override"
+      r: false
+      sh: "A preferred language setting for the contact, used by the Intercom Messenger even if their browser settings change."
+      t: "`$STRING`"
+    }
+    last_contacted_at: {
+      fo: "date-time"
+      h: "Last Contacted At"
+      n: "last_contacted_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact was last messaged."
+      t: "`$INTEGER`"
+    }
+    last_email_clicked_at: {
+      fo: "date-time"
+      h: "Last Email Clicked At"
+      n: "last_email_clicked_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact last clicked a link in an email."
+      t: "`$INTEGER`"
+    }
+    last_email_opened_at: {
+      fo: "date-time"
+      h: "Last Email Opened At"
+      n: "last_email_opened_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact last opened an email."
+      t: "`$INTEGER`"
+    }
+    last_replied_at: {
+      fo: "date-time"
+      h: "Last Replied At"
+      n: "last_replied_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact last messaged in."
+      t: "`$INTEGER`"
+    }
+    last_seen_at: {
+      fo: "date-time"
+      h: "Last Seen At"
+      n: "last_seen_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact was last seen (either where the Intercom Messenger was installed or when specified manually)."
+      t: "`$INTEGER`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      sh: "An object containing location meta data about a Intercom contact."
+      t: "`$OBJECT`"
+    }
+    marked_email_as_spam: {
+      h: "Marked Email As Spam"
+      n: "marked_email_as_spam"
+      r: false
+      sh: "Whether the contact has marked an email sent to them as spam."
+      t: "`$BOOLEAN`"
+    }
+    merge_history: {
+      h: "Merge History"
+      n: "merge_history"
+      r: false
+      sh: "A list of contacts that were merged into this contact."
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The contacts name."
+      t: "`$STRING`"
+    }
+    notes: {
+      h: "Notes"
+      n: "notes"
+      r: false
+      sh: "An object containing notes meta data about the notes that a contact has."
+      t: "`$OBJECT`"
+    }
+    os: {
+      h: "Os"
+      n: "os"
+      r: false
+      sh: "The operating system which the contact is using."
+      t: "`$STRING`"
+    }
+    owner_id: {
+      h: "Owner Id"
+      n: "owner_id"
+      r: false
+      sh: "The id of an admin that has been assigned account ownership of the contact."
+      t: "`$STRING`"
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      sh: "The contacts phone."
+      t: "`$STRING`"
+    }
+    role: {
+      h: "Role"
+      n: "role"
+      r: false
+      sh: "The role of the contact."
+      t: "`$STRING`"
+    }
+    signed_up_at: {
+      fo: "date-time"
+      h: "Signed Up At"
+      n: "signed_up_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time specified for when a contact signed up."
+      t: "`$INTEGER`"
+    }
+    social_profiles: {
+      h: "Social Profiles"
+      n: "social_profiles"
+      r: false
+      sh: "An object containing social profiles that a contact has."
+      t: "`$OBJECT`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      sh: "An object containing tags meta data about the tags that a contact has."
+      t: "`$OBJECT`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    unsubscribed_from_emails: {
+      h: "Unsubscribed From Emails"
+      n: "unsubscribed_from_emails"
+      r: false
+      sh: "Whether the contact is unsubscribed from emails."
+      t: "`$BOOLEAN`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "(Unix timestamp in seconds) The time when the contact was last updated."
+      t: "`$INTEGER`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "The id of the workspace which the contact belongs to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "company_attached_contact"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /companies/{company_id}/contacts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                ex: "5f4d3c1c-7b1b-4d7d-a97e-6095715c6632"
+                k: "param"
+                n: "id"
+                or: "company_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/companies/{company_id}/contacts"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              company_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "companies"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "contacts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

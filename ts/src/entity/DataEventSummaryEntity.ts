@@ -19,7 +19,6 @@ import type {
   DataEventSummaryListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class DataEventSummaryEntity extends IntercomEntityBase<DataEventSummary> {
 
   constructor(client: IntercomSDK, entopts: any) {

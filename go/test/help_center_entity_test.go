@@ -102,6 +102,7 @@ func TestHelpCenterEntity(t *testing.T) {
 		helpCenterRef01Ent := client.HelpCenter(nil)
 		helpCenterRef01Data := core.ToMapAny(vs.GetProp(
 			vs.GetPath(setup.data, []any{"new", "help_center"}), "help_center_ref01"))
+		helpCenterRef01Data["help_center_id"] = setup.idmap["help_center01"]
 
 		helpCenterRef01DataResult, err := helpCenterRef01Ent.Create(helpCenterRef01Data, nil)
 		if err != nil {
@@ -226,7 +227,7 @@ func help_centerBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"help_center01", "help_center02", "help_center03", "collection01", "collection02", "collection03"},
+		[]any{"help_center01", "help_center02", "help_center03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

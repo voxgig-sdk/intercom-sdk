@@ -19,7 +19,6 @@ import type {
   HandlingEventListMatch,
 } from '../IntercomTypes'
 
-// TODO: needs Entity superclass
 class HandlingEventEntity extends IntercomEntityBase<HandlingEvent> {
 
   constructor(client: IntercomSDK, entopts: any) {

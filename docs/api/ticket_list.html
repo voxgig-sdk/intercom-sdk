@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -49,7 +50,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -107,14 +107,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="ticketlist">TicketList</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="ticketlist">TicketList</h1>
 <h2 id="operations">Operations</h2>
 <p>Every route this entity exposes. Each route links to its own reference on this page.</p>
 <table>
@@ -135,6 +135,36 @@
 </tr>
 </tbody>
 </table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">created, err := client.TicketList(nil).Create(map[string]any{&quot;query&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+</code></pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/js.html#set-up-the-client">JavaScript setup</a>, then call the operations:</p>
+<pre><code class="language-js">const created = await client.TicketList().create({ query: &quot;example&quot; })
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local created, err = client:TicketList():create({ query = &quot;example&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$created = $client-&gt;TicketList()-&gt;create([&quot;query&quot; =&gt; &quot;example&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">created = client.TicketList().create({ &quot;query&quot;: &quot;example&quot; })
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const created = await client.TicketList().create({ query: &quot;example&quot; })
+</code></pre>
 <h2 id="fields">Fields</h2>
 <table>
 <thead>
@@ -156,13 +186,13 @@
 <td><code>pagination</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td></td>
+<td>Pagination</td>
 </tr>
 <tr>
 <td><code>query</code></td>
 <td><code>any</code></td>
 <td>Yes</td>
-<td></td>
+<td>Query</td>
 </tr>
 <tr>
 <td><code>tickets</code></td>
@@ -439,13 +469,13 @@
 <td><code>tickets[].ticket_attributes</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_default_title_</code> and <code>_default_description_</code>.</td>
+<td>An object containing the different attributes associated to the ticket as key-value pairs. For the default title and description attributes, the keys are <code>_</code>default_title<code>_</code> and <code>_</code>default_description<code>_</code>.</td>
 </tr>
 <tr>
 <td><code>tickets[].ticket_id</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use ticket_id for API queries.</td>
+<td>The ID of the Ticket used in the Intercom Inbox and Messenger. Do not use <code>ticket_id</code> for API queries.</td>
 </tr>
 <tr>
 <td><code>tickets[].ticket_parts</code></td>
@@ -469,7 +499,7 @@
 <td><code>tickets[].ticket_parts.ticket_parts[].assigned_to</code></td>
 <td><code>object</code></td>
 <td>No</td>
-<td>The assignee this ticket_part assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
+<td>The assignee this <code>ticket_part</code> assigned the ticket to, as a reference whose <code>type</code> is <code>admin</code>, <code>team</code> or <code>bot</code>. When the part unassigned the ticket, <code>type</code> is <code>nobody_admin</code> and <code>id</code> is <code>null</code>. Null when the part did not change the assignment, or when the assignee has since been deleted.</td>
 </tr>
 <tr>
 <td><code>tickets[].ticket_parts.ticket_parts[].assigned_to.id</code></td>
@@ -613,7 +643,7 @@
 <td><code>tickets[].ticket_parts.ticket_parts[].type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>Always ticket_part</td>
+<td>Always <code>ticket_part</code></td>
 </tr>
 <tr>
 <td><code>tickets[].ticket_parts.ticket_parts[].updated_at</code></td>
@@ -749,7 +779,7 @@
 </tr>
 <tr>
 <td><code>tickets[].ticket_type.ticket_states.data[].category</code></td>
-<td><code>string</code></td>
+<td><code>enum: submitted, in_progress, waiting_on_customer, resolved</code></td>
 <td>No</td>
 <td>The category of the ticket state</td>
 </tr>
@@ -901,7 +931,7 @@
 <td><code>tickets[].ticket_type.ticket_type_attributes.type</code></td>
 <td><code>string</code></td>
 <td>No</td>
-<td>String representing the object's type. Always has the value <code>ticket_type_attributes.list</code>.</td>
+<td>String representing the object's type. Always has the value ``ticket_type_attributes<code>.list</code>.</td>
 </tr>
 <tr>
 <td><code>tickets[].ticket_type.type</code></td>

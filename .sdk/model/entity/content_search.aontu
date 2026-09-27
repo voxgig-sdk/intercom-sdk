@@ -1,0 +1,269 @@
+# Entity: content_search
+
+main: kit: entity: content_search: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      sh: "The list of matched content items."
+      t: "`$ARRAY`"
+    }
+    pages: {
+      h: "Pages"
+      n: "pages"
+      r: false
+      sh: "Pagination metadata, including links to neighbouring pages."
+      t: "`$OBJECT`"
+    }
+    total_count: {
+      h: "Total Count"
+      n: "total_count"
+      r: false
+      sh: "Total number of results matching the query."
+      t: "`$INTEGER`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "Always `list`."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "content_search"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /content/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: "1,2,3"
+                k: "query"
+                n: "any_tag_id"
+                or: "any_tag_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "article,snippet"
+                k: "query"
+                n: "content_type"
+                or: "content_type"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "on"
+                k: "query"
+                n: "copilot_state"
+                or: "copilot_state"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1677253093
+                k: "query"
+                n: "created_at_after"
+                or: "created_at_after"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1677861493
+                k: "query"
+                n: "created_at_before"
+                or: "created_at_before"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "991267464,991267465"
+                k: "query"
+                n: "created_by_id"
+                or: "created_by_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "on"
+                k: "query"
+                n: "fin_sales_state"
+                or: "fin_sales_state"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "on"
+                k: "query"
+                n: "fin_service_state"
+                or: "fin_service_state"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "folder"
+                k: "query"
+                n: "folder_entity_type"
+                or: "folder_entity_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "10,20"
+                k: "query"
+                n: "folder_id"
+                or: "folder_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "991267464,991267465"
+                k: "query"
+                n: "last_updated_by_id"
+                or: "last_updated_by_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "en,fr"
+                k: "query"
+                n: "locale"
+                or: "locale"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "billing"
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "published,draft"
+                k: "query"
+                n: "state"
+                or: "state"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "1,2,3"
+                k: "query"
+                n: "tag_id"
+                or: "tag_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "IN"
+                k: "query"
+                n: "tag_operator"
+                or: "tag_operator"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1677253093
+                k: "query"
+                n: "updated_at_after"
+                or: "updated_at_after"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1677861493
+                k: "query"
+                n: "updated_at_before"
+                or: "updated_at_before"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/content/search"
+          q: {
+            exist: [
+              "any_tag_id"
+              "content_type"
+              "copilot_state"
+              "created_at_after"
+              "created_at_before"
+              "created_by_id"
+              "fin_sales_state"
+              "fin_service_state"
+              "folder_entity_type"
+              "folder_id"
+              "intercom_version"
+              "last_updated_by_id"
+              "locale"
+              "page"
+              "per_page"
+              "query"
+              "state"
+              "tag_id"
+              "tag_operator"
+              "updated_at_after"
+              "updated_at_before"
+            ]
+          }
+          s: [
+            {
+              lit: "content"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

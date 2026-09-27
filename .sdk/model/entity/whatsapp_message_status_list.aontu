@@ -1,0 +1,147 @@
+# Entity: whatsapp_message_status_list
+
+main: kit: entity: whatsapp_message_status_list: {
+
+  alias: field: {}
+
+  fields: {
+    conversation_id: {
+      h: "Conversation Id"
+      n: "conversation_id"
+      r: true
+      sh: "ID of the conversation"
+      t: "`$STRING`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "Creation timestamp"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Event ID"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      sh: "Current status of the message"
+      t: "`$STRING`"
+    }
+    template_name: {
+      h: "Template Name"
+      n: "template_name"
+      r: false
+      sh: "Name of the WhatsApp template used"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "Event type"
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      sh: "Last update timestamp"
+      t: "`$INTEGER`"
+    }
+    whatsapp_message_id: {
+      h: "Whatsapp Message Id"
+      n: "whatsapp_message_id"
+      r: true
+      sh: "WhatsApp's message identifier"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "whatsapp_message_status_list"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /messages/status"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 50
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "ruleset_id"
+                or: "ruleset_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "starting_after"
+                or: "starting_after"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/messages/status"
+          q: {
+            exist: [
+              "intercom_version"
+              "per_page"
+              "ruleset_id"
+              "starting_after"
+            ]
+          }
+          s: [
+            {
+              lit: "messages"
+            }
+            {
+              lit: "status"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

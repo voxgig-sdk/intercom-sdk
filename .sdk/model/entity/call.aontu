@@ -1,0 +1,494 @@
+# Entity: call
+
+main: kit: entity: call: {
+
+  alias: field: {}
+
+  fields: {
+    admin_id: {
+      h: "Admin Id"
+      n: "admin_id"
+      r: false
+      sh: "The id of the admin associated with the call, if any."
+      t: "`$STRING`"
+    }
+    answered_at: {
+      h: "Answered At"
+      n: "answered_at"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    call_type: {
+      h: "Call Type"
+      n: "call_type"
+      r: false
+      sh: "The type of call."
+      t: "`$STRING`"
+    }
+    contact_id: {
+      h: "Contact Id"
+      n: "contact_id"
+      r: false
+      sh: "The id of the contact associated with the call, if any."
+      t: "`$STRING`"
+    }
+    conversation_id: {
+      h: "Conversation Id"
+      n: "conversation_id"
+      r: false
+      sh: "The id of the conversation associated with the call, if any."
+      t: "`$STRING`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    direction: {
+      h: "Direction"
+      n: "direction"
+      r: false
+      sh: "The direction of the call."
+      t: "`$STRING`"
+    }
+    ended_at: {
+      h: "Ended At"
+      n: "ended_at"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    ended_reason: {
+      h: "Ended Reason"
+      n: "ended_reason"
+      r: false
+      sh: "The reason for the call end, if applicable."
+      t: "`$STRING`"
+    }
+    fin_recording_url: {
+      fo: "uri"
+      h: "Fin Recording Url"
+      n: "fin_recording_url"
+      r: false
+      sh: "API URL to the AI Agent (Fin) call recording if available."
+      t: "`$STRING`"
+    }
+    fin_transcription_url: {
+      fo: "uri"
+      h: "Fin Transcription Url"
+      n: "fin_transcription_url"
+      r: false
+      sh: "API URL to the AI Agent (Fin) call transcript if available."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id of the call."
+      t: "`$STRING`"
+    }
+    initiated_at: {
+      h: "Initiated At"
+      n: "initiated_at"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      sh: "The phone number involved in the call, in E.164 format."
+      t: "`$STRING`"
+    }
+    recording_url: {
+      fo: "uri"
+      h: "Recording Url"
+      n: "recording_url"
+      r: false
+      sh: "API URL to download or redirect to the call recording if available."
+      t: "`$STRING`"
+    }
+    state: {
+      h: "State"
+      n: "state"
+      r: false
+      sh: "The current state of the call."
+      t: "`$STRING`"
+    }
+    transcription_url: {
+      fo: "uri"
+      h: "Transcription Url"
+      n: "transcription_url"
+      r: false
+      sh: "API URL to download or redirect to the call transcript if available."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "String representing the object's type."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 0
+      }
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "call"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /calls/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/calls/search"
+          q: {
+            "$action": "search"
+            exist: [
+              "intercom_version"
+            ]
+          }
+          s: [
+            {
+              lit: "calls"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /calls"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/calls"
+          q: {
+            exist: [
+              "intercom_version"
+              "page"
+              "per_page"
+            ]
+          }
+          s: [
+            {
+              lit: "calls"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /calls/{call_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "call_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/calls/{call_id}"
+          q: {
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              call_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "calls"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /calls/{call_id}/recording"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "call_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/calls/{call_id}/recording"
+          q: {
+            "$action": "recording"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              call_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "calls"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "recording"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /calls/{call_id}/transcript"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                ex: "2.16"
+                k: "header"
+                n: "intercom_version"
+                or: "intercom_version"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "call_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/calls/{call_id}/transcript"
+          q: {
+            "$action": "transcript"
+            exist: [
+              "id"
+              "intercom_version"
+            ]
+          }
+          r: {
+            param: {
+              call_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "calls"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "transcript"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /fin_voice/phone_number/{phone_number}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "phone_number"
+                or: "phone_number"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/fin_voice/phone_number/{phone_number}"
+          q: {
+            exist: [
+              "phone_number"
+            ]
+          }
+          s: [
+            {
+              lit: "fin_voice"
+            }
+            {
+              lit: "phone_number"
+            }
+            {
+              var: "phone_number"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

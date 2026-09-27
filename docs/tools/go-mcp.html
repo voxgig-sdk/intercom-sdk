@@ -23,6 +23,7 @@
 <a href="../api/banner_dismiss.html">BannerDismiss</a>
 <a href="../api/brand.html">Brand</a>
 <a href="../api/call.html">Call</a>
+<a href="../api/cancel.html">Cancel</a>
 <a href="../api/company.html">Company</a>
 <a href="../api/company_attached_contact.html">CompanyAttachedContact</a>
 <a href="../api/company_attached_segment.html">CompanyAttachedSegment</a>
@@ -49,7 +50,6 @@
 <a href="../api/data_connector_execution_result_list.html">DataConnectorExecutionResultList</a>
 <a href="../api/data_event.html">DataEvent</a>
 <a href="../api/data_event_summary.html">DataEventSummary</a>
-<a href="../api/data_export.html">DataExport</a>
 <a href="../api/deleted.html">Deleted</a>
 <a href="../api/deleted_article_object.html">DeletedArticleObject</a>
 <a href="../api/deleted_company_object.html">DeletedCompanyObject</a>
@@ -107,14 +107,14 @@
 <a href="../sdks/ts.html">TypeScript</a></details>
 <details open><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
 <a aria-current="page" href="../tools/go-mcp.html">Go MCP server</a></details>
-<details><summary>Features</summary><a href="../features/debug.html">Request/response capture ring buffer for debugging</a>
-<a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a>
-<a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a>
-<a href="../features/paging.html">Pagination signals for list operations</a>
-<a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a>
-<a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a>
-<a href="../features/test.html">In-memory mock transport for testing without a live server</a>
-<a href="../features/timeout.html">Per-request timeout with transport abort</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>Tools</div><h1 id="go-mcp-server">Go MCP server</h1>
+<details><summary>Features</summary><a href="../features/debug.html">Debug capture</a>
+<a href="../features/idempotency.html">Idempotency</a>
+<a href="../features/metrics.html">Metrics</a>
+<a href="../features/paging.html">Paging</a>
+<a href="../features/ratelimit.html">Rate limiting</a>
+<a href="../features/retry.html">Retry</a>
+<a href="../features/test.html">Test transport</a>
+<a href="../features/timeout.html">Timeout</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>Tools</div><h1 id="go-mcp-server">Go MCP server</h1>
 <p>Go MCP server</p>
 <h2 id="install">Install</h2>
 <p>Not published. Build from the go-mcp directory.</p>
@@ -197,6 +197,10 @@
 <tr>
 <td><a href="../api/call.html">Call</a></td>
 <td><code>create</code>, <code>list</code>, <code>load</code></td>
+</tr>
+<tr>
+<td><a href="../api/cancel.html">Cancel</a></td>
+<td><code>create</code></td>
 </tr>
 <tr>
 <td><a href="../api/company.html">Company</a></td>
@@ -303,10 +307,6 @@
 <td><code>list</code></td>
 </tr>
 <tr>
-<td><a href="../api/data_export.html">DataExport</a></td>
-<td><code>create</code></td>
-</tr>
-<tr>
 <td><a href="../api/deleted.html">Deleted</a></td>
 <td><code>list</code></td>
 </tr>
@@ -380,11 +380,11 @@
 </tr>
 <tr>
 <td><a href="../api/news_item.html">NewsItem</a></td>
-<td><code>create</code>, <code>load</code>, <code>update</code></td>
+<td><code>create</code>, <code>list</code>, <code>load</code>, <code>update</code></td>
 </tr>
 <tr>
 <td><a href="../api/newsfeed.html">Newsfeed</a></td>
-<td><code>load</code></td>
+<td><code>list</code>, <code>load</code></td>
 </tr>
 <tr>
 <td><a href="../api/note.html">Note</a></td>
@@ -492,14 +492,14 @@
 <p>Set the server URL and credentials for your environment. Enable only the features your application needs.</p>
 <h2 id="features">Features</h2>
 <ul>
-<li><a href="../features/debug.html">Request/response capture ring buffer for debugging</a></li>
-<li><a href="../features/idempotency.html">Idempotency keys for safe retries of mutating operations</a></li>
-<li><a href="../features/metrics.html">Statistics capture: per-operation counters and latency</a></li>
-<li><a href="../features/paging.html">Pagination signals for list operations</a></li>
-<li><a href="../features/ratelimit.html">Client-side rate limiting via a token bucket</a></li>
-<li><a href="../features/retry.html">Automatic retry of transient failures with exponential backoff</a></li>
-<li><a href="../features/test.html">In-memory mock transport for testing without a live server</a></li>
-<li><a href="../features/timeout.html">Per-request timeout with transport abort</a></li>
+<li><a href="../features/debug.html">Debug capture</a></li>
+<li><a href="../features/idempotency.html">Idempotency</a></li>
+<li><a href="../features/metrics.html">Metrics</a></li>
+<li><a href="../features/paging.html">Paging</a></li>
+<li><a href="../features/ratelimit.html">Rate limiting</a></li>
+<li><a href="../features/retry.html">Retry</a></li>
+<li><a href="../features/test.html">Test transport</a></li>
+<li><a href="../features/timeout.html">Timeout</a></li>
 </ul>
 <h2 id="tools">Tools</h2>
 <h3 id="intercom_list"><code>intercom_list</code></h3>
@@ -512,7 +512,7 @@
   &quot;properties&quot;: {
     &quot;entity&quot;: {
       &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;activity_log | activity_log_event_type | activity_log_list | admin | admin_with_app | ai_call | ai_content | article | article_search | article_version | article_version_list | audience | away_status_reason | banner | banner_dismiss | brand | call | company | company_attached_contact | company_attached_segment | company_list | company_scroll | contact | contact_attached_company | contact_list | contact_segment | content | content_import_source | content_search | content_snippet | conversation | conversation_attribute | conversation_attribute_list | conversation_list | conversation_participant | custom_object_instance | data | data_attribute | data_connector | data_connector_execution_result | data_connector_execution_result_list | data_event | data_event_summary | data_export | deleted | deleted_article_object | deleted_company_object | deleted_data_connector_object | deleted_internal_article_object | deleted_object | email | external_page | fin_agent | handling_event | help_center | internal_article | internal_article_search | ip_allowlist | job | macro | merge_history | message | news_item | newsfeed | note | office_hour | office_hours_exception | office_hours_schedule | paginated | phone_switch | reporting_data | reporting_data_export | segment | side_conversation | subscription | subscription_type | tag | team | team_metric_list | ticket | ticket_list | ticket_reply | ticket_state | ticket_type | ticket_type_attribute | visitor | whatsapp_message_status | whatsapp_message_status_list | workflow&quot;
+      &quot;description&quot;: &quot;activity_log | activity_log_event_type | activity_log_list | admin | admin_with_app | ai_call | ai_content | article | article_search | article_version | article_version_list | audience | away_status_reason | banner | banner_dismiss | brand | call | cancel | company | company_attached_contact | company_attached_segment | company_list | company_scroll | contact | contact_attached_company | contact_list | contact_segment | content | content_import_source | content_search | content_snippet | conversation | conversation_attribute | conversation_attribute_list | conversation_list | conversation_participant | custom_object_instance | data | data_attribute | data_connector | data_connector_execution_result | data_connector_execution_result_list | data_event | data_event_summary | deleted | deleted_article_object | deleted_company_object | deleted_data_connector_object | deleted_internal_article_object | deleted_object | email | external_page | fin_agent | handling_event | help_center | internal_article | internal_article_search | ip_allowlist | job | macro | merge_history | message | news_item | newsfeed | note | office_hour | office_hours_exception | office_hours_schedule | paginated | phone_switch | reporting_data | reporting_data_export | segment | side_conversation | subscription | subscription_type | tag | team | team_metric_list | ticket | ticket_list | ticket_reply | ticket_state | ticket_type | ticket_type_attribute | visitor | whatsapp_message_status | whatsapp_message_status_list | workflow&quot;
     },
     &quot;query&quot;: {
       &quot;type&quot;: &quot;object&quot;,
@@ -521,7 +521,7 @@
   }
 }
 </code></pre>
-<p>Supported entities: <code>activity_log</code>, <code>activity_log_event_type</code>, <code>admin</code>, <code>admin_with_app</code>, <code>article</code>, <code>article_version_list</code>, <code>audience</code>, <code>away_status_reason</code>, <code>banner</code>, <code>brand</code>, <code>call</code>, <code>company</code>, <code>company_attached_contact</code>, <code>company_attached_segment</code>, <code>company_scroll</code>, <code>contact</code>, <code>contact_attached_company</code>, <code>contact_segment</code>, <code>content_import_source</code>, <code>content_search</code>, <code>content_snippet</code>, <code>conversation</code>, <code>conversation_attribute_list</code>, <code>data_attribute</code>, <code>data_connector</code>, <code>data_connector_execution_result_list</code>, <code>data_event_summary</code>, <code>deleted</code>, <code>deleted_internal_article_object</code>, <code>email</code>, <code>external_page</code>, <code>handling_event</code>, <code>help_center</code>, <code>ip_allowlist</code>, <code>macro</code>, <code>merge_history</code>, <code>note</code>, <code>office_hour</code>, <code>office_hours_exception</code>, <code>paginated</code>, <code>reporting_data_export</code>, <code>segment</code>, <code>side_conversation</code>, <code>subscription</code>, <code>subscription_type</code>, <code>tag</code>, <code>team</code>, <code>team_metric_list</code>, <code>ticket_state</code>, <code>ticket_type</code>, <code>whatsapp_message_status_list</code>.</p>
+<p>Supported entities: <code>activity_log</code>, <code>activity_log_event_type</code>, <code>admin</code>, <code>admin_with_app</code>, <code>article</code>, <code>article_version_list</code>, <code>audience</code>, <code>away_status_reason</code>, <code>banner</code>, <code>brand</code>, <code>call</code>, <code>company</code>, <code>company_attached_contact</code>, <code>company_attached_segment</code>, <code>company_scroll</code>, <code>contact</code>, <code>contact_attached_company</code>, <code>contact_segment</code>, <code>content_import_source</code>, <code>content_search</code>, <code>content_snippet</code>, <code>conversation</code>, <code>conversation_attribute_list</code>, <code>data_attribute</code>, <code>data_connector</code>, <code>data_connector_execution_result_list</code>, <code>data_event_summary</code>, <code>deleted</code>, <code>deleted_internal_article_object</code>, <code>email</code>, <code>external_page</code>, <code>handling_event</code>, <code>help_center</code>, <code>ip_allowlist</code>, <code>macro</code>, <code>merge_history</code>, <code>news_item</code>, <code>newsfeed</code>, <code>note</code>, <code>office_hour</code>, <code>office_hours_exception</code>, <code>paginated</code>, <code>reporting_data_export</code>, <code>segment</code>, <code>side_conversation</code>, <code>subscription</code>, <code>subscription_type</code>, <code>tag</code>, <code>team</code>, <code>team_metric_list</code>, <code>ticket_state</code>, <code>ticket_type</code>, <code>whatsapp_message_status_list</code>.</p>
 <h3 id="intercom_load"><code>intercom_load</code></h3>
 <p>Load one record for an entity.</p>
 <pre><code class="language-json">{
@@ -532,7 +532,7 @@
   &quot;properties&quot;: {
     &quot;entity&quot;: {
       &quot;type&quot;: &quot;string&quot;,
-      &quot;description&quot;: &quot;activity_log | activity_log_event_type | activity_log_list | admin | admin_with_app | ai_call | ai_content | article | article_search | article_version | article_version_list | audience | away_status_reason | banner | banner_dismiss | brand | call | company | company_attached_contact | company_attached_segment | company_list | company_scroll | contact | contact_attached_company | contact_list | contact_segment | content | content_import_source | content_search | content_snippet | conversation | conversation_attribute | conversation_attribute_list | conversation_list | conversation_participant | custom_object_instance | data | data_attribute | data_connector | data_connector_execution_result | data_connector_execution_result_list | data_event | data_event_summary | data_export | deleted | deleted_article_object | deleted_company_object | deleted_data_connector_object | deleted_internal_article_object | deleted_object | email | external_page | fin_agent | handling_event | help_center | internal_article | internal_article_search | ip_allowlist | job | macro | merge_history | message | news_item | newsfeed | note | office_hour | office_hours_exception | office_hours_schedule | paginated | phone_switch | reporting_data | reporting_data_export | segment | side_conversation | subscription | subscription_type | tag | team | team_metric_list | ticket | ticket_list | ticket_reply | ticket_state | ticket_type | ticket_type_attribute | visitor | whatsapp_message_status | whatsapp_message_status_list | workflow&quot;
+      &quot;description&quot;: &quot;activity_log | activity_log_event_type | activity_log_list | admin | admin_with_app | ai_call | ai_content | article | article_search | article_version | article_version_list | audience | away_status_reason | banner | banner_dismiss | brand | call | cancel | company | company_attached_contact | company_attached_segment | company_list | company_scroll | contact | contact_attached_company | contact_list | contact_segment | content | content_import_source | content_search | content_snippet | conversation | conversation_attribute | conversation_attribute_list | conversation_list | conversation_participant | custom_object_instance | data | data_attribute | data_connector | data_connector_execution_result | data_connector_execution_result_list | data_event | data_event_summary | deleted | deleted_article_object | deleted_company_object | deleted_data_connector_object | deleted_internal_article_object | deleted_object | email | external_page | fin_agent | handling_event | help_center | internal_article | internal_article_search | ip_allowlist | job | macro | merge_history | message | news_item | newsfeed | note | office_hour | office_hours_exception | office_hours_schedule | paginated | phone_switch | reporting_data | reporting_data_export | segment | side_conversation | subscription | subscription_type | tag | team | team_metric_list | ticket | ticket_list | ticket_reply | ticket_state | ticket_type | ticket_type_attribute | visitor | whatsapp_message_status | whatsapp_message_status_list | workflow&quot;
     },
     &quot;query&quot;: {
       &quot;type&quot;: &quot;object&quot;,
